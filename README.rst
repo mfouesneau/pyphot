@@ -4,7 +4,7 @@ pyphot -- A tool for computing photometry from spectra
 This is a set of tools to compute synthetic photometry in a simple way, ideal to
 integrate in larger projects.
 
-full documentation at: http://mfouesneau.github.io/docs/ezdata/
+full documentation at: http://mfouesneau.github.io/docs/pyphot/
 
 The inputs are photonic or energetic response functions for the desired
 photometric bands and stellar spectra. The modules are flexible to handle units 
