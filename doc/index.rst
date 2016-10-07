@@ -52,6 +52,8 @@ Additionally, and for convenience
 * :class:`pyphot.vega.Vega` provides an interface to a synthetic reference of
   Vega.
 
+* :class:`pyphot.licks` provides an extension to computing lick indices.
+
 Contents
 ---------
 
@@ -59,6 +61,7 @@ Contents
    :maxdepth: 1
 
    libcontent
+   licks
    modules
 
 

@@ -27,6 +27,14 @@ pyphot.helpers module
     :undoc-members:
     :show-inheritance:
 
+pyphot.licks module
+-------------------
+
+.. automodule:: pyphot.licks
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 pyphot.pbar module
 ------------------
 
