@@ -37,6 +37,25 @@ in Johansson, Thomas & Maraston (2010), which provides a discussion of indices
 and the information content of them.
 
 
+Quick start example
+~~~~~~~~~~~~~~~~~~~
+
+The lick extension is very similar to the broadband usage.
+
+
+.. code-block:: python
+
+        # convert to magnitudes
+        import numpy as np
+        from pyphot import LickLibrary
+        # using the internal collection of indices
+        lib = LickLibrary()
+        f = lib['CN_1']
+        # work on many spectra at once
+        index = f.get(lamb, spectra, axis=1)
+
+
+
 Calculations
 ~~~~~~~~~~~~
 

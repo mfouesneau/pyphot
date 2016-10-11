@@ -117,11 +117,26 @@ throug the HST WFC3 F110W passband,
         import numpy as np
         f = lib['hst_wfc3_f110w']
         # compute the integrated flux through the filter f
+        # note that it work on many spectra at once
         fluxes = f.get_flux(lamb, spectra, axis=1)
         # convert to vega magnitudes
         mags = -2.5 * np.log10(fluxes) - f.Vega_zero_mag
         # or similarly
         mags = -2.5 * np.log10(fluxes / f.Vega_zero_flux)
+
+
+If one wants to use a given transmission curve as filter, defined by `lamb_T` and
+`T`, one would use the :class:`pyphot.phot.Filter` directly as 
+
+.. code-block:: python
+
+        # convert to magnitudes
+        from pyphot import Filter
+        # if lamb_T has units the Filter object will use those.
+        f = Filter(lamb_T, T, name='my_filter', dtype='photon', unit='Angstrom')
+        # compute the integrated flux through the filter f
+        fluxes = f.get_flux(lamb, spectra, axis=1)
+        ...
 
        
 
