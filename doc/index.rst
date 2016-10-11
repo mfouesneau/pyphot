@@ -20,10 +20,10 @@ contains a signitificant amount of common filters.
 Each filter is minimally defined by a `wavelength` and `throughput`. Many
 properties such as central of pivot wavelength are computed internally. 
 
-**When units** are provided for the wavelength, zero points in multiple units are also
-accessible (AB, Vega magnitude, Jy, erg/s/cm2/AA). The default detector type is
-assumed to be photonic, but energetic detectors are also handled for the
-computations.
+**When units** are provided for the wavelength of the filters, zero points in
+multiple units are also accessible (AB, Vega magnitude, Jy, erg/s/cm2/AA). The
+default detector type is assumed to be photonic, but energetic detectors are
+also handled for the computations.
 
 .. tip::
 
@@ -107,20 +107,37 @@ Quick Start
                       239027.9995089771 Jy 
 
         [...]
-        
+
+Suppose one has a calibrated spectrum and wants to compute the vega magnitude
+throug the HST WFC3 F110W passband, 
+
+.. code-block:: python
+
+        # convert to magnitudes
+        import numpy as np
+        f = lib['hst_wfc3_f110w']
+        # compute the integrated flux through the filter f
+        fluxes = f.get_flux(lamb, spectra, axis=1)
+        # convert to vega magnitudes
+        mags = -2.5 * np.log10(fluxes) - f.Vega_zero_mag
+        # or similarly
+        mags = -2.5 * np.log10(fluxes / f.Vega_zero_flux)
+
+       
 
 Details on predicting photometry
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 It is sometimes not obvious that there are important differences between
-photometric systems. But even less known the difference between detector types
-which requires also special care.
+photometric systems. But even less known the difference between detector
+count types (energy or photons) which requires also special care.
 
 In this section, we review the important details for computing the luminosity
-and the magnitude of a star through a photometric passband filter.
+and the magnitude of a star through a photometric passband filter. We do not
+discuss calibration, which in principle is covered by instrument documentations.
 
-If we consider a filter throughput defined in wavelength by the dimensionless
-function :math:`T(\lambda)`, 
+If we consider a filter throughput (a.k.a, transmission curve, or response
+function) defined in wavelength by the dimensionless function :math:`T(\lambda)`, 
 this function tells you what fraction of the arriving photons at wavelength
 :math:`\lambda` actually get through the instrument.  Therefore, the total number of
 photons, per unit time per unit area, received in this filter is
