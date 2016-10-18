@@ -208,22 +208,27 @@ class Filter(object):
         ifT = np.interp(_slamb, _wavelength, self.transmit, left=0., right=0.)
 
         # if the filter is null on that wavelength range flux is then 0
-        if True in (ifT > 0.):
+        ind = ifT > 0.
+        if True in ind:
+            try:
+                _sflux = sflux[:, ind]
+            except ValueError:
+                _sflux = sflux[ind]
             # limit integrals to where necessary
-            ind = np.where(ifT > 0.)
+            ind = ifT > 0.
             if 'photon' in self.dtype:
-                a = np.trapz(_slamb[ind] * ifT[ind] * sflux[ind], _slamb[ind], axis=axis)
-                b = np.trapz(_slamb[ind] * ifT[ind], _slamb[ind], axis=axis )
+                a = np.trapz(_slamb[ind] * ifT[ind] * _sflux, _slamb[ind], axis=axis)
+                b = np.trapz(_slamb[ind] * ifT[ind], _slamb[ind] )
             elif 'energy' in self.dtype:
-                a = np.trapz( ifT[ind] * sflux[ind], _slamb[ind], axis=axis )
-                b = np.trapz( ifT[ind], _slamb[ind], axis=axis )
-            if (np.isinf(a) | np.isinf(b)):
+                a = np.trapz( ifT[ind] * _sflux, _slamb[ind], axis=axis )
+                b = np.trapz( ifT[ind], _slamb[ind])
+            if (np.isinf(a).any() | np.isinf(b).any()):
                 print(self.name, "Warn for inf value")
             return a / b
         else:
             return 0.
 
-    def get_flux(self, slamb, sflux, axis=1):
+    def get_flux(self, slamb, sflux, axis=-1):
         """getFlux
         Integrate the flux within the filter and return the integrated energy
         If you consider applying the filter to many spectra, you might want to
