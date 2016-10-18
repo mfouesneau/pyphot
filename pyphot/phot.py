@@ -223,7 +223,7 @@ class Filter(object):
         else:
             return 0.
 
-    def get_flux(self, slamb, sflux, axis=1):
+    def get_flux(self, slamb, sflux, axis=-1):
         """getFlux
         Integrate the flux within the filter and return the integrated energy
         If you consider applying the filter to many spectra, you might want to
