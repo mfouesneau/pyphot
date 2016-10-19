@@ -212,7 +212,7 @@ class Filter(object):
         if True in ind:
             try:
                 _sflux = sflux[:, ind]
-            except ValueError:
+            except:
                 _sflux = sflux[ind]
             # limit integrals to where necessary
             ind = ifT > 0.
