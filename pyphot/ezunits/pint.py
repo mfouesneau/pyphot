@@ -27,6 +27,8 @@ import itertools
 
 from collections import Iterable
 
+from pkg_resources import resource_filename
+
 from io import BytesIO
 from numbers import Number
 import tokenize
@@ -457,11 +459,16 @@ class UnitRegistry(object):
     #: Map suffix name (string) to canonical , and unit alias to canonical unit name
     _SUFFIXES = AliasDict({'': None, 's': ''})
 
+    # Location of default file
+    # _DEFAULT_FILENAME = os.path.join(os.path.dirname(__file__), 'default_en.txt')
+    _DEFAULT_FILENAME = resource_filename('pyphot', 
+                                os.path.join('ezunits','default_en.txt'))
+
     def __init__(self, filename='', force_ndarray=False):
         self.Quantity = _build_quantity_class(self, force_ndarray)
         self._definition_files = []
         if filename == '':
-            self.add_from_file(os.path.join(os.path.dirname(__file__), 'default_en.txt'))
+            self.add_from_file(self._DEFAULT_FILENAME)
         elif filename is not None:
             self.add_from_file(filename)
 
