@@ -680,7 +680,7 @@ class HDF_Library(Library):
     def __enter__(self):
         """ Enter context """
         if self.hdf is None:
-            self.hdf = tables.openFile(self.source, self.mode)
+            self.hdf = tables.open_file(self.source, self.mode)
 
         return self
 
