@@ -535,7 +535,7 @@ def _hdf5_write_data(filename, data, tablename=None, mode='w', append=False,
         comments/description of keywords
 
     .. note::
-        other keywords are forwarded to :func:`tables.openFile`
+        other keywords are forwarded to :func:`tables.open_file`
     """
 
     if hasattr(filename, 'read'):
@@ -550,7 +550,7 @@ def _hdf5_write_data(filename, data, tablename=None, mode='w', append=False,
             raise tables.FileModeError('The file is already opened in a different mode')
         hd5 = filename
     else:
-        hd5 = tables.openFile(filename, mode=mode)
+        hd5 = tables.open_file(filename, mode=mode)
 
     # check table name and path
     tablename = tablename or header.get('NAME', None)
@@ -567,7 +567,7 @@ def _hdf5_write_data(filename, data, tablename=None, mode='w', append=False,
 
     if append:
         try:
-            t = hd5.getNode(where + name)
+            t = hd5.get_node(where + name)
             t.append(data.astype(t.description._v_dtype))
             t.flush()
         except tables.NoSuchNodeError:
@@ -633,9 +633,9 @@ def _hdf5_read_data(filename, tablename=None, silent=False, *args, **kwargs):
         tablename = node.name
     else:
         if tablename[0] != '/':
-            node = source.getNode('/' + tablename)
+            node = source.get_node('/' + tablename)
         else:
-            node = source.getNode(tablename)
+            node = source.get_node(tablename)
     if not silent:
         print("\tLoading table: {0}".format(tablename))
 
@@ -1452,7 +1452,7 @@ class SimpleTable(object):
         elif type(fname) == pyfits.FITS_rec:
             self.data = np.array(fname)
             self.header = {}
-        elif type(fname) == SimpleTable:
+        elif isinstance(fname, SimpleTable) or ("SimpleTable" in fname.__class__.__name__):
             cp = kwargs.pop('copy', True)
             if cp:
                 self.data = deepcopy(fname.data)
