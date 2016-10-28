@@ -64,7 +64,7 @@ def extractPhotometry(lamb, spec, flist, absFlux=True, progress=True):
         if absFlux:
             s0 /= distc
         a = trapz( tmp[None, :] * s0, lamb[xl], axis=1 )
-        seds[e] = a / k.lT   # divide by integral (lambda T dlambda)
+        seds[e] = a / k._lT   # divide by integral (lambda T dlambda)
         cls[e]  = k.cl
 
     return cls, seds
@@ -108,7 +108,7 @@ def extractSEDs(lamb, specs, flist, absFlux=True, progress=True):
         if absFlux:
             s0 /= distc
         a = trapz( tmp[None, :] * s0, lamb[xl], axis=1 )
-        seds[:, e] = a / k.lT
+        seds[:, e] = a / k._lT
         cls[e] = k.cl
 
     return cls, seds
