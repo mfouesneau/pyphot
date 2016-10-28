@@ -20,3 +20,14 @@ units are provided for the wavelength, zero points in multiple units are also
 accessible (AB, Vega magnitude, Jy, erg/s/cm2/AA). The default detector type is
 assumed to be photonic, but energetic detectors are also handled for the
 computations.
+
+Contributors
+------------
+
+Author:
+
+Morgan Fouesneau
+
+Direct contributions to the code base:
+
+Tim Morton
