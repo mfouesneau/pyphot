@@ -54,7 +54,7 @@ def extractPhotometry(lamb, spec, flist, absFlux=True, progress=True):
     seds: ndarray[float, ndim=1]
         integrated sed
     """
-    cls  = np.empty( len(flist), dtype=float)
+    cls = []
     seds = np.empty( len(flist), dtype=float)
     for e, k in progress_enumerate(flist, show_progress=progress, desc='Photometry'):
         xl  = k.transmit > 0.
@@ -65,7 +65,7 @@ def extractPhotometry(lamb, spec, flist, absFlux=True, progress=True):
             s0 /= distc
         a = trapz( tmp[None, :] * s0, lamb[xl], axis=1 )
         seds[e] = a / k._lT   # divide by integral (lambda T dlambda)
-        cls[e]  = k.cl
+        cls.append(k.cl)
 
     return cls, seds
 
@@ -99,7 +99,7 @@ def extractSEDs(lamb, specs, flist, absFlux=True, progress=True):
         SED grid properties table from g0 (g0.grid)
     """
     seds = np.empty(( len(specs), len(flist) ), dtype=float)
-    cls  = np.empty( len(flist), dtype=float)
+    cls = []
     for e, k in progress_enumerate(flist, show_progress=progress, desc='Photometry'):
         xl  = k.transmit > 0.
         tmp = lamb[xl] * k.transmit[xl]
@@ -109,7 +109,7 @@ def extractSEDs(lamb, specs, flist, absFlux=True, progress=True):
             s0 /= distc
         a = trapz( tmp[None, :] * s0, lamb[xl], axis=1 )
         seds[:, e] = a / k._lT
-        cls[e] = k.cl
+        cls.append(k.cl)
 
     return cls, seds
 
