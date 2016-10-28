@@ -626,7 +626,7 @@ def _hdf5_read_data(filename, tablename=None, silent=False, *args, **kwargs):
     hdr: str
         string that will be be written at the beginning of the file
     """
-    source = tables.openFile(filename, *args, **kwargs)
+    source = tables.open_file(filename, *args, **kwargs)
 
     if tablename is None:
         node = source.listNodes('/')[0]
