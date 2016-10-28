@@ -716,9 +716,9 @@ class HDF_Library(Library):
         """
         ftab = self.hdf
         if hasattr(fname, 'decode'):
-            fnode    = ftab.getNode('/filters/' + fname.decode('utf8'))
+            fnode    = ftab.get_node('/filters/' + fname.decode('utf8'))
         else:
-            fnode    = ftab.getNode('/filters/' + fname)
+            fnode    = ftab.get_node('/filters/' + fname)
         flamb    = fnode[:]['WAVELENGTH']
         transmit = fnode[:]['THROUGHPUT']
         dtype = 'photon'
