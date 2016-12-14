@@ -65,6 +65,22 @@ Contents
    modules
 
 
+Installation
+------------
+
+* Using pip:
+
+.. code-block::
+
+        pip install git+https://github.com/mfouesneau/pyphot
+
+* Manually:
+
+.. code-block::
+        git clone https://github.com/mfouesneau/pyphot
+        cd pyphot
+        python setup.py intall
+
 
 
 Quick Start

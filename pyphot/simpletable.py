@@ -1394,9 +1394,8 @@ class SimpleTable(object):
                 kwargs.setdefault('names', names)
                 if _pd is not None:   # pandas is faster
                     kwargs.setdefault('comment', '#')
-                    kwargs.setdefault('as_recarray', True)
                     kwargs.setdefault('skiprows', n)
-                    self.data = _pd.read_csv(fname, *args, **kwargs)
+                    self.data = _pd.read_csv(fname, *args, **kwargs).to_records()
                 else:
                     kwargs.setdefault('skip_header', n)
                     kwargs.setdefault('comments', '#')
@@ -1413,8 +1412,7 @@ class SimpleTable(object):
                 if _pd is not None:   # pandas is faster
                     kwargs.setdefault('delimiter', '\s+')
                     kwargs.setdefault('comment', '#')
-                    kwargs.setdefault('as_recarray', True)
-                    self.data = _pd.read_csv(fname, *args, **kwargs)
+                    self.data = _pd.read_csv(fname, *args, **kwargs).to_records()
                 else:
                     kwargs.setdefault('delimiter', None)
                     kwargs.setdefault('comments', '#')
