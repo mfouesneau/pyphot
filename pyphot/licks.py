@@ -249,7 +249,8 @@ class LickIndex(object):
         return self._get_indice(_w, _f, blue, red, band, self.index_unit, **kwargs)
 
     @classmethod
-    def _get_indice(cls, w, flux, blue, red, band=None, unit='ew', **kwargs):
+    def _get_indice(cls, w, flux, blue, red, band=None, unit='ew', degree=1,
+                    **kwargs):
         """ compute spectral index after continuum subtraction
 
         Parameters
@@ -275,9 +276,9 @@ class LickIndex(object):
         ew: ndarray (N,)
             equivalent width array
         """
-        wi, fi = cls.continuum_normalized_region_around_line(w, flux, red,
-                                                             blue, band=band,
-                                                             **kwargs)
+        wi, fi = cls.continuum_normalized_region_around_line(w, flux, blue,
+                                                             red, band=band,
+                                                             degree=degree)
         if unit in (0, 'ew', 'EW'):
             return np.trapz(1. - fi, wi, axis=1)
         else:
