@@ -231,11 +231,19 @@ class LickIndex(object):
             array of flux values for different spectra in the series
         degree: int (default 1)
             degree of the polynomial fit to the continuum
+        nocheck: bool
+            set to silently pass on spectral domain mismatch.
+            otherwise raises an error when index is not covered
 
         Returns
         -------
         ew: ndarray (N,)
             equivalent width or magnitude array
+
+        Raises
+        ------
+        ValueError: when the spectral coverage wave does not cover the index
+        range
         """
         if hasUnit(wave):
             _w = wave.to('AA').magnitude
@@ -243,10 +251,20 @@ class LickIndex(object):
             print("Warning: assuming units are in Angstroms")
             _w = _drop_units(wave)
         _f = _drop_units(flux)
+
         blue = self._get_wavelength_attrs_with_units('blue').magnitude
         red = self._get_wavelength_attrs_with_units('red').magnitude
         band = self._get_wavelength_attrs_with_units('band').magnitude
-        return self._get_indice(_w, _f, blue, red, band, self.index_unit, **kwargs)
+        
+        nocheck = kwargs.pop('nocheck', False)
+        not_covered = (blue[0] < _w[0]) | (red[-1] > _w[-1])
+        if (not_covered):
+            if (~nocheck):
+                raise ValueError("Spectrum does not cover this index.")
+            else:
+                return np.zeros(_f.shape[0]) * float('nan') 
+        else:
+            return self._get_indice(_w, _f, blue, red, band, self.index_unit, **kwargs)
 
     @classmethod
     def _get_indice(cls, w, flux, blue, red, band=None, unit='ew', degree=1,
