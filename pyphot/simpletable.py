@@ -175,15 +175,35 @@ def _fits_read_header(hdr):
     fieldTerms = ['TTYPE', 'TFORM', 'TUNIT', 'ALIAS']
 
     # read col comments
-    for k, name, comment in hdr.ascard['TTYPE*']:
-        comments[name] = comment
-        u = hdr.get(k.replace('TYPE', 'UNIT'), None)
-        if u is not None:
-            units[name] = u
+    # for k, name, comment in hdr.ascard['TTYPE*']:
+    try:
+        for card in hdr.cards['TTYPE*']:
+            name = card.value
+            comments[name] = card.comment
+            u = hdr.get(card.keyword.replace('TYPE', 'UNIT'), None)
+            if u is not None:
+                units[name] = u
 
-    for k, val, _ in hdr.ascard['ALIAS*']:
-        al, orig = val.split('=')
-        alias[al] = orig
+        # for k, val, _ in hdr.ascard['ALIAS*']:
+        for card in hdr.cards['ALIAS*']:
+            k = card.keyword
+            val = card.value
+            al, orig = val.split('=')
+            alias[al] = orig
+    except:   #pyfits stsci
+        for card in hdr.ascard['TTYPE*']:
+            name = card.value
+            comments[name] = card.comment
+            u = hdr.get(card.key.replace('TYPE', 'UNIT'), None)
+            if u is not None:
+                units[name] = u
+
+        # for k, val, _ in hdr.ascard['ALIAS*']:
+        for card in hdr.ascard['ALIAS*']:
+            k = card.key
+            val = card.value
+            al, orig = val.split('=')
+            alias[al] = orig
 
     # other specific keywords: COMMENT, HISTORY
     header_comments = []
@@ -1063,6 +1083,7 @@ class AstroHelpers(object):
     @elementwise
     def deg2dms(val, delim=':'):
         """ Convert degrees into hex coordinates
+
         Parameters
         ----------
         deg: float
@@ -1116,6 +1137,7 @@ class AstroHelpers(object):
     @elementwise
     def dms2deg(_str, delim=':'):
         """ Convert hex coordinates into degrees
+
         Parameters
         ----------
         str: string or sequence
@@ -1145,11 +1167,15 @@ class AstroHelpers(object):
         Celestial coordinates (RA, Dec) should be given in equinox J2000
         unless the b1950 is True.
 
-        select From           To         |   select    From          To
-        ----------------------------------------------------------------------
-        1      RA-Dec (2000)  Galactic   |     4       Ecliptic      RA-Dec
-        2      Galactic       RA-DEC     |     5       Ecliptic      Galactic
-        3      RA-Dec         Ecliptic   |     6       Galactic      Ecliptic
+        +-------+--------------+------------+----------+----------+-----------+
+        |select | From         | To         |   select |   From   |  To       |
+        +-------+--------------+------------+----------+----------+-----------+
+        |1      |RA-Dec (2000) | Galactic   |     4    | Ecliptic |  RA-Dec   |
+        +-------+--------------+------------+----------+----------+-----------+
+        |2      |Galactic      | RA-DEC     |     5    | Ecliptic |  Galactic |
+        +-------+--------------+------------+----------+----------+-----------+
+        |3      |RA-Dec        | Ecliptic   |     6    | Galactic |  Ecliptic |
+        +-------+--------------+------------+----------+----------+-----------+
 
         Parameters
         ----------
@@ -1176,13 +1202,14 @@ class AstroHelpers(object):
             Output Latitude in DEGREES
 
 
-        REVISION HISTORY:
-        Written W. Landsman,  February 1987
-        Adapted from Fortran by Daryl Yentis NRL
-        Converted to IDL V5.0   W. Landsman   September 1997
-        Made J2000 the default, added /FK4 keyword  W. Landsman December 1998
-        Add option to specify SELECT as a keyword W. Landsman March 2003
-        Converted from IDL to numerical Python: Erin Sheldon, NYU, 2008-07-02
+        .. note::
+
+            Written W. Landsman,  February 1987
+            Adapted from Fortran by Daryl Yentis NRL
+            Converted to IDL V5.0   W. Landsman   September 1997
+            Made J2000 the default, added /FK4 keyword  W. Landsman December 1998
+            Add option to specify SELECT as a keyword W. Landsman March 2003
+            Converted from IDL to numerical Python: Erin Sheldon, NYU, 2008-07-02
         """
 
         # Make a copy as an array. ndmin=1 to avoid messed up scalar arrays
@@ -1382,8 +1409,8 @@ class SimpleTable(object):
             except (AttributeError, TypeError):
                 self.header = kwargs.pop('header', {})
             self.data = _convert_dict_to_structured_ndarray(fname)
-        elif (type(fname) in (str,)) or (dtype is not None):
-            if (type(fname) in (str,)):
+        elif (type(fname) in basestring) or (dtype is not None):
+            if (type(fname) in basestring):
                 extension = fname.split('.')[-1]
             else:
                 extension = None
@@ -1391,6 +1418,8 @@ class SimpleTable(object):
                 kwargs.setdefault('delimiter', ',')
                 commentedHeader = kwargs.pop('commentedHeader', False)
                 n, header, units, comments, aliases, names = _ascii_read_header(fname, commentedHeader=commentedHeader, **kwargs)
+                if 'names' in kwargs:
+                    n -= 1
                 kwargs.setdefault('names', names)
                 if _pd is not None:   # pandas is faster
                     kwargs.setdefault('comment', '#')
@@ -1405,7 +1434,7 @@ class SimpleTable(object):
                 self._desc.update(**comments)
                 self._aliases.update(**aliases)
                 kwargs.setdefault('names', True)
-            elif (extension in ('tsv', 'dat', 'txt')) or dtype in ('tsv', 'dat', 'txt'):
+            elif (extension in ('tsv', 'dat', 'txt')) or (dtype in ('tsv', 'dat', 'txt')):
                 commentedHeader = kwargs.pop('commentedHeader', True)
                 n, header, units, comments, aliases, names = _ascii_read_header(fname, commentedHeader=commentedHeader, **kwargs)
                 kwargs.setdefault('names', names)
@@ -1433,7 +1462,7 @@ class SimpleTable(object):
                 self._desc.update(**comments)
                 self._units.update(**units)
                 self._aliases.update(**aliases)
-            elif (extension in ('hdf5', 'hd5', 'hdf')) or dtype in (extension in ('hdf5', 'hd5', 'hdf')):
+            elif (extension in ('hdf5', 'hd5', 'hdf')) or (dtype in ('hdf5', 'hd5', 'hdf')):
                 if tables is None:
                     raise RuntimeError('Cannot read this format, pytables not found')
                 hdr, aliases, units, desc, data = _hdf5_read_data(fname, *args, **kwargs)
@@ -1817,6 +1846,77 @@ class SimpleTable(object):
     def __getitem__(self, v):
         return np.asarray(self.data.__getitem__(self.resolve_alias(v)))
 
+    def take(self, indices, axis=None, out=None, mode='raise'):
+        """
+        Take elements from an array along an axis.
+
+        This function does the same thing as "fancy" indexing (indexing arrays
+        using arrays); however, it can be easier to use if you need elements
+        along a given axis.
+
+        Parameters
+        ----------
+        indices : array_like
+            The indices of the values to extract.
+            Also allow scalars for indices.
+
+        axis : int, optional
+            The axis over which to select values. By default, the flattened
+            input array is used.
+
+        out : ndarray, optional
+            If provided, the result will be placed in this array. It should
+            be of the appropriate shape and dtype.
+
+        mode : {'raise', 'wrap', 'clip'}, optional
+            Specifies how out-of-bounds indices will behave.
+
+            * 'raise' -- raise an error (default)
+            * 'wrap' -- wrap around
+            * 'clip' -- clip to the range
+
+            'clip' mode means that all indices that are too large are replaced
+            by the index that addresses the last element along that axis. Note
+            that this disables indexing with negative numbers.
+
+        Returns
+        -------
+        subarray : ndarray
+            The returned array has the same type as `a`.
+        """
+        return self.data.take(indices, axis, out, mode)
+
+    def compress(self, condition, axis=None, out=None):
+        """
+        Return selected slices of an array along given axis.
+
+        When working along a given axis, a slice along that axis is returned in
+        `output` for each index where `condition` evaluates to True. When
+        working on a 1-D array, `compress` is equivalent to `extract`.
+
+        Parameters
+        ----------
+        condition : 1-D array of bools
+            Array that selects which entries to return. If len(condition)
+            is less than the size of `a` along the given axis, then output is
+            truncated to the length of the condition array.
+
+        axis : int, optional
+            Axis along which to take slices. If None (default), work on the
+            flattened array.
+
+        out : ndarray, optional
+            Output array.  Its type is preserved and it must be of the right
+            shape to hold the output.
+
+        Returns
+        -------
+        compressed_array : ndarray
+            A copy of `a` without the slices along axis for which `condition`
+            is false.
+        """
+        return self.data.compress(condition, axis, out)
+
     def get(self, v, full_match=False):
         """ returns a table from columns given as v
 
@@ -1869,7 +1969,13 @@ class SimpleTable(object):
         for l in self.data:
             yield l
 
+    def items(self):
+        """ Iterator on the (key, value) pairs """
+        for k in self.colnames:
+            yield k, self[k]
+
     def info(self):
+        """ prints information on the table """
         s = "\nTable: {name:s}\n       nrows={s.nrows:d}, ncols={s.ncols:d}, mem={size:s}"
         s = s.format(name=self.header.get('NAME', 'Noname'), s=self,
                      size=pretty_size_print(self.nbytes))
@@ -1910,7 +2016,11 @@ class SimpleTable(object):
         return self.data.__getslice__(i, j)
 
     def __contains__(self, k):
-        return (k in self.colnames) or (k in self._aliases)
+        if hasattr(k, 'decode'):
+            _k = k.decode('utf8')
+        else:
+            _k = k
+        return (_k in self.colnames) or (_k in self._aliases)
 
     def __array__(self):
         return self.data
@@ -1963,21 +2073,6 @@ class SimpleTable(object):
             tuple of both indices list where the two columns match.
         """
         return np.where( np.equal.outer( self[key], r2[key] ) )
-
-    '''
-    def stack(self, r, defaults=None):
-        """
-        Superposes arrays fields by fields inplace
-
-        Parameters
-        ----------
-        r: Table
-        """
-        if not hasattr(r, 'data'):
-            raise AttributeError('r should be a Table object')
-        self.data = recfunctions.stack_arrays([self.data, r.data], defaults,
-                                              usemask=False, asrecarray=True)
-    '''
 
     def stack(self, r, *args, **kwargs):
         """
@@ -2104,9 +2199,17 @@ class SimpleTable(object):
 
         if len(self.data.dtype) > 0:
             # existing data in the table
-            self.data = recfunctions.append_fields(self.data, name, _data,
+            if type(name) in basestring:
+                # _name = name.encode('utf8')
+                _name = str(name)
+            else:
+                # _name = [k.encode('utf8') for k in name]
+                _name = [str(k) for k in name]
+
+            self.data = recfunctions.append_fields(self.data, _name, _data,
                                                    dtypes=dtype, usemask=False,
                                                    asrecarray=True)
+
         else:
             if _data.ndim > 1:
                 newdtype = (str(name), _data.dtype, (_data.shape[1],))
@@ -2118,7 +2221,7 @@ class SimpleTable(object):
             self.set_unit(name, unit)
 
         if description is not None:
-            self.set_unit(name, description)
+            self.set_comment(name, description)
 
     def append_row(self, iterable):
         """
@@ -2282,7 +2385,7 @@ class SimpleTable(object):
             if indices is None:
                 return self
             else:
-                tab = self.__class__(self[indices])
+                tab = self.__class__(self.take(indices))
                 for k in self.__dict__.keys():
                     if k not in ('data', ):
                         setattr(tab, k, deepcopy(self.__dict__[k]))
@@ -2292,7 +2395,7 @@ class SimpleTable(object):
             for k in _fields:
                 _k = self.resolve_alias(k)
                 if indices is not None:
-                    d[k] = self[_k][indices]
+                    d[k] = self[_k].take(indices)
                 else:
                     d[k] = self[_k]
             d['header'] = deepcopy(self.header)
@@ -2326,13 +2429,13 @@ class SimpleTable(object):
         if condition in [True, 'True', None]:
             ind = None
         else:
-            ind = self.where(condition, condvars, **kwargs)
+            ind = self.where(condition, condvars, **kwargs)[0]
 
         tab = self.select(fields, indices=ind)
 
         return tab
 
-    def groupby(self, key):
+    def groupby(self, *key):
         """
         Create an iterator which returns (key, sub-table) grouped by each value
         of key(value)
@@ -2366,8 +2469,8 @@ class SimpleTable(object):
     def stats(self, fn=None, fields=None, fill=None):
         """ Make statistics on columns of a table
 
-        Paramters
-        ---------
+        Parameters
+        ----------
         fn: callable or sequence of callables
             functions to apply to each column
             default: (np.mean, np.std, np.nanmin, np.nanmax)
@@ -2388,9 +2491,10 @@ class SimpleTable(object):
         """
         from collections import OrderedDict
 
-        fn = (stats.mean, stats.std,
-              stats.min, stats.max,
-              stats.has_nan)
+        if fn is None:
+            fn = (stats.mean, stats.std,
+                stats.min, stats.max,
+                stats.has_nan)
 
         d = OrderedDict()
         d.setdefault('FIELD', [])
@@ -2580,6 +2684,7 @@ class AstroTable(SimpleTable):
 
     def zoneSearch(self, ramin, ramax, decmin, decmax, outtype=0):
         """ Perform a zone search on a table, i.e., a rectangular selection
+
         Parameters
         ----------
         ramin: float
@@ -2662,7 +2767,7 @@ class AstroTable(SimpleTable):
             ind, d = self.coneSearch(ra, dec, r, outtype=2)
             ind = ind & self.zoneSearch(zone[0], zone[1], zone[2], zone[3], outtype=2)
             d = d[ind]
-            ind = np.where(ind)
+            ind = np.where(ind)[0]
             blobs.append(d)
 
         return ind, blobs[0]
