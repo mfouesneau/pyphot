@@ -259,7 +259,7 @@ class LickIndex(object):
         nocheck = kwargs.pop('nocheck', False)
         not_covered = (blue[0] < _w[0]) | (red[-1] > _w[-1])
         if (not_covered):
-            if (~nocheck):
+            if (not nocheck):
                 raise ValueError("Spectrum does not cover this index.")
             else:
                 return np.zeros(_f.shape[0]) * float('nan') 
