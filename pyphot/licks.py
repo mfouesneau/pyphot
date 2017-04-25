@@ -280,9 +280,9 @@ class LickIndex(object):
                                                              red, band=band,
                                                              degree=degree)
         if unit in (0, 'ew', 'EW'):
-            return np.trapz(1. - fi, wi, axis=1)
+            return np.trapz(1. - fi, wi, axis=-1)
         else:
-            m = np.trapz(fi, wi, axis=1)
+            m = np.trapz(fi, wi, axis=-1)
             m = -2.5 * np.log10(m / np.ptp(wi))
             return m
 
