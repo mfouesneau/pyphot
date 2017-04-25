@@ -435,7 +435,7 @@ class LickLibrary(object):
 
     def find(self, name, case_sensitive=True):
         r = []
-        if case_sensitive:
+        if not case_sensitive:
             _n = name.lower()
             for k in self.get_library_content():
                 if _n in k.lower():

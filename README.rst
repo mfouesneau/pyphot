@@ -21,6 +21,27 @@ accessible (AB, Vega magnitude, Jy, erg/s/cm2/AA). The default detector type is
 assumed to be photonic, but energetic detectors are also handled for the
 computations.
 
+Installation
+------------
+
+Install with `pip`
+
+.. code::
+
+  pip install git+git://github.com/mfouesneau/pyphot
+
+(`--user` if you want to install it in your user profile)
+
+Manual installation
+
+download the repository and run the setup
+
+.. code::
+
+  python setup.py install
+
+
+
 Contributors
 ------------
 
@@ -30,4 +51,5 @@ Morgan Fouesneau
 
 Direct contributions to the code base:
 
-Tim Morton
+* Tim Morton
+* Ariane Lancon (@lancon)
