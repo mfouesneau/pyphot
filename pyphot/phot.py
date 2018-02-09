@@ -410,7 +410,7 @@ class Filter(object):
     def AB_zero_Jy(self):
         """ AB flux zero point in Jansky (Jy) """
         c = unit['1e-8 * c'].to('m/s').magnitude
-        f = 1e5 / c * self.leff.magnitude ** 2 * self.AB_zero_flux.magnitude
+        f = 1e5 / c * self.lpivot.magnitude ** 2 * self.AB_zero_flux.magnitude
         return f * unit['Jy']
 
     @property
@@ -435,7 +435,7 @@ class Filter(object):
     def Vega_zero_Jy(self):
         """ Vega flux zero point in Jansky (Jy) """
         c = unit['1e-8 * c'].to('m/s').magnitude
-        f = 1e5 / c * self.leff.magnitude ** 2 * self.Vega_zero_flux.magnitude
+        f = 1e5 / c * self.lpivot.magnitude ** 2 * self.Vega_zero_flux.magnitude
         return f * unit['Jy']
 
     @property
@@ -454,7 +454,7 @@ class Filter(object):
     def ST_zero_Jy(self):
         """ ST flux zero point in Jansky (Jy) """
         c = unit['1e-8 * c'].to('m/s').magnitude
-        f = 1e5 / c * self.leff.magnitude ** 2 * self.ST_zero_flux.magnitude
+        f = 1e5 / c * self.lpivot.magnitude ** 2 * self.ST_zero_flux.magnitude
         return f * unit['Jy']
 
 
