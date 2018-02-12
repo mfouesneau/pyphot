@@ -21,6 +21,8 @@ accessible (AB, Vega magnitude, Jy, erg/s/cm2/AA). The default detector type is
 assumed to be photonic, but energetic detectors are also handled for the
 computations.
 
+.. image:: https://mybinder.org/badge.svg :target: https://mybinder.org/v2/gh/mfouesneau/pyphot/master?filepath=examples%2FQuickStart.ipynb
+
 Installation
 ------------
 
