@@ -31,7 +31,7 @@ Install with `pip`
 
 .. code::
 
-  pip install git+git://github.com/mfouesneau/pyphot
+  pip install git+https://github.com/mfouesneau/pyphot
 
 (`--user` if you want to install it in your user profile)
 
