@@ -27,7 +27,7 @@ computations.
 Installation
 ------------
 
-Install with `pip`
+* Install with `pip`
 
 .. code::
 
@@ -35,7 +35,7 @@ Install with `pip`
 
 (`--user` if you want to install it in your user profile)
 
-Manual installation
+* Manual installation
 
 download the repository and run the setup
 
