@@ -51,9 +51,10 @@ import types
 try:
     from astropy.io import fits as pyfits
 except ImportError:
-    import pyfits
-except:
-    pyfits = None
+    try:
+        import pyfits       
+    except ImportError:
+        pyfits = None
 
 try:
     import tables
