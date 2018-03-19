@@ -27,8 +27,8 @@ package.
     # make a query on one or multiple column
     >>> q = s.selectWhere('logT logL', '(J > 2) & (10 ** logT > 5000)')
     # q is also a table object
-    >>> q.plot('logT', 'logL', ',')
-    # makes a simple plot
+    >>> q.Plotter.plot('logT', 'logL', ',')
+    # makes a simple plot (see :module:`plotter`)
     >>> s.write('newtable.fits')
     # export the initial subtable to a new file
 """
@@ -65,6 +65,15 @@ try:
 except ImportError:
     _pd = None
 
+try:
+    from astropy.table import Table as _astropytable
+except ImportError:
+    _astropytable = None
+
+try:
+    from .plotter import Plotter
+except ImportError:
+    Plotter = None
 
 # ==============================================================================
 # Python 3 compatibility behavior
@@ -596,7 +605,8 @@ def _hdf5_write_data(filename, data, tablename=None, mode='w', append=False,
             append = False
 
     if not append:
-        t = hd5.createTable(where, name, data, **kwargs)
+        # t = hd5.createTable(where, name, data, **kwargs)
+        t = hd5.create_table(where, name, data, **kwargs)
 
         # update header
         for k, v in header.items():
@@ -1398,6 +1408,7 @@ class SimpleTable(object):
     def __init__(self, fname, *args, **kwargs):
 
         dtype = kwargs.pop('dtype', None)
+        dtype = kwargs.pop('format', dtype)
         self.caseless = kwargs.get('caseless', False)
         self._aliases = kwargs.get('aliases', {})
         self._units = kwargs.get('units', {})
@@ -1471,6 +1482,17 @@ class SimpleTable(object):
                 self._units.update(**units)
                 self._desc.update(**desc)
                 self._aliases.update(**aliases)
+            elif (extension in ('vot', 'votable')) or (dtype in ('vot', 'votable')):
+                # Votable case
+                if _astropytable is None:
+                    raise RuntimeError('Cannot read this votable format, astropy not found')
+                data = _astropytable.read(fname, format='votable', *args, **kwargs)
+                units = [(k, data[k].unit.name) for k in data.keys()]
+                desc = [(k, data[k].description) for k in data.keys()]
+                self.data = data.as_array()
+                self.header = {}
+                self._units.update(units)
+                self._desc.update(desc)
             else:
                 raise Exception('Format {0:s} not handled'.format(extension))
         elif type(fname) == np.ndarray:
@@ -1479,7 +1501,7 @@ class SimpleTable(object):
         elif type(fname) == pyfits.FITS_rec:
             self.data = np.array(fname)
             self.header = {}
-        elif isinstance(fname, SimpleTable) or ("SimpleTable" in fname.__class__.__name__):
+        elif isinstance(fname, SimpleTable):
             cp = kwargs.pop('copy', True)
             if cp:
                 self.data = deepcopy(fname.data)
@@ -1670,6 +1692,196 @@ class SimpleTable(object):
         else:
             raise Exception('Format {0:s} not handled'.format(extension))
 
+    def to_records(self, **kwargs):
+        """ Construct a numpy record array from this dataframe """
+        return self.data
+
+    def to_pandas(self, **kwargs):
+        """ Construct a pandas dataframe
+
+        Parameters
+        ----------
+        data : ndarray 
+            (structured dtype), list of tuples, dict, or DataFrame
+        keys: sequence, optional
+            ordered subset of columns to export
+        index : string, list of fields, array-like
+            Field of array to use as the index, alternately a specific set of
+            input labels to use
+        exclude : sequence, default None
+            Columns or fields to exclude
+        columns : sequence, default None
+            Column names to use. If the passed data do not have names
+            associated with them, this argument provides names for the
+            columns. Otherwise this argument indicates the order of the columns
+            in the result (any names not found in the data will become all-NA
+            columns)
+        coerce_float : boolean, default False
+            Attempt to convert values to non-string, non-numeric objects (like
+            decimal.Decimal) to floating point, useful for SQL result sets
+
+        Returns
+        -------
+        df : DataFrame
+        """
+        try:
+            from pandas import DataFrame
+            keys = kwargs.pop('keys', None)
+            return DataFrame.from_dict(self.to_dict(keys=keys), **kwargs)
+        except ImportError as error:
+            print("Pandas import error")
+            raise error
+
+    def to_dict(self, keys=None, contiguous=False):
+        """ Construct a dictionary from this dataframe with contiguous arrays
+
+        Parameters
+        ----------
+        keys: sequence, optional
+            ordered subset of columns to export
+
+        contiguous: boolean
+            make sure each value is a contiguous numpy array object
+            (C-aligned)
+
+        Returns
+        -------
+        data: dict
+            converted data
+        """
+        if keys is None:
+            keys = self.keys()
+        if contiguous:
+            return {k: np.ascontiguousarray(self[k]) for k in keys}
+        return {k: self[k] for k in keys}
+
+    def to_xarray(self, **kwargs):
+        """ Construct an xarray dataset
+
+        Each column will be converted into an independent variable in the
+        Dataset. If the dataframe's index is a MultiIndex, it will be expanded
+        into a tensor product of one-dimensional indices (filling in missing
+        values with NaN). This method will produce a Dataset very similar to
+        that on which the 'to_dataframe' method was called, except with
+        possibly redundant dimensions (since all dataset variables will have
+        the same dimensionality).
+        """
+        try:
+            from xarray import Dataset
+            return Dataset.from_dataframe(self.to_pandas(**kwargs))
+        except ImportError as error:
+            print("xray import error")
+            raise error
+
+    def to_vaex(self, **kwargs):
+        """
+        Create an in memory Vaex dataset
+
+        Parameters
+        ----------
+        name: str
+            unique for the dataset
+        keys: sequence, optional
+            ordered subset of columns to export
+
+        Returns
+        -------
+        df: vaex.DataSetArrays
+            vaex dataset
+        """
+        try:
+            import vaex
+            return vaex.from_arrays(**self.to_dict(contiguous=True, **kwargs))
+        except ImportError as error:
+            print("Vaex import error")
+            raise error
+
+    def to_dask(self, **kwargs):
+        """ Construct a Dask DataFrame
+
+        This splits an in-memory Pandas dataframe into several parts and constructs
+        a dask.dataframe from those parts on which Dask.dataframe can operate in
+        parallel.
+
+        Note that, despite parallelism, Dask.dataframe may not always be faster
+        than Pandas.  We recommend that you stay with Pandas for as long as
+        possible before switching to Dask.dataframe.
+
+        Parameters
+        ----------
+        keys: sequence, optional
+            ordered subset of columns to export
+        npartitions : int, optional
+            The number of partitions of the index to create. Note that depending on
+            the size and index of the dataframe, the output may have fewer
+            partitions than requested.
+        chunksize : int, optional
+            The size of the partitions of the index.
+        sort: bool
+            Sort input first to obtain cleanly divided partitions or don't sort and
+            don't get cleanly divided partitions
+        name: string, optional
+            An optional keyname for the dataframe.  Defaults to hashing the input
+
+        Returns
+        -------
+        dask.DataFrame or dask.Series
+            A dask DataFrame/Series partitioned along the index
+        """
+        try:
+            from dask import dataframe
+            keys = kwargs.pop('keys', None)
+            return dataframe.from_pandas(self.to_pandas(keys=keys), **kwargs)
+        except ImportError as error:
+            print("Dask import error")
+            raise error
+
+    def to_astropy_table(self, **kwargs):
+        """
+        A class to represent tables of heterogeneous data.
+
+        `astropy.table.Table` provides a class for heterogeneous tabular data,
+        making use of a `numpy` structured array internally to store the data
+        values.  A key enhancement provided by the `Table` class is the ability
+        to easily modify the structure of the table by adding or removing
+        columns, or adding new rows of data.  In addition table and column
+        metadata are fully supported.
+
+        Parameters
+        ----------
+        masked : bool, optional
+            Specify whether the table is masked.
+        names : list, optional
+            Specify column names
+        dtype : list, optional
+            Specify column data types
+        meta : dict, optional
+            Metadata associated with the table.
+        copy : bool, optional
+            Copy the input data (default=True).
+        rows : numpy ndarray, list of lists, optional
+            Row-oriented data for table instead of ``data`` argument
+        copy_indices : bool, optional
+            Copy any indices in the input data (default=True)
+        **kwargs : dict, optional
+            Additional keyword args when converting table-like object
+
+        Returns
+        -------
+        df: astropy.table.Table
+            dataframe
+        """
+        try:
+            from astropy.table import Table
+            keys = kwargs.pop('keys', None)
+            return Table(self.to_records(keys=keys), **kwargs)
+        except ImportError as e:
+            print("Astropy import error")
+            raise e
+
+    def _repr_html_(self):
+        return self.to_pandas().head()._repr_html_()
+
     def set_alias(self, alias, colname):
         """
         Define an alias to a column
@@ -1842,6 +2054,15 @@ class SimpleTable(object):
     def dtype(self):
         """ dtype of the data """
         return self.data.dtype
+
+    @property
+    def Plotter(self):
+        """ Plotter instance related to this dataset.
+        Requires plotter add-on to work """
+        if Plotter is None:
+            raise AttributeError('the add-on was not found, this property is not available')
+        else:
+            return Plotter(self, label=self.name)
 
     def __getitem__(self, v):
         return np.asarray(self.data.__getitem__(self.resolve_alias(v)))
@@ -2385,7 +2606,7 @@ class SimpleTable(object):
             if indices is None:
                 return self
             else:
-                tab = self.__class__(self.take(indices))
+                tab = self.__class__(self[indices])
                 for k in self.__dict__.keys():
                     if k not in ('data', ):
                         setattr(tab, k, deepcopy(self.__dict__[k]))
@@ -2395,7 +2616,7 @@ class SimpleTable(object):
             for k in _fields:
                 _k = self.resolve_alias(k)
                 if indices is not None:
-                    d[k] = self[_k].take(indices)
+                    d[k] = self[_k][indices]
                 else:
                     d[k] = self[_k]
             d['header'] = deepcopy(self.header)
@@ -2754,23 +2975,24 @@ class AstroTable(SimpleTable):
             ind = True
 
         blobs = []
-        if (cone is not None):
-            ra, dec, r = cone
-            _ind, d = self.coneSearch(ra, dec, r, outtype=1)
-            ind = ind & _ind.astype(bool)
-            blobs.append(d)
-        if (zone is not None):
-            _ind = self.zoneSearch(zone[0], zone[1], zone[2], zone[3], outtype=1)
-            ind = ind & _ind
-        elif (cone is not None) and (zone is not None):  # cone + zone
+        if (cone is not None) and (zone is not None):  # cone + zone
             ra, dec, r = cone
             ind, d = self.coneSearch(ra, dec, r, outtype=2)
             ind = ind & self.zoneSearch(zone[0], zone[1], zone[2], zone[3], outtype=2)
             d = d[ind]
-            ind = np.where(ind)[0]
             blobs.append(d)
+        elif (cone is not None):
+            ra, dec, r = cone
+            _ind, d = self.coneSearch(ra, dec, r, outtype=2)
+            ind = ind & _ind.astype(bool)
+            blobs.append(d[ind])
+        elif (zone is not None):
+            _ind = self.zoneSearch(zone[0], zone[1], zone[2], zone[3], outtype=1)
+            ind = ind & _ind
 
-        return ind, blobs[0]
+        ind = np.where(ind)[0]
+
+        return ind, blobs
 
     def selectWhere(self, fields, condition=None, condvars=None, cone=None, zone=None, **kwargs):
         """ Read table data fulfilling the given `condition`.
@@ -2784,7 +3006,7 @@ class AstroTable(SimpleTable):
         tab = self.select(fields, indices=ind)
 
         if cone is not None:
-            tab.add_column('separation', np.asarray(blobs), unit='degree')
+            tab.add_column('separation', np.squeeze(blobs), unit='degree')
 
         if self._ra_name in tab:
             tab.set_RA(self._ra_name)
@@ -2842,6 +3064,7 @@ class stats(object):
             return np.percentile(v, 50)
 
 
+'''
 # =============================================================================
 # Adding some plotting functions
 # =============================================================================
@@ -2947,3 +3170,4 @@ try:
 
 except Exception as e:
     print(e)
+'''
