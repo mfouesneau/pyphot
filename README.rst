@@ -54,5 +54,5 @@ Morgan Fouesneau
 
 Direct contributions to the code base:
 
-* Tim Morton
+* Tim Morton (@timothydmorton)
 * Ariane Lancon (@lancon)
