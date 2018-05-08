@@ -1,10 +1,10 @@
-# NAME                  GaiaDR2v2_BP
-# WAVELENGTH_UNIT       nm
-# DETECTOR              photon
-# COMPNAME              GaiaDR2v2_BP
+# NAME           	GaiaDR2v2_BP
+# WAVELENGTH_UNIT	nm
+# DETECTOR       	photon
+# COMPNAME       	GaiaDR2v2_BP
 #
-## WAVELENGTH   None    nm
-## THROUGHPUT   None    filter throughput definition
+## WAVELENGTH	None	nm
+## THROUGHPUT	None	filter throughput definition
 #
 WAVELENGTH,THROUGHPUT
 300.00,0.0
