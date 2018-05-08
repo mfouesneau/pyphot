@@ -23,6 +23,11 @@ computations.
 
 .. image:: https://mybinder.org/badge.svg 
   :target: https://mybinder.org/v2/gh/mfouesneau/pyphot/master?filepath=examples%2FQuickStart.ipynb
+  
+What's new?
+-----------
+
+* [Apr. 26, 2018] includes Gaia nominal, DR2 and revised DR2 passbands
 
 Installation
 ------------
