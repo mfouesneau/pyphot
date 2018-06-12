@@ -27,6 +27,7 @@ computations.
 What's new?
 -----------
 
+* [June 12, 2018] adding Sun reference spectra (see `:class:Sun`)
 * [Apr. 26, 2018] includes Gaia nominal, DR2 and revised DR2 passbands
 
 Installation

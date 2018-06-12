@@ -4,3 +4,5 @@ from .ezunits import unit
 from .helpers import (STmag_from_flux, STmag_to_flux, extractPhotometry,
                       extractSEDs, fluxErrTomag, fluxToMag, magErrToFlux,
                       magToFlux)
+from .vega import Vega
+from .sun import Sun
