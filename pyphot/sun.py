@@ -13,7 +13,7 @@ except ImportError:
     import pyfits
 
 
-__all__ = []
+__all__ = ['Sun']
 
 _default_sun = {'observed': "{0}/sun_reference_stis_001.fits".format(libsdir), 
                 'theoretical': "{0}/sun_kurucz93.fits".format(libsdir)}

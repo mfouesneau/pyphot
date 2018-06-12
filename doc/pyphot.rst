@@ -67,6 +67,14 @@ pyphot.vega module
     :undoc-members:
     :show-inheritance:
 
+pyphot.sun module
+------------------
+
+.. automodule:: pyphot.sun
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 
 Module contents
 ---------------
