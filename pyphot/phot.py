@@ -107,7 +107,12 @@ class Filter(object):
     central wavelength:   {s.cl:f}
     pivot wavelength:     {s.lpivot:f}
     effective wavelength: {s.leff:f}
+    photon wavelength:    {s.lphot:f}
+    minimum wavelength:   {s.lmin:f}
+    maximum wavelength:   {s.lmax:f}
     norm:                 {s.norm:f}
+    effective width:      {s.width:f}
+    fullwidth half-max:   {s.fwhm:f}
     definition contains {s.transmit.size:d} points""".format(s=self).replace('None', 'unknown'))
 
         # zero points only if units
@@ -137,6 +142,43 @@ class Filter(object):
             return self._wavelength * unit[self.wavelength_unit]
         else:
             return self._wavelength
+
+    @property
+    def lmax(self):
+        """ Calculated as the last value with a transmission at least 1% of
+        maximum transmission """
+        return max(self.wavelength[(self.transmit / self.transmit.max()) > 1./100])
+
+    @property
+    def lmin(self):
+        """ Calculate das the first value with a transmission at least 1% of
+        maximum transmission """
+        return min(self.wavelength[(self.transmit / self.transmit.max()) > 1./100])
+
+    @property
+    def width(self):
+        """ Effective width
+        Equivalent to the horizontal size of a rectangle with height equal
+        to maximum transmission and with the same area that the one covered by
+        the filter transmission curve.
+
+        W = int(T dlamb) / max(T)
+        """
+        return (self.norm / max(self.transmit)) * unit[self.wavelength_unit]
+
+    @property
+    def fwhm(self):
+        """ the difference between the two wavelengths for which filter
+        transmission is half maximum
+
+        ..note::
+            This calculation is not exact but rounded to the nearest passband
+            data points
+        """
+        vals = self.transmit / self.transmit.max() - 0.5
+        zero_crossings = np.where(np.diff(np.sign(vals)))[0]
+        lambs = self.wavelength[zero_crossings]
+        return np.diff(lambs)[0] * unit[self.wavelength_unit]
 
     @property
     def lpivot(self):
@@ -169,6 +211,24 @@ class Filter(object):
         else:
             return leff
 
+    @property
+    def lphot(self):
+        """ Photon distribution based effective wavelength. Defined as
+            
+        lphot = int(lamb ** 2 * T * Vega dlamb) / int(lamb * T * Vega dlamb)
+
+        which we calculate as
+
+        lphot = get_flux(lamb * vega) / get_flux(vega)
+        """
+        if self.wavelength_unit is None:
+            raise AttributeError('Needs wavelength units')
+
+        with Vega() as v:
+            f_vega = self.get_flux(v.wavelength, v.flux.magnitude, axis=-1)
+            f_lamb_vega = self.get_flux(v.wavelength, v.wavelength * v.flux.magnitude, axis=-1)
+        return (f_lamb_vega / f_vega) * unit[self.wavelength_unit]
+
     def _get_filter_in_units_of(self, slamb=None):
         w = self.wavelength
         if hasUnit(slamb) & hasUnit(w):
@@ -176,6 +236,40 @@ class Filter(object):
         else:
             print("Warning: assuming units are consistent")
             return self._wavelength
+
+    def get_Nphotons(self, slamb, sflux, axis=-1):
+        """getNphot the number of photons through the filter
+        (Ntot  in the documentation)
+    
+        getflux() * leff / hc
+
+        Parameters
+        ----------
+        slamb: ndarray(dtype=float, ndim=1)
+            spectrum wavelength definition domain
+
+        sflux: ndarray(dtype=float, ndim=1)
+            associated flux
+
+        Returns
+        -------
+        N: float
+            Number of photons of the spectrum within the filter
+        """
+        flux = self.getFlux(slamb, sflux, axis=axis)     # erg / s / cm^2 / lamda units
+        h = 6.626075540e-27    # erg * s
+        c = 2.99792458e18         # cm / s
+
+        N = self.leff * flux / (h * c)
+        return N   # photons / cm2 / s / A
+
+    @property
+    def Vega_zero_photons(self):
+        h = 6.626075540e-27    # erg * s
+        c = 2.99792458e18         # cm / s
+
+        N = self.leff.magnitude * self.Vega_zero_flux.magnitude / (h * c)
+        return N * unit['1/AA']  # photons / cm2 / s / A
 
     def getFlux(self, slamb, sflux, axis=-1):
         """getFlux
