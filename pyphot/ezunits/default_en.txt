@@ -301,6 +301,7 @@ stephan_constant = 5.67037321e-8 * watt * meter ** -2 * kelvin ** -4
 magnitude = [luminosity] = mag
 flam = erg * s ** (-1) * AA ** (-1)
 Jy = 1e-26 * W * m ** (-2) * Hz ** (-1) = jansky
+photon = []
 
 
 #useful aliases
