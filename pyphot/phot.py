@@ -124,6 +124,7 @@ class Filter(object):
         Vega: {s.Vega_zero_mag:f} mag,
               {s.Vega_zero_flux},
               {s.Vega_zero_Jy}
+              {s.Vega_zero_photons}
           AB: {s.AB_zero_mag:f} mag,
               {s.AB_zero_flux},
               {s.AB_zero_Jy}
