@@ -240,7 +240,7 @@ class Filter(object):
 
     def get_Nphotons(self, slamb, sflux, axis=-1):
         """getNphot the number of photons through the filter
-        (Ntot  in the documentation)
+        (Ntot / width  in the documentation)
     
         getflux() * leff / hc
 
@@ -250,27 +250,35 @@ class Filter(object):
             spectrum wavelength definition domain
 
         sflux: ndarray(dtype=float, ndim=1)
-            associated flux
+            associated flux in erg/s/cm2/AA
 
         Returns
         -------
         N: float
             Number of photons of the spectrum within the filter
         """
-        flux = self.getFlux(slamb, sflux, axis=axis)     # erg / s / cm^2 / lamda units
+        passb = self.reinterp(slamb)
+        wave = passb._wavelength
+        dlambda = np.diff(wave)
+
         h = 6.626075540e-27    # erg * s
         c = 2.99792458e18         # cm / s
+        vals = passb.transmit * _drop_units(sflux) * wave
+        vals[~np.isfinite(vals)] = 0.
+        Nphot = 0.5 * np.sum((vals[1:] + vals[:-1]) * dlambda) / (h * c) * unit['photon']
 
-        N = self.leff * flux / (h * c)
-        return N   # photons / cm2 / s / A
+        return Nphot / self.width   # photons / cm2 / s / A
 
     @property
     def Vega_zero_photons(self):
-        h = 6.626075540e-27    # erg * s
-        c = 2.99792458e18         # cm / s
-
-        N = self.leff.magnitude * self.Vega_zero_flux.magnitude / (h * c)
-        return N * unit['1/AA']  # photons / cm2 / s / A
+        """ Vega number of photons per wavelength unit 
+        
+        .. note::
+            
+            see `self.get_Nphotons`
+        """
+        with Vega() as v:
+            return self.get_Nphotons(v.wavelength, v.flux)
 
     def getFlux(self, slamb, sflux, axis=-1):
         """getFlux
