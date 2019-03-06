@@ -78,16 +78,21 @@ class Filter(object):
         self.name       = name
         try:   # get units from the inputs
             self._wavelength = wavelength.magnitude
-            self.wavelength_unit = str(wavelength.units)
         except AttributeError:
             self._wavelength = wavelength
-            self.wavelength_unit = unit
+        self.set_wavelength_unit(unit)
         self.transmit   = transmit
         self.norm       = trapz(transmit, self._wavelength)
         self._lT        = trapz(self._wavelength * transmit, self._wavelength)
         self._lpivot    = np.sqrt( self._lT / trapz(transmit / self._wavelength, self._wavelength) )
         self._cl        = self._lT / self.norm
         self.set_dtype(dtype)
+
+    def set_wavelength_unit(self, unit):
+        try:   # get units from the inputs
+            self.wavelength_unit = str(self._wavelength.units)
+        except AttributeError:
+            self.wavelength_unit = unit
 
     def set_dtype(self, dtype):
         _d = dtype.lower()
@@ -215,7 +220,7 @@ class Filter(object):
     @property
     def lphot(self):
         """ Photon distribution based effective wavelength. Defined as
-            
+
         lphot = int(lamb ** 2 * T * Vega dlamb) / int(lamb * T * Vega dlamb)
 
         which we calculate as
@@ -241,7 +246,7 @@ class Filter(object):
     def get_Nphotons(self, slamb, sflux, axis=-1):
         """getNphot the number of photons through the filter
         (Ntot / width  in the documentation)
-    
+
         getflux() * leff / hc
 
         Parameters
@@ -265,16 +270,17 @@ class Filter(object):
         c = 2.99792458e18         # cm / s
         vals = passb.transmit * _drop_units(sflux) * wave
         vals[~np.isfinite(vals)] = 0.
-        Nphot = 0.5 * np.sum((vals[1:] + vals[:-1]) * dlambda) / (h * c) * unit['photon']
+        Nphot = 0.5 * np.sum((vals[1:] + vals[:-1]) * dlambda) / (h * c)
+        Nphot = Nphot *unit['photon/s/cm**2']
 
         return Nphot / self.width   # photons / cm2 / s / A
 
     @property
     def Vega_zero_photons(self):
-        """ Vega number of photons per wavelength unit 
-        
+        """ Vega number of photons per wavelength unit
+
         .. note::
-            
+
             see `self.get_Nphotons`
         """
         with Vega() as v:
@@ -407,11 +413,12 @@ class Filter(object):
         # update properties from file header
         detector = t.header.get('DETECTOR', detector)
         unit     = t.header.get('WAVELENGTH_UNIT', unit)
+        name     = t.header.get('NAME', name)
 
         # try from the comments in the header first
         if name in (None, 'None', 'none', ''):
             name = [k.split()[1]
-                    for k in t.header['COMMENT'].split('\n')
+                    for k in t.header.get('COMMENT', '').split('\n')
                     if 'COMPNAME' in k]
             name = ''.join(name).replace('"','').replace("'",'')
         # if that did not work try the table header directly
@@ -455,8 +462,8 @@ class Filter(object):
         if self.wavelength_unit is not None:
             data.header['WAVELENGTH_UNIT'] = self.wavelength_unit
         data.header['DETECTOR'] = self.dtype
-        data.header['COMPNAME'] = self.name
-        data.header['NAME'] = self.name
+        data.header['COMPNAME'] = str(self.name)
+        data.header['NAME'] = str(self.name)
         data.set_comment('THROUGHPUT', 'filter throughput definition')
         data.set_comment('WAVELENGTH', 'filter wavelength definition')
         data.set_comment('WAVELENGTH', self.wavelength_unit or 'AA')
@@ -566,7 +573,7 @@ class Library(object):
 
     def __init__(self, source=__default__, *args, **kwargs):
         """ Construct the library """
-        pass
+        self.source = None
 
     def __repr__(self):
         return "Filter Library: {0}\n{1:s}".format(self.source, object.__repr__(self))
@@ -648,19 +655,19 @@ class Library(object):
 
     def _load_filter(self, *args, **kwargs):
         """ Load a given filter from the library """
-        raise NotImplemented
+        raise NotImplementedError
 
     def get_library_content(self):
         """ get the content of the library """
-        raise NotImplemented
+        raise NotImplementedError
 
     def load_all_filters(self, interp=True, lamb=None):
         """ load all filters from the library """
-        raise NotImplemented
+        raise NotImplementedError
 
     def add_filter(self, f):
         """ add a filter to the library """
-        raise NotImplemented
+        raise NotImplementedError
 
     def find(self, name, case_sensitive=True):
         r = []
