@@ -89,12 +89,14 @@ class Filter(object):
         self.set_dtype(dtype)
 
     def set_wavelength_unit(self, unit):
+        """ Set the wavelength units """
         try:   # get units from the inputs
             self.wavelength_unit = str(self._wavelength.units)
         except AttributeError:
             self.wavelength_unit = unit
 
     def set_dtype(self, dtype):
+        """ Set the detector type (photon or energy)"""
         _d = dtype.lower()
         if "phot" in _d:
             self.dtype = "photon"
