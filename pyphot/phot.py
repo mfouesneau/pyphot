@@ -81,10 +81,10 @@ class Filter(object):
         except AttributeError:
             self._wavelength = wavelength
         self.set_wavelength_unit(unit)
-        self.transmit   = transmit
-        self.norm       = trapz(transmit, self._wavelength)
-        self._lT        = trapz(self._wavelength * transmit, self._wavelength)
-        self._lpivot    = np.sqrt( self._lT / trapz(transmit / self._wavelength, self._wavelength) )
+        self.transmit   = np.clip(transmit, 0., np.nanmax(transmit))
+        self.norm       = trapz(self.transmit, self._wavelength)
+        self._lT        = trapz(self._wavelength * self.transmit, self._wavelength)
+        self._lpivot    = np.sqrt( self._lT / trapz(self.transmit / self._wavelength, self._wavelength) )
         self._cl        = self._lT / self.norm
         self.set_dtype(dtype)
 
@@ -319,14 +319,19 @@ class Filter(object):
         ifT = np.interp(_slamb, _wavelength, self.transmit, left=0., right=0.)
 
         # if the filter is null on that wavelength range flux is then 0
-        ind = ifT > 0.
+        # ind = ifT > 0.
+        nonzero = np.where(ifT > 0)[0]
+        nonzero_start = max(0, min(nonzero) - 5)
+        nonzero_end = min(len(ifT), max(nonzero) + 5)
+        ind = np.zeros(len(ifT), dtype=bool)
+        ind[nonzero_start:nonzero_end] = True
         if True in ind:
             try:
                 _sflux = sflux[:, ind]
             except:
                 _sflux = sflux[ind]
             # limit integrals to where necessary
-            ind = ifT > 0.
+            # ind = ifT > 0.
             if 'photon' in self.dtype:
                 a = np.trapz(_slamb[ind] * ifT[ind] * _sflux, _slamb[ind], axis=axis)
                 b = np.trapz(_slamb[ind] * ifT[ind], _slamb[ind] )
