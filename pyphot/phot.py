@@ -76,6 +76,7 @@ class Filter(object):
     def __init__(self, wavelength, transmit, name='', dtype="photon", unit=None):
         """Constructor"""
         self.name       = name
+        self.set_dtype(dtype)
         try:   # get units from the inputs
             self._wavelength = wavelength.magnitude
         except AttributeError:
@@ -84,9 +85,15 @@ class Filter(object):
         self.transmit   = np.clip(transmit, 0., np.nanmax(transmit))
         self.norm       = trapz(self.transmit, self._wavelength)
         self._lT        = trapz(self._wavelength * self.transmit, self._wavelength)
-        self._lpivot    = np.sqrt( self._lT / trapz(self.transmit / self._wavelength, self._wavelength) )
+        self._lpivot    = self._calculate_lpivot()
         self._cl        = self._lT / self.norm
-        self.set_dtype(dtype)
+
+    def _calculate_lpivot(self):
+        if 'photon' in self.dtype:
+            lpivot2 = self._lT / trapz(self.transmit / self._wavelength, self._wavelength)
+        else:
+            lpivot2 = self.norm / trapz(self.transmit / self._wavelength ** 2, self._wavelength)
+        return np.sqrt(lpivot2)
 
     def set_wavelength_unit(self, unit):
         """ Set the wavelength units """
