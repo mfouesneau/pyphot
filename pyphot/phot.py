@@ -242,7 +242,12 @@ class Filter(object):
         with Vega() as v:
             f_vega = self.get_flux(v.wavelength, v.flux.magnitude, axis=-1)
             f_lamb_vega = self.get_flux(v.wavelength, v.wavelength * v.flux.magnitude, axis=-1)
-        return (f_lamb_vega / f_vega) * unit[self.wavelength_unit]
+            f_lamb2_vega = self.get_flux(v.wavelength, v.wavelength ** 2 * v.flux.magnitude, axis=-1)
+        if 'photon' in self.dtype:
+            lphot = (f_lamb_vega / f_vega)
+        else:
+            lphot = f_lamb2_vega / f_lamb_vega
+        return lphot * unit[self.wavelength_unit]
 
     def _get_filter_in_units_of(self, slamb=None):
         w = self.wavelength
