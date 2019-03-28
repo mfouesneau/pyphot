@@ -25,7 +25,7 @@ computations.
   :target: https://mybinder.org/v2/gh/mfouesneau/pyphot/master?filepath=examples%2FQuickStart.ipynb
  
 .. image:: https://img.shields.io/badge/render%20on-nbviewer-orange.svg
-  :target: https://nbviewer.jupyter.org/github/mfouesneau/pyphot/master/examples/
+  :target: https://nbviewer.jupyter.org/github/mfouesneau/pyphot/tree/master/examples/
   
 What's new?
 -----------
