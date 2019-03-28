@@ -70,7 +70,7 @@ def _drop_units(q):
         return q
 
 
-def reduce_resolution(wi, fi, sigma0=0.55, sigma_floor=0.2):
+def reduce_resolution(wi, fi, fwhm0=0.55, sigma_floor=0.2):
     """ Adapt the resolution of the spectra to match the lick definitions
 
         Lick definitions have different resolution elements as function
@@ -82,7 +82,7 @@ def reduce_resolution(wi, fi, sigma0=0.55, sigma_floor=0.2):
         wavelength definition
     fi: ndarray (nspec, n) or (n, )
         spectra to convert
-    sigma0: float
+    fwhm0: float
         initial broadening in the spectra `fi`
     sigma_floor: float
         minimal dispersion to consider
@@ -110,7 +110,7 @@ def reduce_resolution(wi, fi, sigma0=0.55, sigma_floor=0.2):
 
     # Compute width from fwhm
     const = 2. * np.sqrt(2. * np.log(2))  # conversion fwhm --> sigma
-    lick_sigma = np.sqrt((res ** 2 - sigma0 ** 2)) / const
+    lick_sigma = np.sqrt((res ** 2 - fwhm0 ** 2)) / const
 
     # Convolution by g=1/sqrt(2*pi*sigma^2) * exp(-r^2/(2*sigma^2))
     flux_red = np.zeros(flux.shape, dtype=flux.dtype)
@@ -344,8 +344,8 @@ class LickIndex(object):
         w = np.asarray(wi)
         flux = np.atleast_2d(fi)
         # index is true in the region where we fit the polynomial
-        indcont = (((w > blue[0]) & (w < blue[1])) |
-                   ((w > red[0]) & (w < red[1]))
+        indcont = (((w >= blue[0]) & (w <= blue[1])) |
+                   ((w >= red[0]) & (w <= red[1]))
                    )
         # index of the region we want to return
         if band is None:
