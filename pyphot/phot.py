@@ -333,6 +333,8 @@ class Filter(object):
         # if the filter is null on that wavelength range flux is then 0
         # ind = ifT > 0.
         nonzero = np.where(ifT > 0)[0]
+        if nonzero.size <= 0:
+            return 0.
         nonzero_start = max(0, min(nonzero) - 5)
         nonzero_end = min(len(ifT), max(nonzero) + 5)
         ind = np.zeros(len(ifT), dtype=bool)

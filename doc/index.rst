@@ -70,13 +70,14 @@ Installation
 
 * Using pip:
 
-.. code-block::
+.. code-block:: none
 
         pip install git+https://github.com/mfouesneau/pyphot
 
 * Manually:
 
-.. code-block::
+.. code-block:: none
+
         git clone https://github.com/mfouesneau/pyphot
         cd pyphot
         python setup.py intall
