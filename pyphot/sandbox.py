@@ -136,7 +136,8 @@ class UnitFilter(Filter):
         flux: float
             Energy of the spectrum within the filter
         """
-        ifT = self.reinterp(slamb).transmit
+        passb = self.reinterp(slamb)
+        ifT = passb.transmit
         _slamb = _drop_units(slamb)
         _sflux = _drop_units(ifT._validate_sflux(slamb, sflux))
 
@@ -147,7 +148,7 @@ class UnitFilter(Filter):
         # ind = ifT > 0.
         nonzero = np.where(ifT > 0)[0]
         if nonzero.size <= 0:
-            return ifT._get_zero_like(sflux)
+            return passb._get_zero_like(sflux)
 
         # avoid calculating many zeros
         nonzero_start = max(0, min(nonzero) - 5)
@@ -161,12 +162,12 @@ class UnitFilter(Filter):
             except:
                 _sflux = _sflux[ind]
             # limit integrals to where necessary
-            if 'photon' in ifT.dtype:
+            if 'photon' in passb.dtype:
                 a = np.trapz(_slamb[ind] * ifT[ind] * _sflux, _slamb[ind], axis=axis)
                 b = np.trapz(_slamb[ind] * ifT[ind], _slamb[ind] )
                 a = a * unit['*'.join((_w_unit, _f_unit, _w_unit))]
                 b = b * unit['*'.join((_w_unit, _w_unit))]
-            elif 'energy' in ifT.dtype:
+            elif 'energy' in passb.dtype:
                 a = np.trapz( ifT[ind] * _sflux, _slamb[ind], axis=axis )
                 b = np.trapz( ifT[ind], _slamb[ind])
                 a = a * unit['*'.join((_f_unit, _w_unit))]
@@ -175,7 +176,7 @@ class UnitFilter(Filter):
                 print(self.name, "Warn for inf value")
             return a / b
         else:
-            return ifT._get_zero_like(sflux)
+            return passb._get_zero_like(sflux)
 
     def getFlux(self, slamb, sflux, axis=-1):
         """
