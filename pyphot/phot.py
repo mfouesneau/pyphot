@@ -18,6 +18,7 @@ from __future__ import print_function, division
 import numpy as np
 import tables
 from scipy.integrate import trapz
+from functools import wraps
 
 from .simpletable import SimpleTable
 from .ezunits import hasUnit, unit
@@ -38,6 +39,41 @@ class Constants(object):
     h = 6.626075540e-27 * unit['erg/s']
     # Speed of light in cm/s
     c = 2.99792458e18 * unit['cm/s']
+
+
+class set_method_default_units(object):
+    """ Decorator for classmethods that makes sure that
+    the inputs of slamb, sflux are in given units
+
+    expects the decorated method to be defined as
+        >> def methodname(self, lamb, flux)
+    """
+
+    def __init__(self, wavelength_unit, flux_unit, output_unit=None):
+        self.wavelength_unit = unit[wavelength_unit]
+        self.flux_unit = unit[flux_unit]
+        self.output_unit = output_unit
+
+    @classmethod
+    def force_units(cls, value, unit):
+        if unit is None:
+            return value
+        try:
+            return value.to(unit)
+        except AttributeError:
+            print('Warning: assuming {0:s} units to unitless object.'.format(str(unit)))
+            return value * unit
+
+    def __call__(self, func):
+
+        @wraps(func)
+        def wrapper(filter_, slamb, sflux, *args, **kwargs):
+            _slamb = set_method_default_units.force_units(slamb, self.wavelength_unit)
+            _sflux = set_method_default_units.force_units(sflux, self.flux_unit)
+            output = func(filter_, _slamb, _sflux, *args, **kwargs)
+            return set_method_default_units.force_units(output, self.output_unit)
+
+        return wrapper
 
 
 def _drop_units(q):
@@ -87,6 +123,7 @@ class Filter(object):
         self.set_dtype(dtype)
         try:   # get units from the inputs
             self._wavelength = wavelength.magnitude
+            unit = str(wavelength.units)
         except AttributeError:
             self._wavelength = wavelength
         self.set_wavelength_unit(unit)
@@ -289,13 +326,13 @@ class Filter(object):
         dlambda = np.diff(wave)
 
         h = 6.626075540e-27    # erg * s
-        c = 2.99792458e18         # cm / s
+        c = 2.99792458e18      # cm / s
         vals = passb.transmit * _drop_units(sflux) * wave
         vals[~np.isfinite(vals)] = 0.
         Nphot = 0.5 * np.sum((vals[1:] + vals[:-1]) * dlambda) / (h * c)
-        Nphot = Nphot *unit['photon/s/cm**2']
+        Nphot = Nphot * unit['photon/s/cm**2']
 
-        return Nphot / self.width   # photons / cm2 / s / A
+        return Nphot / passb.width   # photons / cm2 / s / A
 
     @property
     def Vega_zero_photons(self):
@@ -554,9 +591,9 @@ class Filter(object):
 
     @property
     def Vega_zero_mag(self):
-        """ Vega magnitude zero point
-        Vegamag = -2.5 * log10(f_lamb) + 2.5 * log10(f_vega)
-        Vegamag = -2.5 * log10(f_lamb) - zpts
+        """ vega magnitude zero point
+        vegamag = -2.5 * log10(f_lamb) + 2.5 * log10(f_vega)
+        vegamag = -2.5 * log10(f_lamb) - zpts
         """
         if self.wavelength_unit is None:
             raise AttributeError('Needs wavelength units')
@@ -635,7 +672,7 @@ class UncertainFilter(Filter):
 
     @classmethod
     def from_gp_model(cls, model, xprime=None, n_samples=10, **kwargs):
-        """ Generate a filter object from a sklearn GP model 
+        """ Generate a filter object from a sklearn GP model
 
         Parameters
         ----------
@@ -729,7 +766,7 @@ class UncertainFilter(Filter):
             return attr
 
     def _get_mean_and_samples_attribute(self, attr, *args, **kwargs):
-        """ Compute / extract mean and smapled filter attributes 
+        """ Compute / extract mean and smapled filter attributes
 
         Parameters
         ----------
