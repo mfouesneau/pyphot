@@ -108,8 +108,8 @@ class UnitFilter(Filter):
         wave = passb._wavelength
         dlambda = np.diff(wave)
 
-        h = Constants.h.to('erg*s')     # h = 6.626075540e-27 erg * s
-        c = Constants.c.to('cm/s')      # c = 2.99792458e18 cm / s
+        h = Constants.h.to('erg*s').magnitude     # h = 6.626075540e-27 erg * s
+        c = Constants.c.to('cm/s').magnitude      # c = 2.99792458e18 cm / s
         vals = sflux.magnitude * wave * passb.transmit
         vals[~np.isfinite(vals)] = 0.
         Nphot = 0.5 * np.sum((vals[1:] + vals[:-1]) * dlambda) / (h * c)
@@ -139,7 +139,7 @@ class UnitFilter(Filter):
         passb = self.reinterp(slamb)
         ifT = passb.transmit
         _slamb = _drop_units(slamb)
-        _sflux = _drop_units(ifT._validate_sflux(slamb, sflux))
+        _sflux = _drop_units(passb._validate_sflux(slamb, sflux))
 
         _w_unit = str(slamb.units)
         _f_unit = str(sflux.units)

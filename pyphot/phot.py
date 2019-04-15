@@ -36,9 +36,9 @@ __default__ = libsdir + '/new_filters.hd5'
 class Constants(object):
     """ A namespace for constants """
     # Planck's constant in erg * sec
-    h = 6.626075540e-27 * unit['erg/s']
+    h = 6.626075540e-27 * unit['erg * s']
     # Speed of light in cm/s
-    c = 2.99792458e18 * unit['cm/s']
+    c = 2.99792458e18 * unit['cm / s']
 
 
 class set_method_default_units(object):
