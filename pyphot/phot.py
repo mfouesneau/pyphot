@@ -328,7 +328,7 @@ class Filter(object):
 
         # h = 6.626075540e-27    # erg * s
         # c = 2.99792458e18      # AA / s
-        h = Constants.c.to('erg * s').magnitude
+        h = Constants.h.to('erg * s').magnitude
         c = Constants.c.to('AA/s').magnitude
         vals = passb.transmit * _drop_units(sflux) * wave
         vals[~np.isfinite(vals)] = 0.

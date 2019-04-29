@@ -114,7 +114,7 @@ class UnitFilter(Filter):
         dlambda = np.diff(wave)
 
         h = Constants.h.to('erg*s').magnitude     # h = 6.626075540e-27 erg * s
-        c = Constants.c.to('cm/s').magnitude      # c = 2.99792458e18 cm / s
+        c = Constants.c.to('AA/s').magnitude      # c = 2.99792458e18 cm / s
         vals = sflux.magnitude * wave * passb.transmit
         vals[~np.isfinite(vals)] = 0.
         Nphot = 0.5 * np.sum((vals[1:] + vals[:-1]) * dlambda) / (h * c)
