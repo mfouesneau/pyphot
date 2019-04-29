@@ -325,8 +325,10 @@ class Filter(object):
         wave = passb._wavelength
         dlambda = np.diff(wave)
 
-        h = 6.626075540e-27    # erg * s
-        c = 2.99792458e18      # cm / s
+        # h = 6.626075540e-27    # erg * s
+        # c = 2.99792458e18      # cm / s
+        h = Constants.c.to('erg * s').magnitude
+        c = Constants.c.to('cm/s').magnitude
         vals = passb.transmit * _drop_units(sflux) * wave
         vals[~np.isfinite(vals)] = 0.
         Nphot = 0.5 * np.sum((vals[1:] + vals[:-1]) * dlambda) / (h * c)
@@ -1136,7 +1138,7 @@ class Library(object):
         return HDF_Library(filename, **kwargs)
 
     @classmethod
-    def from_ascci(cls, filename, **kwargs):
+    def from_ascii(cls, filename, **kwargs):
         return Ascii_Library(filename, **kwargs)
 
     @property
@@ -1265,23 +1267,26 @@ class Ascii_Library(Library):
         filters = [self._load_filter(fname, interp=interp, lamb=lamb) for fname in names]
         return(filters)
 
-    def add_filters(self, f, fmt="%.6f", **kwargs):
+    def add_filters(self, filter_object, fmt="%.6f", **kwargs):
         """ Add a filter to the library permanently
 
         Parameters
         ----------
-        f: Filter object
+        filter_object: Filter object
             filter to add
         """
-        if not isinstance(f, Filter):
-            raise TypeError("Argument of type Filter expected. Got type {0}".format(type(f)))
+        if not isinstance(filter_object, Filter):
+            raise TypeError("Argument of type Filter expected. Got type {0}".format(type(filter_object)))
 
-        if f.wavelength_unit is None:
+        if filter_object.wavelength_unit is None:
             raise AttributeError("Filter wavelength must have units for storage.")
-        f.write_to("{0:s}/{1:s}.csv".format(self.source, f.name).lower(), fmt=fmt, **kwargs)
+        filter_object.write_to("{0:s}/{1:s}.csv".format(self.source,
+                                                        filter_object.name).lower(),
+                                fmt=fmt, **kwargs)
 
 
 class HDF_Library(Library):
+    """ Storage based on HDF """
     def __init__(self, source=__default__, mode='r'):
         self.source = source
         self.hdf = None
@@ -1294,7 +1299,7 @@ class HDF_Library(Library):
 
         return self
 
-    def __exit__(self,  *exc_info):
+    def __exit__(self, *exc_info):
         """ end context """
         if self.hdf is not None:
             self.hdf.close()
