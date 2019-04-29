@@ -5,11 +5,16 @@ Use at your own risks
 """
 
 from __future__ import print_function, division
+import os
 import numpy as np
 from .phot import unit, _drop_units
 
 from .vega import Vega
 from .phot import Filter, set_method_default_units, Constants
+from .phot import Library, Ascii_Library, HDF_Library, __default__
+
+from .licks import reduce_resolution as _reduce_resolution
+from .licks import LickIndex, LickLibrary
 
 
 class UnitFilter(Filter):
@@ -213,3 +218,166 @@ class UnitFilter(Filter):
         vegamag = -2.5 * log10(f_lamb) - zpts
         """
         return -2.5 * np.log10(self.Vega_zero_flux.magnitude)
+
+
+class UnitAscii_Library(Ascii_Library):
+
+    def _load_filter(self, fname, interp=True, lamb=None, *args, **kwargs):
+        """ Load a given filter from the library """
+        try:
+            fil = UnitFilter.from_ascii(fname, *args, **kwargs)
+        except:
+            content = self.content
+            r = [k for k in content if fname in k]
+
+            if len(r) <= 0:  # try all lower for filenames (ascii convention)
+                r = [k for k in content if fname.lower() in k]
+
+            if len(r) > 1:
+                print("auto correction found multiple choices")
+                print(r)
+                raise ValueError('Refine name to one of {0}'.format(r))
+            elif len(r) <= 0:
+                raise ValueError('Cannot find filter {0}'.format(fname))
+            else:
+                fil = UnitFilter.from_ascii(r[0], *args, **kwargs)
+        if (interp is True) and (lamb is not None):
+            return fil.reinterp(lamb)
+        else:
+            return fil
+
+
+class UnitHDF_Library(HDF_Library):
+
+    def _load_filter(self, fname, interp=True, lamb=None):
+        """ Load a given filter from the library
+
+        Parameters
+        ----------
+        fname: str
+            normalized names according to filtersLib
+
+        interp: bool, optional
+            reinterpolate the filters over given lambda points
+
+        lamb: ndarray[float, ndim=1]
+            desired wavelength definition of the filter
+
+        integrationFilter: bool, optional
+            set True for specail integraion filter such as Qion or E_uv
+            if set, lamb should be given
+
+        Returns
+        -------
+        filter: Filter instance
+            filter object
+        """
+        ftab = self.hdf
+        if hasattr(fname, 'decode'):
+            fnode    = ftab.get_node('/filters/' + fname.decode('utf8'))
+        else:
+            fnode    = ftab.get_node('/filters/' + fname)
+        flamb    = fnode[:]['WAVELENGTH']
+        transmit = fnode[:]['THROUGHPUT']
+        dtype = 'photon'
+        unit = None
+
+        attrs = fnode.attrs
+        if 'DETECTOR' in attrs:
+            dtype = attrs['DETECTOR']
+        if 'WAVELENGTH_UNIT' in attrs:
+            unit = attrs['WAVELENGTH_UNIT']
+
+        fil = UnitFilter(flamb, transmit, name=fnode.name, dtype=dtype, unit=unit)
+
+        if interp & (lamb is not None):
+            fil = fil.reinterp(lamb)
+        return fil
+
+
+class UnitLibray(Library):
+
+    @classmethod
+    def from_ascii(cls, filename, **kwargs):
+        return UnitAscii_Library(filename, **kwargs)
+
+    @classmethod
+    def from_hd5(cls, filename, **kwargs):
+        return UnitHDF_Library(filename, **kwargs)
+
+def get_library(fname=__default__, **kwargs):
+    """ Finds the appropriate class to load the library """
+    if os.path.isfile(fname):
+        return UnitHDF_Library(fname, **kwargs)
+    else:
+        return UnitAscii_Library(fname, **kwargs)
+
+
+@set_method_default_units('AA', 'flam', output_unit='flam')
+def reduce_resolution(wi, fi, fwhm0=0.55 * unit['AA'], sigma_floor=0.2 * unit['AA']):
+    """ Adapt the resolution of the spectra to match the lick definitions
+
+        Lick definitions have different resolution elements as function
+        of wavelength. These definition are hard-coded in this function
+
+    Parameters
+    ---------
+    wi: ndarray (n, )
+        wavelength definition
+    fi: ndarray (nspec, n) or (n, )
+        spectra to convert
+    fwhm0: float
+        initial broadening in the spectra `fi`
+    sigma_floor: float
+        minimal dispersion to consider
+
+    Returns
+    -------
+    flux_red: ndarray (nspec, n) or (n, )
+        reduced spectra
+    """
+    flux_red = _reduce_resolution(wi.magnitude, fi.magnitude,
+                                  fwhm0.to('AA').magnitude,
+                                  sigma_floor.to('AA').magnitude)
+    return flux_red * unit['flam']
+
+
+class UnitLickIndex(LickIndex):
+    """ Define a Lick Index similarily to a Filter object """
+
+    @set_method_default_units('AA', 'flam')
+    def get(self, wave, flux, **kwargs):
+        """ compute spectral index after continuum subtraction
+
+        Parameters
+        ----------
+        w: ndarray (nw, )
+            array of wavelengths in AA
+        flux: ndarray (N, nw)
+            array of flux values for different spectra in the series
+        degree: int (default 1)
+            degree of the polynomial fit to the continuum
+        nocheck: bool
+            set to silently pass on spectral domain mismatch.
+            otherwise raises an error when index is not covered
+
+        Returns
+        -------
+        ew: ndarray (N,)
+            equivalent width or magnitude array
+
+        Raises
+        ------
+        ValueError: when the spectral coverage wave does not cover the index
+        range
+        """
+        LickIndex.get(wave, flux.to('flam').magnitude, **kwargs)
+
+
+class UnitLickLibrary(LickLibrary):
+    """ Collection of Lick indices """
+
+    def _load_filter(self, fname, **kwargs):
+        """ Load a given filter from the library """
+        with self as current_lib:
+            return UnitLickIndex(fname, current_lib._content[fname])
