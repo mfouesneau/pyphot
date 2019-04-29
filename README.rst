@@ -30,6 +30,7 @@ computations.
 What's new?
 -----------
 
+* [April 15, 2019] merged UncertainFilter to main, sandbox contains passbands accounting for spectrum units
 * [March 4, 2019] added flux calculations in photon/s/cm2
 * [March 4, 2019] added many properties per filter (lphot, lmin, lmax)
 * [June 12, 2018] adding Sun reference spectra (see `:class:Sun`)
