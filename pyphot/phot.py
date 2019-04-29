@@ -38,7 +38,8 @@ class Constants(object):
     # Planck's constant in erg * sec
     h = 6.626075540e-27 * unit['erg * s']
     # Speed of light in cm/s
-    c = 2.99792458e18 * unit['cm / s']
+    # c = 2.99792458e18 * unit['AA / s']
+    c = unit['c'].to('AA/s')
 
 
 class set_method_default_units(object):
@@ -326,9 +327,9 @@ class Filter(object):
         dlambda = np.diff(wave)
 
         # h = 6.626075540e-27    # erg * s
-        # c = 2.99792458e18      # cm / s
+        # c = 2.99792458e18      # AA / s
         h = Constants.c.to('erg * s').magnitude
-        c = Constants.c.to('cm/s').magnitude
+        c = Constants.c.to('AA/s').magnitude
         vals = passb.transmit * _drop_units(sflux) * wave
         vals[~np.isfinite(vals)] = 0.
         Nphot = 0.5 * np.sum((vals[1:] + vals[:-1]) * dlambda) / (h * c)
