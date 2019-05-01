@@ -371,7 +371,7 @@ class UnitLickIndex(LickIndex):
         ValueError: when the spectral coverage wave does not cover the index
         range
         """
-        LickIndex.get(wave, flux.to('flam').magnitude, **kwargs)
+        return LickIndex.get(self, wave, flux.to('flam').magnitude, **kwargs)
 
 
 class UnitLickLibrary(LickLibrary):
