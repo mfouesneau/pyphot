@@ -75,6 +75,14 @@ pyphot.sun module
     :undoc-members:
     :show-inheritance:
 
+pyphot.sandbox module
+---------------------
+
+.. automodule:: pyphot.sandbox
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 
 Module contents
 ---------------
