@@ -478,6 +478,9 @@ class UnitRegistry(object):
     def __getitem__(self, item):
         return self._parse_expression(item)
 
+    def __call__(self, args):
+        return self[args]
+
     def add_unit(self, name, value, aliases=tuple(), **modifiers):
         """Add unit to the registry.
         """
@@ -761,12 +764,26 @@ def _build_quantity_class(registry, force_ndarray):
             return self._magnitude
 
         @property
+        def value(self):
+            """Quantity's magnitude.
+            """
+            return self._magnitude
+
+        @property
         def units(self):
             """Quantity's units.
 
             :rtype: UnitContainer
             """
             return self._units
+
+        @property
+        def unit(self):
+            """Quantity's units.
+
+            :rtype: str
+            """
+            return str(self._units)
 
         @property
         def unitless(self):
