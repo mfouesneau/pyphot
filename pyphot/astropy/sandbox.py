@@ -28,8 +28,6 @@ from scipy.integrate import trapz
 from .simpletable import SimpleTable
 from .vega import Vega
 from .config import libsdir
-# from .phot import Filter
-# from .phot import Library, Ascii_Library, HDF_Library, __default__
 
 from .licks import reduce_resolution as _reduce_resolution
 from .licks import LickIndex, LickLibrary
@@ -43,16 +41,17 @@ from astropy.units import Unit
 from astropy import constants
 
 
-def hasUnit(val):
-    return hasattr(val, 'unit')
-
-
 class Constants(object):
     """ A namespace for constants """
     # Planck's constant in erg * sec
     h = constants.h.to('erg * s')
     # Speed of light in cm/s
     c = constants.c.to('AA/s')
+
+
+def hasUnit(val):
+    """ Check is an object has units """
+    return hasattr(val, 'unit') or hasattr(val, 'units')
 
 
 class set_method_default_units(object):
@@ -99,7 +98,10 @@ def _drop_units(q):
     try:
         return q.value
     except AttributeError:
-        return q
+        try:
+            return q.magnitude
+        except AttributeError:
+            return q
 
 
 class UnitFilter(object):
@@ -171,7 +173,7 @@ class UnitFilter(object):
     def set_wavelength_unit(self, unit):
         """ Set the wavelength units """
         try:   # get units from the inputs
-            self.wavelength_unit = str(self._wavelength.units)
+            self.wavelength_unit = str(self._wavelength.unit)
         except AttributeError:
             self.wavelength_unit = unit
 
@@ -366,7 +368,8 @@ class UnitFilter(object):
             print("Warning: assuming units are consistent")
             return self._wavelength
 
-    @set_method_default_units('AA', 'flam', output_unit='photon*s-1*cm-2*AA-1')
+    @set_method_default_units('AA', 'flam',
+                              output_unit='photon*s**-1*cm**-2*AA**-1')
     def get_Nphotons(self, slamb, sflux, axis=-1):
         """getNphot the number of photons through the filter
         (Ntot / width  in the documentation)
@@ -397,7 +400,7 @@ class UnitFilter(object):
         vals = sflux.value * wave * passb.transmit
         vals[~np.isfinite(vals)] = 0.
         Nphot = 0.5 * np.sum((vals[1:] + vals[:-1]) * dlambda) / (h * c)
-        Nphot = Nphot * Unit('photon*s-1*cm**-2')
+        Nphot = Nphot * Unit('photon*s**-1*cm**-2')
         return Nphot / passb.width   # photons / cm2 / s / A
 
     @property
@@ -411,7 +414,8 @@ class UnitFilter(object):
         with Vega() as v:
             return self.get_Nphotons(v.wavelength, v.flux)
 
-    @set_method_default_units('AA', 'flam', output_unit='erg*s-1*cm-2*AA-1')
+    @set_method_default_units('AA', 'flam',
+                              output_unit='erg*s**-1*cm**-2*AA**-1')
     def get_flux(self, slamb, sflux, axis=-1):
         """getFlux
         Integrate the flux within the filter and return the integrated energy
@@ -646,21 +650,21 @@ class UnitFilter(object):
             raise AttributeError('Needs wavelength units')
 
         C1 = (Unit(self.wavelength_unit).to('AA') ** 2 /
-              constants.c.to('AA/s').value)
+              Constants.c.to('AA/s').value)
         c1 = self._lpivot ** 2 * C1
 
-        m = 2.5 * np.log10(c1) + 48.6
+        m = 2.5 * np.log10(_drop_units(c1)) + 48.6
         return m
 
     @property
     def AB_zero_flux(self):
         """ AB flux zero point in erg/s/cm2/AA """
-        return 10 ** (-0.4 * self.AB_zero_mag) * Unit('erg*s-1*cm-2*AA-1')
+        return 10 ** (-0.4 * self.AB_zero_mag) * Unit('erg*s**-1*cm**-2*AA**-1')
 
     @property
     def AB_zero_Jy(self):
         """ AB flux zero point in Jansky (Jy) """
-        c = 1e-8 * constants.c.to('m/s').value
+        c = 1e-8 * Constants.c.to('m/s').value
         f = 1e5 / c * self.lpivot.to('AA').value ** 2 * self.AB_zero_flux.value
         return f * Unit('Jy')
 
@@ -682,9 +686,9 @@ class UnitFilter(object):
     @property
     def Vega_zero_Jy(self):
         """ Vega flux zero point in Jansky (Jy) """
-        c = 1e-8 * constants.c.to('m/s').value
+        c = 1e-8 * Constants.c.to('m/s').value
         f = 1e5 / c * (self.lpivot.to('AA').value ** 2 *
-                       self.Vega_zero_flux.to('erg*s-1*cm-2*AA-1').value)
+                       self.Vega_zero_flux.to('erg*s**-1*cm**-2*AA**-1').value)
         return f * Unit('Jy')
 
     @property
@@ -697,12 +701,12 @@ class UnitFilter(object):
     @property
     def ST_zero_flux(self):
         """ ST flux zero point in erg/s/cm2/AA """
-        return 10 ** (-0.4 * self.ST_zero_mag) * Unit('erg*s-1*cm-2*AA-1')
+        return 10 ** (-0.4 * self.ST_zero_mag) * Unit('erg*s**-1*cm**-2*AA**-1')
 
     @property
     def ST_zero_Jy(self):
         """ ST flux zero point in Jansky (Jy) """
-        c = 1e-8 * constants.c.to('m/s').value
+        c = 1e-8 * Constants.c.to('m/s').value
         f = 1e5 / c * self.lpivot.to('AA').value ** 2 * self.ST_zero_flux.value
         return f * Unit('Jy')
 
