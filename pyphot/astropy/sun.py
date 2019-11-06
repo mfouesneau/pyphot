@@ -7,7 +7,7 @@ import numpy
 from .config import libsdir
 from .simpletable import SimpleTable
 from astropy.units import Unit
-try: 
+try:
     from astropy.io import fits as pyfits
 except ImportError:
     import pyfits
@@ -15,14 +15,14 @@ except ImportError:
 
 __all__ = ['Sun']
 
-_default_sun = {'observed': "{0}/sun_reference_stis_001.fits".format(libsdir), 
+_default_sun = {'observed': "{0}/sun_reference_stis_001.fits".format(libsdir),
                 'theoretical': "{0}/sun_kurucz93.fits".format(libsdir)}
 _default_distance = 1 * Unit('au')
 
 
 class Sun(object):
     """
-    Class that handles the Sun's spectrum and references.  
+    Class that handles the Sun's spectrum and references.
 
     Observed solar spectrum comes from:
     ftp://ftp.stsci.edu/cdbs/current_calspec/sun_reference_stis_001.fits
@@ -36,8 +36,8 @@ class Sun(object):
     parameters when the Sun is at 1 au.
 
      log_Z         T_eff        log_g           V_{Johnson}
-     +0.0           5777        +4.44              -26.75 
-    
+     +0.0           5777        +4.44              -26.75
+
     Attributes
     ----------
     source: str
@@ -72,7 +72,7 @@ class Sun(object):
             self.source = source
         else:
             self.source = _default_sun[flavor]
-            self.distance_conversion = ((_default_distance / self.distance) ** 2).value
+            self.distance_conversion = float(((_default_distance / self.distance) ** 2))
             self.data = None
             self.units = None
 
