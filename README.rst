@@ -30,6 +30,7 @@ computations.
 What's new?
 -----------
 
+* [November 6, 2019] astropy version available in beta (`from pyphot import astropy as pyphot`)
 * [April 29, 2019] sandbox contains fully unit aware passbands and lick indices libraries
 * [April 15, 2019] merged UncertainFilter to main, sandbox contains passbands accounting for spectrum units
 * [March 4, 2019] added flux calculations in photon/s/cm2
