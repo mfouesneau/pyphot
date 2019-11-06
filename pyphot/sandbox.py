@@ -36,6 +36,7 @@ from .licks import LickIndex, LickLibrary
 # __default__      = libsdir + '/filters.hd5'
 # __default__ = libsdir + '/filters'
 __default__ = libsdir + '/new_filters.hd5'
+__default_lick__ = libsdir + '/licks.dat'
 
 from .ezunits import unit as Unit
 
@@ -1591,7 +1592,7 @@ class UnitLickIndex(LickIndex):
 
 class UnitLickLibrary(LickLibrary):
     """ Collection of Lick indices """
-    def __init__(self, fname=__default__, comment='#'):
+    def __init__(self, fname=__default_lick__, comment='#'):
         self.source = fname
         data, hdr = self._read_lick_list(fname, comment)
         self._content = data
