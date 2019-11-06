@@ -1,13 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from astropy.units import Unit, def_unit, add_enabled_units
-from .vega import Vega
-from .sun import Sun
-from .sandbox import (UncertainFilter, UnitAscii_Library, UnitFilter,
-                      UnitHDF_Library, UnitLibrary, UnitLickIndex,
-                      UnitLickLibrary, get_library)
-from .licks import (LickLibrary, LickIndex, reduce_resolution)
-
 
 new_units = dict(
     flam='erg * s ** (-1) * AA ** (-1) * cm **(-2)',
@@ -19,3 +12,9 @@ new_units = dict(
 
 add_enabled_units([def_unit([k], Unit(v)) for k, v in new_units.items()])\
     .__enter__()
+
+from .vega import Vega
+from .sun import Sun
+from .sandbox import (UncertainFilter, UnitAscii_Library, UnitFilter,
+                      UnitHDF_Library, UnitLibrary, UnitLickIndex,
+                      UnitLickLibrary, get_library)
