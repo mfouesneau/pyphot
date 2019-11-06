@@ -36,6 +36,7 @@ from .licks import LickIndex, LickLibrary
 # __default__      = libsdir + '/filters.hd5'
 # __default__ = libsdir + '/filters'
 __default__ = libsdir + '/new_filters.hd5'
+__default_lick__ = libsdir + '/licks.dat'
 
 from astropy.units import Unit
 from astropy import constants
@@ -73,9 +74,10 @@ class set_method_default_units(object):
             return value
         try:
             return value.to(unit)
-        except AttributeError:
+        except AttributeError as e:
             msg = 'Warning: assuming {0:s} units to unitless object.'
             print(msg.format(str(unit)))
+            raise e
             return value * unit
 
     def __call__(self, func):
@@ -159,9 +161,14 @@ class UnitFilter(object):
         self.norm = trapz(self.transmit, self._wavelength)
         self._lT = trapz(self._wavelength * self.transmit, self._wavelength)
         self._lpivot = self._calculate_lpivot()
-        self._cl = self._lT / self.norm
+        if self.norm > 0:
+            self._cl = self._lT / self.norm
+        else:
+            self._cl = 0.
 
     def _calculate_lpivot(self):
+        if self.transmit.max() <= 0:
+            return 0.
         if 'photon' in self.dtype:
             lpivot2 = self._lT / trapz(self.transmit / self._wavelength,
                                        self._wavelength)
@@ -297,8 +304,11 @@ class UnitFilter(object):
         with Vega() as v:
             s = self.reinterp(v.wavelength)
             w = s._wavelength
-            leff = np.trapz(w * s.transmit * v.flux.value, w, axis=-1)
-            leff /= np.trapz(s.transmit * v.flux.value, w, axis=-1)
+            if s.transmit.max() > 0:
+                leff = np.trapz(w * s.transmit * v.flux.value, w, axis=-1)
+                leff /= np.trapz(s.transmit * v.flux.value, w, axis=-1)
+            else:
+                leff = float('nan')
         if s.wavelength_unit is not None:
             leff = leff * Unit(s.wavelength_unit)
             if self.wavelength_unit is not None:
@@ -327,12 +337,13 @@ class UnitFilter(object):
     @classmethod
     def _get_zero_like(cls, sflux, axis=-1):
         """return a zero value corresponding to a flux calculation on sflux"""
-        _sflux = _drop_units(sflux)
-        shape = _sflux.shape
-        if axis < 0:
-            axis = len(shape) + axis
-        newshape = shape[:axis] + shape[axis + 1:]
-        return np.zeros(newshape, _sflux.dtype)
+        # _sflux = _drop_units(sflux)
+        # shape = _sflux.shape
+        # if axis < 0:
+        #     axis = len(shape) + axis
+        # newshape = shape[:axis] + shape[axis + 1:]
+        # return np.zeros(newshape, _sflux.dtype)
+        return np.zeros_like(sflux).sum(axis=axis)
 
     @property
     def lphot(self):
@@ -476,7 +487,7 @@ class UnitFilter(object):
                 print(self.name, "Warn for inf value")
             return a / b
         else:
-            return passb._get_zero_like(sflux)
+            return passb._get_zero_like(_sflux)
 
     def getFlux(self, slamb, sflux, axis=-1):
         """
@@ -674,7 +685,11 @@ class UnitFilter(object):
         vegamag = -2.5 * log10(f_lamb) + 2.5 * log10(f_vega)
         vegamag = -2.5 * log10(f_lamb) - zpts
         """
-        return -2.5 * np.log10(self.Vega_zero_flux.value)
+        flux = self.Vega_zero_flux.value
+        if flux > 0:
+            return -2.5 * np.log10(flux)
+        else:
+            return float('nan')
 
     @property
     def Vega_zero_flux(self):
@@ -1592,7 +1607,7 @@ class UnitLickIndex(LickIndex):
 
 class UnitLickLibrary(LickLibrary):
     """ Collection of Lick indices """
-    def __init__(self, fname=__default__, comment='#'):
+    def __init__(self, fname=__default_lick__, comment='#'):
         self.source = fname
         data, hdr = self._read_lick_list(fname, comment)
         self._content = data
@@ -1604,7 +1619,7 @@ class UnitLickLibrary(LickLibrary):
         return self._hdr
 
     @classmethod
-    def _read_lick_list(cls, fname=__default__, comment='#'):
+    def _read_lick_list(cls, fname=__default_lick__, comment='#'):
         """ read the list of lick indices
 
         Parameters
