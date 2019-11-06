@@ -159,9 +159,14 @@ class UnitFilter(object):
         self.norm = trapz(self.transmit, self._wavelength)
         self._lT = trapz(self._wavelength * self.transmit, self._wavelength)
         self._lpivot = self._calculate_lpivot()
-        self._cl = self._lT / self.norm
+        if self.norm > 0:
+            self._cl = self._lT / self.norm
+        else:
+            self._cl = 0.
 
     def _calculate_lpivot(self):
+        if self.transmit.max() <= 0:
+            return 0.
         if 'photon' in self.dtype:
             lpivot2 = self._lT / trapz(self.transmit / self._wavelength,
                                        self._wavelength)
@@ -297,8 +302,11 @@ class UnitFilter(object):
         with Vega() as v:
             s = self.reinterp(v.wavelength)
             w = s._wavelength
-            leff = np.trapz(w * s.transmit * v.flux.value, w, axis=-1)
-            leff /= np.trapz(s.transmit * v.flux.value, w, axis=-1)
+            if s.transmit.max() > 0:
+                leff = np.trapz(w * s.transmit * v.flux.value, w, axis=-1)
+                leff /= np.trapz(s.transmit * v.flux.value, w, axis=-1)
+            else:
+                leff = float('nan')
         if s.wavelength_unit is not None:
             leff = leff * Unit(s.wavelength_unit)
             if self.wavelength_unit is not None:
@@ -674,7 +682,11 @@ class UnitFilter(object):
         vegamag = -2.5 * log10(f_lamb) + 2.5 * log10(f_vega)
         vegamag = -2.5 * log10(f_lamb) - zpts
         """
-        return -2.5 * np.log10(self.Vega_zero_flux.value)
+        flux = self.Vega_zero_flux.value
+        if flux > 0:
+            return -2.5 * np.log10(flux)
+        else:
+            return float('nan')
 
     @property
     def Vega_zero_flux(self):
