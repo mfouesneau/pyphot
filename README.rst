@@ -8,7 +8,7 @@ full documentation at: http://mfouesneau.github.io/docs/pyphot/
 
 The inputs are photonic or energetic response functions for the desired
 photometric bands and stellar spectra. The modules are flexible to handle units 
-in the wavelength definition through a simplified version of `pint` (link)
+in the wavelength definition through a simplified version of `pint` (link) and `astropy.units`
 
 Filters are represented individually by a `Filter` object. Collections of
 filters are handled with a `Library`. We provide an internal library that
