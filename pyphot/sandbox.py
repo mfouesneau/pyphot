@@ -159,7 +159,7 @@ class UnitFilter(object):
         # make sure input data are ordered and cleaned of weird values.
         idx = np.argsort(self._wavelength)
         self._wavelength = self._wavelength[idx]        
-        self.transmit   = np.clip(self.transmit[idx], 0., np.nanmax(transmit))
+        self.transmit   = np.clip(transmit[idx], 0., np.nanmax(transmit))
 
         self.norm = trapz(self.transmit, self._wavelength)
         self._lT = trapz(self._wavelength * self.transmit, self._wavelength)
