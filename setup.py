@@ -5,7 +5,7 @@ def readme():
         return f.read()
 
 setup(name = "pyphot",
-    version = 1.0,
+    version = 1.1,
     description = "A tool for computing photometry from spectra",
     long_description = readme(),
     author = "Morgan Fouesneau",
