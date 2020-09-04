@@ -128,7 +128,12 @@ class Filter(object):
         except AttributeError:
             self._wavelength = wavelength
         self.set_wavelength_unit(unit)
-        self.transmit   = np.clip(transmit, 0., np.nanmax(transmit))
+        
+        # make sure input data are ordered and cleaned of weird values.
+        idx = np.argsort(self._wavelength)
+        self._wavelength = self._wavelength[idx]        
+        self.transmit   = np.clip(self.transmit[idx], 0., np.nanmax(transmit))
+        
         self.norm       = trapz(self.transmit, self._wavelength)
         self._lT        = trapz(self._wavelength * self.transmit, self._wavelength)
         self._lpivot    = self._calculate_lpivot()
