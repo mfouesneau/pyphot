@@ -73,10 +73,9 @@ class set_method_default_units(object):
             return value
         try:
             return value.to(unit)
-        except AttributeError as e:
+        except AttributeError:
             msg = 'Warning: assuming {0:s} units to unitless object.'
             print(msg.format(str(unit)))
-            raise e
             return value * unit
 
     def __call__(self, func):
@@ -156,12 +155,12 @@ class UnitFilter(object):
         except AttributeError:
             self._wavelength = wavelength
         self.set_wavelength_unit(unit)
-        
+
         # make sure input data are ordered and cleaned of weird values.
         idx = np.argsort(self._wavelength)
         self._wavelength = self._wavelength[idx]        
         self.transmit   = np.clip(transmit[idx], 0., np.nanmax(transmit))
-        
+
         self.norm = trapz(self.transmit, self._wavelength)
         self._lT = trapz(self._wavelength * self.transmit, self._wavelength)
         self._lpivot = self._calculate_lpivot()

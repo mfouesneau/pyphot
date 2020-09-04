@@ -340,12 +340,13 @@ class UnitFilter(object):
     @classmethod
     def _get_zero_like(cls, sflux, axis=-1):
         """return a zero value corresponding to a flux calculation on sflux"""
-        _sflux = _drop_units(sflux)
-        shape = _sflux.shape
-        if axis < 0:
-            axis = len(shape) + axis
-        newshape = shape[:axis] + shape[axis + 1:]
-        return np.zeros(newshape, _sflux.dtype)
+        # _sflux = _drop_units(sflux)
+        # shape = _sflux.shape
+        # if axis < 0:
+        #     axis = len(shape) + axis
+        # newshape = shape[:axis] + shape[axis + 1:]
+        # return np.zeros(newshape, _sflux.dtype)
+        return np.zeros_like(sflux).sum(axis=axis)
 
     @property
     def lphot(self):
@@ -489,7 +490,7 @@ class UnitFilter(object):
                 print(self.name, "Warn for inf value")
             return a / b
         else:
-            return passb._get_zero_like(sflux)
+            return passb._get_zero_like(_sflux)
 
     def getFlux(self, slamb, sflux, axis=-1):
         """
