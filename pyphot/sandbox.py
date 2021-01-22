@@ -469,10 +469,7 @@ class UnitFilter(object):
         ind[nonzero_start:nonzero_end] = True
 
         if True in ind:
-            try:
-                _sflux = _sflux[:, ind]
-            except Exception:
-                _sflux = _sflux[ind]
+            _sflux = np.atleast_2d(_sflux)[..., ind]
             # limit integrals to where necessary
             if 'photon' in passb.dtype:
                 a = np.trapz(_slamb[ind] * ifT[ind] * _sflux, _slamb[ind],
@@ -483,7 +480,7 @@ class UnitFilter(object):
                 b = np.trapz(ifT[ind], _slamb[ind])
             if (np.isinf(a).any() | np.isinf(b).any()):
                 print(self.name, "Warn for inf value")
-            return a / b * _f_unit
+            return np.squeeze(a / b) * _f_unit
         else:
             return passb._get_zero_like(_sflux) * _f_unit
 
