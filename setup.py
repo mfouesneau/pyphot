@@ -18,8 +18,10 @@ setup(name = "pyphot",
     classifiers=[
       'Intended Audience :: Science/Research',
       'Operating System :: OS Independent',
-      'Programming Language :: Python',
+      'Programming Language :: Python :: 3',
+      'License :: OSI Approved :: MIT License',
       'Topic :: Scientific/Engineering :: Astronomy'
       ],
-    zip_safe=False
+    zip_safe=False,
+    install_requires=["numpy", "scipy", "matplotlib","tables", "pandas", "astropy" ]
 )
