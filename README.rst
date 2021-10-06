@@ -40,14 +40,27 @@ What's new?
 
 Installation
 ------------
+Before installation, make sure you have HDF5 version 1.8.4 or above (this is required for pytables, see details at: https://github.com/PyTables/PyTables). 
 
-* Install with `pip`
+For OSX:
 
 .. code::
 
-  pip install git+https://github.com/mfouesneau/pyphot
+  brew install hdf5
 
-(`--user` if you want to install it in your user profile)
+For Debian-based distributions:
+
+.. code::
+
+  sudo apt-get install libhdf5-serial-dev
+  
+
+
+* Installation from PyPI
+
+.. code::
+
+  pip install pyphot
 
 * Manual installation
 
