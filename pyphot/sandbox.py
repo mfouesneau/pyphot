@@ -454,14 +454,13 @@ class UnitFilter(object):
         _slamb = _drop_units(slamb)
         _sflux = _drop_units(passb._validate_sflux(slamb, sflux))
 
-        _w_unit = str(slamb.unit)
-        _f_unit = str(sflux.unit)
+        _f_unit = Unit(sflux.unit)
 
         # if the filter is null on that wavelength range flux is then 0
         # ind = ifT > 0.
         nonzero = np.where(ifT > 0)[0]
         if nonzero.size <= 0:
-            return passb._get_zero_like(sflux)
+            return passb._get_zero_like(sflux) * _f_unit
 
         # avoid calculating many zeros
         nonzero_start = max(0, min(nonzero) - 5)
@@ -470,27 +469,20 @@ class UnitFilter(object):
         ind[nonzero_start:nonzero_end] = True
 
         if True in ind:
-            try:
-                _sflux = _sflux[:, ind]
-            except Exception:
-                _sflux = _sflux[ind]
+            _sflux = np.atleast_2d(_sflux)[..., ind]
             # limit integrals to where necessary
             if 'photon' in passb.dtype:
                 a = np.trapz(_slamb[ind] * ifT[ind] * _sflux, _slamb[ind],
                              axis=axis)
                 b = np.trapz(_slamb[ind] * ifT[ind], _slamb[ind])
-                a = a * Unit('*'.join((_w_unit, _f_unit, _w_unit)))
-                b = b * Unit('*'.join((_w_unit, _w_unit)))
             elif 'energy' in passb.dtype:
                 a = np.trapz(ifT[ind] * _sflux, _slamb[ind], axis=axis)
                 b = np.trapz(ifT[ind], _slamb[ind])
-                a = a * Unit('*'.join((_f_unit, _w_unit)))
-                b = b * Unit(_w_unit)
-            if (np.isinf(a.value).any() | np.isinf(b.value).any()):
+            if (np.isinf(a).any() | np.isinf(b).any()):
                 print(self.name, "Warn for inf value")
-            return a / b
+            return np.squeeze(a / b) * _f_unit
         else:
-            return passb._get_zero_like(_sflux)
+            return passb._get_zero_like(_sflux) * _f_unit
 
     def getFlux(self, slamb, sflux, axis=-1):
         """
