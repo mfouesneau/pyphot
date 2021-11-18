@@ -1,8 +1,8 @@
 pyphot -- A tool for computing photometry from spectra
 ======================================================
 
-.. image:: https://badge.fury.io/py/pyphot.svg
-    :target: https://badge.fury.io/py/pyphot
+.. image:: https://img.shields.io/pypi/v/pyphot.svg
+    :target: https://pypi.org/project/pyphot/
 
 This is a set of tools to compute synthetic photometry in a simple way, ideal to
 integrate in larger projects.
