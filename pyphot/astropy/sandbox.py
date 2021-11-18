@@ -158,7 +158,7 @@ class UnitFilter(object):
 
         # make sure input data are ordered and cleaned of weird values.
         idx = np.argsort(self._wavelength)
-        self._wavelength = self._wavelength[idx]        
+        self._wavelength = self._wavelength[idx]
         self.transmit   = np.clip(transmit[idx], 0., np.nanmax(transmit))
 
         self.norm = trapz(self.transmit, self._wavelength)
@@ -1396,19 +1396,21 @@ class UnitHDF_Library(UnitLibrary):
         self.source = source
         self.hdf = None
         self.mode = mode
+        self._in_context = 0
 
     def __enter__(self):
         """ Enter context """
         if self.hdf is None:
             self.hdf = tables.open_file(self.source, self.mode)
-
+        self._in_context += 1
         return self
 
     def __exit__(self, *exc_info):
         """ end context """
-        if self.hdf is not None:
+        if (self.hdf is not None) and (self._in_context < 2) :
             self.hdf.close()
             self.hdf = None
+        self._in_context -= 1
         return False
 
     def _load_filter(self, fname, interp=True, lamb=None):

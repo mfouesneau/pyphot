@@ -45,6 +45,12 @@ class TestQuick(unittest.TestCase):
         mags = -2.5 * np.log10(fluxes.magnitude) - f.ST_zero_mag
         print("ST magnitude of Vega in {0:s} is : {1:f} mag".format(f.name, mags))
 
+    def test_load_all_filters(self):
+        from pyphot import sandbox as pyphot
+        # get the internal default library of passbands filters
+        lib = pyphot.get_library()
+        lib.load_all_filters()
+
     def test_all_filters_in_library(self):
         from pyphot import sandbox as pyphot
 
@@ -192,6 +198,12 @@ class TestAstropyQuick(unittest.TestCase):
         print("AB value of Vega in {0:s} is : {1:f} mag".format(f.name, mags))
         mags = -2.5 * np.log10(fluxes.value) - f.ST_zero_mag
         print("ST value of Vega in {0:s} is : {1:f} mag".format(f.name, mags))
+
+    def test_load_all_filters(self):
+        from pyphot import astropy as pyphot
+        # get the internal default library of passbands filters
+        lib = pyphot.get_library()
+        lib.load_all_filters()
 
     def test_all_filters_in_library(self):
         from pyphot import astropy as pyphot
