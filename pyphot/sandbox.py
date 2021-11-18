@@ -1527,9 +1527,11 @@ class UnitHDF_Library(UnitLibrary):
             msg = "Filter wavelength must have units for storage."
             raise AttributeError(msg)
 
+        append = kwargs.pop('append', True)
+
         f.write_to("{0:s}".format(self.source),
                    tablename='/filters/{0}'.format(f.name),
-                   createparents=True,
+                   createparents=True, append=append,
                    **kwargs)
 
 
