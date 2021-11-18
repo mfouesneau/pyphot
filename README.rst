@@ -1,13 +1,16 @@
 pyphot -- A tool for computing photometry from spectra
 ======================================================
 
+.. image:: https://badge.fury.io/py/pyphot.svg
+    :target: https://badge.fury.io/py/pyphot
+
 This is a set of tools to compute synthetic photometry in a simple way, ideal to
 integrate in larger projects.
 
 full documentation at: http://mfouesneau.github.io/docs/pyphot/
 
 The inputs are photonic or energetic response functions for the desired
-photometric bands and stellar spectra. The modules are flexible to handle units 
+photometric bands and stellar spectra. The modules are flexible to handle units
 in the wavelength definition through a simplified version of `pint` (link) and `astropy.units`
 
 Filters are represented individually by a `Filter` object. Collections of
@@ -21,12 +24,12 @@ accessible (AB, Vega magnitude, Jy, erg/s/cm2/AA). The default detector type is
 assumed to be photonic, but energetic detectors are also handled for the
 computations.
 
-.. image:: https://mybinder.org/badge.svg 
+.. image:: https://mybinder.org/badge.svg
   :target: https://mybinder.org/v2/gh/mfouesneau/pyphot/master?filepath=examples%2FQuickStart.ipynb
- 
+
 .. image:: https://img.shields.io/badge/render%20on-nbviewer-orange.svg
   :target: https://nbviewer.jupyter.org/github/mfouesneau/pyphot/tree/master/examples/
-  
+
 What's new?
 -----------
 
@@ -40,7 +43,7 @@ What's new?
 
 Installation
 ------------
-Before installation, make sure you have HDF5 version 1.8.4 or above (this is required for pytables, see details at: https://github.com/PyTables/PyTables). 
+Before installation, make sure you have HDF5 version 1.8.4 or above (this is required for pytables, see details at: https://github.com/PyTables/PyTables).
 
 For OSX:
 
@@ -53,7 +56,7 @@ For Debian-based distributions:
 .. code::
 
   sudo apt-get install libhdf5-serial-dev
-  
+
 
 
 * Installation from PyPI
