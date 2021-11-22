@@ -7,7 +7,7 @@ pyphot -- A tool for computing photometry from spectra
 This is a set of tools to compute synthetic photometry in a simple way, ideal to
 integrate in larger projects.
 
-full documentation at: http://mfouesneau.github.io/docs/pyphot/
+full documentation at: http://mfouesneau.github.io/pyphot/
 
 The inputs are photonic or energetic response functions for the desired
 photometric bands and stellar spectra. The modules are flexible to handle units
@@ -33,6 +33,7 @@ computations.
 What's new?
 -----------
 
+* [November 22, 2021] new filters, SVO interface, automated tests and documentation.
 * [November 6, 2019] astropy version available in beta (`from pyphot import astropy as pyphot`)
 * [April 29, 2019] sandbox contains fully unit aware passbands and lick indices libraries
 * [April 15, 2019] merged UncertainFilter to main, sandbox contains passbands accounting for spectrum units
