@@ -12,4 +12,4 @@ from .helpers import (STmag_from_flux, STmag_to_flux, extractPhotometry,
 from .vega import Vega
 from .sun import Sun
 
-__VERSION__ = "1.4"
+__VERSION__ = "1.4.1"
