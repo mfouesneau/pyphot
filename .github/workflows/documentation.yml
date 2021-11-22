@@ -13,9 +13,13 @@ jobs:
     steps:  
     - uses: actions/checkout@v1
     # Standard drop-in approach that should work for most people.
+    - name: build doc tables
+      working-directory: ./docs
+      run: |
+        python pyphot_table.py 
+        licks_table.py
     - uses: ammaraskar/sphinx-action@master
       with:
-        pre-build-command: cd docs && python pyphot_table.py && licks_table.py
         docs-folder: "docs/"
     # Great extra actions to compose with:
     # Create an artifact of the html output.
