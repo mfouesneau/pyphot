@@ -12,7 +12,8 @@ jobs:
 
     steps:  
     - uses: actions/checkout@v2
-    # Standard drop-in approach that should work for most people.
+    - name: Setup tmate session   # Debugging
+      uses: mxschmitt/action-tmate@v3
     - name: build doc tables
       working-directory: ./docs
       run: |
