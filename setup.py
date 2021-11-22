@@ -1,12 +1,18 @@
 from setuptools import setup, find_packages
-from pyphot import __VERSION__
+from distutils.util import convert_path
+
+main_ns = {}
+ver_path = convert_path('pyphot/version.py')
+with open(ver_path) as ver_file:
+    exec(ver_file.read(), main_ns)
+
 
 def readme():
     with open('README.rst') as f:
         return f.read()
 
 setup(name = "pyphot",
-    version = __VERSION__,
+    version = main_ns['__VERSION__'],
     description = "A tool for computing photometry from spectra",
     long_description = readme(),
     author = "Morgan Fouesneau",

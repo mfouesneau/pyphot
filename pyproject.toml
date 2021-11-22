@@ -1,0 +1,13 @@
+[build-system]
+
+requires = ["setuptools",
+            "setuptools_scm",
+            "wheel",
+            "cython",
+            "numpy",
+            "scipy",
+            "matplotlib",
+            "astropy",
+            "tables",
+            "pandas",
+            "extension-helpers"]
