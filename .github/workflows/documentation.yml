@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:  
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
     # Standard drop-in approach that should work for most people.
     - name: build doc tables
       working-directory: ./docs
@@ -21,12 +21,6 @@ jobs:
     - uses: ammaraskar/sphinx-action@master
       with:
         docs-folder: "docs/"
-    # Great extra actions to compose with:
-    # Create an artifact of the html output.
-    - uses: actions/upload-artifact@v1
-      with:
-        name: DocumentationHTML
-        path: docs/_build/html/
     # Publish built docs to gh-pages branch.
     # ===============================
     - name: Commit documentation changes
