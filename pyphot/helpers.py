@@ -1,6 +1,8 @@
 from __future__ import print_function, division
 import numpy as np
 from numpy import trapz
+import warnings
+import functools
 
 from .pbar import Pbar
 
@@ -25,7 +27,22 @@ def progress_enumerate(it, *args, **kwargs):
         for a in enumerate(it, *args):
             yield a
 
+            
+def deprecated(message):
+    """ Deprecated warning decorator """
+    def decorator(function):
+        @functools.wraps(function)
+        def wrapper(*args, **kwargs):
+            warnings.warn(message, DeprecationWarning, stacklevel=2)
+            return function(*args, **kwargs)
+        return wrapper
+    return decorator
+            
 
+@deprecated("Deprecated function.\n" 
+            "`extractPhotometry` Will be removed in later versions\n"
+            "It does not handle units and detector type.\n"
+            "Use the `UnitFilter.get_flux` instead.")
 def extractPhotometry(lamb, spec, flist, absFlux=True, progress=True):
     """Extract seds from a one single spectrum
 
@@ -70,6 +87,10 @@ def extractPhotometry(lamb, spec, flist, absFlux=True, progress=True):
     return cls, seds
 
 
+@deprecated("Deprecated function.\n" 
+            "`extractSEDs` Will be removed in later versions\n"
+            "It does not handle units and detector type.\n"
+            "Use the `UnitFilter.get_flux` instead.")
 def extractSEDs(lamb, specs, flist, absFlux=True, progress=True):
     """ Extract seds from a grid
 
