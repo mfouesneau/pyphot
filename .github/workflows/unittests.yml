@@ -4,7 +4,7 @@ on:
   push:
     paths-ignore:
           - "joss/**"
-          - "docs/**"
+          - "doc/**"
 
 jobs:
   build:
