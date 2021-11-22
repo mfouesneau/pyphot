@@ -1,11 +1,12 @@
 from setuptools import setup, find_packages
+from pyphot import __VERSION__
 
 def readme():
     with open('README.rst') as f:
         return f.read()
 
 setup(name = "pyphot",
-    version = 1.4,
+    version = __VERSION__,
     description = "A tool for computing photometry from spectra",
     long_description = readme(),
     author = "Morgan Fouesneau",
