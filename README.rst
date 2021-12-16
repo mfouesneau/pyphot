@@ -29,6 +29,11 @@ computations.
 
 .. image:: https://img.shields.io/badge/render%20on-nbviewer-orange.svg
   :target: https://nbviewer.jupyter.org/github/mfouesneau/pyphot/tree/master/examples/
+  
+  
+  
+.. note::
+    `cphot <https://github.com/mfouesneau/cphot>`_ is a spin-off project that provides a C++ version of pyphot
 
 What's new?
 -----------
