@@ -20,6 +20,7 @@ jobs:
     - name: setup python
       working-directory: ./
       run: |
+        pip install --upgrade pip
         pip install -r requirements.txt
         pip install .
     - name: build doc tables
@@ -27,9 +28,18 @@ jobs:
       run: |
         python pyphot_table.py 
         python licks_table.py
-    - uses: ammaraskar/sphinx-action@master
+    - name: sphinx-action@master
+      uses: ammaraskar/sphinx-action@master
       with:
-        docs-folder: "doc/"
+        pre-build-command: |
+          python -m pip install -r requirements.txt
+          python -m pip install -r docs/requirements.txt
+          python -m pip show markupsafe
+          # clear previous API documentation
+          rm -f pyphot.rst pyphot.*.rst
+          # re-generate API documentation
+          make apidoc
+        docs-folder: "docs/"
     # Publish built docs to gh-pages branch.
     # ===============================
     - name: Commit documentation changes
