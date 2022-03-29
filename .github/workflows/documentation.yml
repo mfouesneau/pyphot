@@ -39,7 +39,7 @@ jobs:
           rm -f pyphot.rst pyphot.*.rst
           # re-generate API documentation
           make apidoc
-        docs-folder: "docs/"
+        docs-folder: "doc/"
     # Publish built docs to gh-pages branch.
     # ===============================
     - name: Commit documentation changes
