@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+- family-names: "Fouesneau"
+  given-names: "Morgan"
+  orcid: "https://orcid.org/0000-0001-9256-5516"
+title: "pyphot"
+version: 1.0.0
+date-released: 2022-03-29
+url: "https://github.com/mfouesneau/pyphot"
