@@ -7,6 +7,11 @@ pyphot -- A tool for computing photometry from spectra
 .. image:: https://zenodo.org/badge/70060728.svg
    :target: https://zenodo.org/badge/latestdoi/70060728
 
+.. image:: https://static.pepy.tech/badge/pyphot
+   :target: https://pepy.tech/project/pyphot
+
+.. image:: https://static.pepy.tech/badge/pyphot/month
+   :target: https://pepy.tech/project/pyphot
 
 This is a set of tools to compute synthetic photometry in a simple way, ideal to
 integrate in larger projects.
