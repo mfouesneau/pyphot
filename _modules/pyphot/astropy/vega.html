@@ -1,0 +1,271 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>pyphot.astropy.vega &#8212; pyphot 1.0 documentation</title>
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/language_data.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for pyphot.astropy.vega</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot; Handle vega spec/mags/fluxes manipulations</span>
+
+<span class="sd">Works with both ascii and hd5 files for back-compatibility</span>
+
+<span class="sd">Vega.wavelength and Vega.flux have now units!</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
+<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">wraps</span>
+<span class="kn">import</span> <span class="nn">numpy</span>
+<span class="kn">from</span> <span class="nn">.config</span> <span class="kn">import</span> <span class="n">libsdir</span>
+<span class="kn">from</span> <span class="nn">.simpletable</span> <span class="kn">import</span> <span class="n">SimpleTable</span>
+<span class="kn">from</span> <span class="nn">astropy.units</span> <span class="kn">import</span> <span class="n">Unit</span>
+
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Vega&#39;</span><span class="p">,</span> <span class="s1">&#39;from_Vegamag_to_Flux&#39;</span><span class="p">,</span> <span class="s1">&#39;from_Vegamag_to_Flux_SN_errors&#39;</span><span class="p">]</span>
+
+<span class="n">_default_vega</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{0}</span><span class="s2">/vega.hd5&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">libsdir</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="Vega"><a class="viewcode-back" href="../../../pyphot.astropy.html#pyphot.astropy.vega.Vega">[docs]</a><span class="k">class</span> <span class="nc">Vega</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Class that handles vega spectrum and references.  This class know where to</span>
+<span class="sd">    find the Vega synthetic spectrum (Bohlin 2007) in order to compute fluxes</span>
+<span class="sd">    and magnitudes in given filters</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    source: str</span>
+<span class="sd">        filename of the vega library</span>
+<span class="sd">    data: SimpleTable</span>
+<span class="sd">        data table</span>
+<span class="sd">    units: tuple</span>
+<span class="sd">        detected units from file header</span>
+<span class="sd">    wavelength: array</span>
+<span class="sd">        wavelength (with units when found)</span>
+<span class="sd">    flux: array</span>
+<span class="sd">        flux(wavelength) values (with units when provided)</span>
+
+<span class="sd">    An instance can be used as a context manager as:</span>
+
+<span class="sd">    &gt;&gt;&gt; filters = [&#39;HST_WFC3_F275W&#39;, &#39;HST_WFC3_F336W&#39;, &#39;HST_WFC3_F475W&#39;,\</span>
+<span class="sd">                   &#39;HST_WFC3_F814W&#39;, &#39;HST_WFC3_F110W&#39;, &#39;HST_WFC3_F160W&#39;]</span>
+<span class="sd">        with Vega() as v:</span>
+<span class="sd">            vega_f, vega_mag, flamb = v.getSed(filters)</span>
+<span class="sd">        print vega_f, vega_mag, flamb</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="n">_default_vega</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Constructor &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">source</span> <span class="o">=</span> <span class="n">source</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">_readfile</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="n">fname</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">source</span>
+        <span class="c1"># get extension</span>
+        <span class="n">ext</span> <span class="o">=</span> <span class="n">fname</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">if</span> <span class="p">(</span> <span class="n">ext</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;hd5&#39;</span><span class="p">,</span> <span class="s1">&#39;hdf&#39;</span><span class="p">,</span> <span class="s1">&#39;hdf5&#39;</span><span class="p">)</span> <span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">SimpleTable</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="s1">&#39;/spectrum&#39;</span><span class="p">,</span> <span class="n">silent</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">SimpleTable</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="n">silent</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">uw</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="s1">&#39;WAVELENGTH_UNIT&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;=&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span>
+            <span class="n">uf</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="s1">&#39;FLUX_UNIT&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;=&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="n">uw</span><span class="p">,</span> <span class="n">uf</span>
+        <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+            <span class="n">uw</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="s1">&#39;WAVELENGTH_UNIT&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;=&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span>
+            <span class="n">uf</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="s1">&#39;FLUX_UNIT&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;=&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="n">uw</span><span class="p">,</span> <span class="n">uf</span>
+
+    <span class="k">def</span> <span class="fm">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Enter context &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_readfile</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span>
+
+    <span class="k">def</span> <span class="fm">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>  <span class="o">*</span><span class="n">exc_info</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; end context &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">wavelength</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; wavelength (with units when found) &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_readfile</span><span class="p">()</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">WAVELENGTH</span> <span class="o">*</span> <span class="n">Unit</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">units</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">WAVELENGTH</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">flux</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; flux(wavelength) values (with units when provided) &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_readfile</span><span class="p">()</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">FLUX</span> <span class="o">*</span> <span class="n">Unit</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">units</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">FLUX</span>
+
+<div class="viewcode-block" id="Vega.getFlux"><a class="viewcode-back" href="../../../pyphot.astropy.html#pyphot.astropy.vega.Vega.getFlux">[docs]</a>    <span class="k">def</span> <span class="nf">getFlux</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filters</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Return vega abs. fluxes in filters &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_readfile</span><span class="p">()</span>
+        <span class="n">w</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">wavelength</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s1">&#39;AA&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">magnitude</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">flux</span><span class="o">.</span><span class="n">magnitude</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">k</span><span class="o">.</span><span class="n">getFlux</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">filters</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">r</span></div>
+
+<div class="viewcode-block" id="Vega.getMag"><a class="viewcode-back" href="../../../pyphot.astropy.html#pyphot.astropy.vega.Vega.getMag">[docs]</a>    <span class="k">def</span> <span class="nf">getMag</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filters</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Return vega abs. magnitudes in filters &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mf">2.5</span> <span class="o">*</span> <span class="n">numpy</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">getFlux</span><span class="p">(</span><span class="n">filters</span><span class="p">))</span></div></div>
+
+
+<div class="viewcode-block" id="from_Vegamag_to_Flux"><a class="viewcode-back" href="../../../pyphot.astropy.html#pyphot.astropy.vega.from_Vegamag_to_Flux">[docs]</a><span class="k">def</span> <span class="nf">from_Vegamag_to_Flux</span><span class="p">(</span><span class="n">lamb</span><span class="p">,</span> <span class="n">vega_mag</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; function decorator that transforms vega magnitudes to fluxes (without vega reference) &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">deco</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
+        <span class="k">def</span> <span class="nf">vegamagtoFlux</span><span class="p">(</span><span class="n">mag</span><span class="p">,</span> <span class="n">err</span><span class="p">,</span> <span class="n">mask</span><span class="p">):</span>
+            <span class="n">f</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.4</span> <span class="o">*</span> <span class="p">(</span><span class="n">mag</span> <span class="o">+</span> <span class="n">vega_mag</span><span class="p">))</span>
+            <span class="n">e</span> <span class="o">=</span> <span class="n">f</span> <span class="o">*</span> <span class="p">(</span> <span class="mf">1.</span> <span class="o">-</span> <span class="n">numpy</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.4</span> <span class="o">*</span> <span class="n">err</span><span class="p">)</span> <span class="p">)</span>
+            <span class="k">return</span> <span class="n">f</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">mask</span>
+
+        <span class="nd">@wraps</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+        <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+            <span class="n">mag</span><span class="p">,</span> <span class="n">err</span><span class="p">,</span> <span class="n">mask</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">vegamagtoFlux</span><span class="p">(</span> <span class="n">mag</span><span class="p">,</span> <span class="n">err</span><span class="p">,</span> <span class="n">mask</span> <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">wrapper</span>
+    <span class="k">return</span> <span class="n">deco</span></div>
+
+
+<div class="viewcode-block" id="from_Vegamag_to_Flux_SN_errors"><a class="viewcode-back" href="../../../pyphot.astropy.html#pyphot.astropy.vega.from_Vegamag_to_Flux_SN_errors">[docs]</a><span class="k">def</span> <span class="nf">from_Vegamag_to_Flux_SN_errors</span><span class="p">(</span><span class="n">lamb</span><span class="p">,</span> <span class="n">vega_mag</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; function decorator that transforms vega magnitudes to fluxes (without vega reference) &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">deco</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
+        <span class="k">def</span> <span class="nf">vegamagtoFlux</span><span class="p">(</span><span class="n">mag</span><span class="p">,</span> <span class="n">errp</span><span class="p">,</span> <span class="n">errm</span><span class="p">,</span> <span class="n">mask</span><span class="p">):</span>
+            <span class="n">f</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">**</span> <span class="p">(</span><span class="o">-</span><span class="mf">0.4</span> <span class="o">*</span> <span class="p">(</span><span class="n">mag</span> <span class="o">+</span> <span class="n">vega_mag</span><span class="p">))</span>
+            <span class="n">fp</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">**</span> <span class="p">(</span><span class="o">-</span><span class="mf">0.4</span> <span class="o">*</span> <span class="p">(</span><span class="n">mag</span> <span class="o">-</span> <span class="n">errp</span> <span class="o">+</span> <span class="n">vega_mag</span><span class="p">))</span>
+            <span class="n">fm</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">**</span> <span class="p">(</span><span class="o">-</span><span class="mf">0.4</span> <span class="o">*</span> <span class="p">(</span><span class="n">mag</span> <span class="o">+</span> <span class="n">errm</span> <span class="o">+</span> <span class="n">vega_mag</span><span class="p">))</span>
+            <span class="k">return</span> <span class="n">f</span><span class="p">,</span> <span class="n">fp</span> <span class="o">-</span> <span class="n">f</span><span class="p">,</span> <span class="n">f</span> <span class="o">-</span> <span class="n">fm</span><span class="p">,</span> <span class="n">mask</span>
+
+        <span class="nd">@wraps</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+        <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+            <span class="n">mag</span><span class="p">,</span> <span class="n">errp</span><span class="p">,</span> <span class="n">errm</span><span class="p">,</span> <span class="n">mask</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">vegamagtoFlux</span><span class="p">(</span> <span class="n">mag</span><span class="p">,</span> <span class="n">errp</span><span class="p">,</span> <span class="n">errm</span><span class="p">,</span> <span class="n">mask</span> <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">wrapper</span>
+    <span class="k">return</span> <span class="n">deco</span></div>
+
+
+<span class="k">def</span> <span class="nf">testUnit</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot; Unit test and example usage &quot;&quot;&quot;</span>
+    <span class="n">filters</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;HST_WFC3_F275W&#39;</span><span class="p">,</span> <span class="s1">&#39;HST_WFC3_F336W&#39;</span><span class="p">,</span> <span class="s1">&#39;HST_WFC3_F475W&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;HST_WFC3_F814W&#39;</span><span class="p">,</span> <span class="s1">&#39;HST_WFC3_F110W&#39;</span><span class="p">,</span> <span class="s1">&#39;HST_WFC3_F160W&#39;</span><span class="p">]</span>
+    <span class="k">with</span> <span class="n">Vega</span><span class="p">()</span> <span class="k">as</span> <span class="n">v</span><span class="p">:</span>
+        <span class="n">vega_f</span><span class="p">,</span> <span class="n">vega_mag</span><span class="p">,</span> <span class="n">flamb</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="n">getSed</span><span class="p">(</span><span class="n">filters</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">vega_f</span><span class="p">,</span> <span class="n">vega_mag</span><span class="p">,</span> <span class="n">flamb</span><span class="p">)</span>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../index.html">pyphot</a></h1>
+
+
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=mfouesneau&repo=pyphot&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../more_examples.html">More example usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../photometry.html">Details on predicting photometry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../libcontent.html">Provided Filter library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../licks.html">Extention to Lick indices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">API</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, M. Fouesneau.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+    <a href="https://github.com/mfouesneau/pyphot" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    </a>
+    
+
+    
+  </body>
+</html>

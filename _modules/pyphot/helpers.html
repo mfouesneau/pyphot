@@ -1,0 +1,379 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>pyphot.helpers &#8212; pyphot 1.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for pyphot.helpers</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">division</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">trapz</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">import</span> <span class="nn">functools</span>
+
+<span class="kn">from</span> <span class="nn">.pbar</span> <span class="kn">import</span> <span class="n">Pbar</span>
+
+<span class="c1"># this is used to convert from bolometric luminosities to abs fluxes</span>
+<span class="c1"># object to 10parsecs -- abs mag.</span>
+<span class="n">distc</span> <span class="o">=</span> <span class="mf">4.</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="p">(</span><span class="mf">3.0856775e19</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+
+
+<div class="viewcode-block" id="progress_enumerate"><a class="viewcode-back" href="../../pyphot.html#pyphot.helpers.progress_enumerate">[docs]</a><span class="k">def</span> <span class="nf">progress_enumerate</span><span class="p">(</span><span class="n">it</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Enumerate over a sequence with progression if requested</span>
+
+<span class="sd">    Parameter</span>
+<span class="sd">    ---------</span>
+<span class="sd">    show_progress: bool</span>
+<span class="sd">        set to show progress</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">progress</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;show_progress&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">progress</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">Pbar</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span><span class="o">.</span><span class="n">iterover</span><span class="p">(</span><span class="n">it</span><span class="p">),</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+            <span class="k">yield</span> <span class="n">a</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">it</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+            <span class="k">yield</span> <span class="n">a</span></div>
+
+            
+<div class="viewcode-block" id="deprecated"><a class="viewcode-back" href="../../pyphot.html#pyphot.helpers.deprecated">[docs]</a><span class="k">def</span> <span class="nf">deprecated</span><span class="p">(</span><span class="n">message</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Deprecated warning decorator &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">decorator</span><span class="p">(</span><span class="n">function</span><span class="p">):</span>
+        <span class="nd">@functools</span><span class="o">.</span><span class="n">wraps</span><span class="p">(</span><span class="n">function</span><span class="p">)</span>
+        <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="ne">DeprecationWarning</span><span class="p">,</span> <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">function</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">wrapper</span>
+    <span class="k">return</span> <span class="n">decorator</span></div>
+            
+
+<div class="viewcode-block" id="extractPhotometry"><a class="viewcode-back" href="../../pyphot.html#pyphot.helpers.extractPhotometry">[docs]</a><span class="nd">@deprecated</span><span class="p">(</span><span class="s2">&quot;Deprecated function.</span><span class="se">\n</span><span class="s2">&quot;</span> 
+            <span class="s2">&quot;`extractPhotometry` Will be removed in later versions</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;It does not handle units and detector type.</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;Use the `UnitFilter.get_flux` instead.&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">extractPhotometry</span><span class="p">(</span><span class="n">lamb</span><span class="p">,</span> <span class="n">spec</span><span class="p">,</span> <span class="n">flist</span><span class="p">,</span> <span class="n">absFlux</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">progress</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Extract seds from a one single spectrum</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    lamb: ndarray[float,ndim=1]</span>
+<span class="sd">        wavelength of spec</span>
+
+<span class="sd">    spec: ndarray[float, ndim=1]</span>
+<span class="sd">        spectrum</span>
+
+<span class="sd">    flist: list[filter]</span>
+<span class="sd">        list of filter objects</span>
+
+<span class="sd">    absflux: bool</span>
+<span class="sd">        return SEDs in absolute fluxes if set</span>
+
+<span class="sd">    progress: bool</span>
+<span class="sd">        show progression if set</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    cls: ndarray[float, ndim=1]</span>
+<span class="sd">        filters central wavelength</span>
+
+<span class="sd">    seds: ndarray[float, ndim=1]</span>
+<span class="sd">        integrated sed</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="bp">cls</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">seds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span> <span class="nb">len</span><span class="p">(</span><span class="n">flist</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">e</span><span class="p">,</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">progress_enumerate</span><span class="p">(</span><span class="n">flist</span><span class="p">,</span> <span class="n">show_progress</span><span class="o">=</span><span class="n">progress</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s1">&#39;Photometry&#39;</span><span class="p">):</span>
+        <span class="n">xl</span>  <span class="o">=</span> <span class="n">k</span><span class="o">.</span><span class="n">transmit</span> <span class="o">&gt;</span> <span class="mf">0.</span>
+        <span class="n">tmp</span> <span class="o">=</span> <span class="n">lamb</span><span class="p">[</span><span class="n">xl</span><span class="p">]</span> <span class="o">*</span> <span class="n">k</span><span class="o">.</span><span class="n">transmit</span><span class="p">[</span><span class="n">xl</span><span class="p">]</span>
+        <span class="n">s0</span>  <span class="o">=</span> <span class="n">spec</span><span class="p">[:,</span> <span class="n">xl</span><span class="p">]</span>
+        <span class="c1"># apply absolute flux conversion if requested</span>
+        <span class="k">if</span> <span class="n">absFlux</span><span class="p">:</span>
+            <span class="n">s0</span> <span class="o">/=</span> <span class="n">distc</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">trapz</span><span class="p">(</span> <span class="n">tmp</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:]</span> <span class="o">*</span> <span class="n">s0</span><span class="p">,</span> <span class="n">lamb</span><span class="p">[</span><span class="n">xl</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span> <span class="p">)</span>
+        <span class="n">seds</span><span class="p">[</span><span class="n">e</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span> <span class="o">/</span> <span class="n">k</span><span class="o">.</span><span class="n">_lT</span>   <span class="c1"># divide by integral (lambda T dlambda)</span>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">k</span><span class="o">.</span><span class="n">cl</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="bp">cls</span><span class="p">,</span> <span class="n">seds</span></div>
+
+
+<div class="viewcode-block" id="extractSEDs"><a class="viewcode-back" href="../../pyphot.html#pyphot.helpers.extractSEDs">[docs]</a><span class="nd">@deprecated</span><span class="p">(</span><span class="s2">&quot;Deprecated function.</span><span class="se">\n</span><span class="s2">&quot;</span> 
+            <span class="s2">&quot;`extractSEDs` Will be removed in later versions</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;It does not handle units and detector type.</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;Use the `UnitFilter.get_flux` instead.&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">extractSEDs</span><span class="p">(</span><span class="n">lamb</span><span class="p">,</span> <span class="n">specs</span><span class="p">,</span> <span class="n">flist</span><span class="p">,</span> <span class="n">absFlux</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">progress</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Extract seds from a grid</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    g0: ModelGrid instance</span>
+<span class="sd">        initial spectral grid</span>
+
+<span class="sd">    flist: sequence(filter)</span>
+<span class="sd">        list of filter object instances</span>
+
+<span class="sd">    absflux: bool</span>
+<span class="sd">        return SEDs in absolute fluxes if set</span>
+
+<span class="sd">    progress: bool</span>
+<span class="sd">        show progression if set</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    cls: ndarray[float, ndim=1]</span>
+<span class="sd">        filters central wavelength</span>
+
+<span class="sd">    seds: ndarray[float, ndim=1]</span>
+<span class="sd">        integrated sed</span>
+
+<span class="sd">    grid: Table</span>
+<span class="sd">        SED grid properties table from g0 (g0.grid)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">seds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span> <span class="nb">len</span><span class="p">(</span><span class="n">specs</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">flist</span><span class="p">)</span> <span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+    <span class="bp">cls</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">e</span><span class="p">,</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">progress_enumerate</span><span class="p">(</span><span class="n">flist</span><span class="p">,</span> <span class="n">show_progress</span><span class="o">=</span><span class="n">progress</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s1">&#39;Photometry&#39;</span><span class="p">):</span>
+        <span class="n">xl</span>  <span class="o">=</span> <span class="n">k</span><span class="o">.</span><span class="n">transmit</span> <span class="o">&gt;</span> <span class="mf">0.</span>
+        <span class="n">tmp</span> <span class="o">=</span> <span class="n">lamb</span><span class="p">[</span><span class="n">xl</span><span class="p">]</span> <span class="o">*</span> <span class="n">k</span><span class="o">.</span><span class="n">transmit</span><span class="p">[</span><span class="n">xl</span><span class="p">]</span>
+        <span class="n">s0</span>  <span class="o">=</span> <span class="n">specs</span><span class="p">[:,</span> <span class="n">xl</span><span class="p">]</span>
+        <span class="c1"># apply absolute flux conversion if requested</span>
+        <span class="k">if</span> <span class="n">absFlux</span><span class="p">:</span>
+            <span class="n">s0</span> <span class="o">/=</span> <span class="n">distc</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">trapz</span><span class="p">(</span> <span class="n">tmp</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:]</span> <span class="o">*</span> <span class="n">s0</span><span class="p">,</span> <span class="n">lamb</span><span class="p">[</span><span class="n">xl</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span> <span class="p">)</span>
+        <span class="n">seds</span><span class="p">[:,</span> <span class="n">e</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span> <span class="o">/</span> <span class="n">k</span><span class="o">.</span><span class="n">_lT</span>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">k</span><span class="o">.</span><span class="n">cl</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="bp">cls</span><span class="p">,</span> <span class="n">seds</span></div>
+
+
+<div class="viewcode-block" id="STmag_to_flux"><a class="viewcode-back" href="../../pyphot.html#pyphot.helpers.STmag_to_flux">[docs]</a><span class="k">def</span> <span class="nf">STmag_to_flux</span><span class="p">(</span> <span class="n">v</span> <span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Convert an ST magnitude to erg/s/cm2/AA (Flambda)</span>
+
+<span class="sd">    .. math::</span>
+<span class="sd">        mag = -2.5 \log_{10}(F) - 21.10</span>
+
+<span class="sd">        M0 = 21.10</span>
+<span class="sd">        F0 = 3.6307805477010028 10^{-9} erg/s/cm2/AA</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    v: np.ndarray[float, ndim=N] or float</span>
+<span class="sd">        array of magnitudes</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    flux: np.ndarray[float, ndim=N], or float</span>
+<span class="sd">        array of fluxes</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">v0</span> <span class="o">=</span> <span class="mf">21.1</span>
+    <span class="k">return</span> <span class="mf">10.</span> <span class="o">**</span> <span class="p">(</span> <span class="o">-</span><span class="mf">0.4</span> <span class="o">*</span> <span class="p">(</span><span class="n">v</span> <span class="o">-</span> <span class="n">v0</span><span class="p">)</span> <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="STmag_from_flux"><a class="viewcode-back" href="../../pyphot.html#pyphot.helpers.STmag_from_flux">[docs]</a><span class="k">def</span> <span class="nf">STmag_from_flux</span><span class="p">(</span> <span class="n">v</span> <span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Convert to ST magnitude from erg/s/cm2/AA (Flambda)</span>
+
+<span class="sd">    .. math::</span>
+<span class="sd">        mag = -2.5 \log_{10}(F) - 21.10</span>
+
+<span class="sd">        M0 = 21.10</span>
+<span class="sd">        F0 = 3.6307805477010028 10^{-9} erg/s/cm2/AA</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    v: np.ndarray[float, ndim=N], or float</span>
+<span class="sd">        array of fluxes</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    mag: np.ndarray[float, ndim=N], or float</span>
+<span class="sd">        array of magnitudes</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">v0</span> <span class="o">=</span> <span class="mf">21.1</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mf">2.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span> <span class="n">v</span> <span class="p">)</span> <span class="o">-</span> <span class="n">v0</span></div>
+
+
+<div class="viewcode-block" id="fluxToMag"><a class="viewcode-back" href="../../pyphot.html#pyphot.helpers.fluxToMag">[docs]</a><span class="k">def</span> <span class="nf">fluxToMag</span><span class="p">(</span><span class="n">flux</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Return the magnitudes from flux values</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    flux: np.ndarray[float, ndim=N]</span>
+<span class="sd">        array of fluxes</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    mag: np.ndarray[float, ndim=N]</span>
+<span class="sd">        array of magnitudes</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mf">2.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">flux</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="fluxErrTomag"><a class="viewcode-back" href="../../pyphot.html#pyphot.helpers.fluxErrTomag">[docs]</a><span class="k">def</span> <span class="nf">fluxErrTomag</span><span class="p">(</span><span class="n">flux</span><span class="p">,</span> <span class="n">fluxerr</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Return the magnitudes and associated errors from fluxes and flux error</span>
+<span class="sd">    values</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    flux:    np.ndarray[float, ndim=1]</span>
+<span class="sd">        array of fluxes</span>
+
+<span class="sd">    fluxerr: np.ndarray[float, ndim=1]</span>
+<span class="sd">        array of flux errors</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    mag: np.ndarray[float, ndim=1]</span>
+<span class="sd">        array of magnitudes</span>
+
+<span class="sd">    err: np.ndarray[float, ndim=1]</span>
+<span class="sd">        array of magnitude errors</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">mag</span> <span class="o">=</span> <span class="n">fluxToMag</span><span class="p">(</span><span class="n">flux</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">mag</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span> <span class="mf">1.</span> <span class="o">-</span> <span class="n">fluxerr</span> <span class="o">/</span> <span class="n">flux</span> <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="magToFlux"><a class="viewcode-back" href="../../pyphot.html#pyphot.helpers.magToFlux">[docs]</a><span class="k">def</span> <span class="nf">magToFlux</span><span class="p">(</span><span class="n">mag</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Return the flux from magnitude values</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    mag: np.ndarray[float, ndim=N]</span>
+<span class="sd">        array of magnitudes</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    flux:  np.ndarray[float, ndim=N]</span>
+<span class="sd">        array of fluxes</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="mi">10</span> <span class="o">**</span> <span class="p">(</span><span class="o">-</span><span class="mf">0.4</span> <span class="o">*</span> <span class="n">mag</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="magErrToFlux"><a class="viewcode-back" href="../../pyphot.html#pyphot.helpers.magErrToFlux">[docs]</a><span class="k">def</span> <span class="nf">magErrToFlux</span><span class="p">(</span><span class="n">mag</span><span class="p">,</span> <span class="n">err</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Return the flux and associated errors from magnitude and mag error values</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    mag: np.ndarray[float, ndim=1]</span>
+<span class="sd">        array of magnitudes</span>
+
+<span class="sd">    err: np.ndarray[float, ndim=1]</span>
+<span class="sd">        array of magnitude errors</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    flux:    np.ndarray[float, ndim=1]</span>
+<span class="sd">        array of fluxes</span>
+
+<span class="sd">    fluxerr: np.ndarray[float, ndim=1]</span>
+<span class="sd">        array of flux errors</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">flux</span> <span class="o">=</span> <span class="n">magToFlux</span><span class="p">(</span><span class="n">mag</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">flux</span><span class="p">,</span> <span class="n">flux</span> <span class="o">*</span> <span class="p">(</span> <span class="mf">1.</span> <span class="o">-</span> <span class="n">magToFlux</span><span class="p">(</span><span class="n">err</span><span class="p">)</span> <span class="p">)</span></div>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">pyphot</a></h1>
+
+
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=mfouesneau&repo=pyphot&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../more_examples.html">More example usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../photometry.html">Details on predicting photometry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../libcontent.html">Provided Filter library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../licks.html">Extention to Lick indices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">API</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, M. Fouesneau.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+    <a href="https://github.com/mfouesneau/pyphot" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    </a>
+    
+
+    
+  </body>
+</html>

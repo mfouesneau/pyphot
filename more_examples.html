@@ -1,0 +1,238 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>More example usage &#8212; pyphot 1.0 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Details on predicting photometry" href="photometry.html" />
+    <link rel="prev" title="PYPHOT – A tool for computing photometry from spectra" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="more-example-usage">
+<h1>More example usage<a class="headerlink" href="#more-example-usage" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="notebooks">
+<h2>Notebooks<a class="headerlink" href="#notebooks" title="Permalink to this headline">¶</a></h2>
+<p>check notebooks in the <a class="reference external" href="https://github.com/mfouesneau/pyphot/tree/master/examples">examples directory</a> in the repository.</p>
+<p>You can also run these online</p>
+<a class="reference external image-reference" href="https://mybinder.org/v2/gh/mfouesneau/pyphot/master?filepath=examples%2FQuickStart.ipynb"><img alt="https://mybinder.org/badge.svg" src="https://mybinder.org/badge.svg" /></a>
+<a class="reference external image-reference" href="https://nbviewer.jupyter.org/github/mfouesneau/pyphot/tree/master/examples/"><img alt="https://img.shields.io/badge/render%20on-nbviewer-orange.svg" src="https://img.shields.io/badge/render%20on-nbviewer-orange.svg" /></a>
+</div>
+<div class="section" id="basic-example">
+<h2>Basic example<a class="headerlink" href="#basic-example" title="Permalink to this headline">¶</a></h2>
+<p>This example reads a spectrum from a fits file and calculate some photometry
+using units to the calculations.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">astropy.io</span> <span class="kn">import</span> <span class="n">fits</span>
+<span class="kn">from</span> <span class="nn">pyphot</span> <span class="kn">import</span> <span class="n">unit</span>
+<span class="kn">import</span> <span class="nn">pyphot</span>
+
+<span class="n">wavelength</span><span class="p">,</span> <span class="n">flux</span> <span class="o">=</span> <span class="n">fits</span><span class="o">.</span><span class="n">getdata</span><span class="p">(</span><span class="s2">&quot;foo.fits&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+<span class="n">wavelength</span>  <span class="o">=</span> <span class="n">wavelength</span> <span class="o">*</span> <span class="n">unit</span><span class="p">[</span><span class="s1">&#39;AA&#39;</span><span class="p">]</span>
+<span class="n">flux</span> <span class="o">=</span> <span class="n">flux</span> <span class="o">*</span> <span class="n">unit</span><span class="p">[</span><span class="s1">&#39;erg/s/cm**2/AA&#39;</span><span class="p">]</span>
+<span class="n">lib</span> <span class="o">=</span> <span class="n">pyphot</span><span class="o">.</span><span class="n">get_library</span><span class="p">()</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">lib</span><span class="p">[</span><span class="s1">&#39;HST_WFC3_F110W&#39;</span><span class="p">]</span>
+<span class="n">mag</span> <span class="o">=</span> <span class="o">-</span><span class="mf">2.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">get_flux</span><span class="p">(</span><span class="n">wavelength</span><span class="p">,</span> <span class="n">flux</span><span class="p">))</span> <span class="o">-</span> <span class="n">f</span><span class="o">.</span><span class="n">Vega_zero_mag</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="unit-conversions">
+<h2>Unit conversions<a class="headerlink" href="#unit-conversions" title="Permalink to this headline">¶</a></h2>
+<p>Pyphot contains a simple unit package based on <a class="reference external" href="https://pint.readthedocs.io/en/0.9/">pint</a>. (One day maybe <cite>astropy</cite>)
+It allows handling wavelength and flux units very easily.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyphot</span> <span class="kn">import</span> <span class="n">Vega</span>
+
+<span class="n">vega</span> <span class="o">=</span> <span class="n">Vega</span><span class="p">()</span>
+<span class="n">wavelength_angstrom</span> <span class="o">=</span> <span class="n">vega</span><span class="o">.</span><span class="n">wavelength</span>
+<span class="n">wavelength_nm</span> <span class="o">=</span> <span class="n">vega</span><span class="o">.</span><span class="n">wavelength</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s1">&#39;nm&#39;</span><span class="p">)</span>
+<span class="n">flux_flam</span> <span class="o">=</span> <span class="n">vega</span><span class="o">.</span><span class="n">flux</span>
+<span class="n">flux_other</span> <span class="o">=</span> <span class="n">flux_flam</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s1">&#39;W / (m**2 * angstrom)&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="number-of-photons-through-a-given-passband">
+<h2>Number of photons through a given passband<a class="headerlink" href="#number-of-photons-through-a-given-passband" title="Permalink to this headline">¶</a></h2>
+<p>The following examples gives the number of photons that a passband would collect
+for the Sun at 10 pc.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyphot</span> <span class="kn">import</span> <span class="n">Sun</span><span class="p">,</span> <span class="n">unit</span>
+<span class="k">with</span> <span class="n">Sun</span><span class="p">(</span><span class="n">distance</span><span class="o">=</span><span class="mi">10</span> <span class="o">*</span> <span class="n">unit</span><span class="p">[</span><span class="s1">&#39;pc&#39;</span><span class="p">])</span> <span class="k">as</span> <span class="n">v</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">vband</span><span class="o">.</span><span class="n">get_Nphotons</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">wavelength</span><span class="p">,</span> <span class="n">v</span><span class="o">.</span><span class="n">flux</span><span class="p">))</span>
+
+<span class="mf">11.985932608649655</span> <span class="n">photon</span> <span class="o">/</span> <span class="n">angstrom</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="defining-your-own-passband">
+<h2>Defining your own passband<a class="headerlink" href="#defining-your-own-passband" title="Permalink to this headline">¶</a></h2>
+<p>Let’s suppose you’re interested in defining bandpasses (here tophat functions)
+in Pyphot to determine the flux/magnitude in regions. This may be useful to determine the S/N ratio or integrated flux over a given wavelength range.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyphot</span> <span class="kn">import</span> <span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="n">Filter</span><span class="p">)</span>
+
+<span class="n">wave</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4499</span><span class="p">,</span> <span class="mi">4500</span><span class="p">,</span> <span class="mi">4700</span><span class="p">,</span> <span class="mi">4701</span><span class="p">]</span> <span class="o">*</span> <span class="n">unit</span><span class="p">[</span><span class="s1">&#39;AA&#39;</span><span class="p">]</span>
+<span class="n">transmit</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">]</span>
+<span class="n">tophat</span> <span class="o">=</span> <span class="n">Filter</span><span class="p">(</span><span class="n">wave</span><span class="p">,</span> <span class="n">transmit</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;tophat&#39;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;photon&#39;</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;Angstrom&#39;</span><span class="p">)</span>
+<span class="n">flux_tophat</span> <span class="o">=</span> <span class="n">tophat</span><span class="o">.</span><span class="n">get_flux</span><span class="p">(</span><span class="n">wavelength</span><span class="p">,</span> <span class="n">flux</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<ul class="simple">
+<li><p>The unit in the filter declaration is redundant with the unit on wave
+in this example.</p></li>
+<li><p>the transmission is unitless. Its scaling factor will
+not affect the flux/magnitude calculations as these are implicitly
+normalizing the passband  (see the equations) but will affect the
+number of photon <span class="math notranslate nohighlight">\(photons/s/cm^2\)</span></p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="dust-attenuated-sed-modeling">
+<h2>Dust attenuated SED modeling<a class="headerlink" href="#dust-attenuated-sed-modeling" title="Permalink to this headline">¶</a></h2>
+<p>The associated notebook can be found <a class="reference external" href="https://github.com/mfouesneau/GaiaSprint2018/blob/master/dust_attenuated_seds.ipynb">online</a>. It requires a bit more than just
+<cite>Pyphot</cite>, but it demonstrates how to integrate <cite>Pyphot</cite> into larger projects.</p>
+<a class="reference external image-reference" href="https://mybinder.org/v2/gh/mfouesneau/GaiaSprint2018/master"><img alt="https://mybinder.org/badge.svg" src="https://mybinder.org/badge.svg" /></a>
+</div>
+<div class="section" id="flux-density-units">
+<h2>Flux density units<a class="headerlink" href="#flux-density-units" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>What are the expected units on the spectra?</p></li>
+</ul>
+<p>This main version of <cite>Pyphot</cite> assumes that the spectral density is in the units
+of the wavelength of the spectrum. Also it expects that the flux is provided in
+<cite>flam</cite>, i.e., <span class="math notranslate nohighlight">\(erg/s/cm^2/\unicode{x212B}\)</span>.</p>
+<p>Conversions can be done using <cite>pyphot.unit</cite>, however it may be tedious
+sometimes.</p>
+<p>If you are willing to live at the bleeding edge, <cite>pyphot.sandbox</cite> contains the
+next generation of <cite>pyphot</cite> which handles the flux density conversions. With a
+single import line, you can switch to the new version.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyphot</span> <span class="kn">import</span> <span class="n">sandbox</span> <span class="k">as</span> <span class="n">pyphot</span>
+</pre></div>
+</div>
+<p>Check the examples associated with this new version online
+in the <a class="reference external" href="https://github.com/mfouesneau/pyphot/tree/master/examples">examples directory</a> in the repository.</p>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">pyphot</a></h1>
+
+
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=mfouesneau&repo=pyphot&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Home</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#package-main-content">Package main content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#quick-start">Quick Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#internal-vega-reference">Internal Vega reference</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">More example usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#notebooks">Notebooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#basic-example">Basic example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#unit-conversions">Unit conversions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#number-of-photons-through-a-given-passband">Number of photons through a given passband</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#defining-your-own-passband">Defining your own passband</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dust-attenuated-sed-modeling">Dust attenuated SED modeling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#flux-density-units">Flux density units</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="photometry.html">Details on predicting photometry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="libcontent.html">Provided Filter library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="licks.html">Extention to Lick indices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">API</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">PYPHOT – A tool for computing photometry from spectra</a></li>
+      <li>Next: <a href="photometry.html" title="next chapter">Details on predicting photometry</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, M. Fouesneau.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/more_examples.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+    <a href="https://github.com/mfouesneau/pyphot" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    </a>
+    
+
+    
+  </body>
+</html>
