@@ -246,7 +246,7 @@ Koornneef et al. (1986; same as above) defines
 Jansky definition
 ~~~~~~~~~~~~~~~~~
 
-The jansky (symbol Jy) is a non-SI unit of spectral flux density, it is equivalent to :math:`10^{−26} W.m^{-2}.Hz^{-1}` or :math:`10^{-23} erg/s/cm^2/\unicode{x212B}`.
+The jansky (symbol Jy) is a non-SI unit of spectral flux density, it is equivalent to :math:`10^{−26} W.m^{-2}.Hz^{-1}` or :math:`10^{-23} erg/s/cm^2/Hz`.
 
 .. code-block:: python
 
