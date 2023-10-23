@@ -51,7 +51,7 @@ def get_pyphot_astropy_filter(identifier: str):
     tab = table.to_table()
     return UnitFilter(tab['Wavelength'].to('nm'),
                       tab['Transmission'],
-                      name=params['filterID'].replace('/', '_'),
+                      name=params['filterID'].decode().replace('/', '_'),
                       dtype=DETECTOR_TYPE[int(params['DetectorType'])])
 
 
