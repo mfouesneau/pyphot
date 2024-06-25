@@ -8,7 +8,7 @@ This also include functions to keep libraries up to date
 
 .. note::
 
-    integrations are done using :func:`trapz`
+    integrations are done using :func:`trapezoid`
     Why not Simpsons? Simpsons principle is to take sequence of 3 points to
     make a quadratic interpolation. Which in the end, when filters have sharp
     edges, the error due to this "interpolation" are extremely large in
@@ -17,7 +17,7 @@ This also include functions to keep libraries up to date
 from __future__ import print_function, division
 import numpy as np
 import tables
-from scipy.integrate import trapz
+from scipy.integrate import trapezoid
 from functools import wraps
 
 from .simpletable import SimpleTable
@@ -134,16 +134,16 @@ class Filter(object):
         self._wavelength = self._wavelength[idx]        
         self.transmit   = np.clip(transmit[idx], 0., np.nanmax(transmit))
         
-        self.norm       = trapz(self.transmit, self._wavelength)
-        self._lT        = trapz(self._wavelength * self.transmit, self._wavelength)
+        self.norm       = trapezoid(self.transmit, self._wavelength)
+        self._lT        = trapezoid(self._wavelength * self.transmit, self._wavelength)
         self._lpivot    = self._calculate_lpivot()
         self._cl        = self._lT / self.norm
 
     def _calculate_lpivot(self):
         if 'photon' in self.dtype:
-            lpivot2 = self._lT / trapz(self.transmit / self._wavelength, self._wavelength)
+            lpivot2 = self._lT / trapezoid(self.transmit / self._wavelength, self._wavelength)
         else:
-            lpivot2 = self.norm / trapz(self.transmit / self._wavelength ** 2, self._wavelength)
+            lpivot2 = self.norm / trapezoid(self.transmit / self._wavelength ** 2, self._wavelength)
         return np.sqrt(lpivot2)
 
     def set_wavelength_unit(self, unit):
