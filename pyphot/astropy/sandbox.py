@@ -26,7 +26,7 @@ import tables
 try:
     from scipy.integrate import trapezoid
 except ImportError:  # older scipy / numpy < 2.0
-    from scipy integrate import trapz as trapezoid
+    from scipy.integrate import trapz as trapezoid
 
 from .simpletable import SimpleTable
 from .vega import Vega
