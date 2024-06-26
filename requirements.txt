@@ -4,3 +4,4 @@ matplotlib
 astropy
 tables
 pandas
+setuptools
