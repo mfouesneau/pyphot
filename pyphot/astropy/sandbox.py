@@ -23,7 +23,10 @@ import os
 from functools import wraps
 import numpy as np
 import tables
-from scipy.integrate import trapezoid
+try:
+    from scipy.integrate import trapezoid
+except ImportError:  # older scipy / numpy < 2.0
+    from scipy.integrate import trapz as trapezoid
 
 from .simpletable import SimpleTable
 from .vega import Vega
