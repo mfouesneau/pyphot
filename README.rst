@@ -46,7 +46,7 @@ computations.
 
 What's new?
 -----------
-
+* [June 26, 2024] Dropping support for Python <= 3.8 (due to HDF5 modules). Minor updates for Scipy 1.14.0 and Numpy 2.0
 * [November 22, 2021] new filters, SVO interface, automated tests and documentation.
 * [November 6, 2019] astropy version available in beta (`from pyphot import astropy as pyphot`)
 * [April 29, 2019] sandbox contains fully unit aware passbands and lick indices libraries
