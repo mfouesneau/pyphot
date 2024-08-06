@@ -1,0 +1,276 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>pyphot.ezunits package &#8212; pyphot 1.0 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="pyphot.astropy package" href="pyphot.astropy.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="pyphot-ezunits-package">
+<h1>pyphot.ezunits package<a class="headerlink" href="#pyphot-ezunits-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-pyphot.ezunits.pint">
+<span id="pyphot-ezunits-pint-module"></span><h2>pyphot.ezunits.pint module<a class="headerlink" href="#module-pyphot.ezunits.pint" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="pint">
+<h3>pint<a class="headerlink" href="#pint" title="Permalink to this headline">¶</a></h3>
+<p>Pint is Python module/package to define, operate and manipulate
+<strong>physical quantities</strong>: the product of a numerical value and a
+unit of measurement. It allows arithmetic operations between them
+and conversions from and to different units.</p>
+<dl class="field-list simple">
+<dt class="field-odd">copyright</dt>
+<dd class="field-odd"><p>2012 by Hernan E. Grecco.</p>
+</dd>
+<dt class="field-even">license</dt>
+<dd class="field-even"><p>BSD, see LICENSE for more details.</p>
+</dd>
+</dl>
+<dl class="class">
+<dt id="pyphot.ezunits.pint.AliasDict">
+<em class="property">class </em><code class="sig-prename descclassname">pyphot.ezunits.pint.</code><code class="sig-name descname">AliasDict</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyphot/ezunits/pint.html#AliasDict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyphot.ezunits.pint.AliasDict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></p>
+<dl class="method">
+<dt id="pyphot.ezunits.pint.AliasDict.add_alias">
+<code class="sig-name descname">add_alias</code><span class="sig-paren">(</span><em class="sig-param">key</em>, <em class="sig-param">value</em>, <em class="sig-param">preferred=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyphot/ezunits/pint.html#AliasDict.add_alias"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyphot.ezunits.pint.AliasDict.add_alias" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pyphot.ezunits.pint.AliasDict.get_aliased">
+<code class="sig-name descname">get_aliased</code><span class="sig-paren">(</span><em class="sig-param">key</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyphot/ezunits/pint.html#AliasDict.get_aliased"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyphot.ezunits.pint.AliasDict.get_aliased" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="exception">
+<dt id="pyphot.ezunits.pint.DimensionalityError">
+<em class="property">exception </em><code class="sig-prename descclassname">pyphot.ezunits.pint.</code><code class="sig-name descname">DimensionalityError</code><span class="sig-paren">(</span><em class="sig-param">units1</em>, <em class="sig-param">units2</em>, <em class="sig-param">dim1=None</em>, <em class="sig-param">dim2=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyphot/ezunits/pint.html#DimensionalityError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyphot.ezunits.pint.DimensionalityError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ValueError</span></code></p>
+<p>Raised when trying to convert between incompatible units.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="pyphot.ezunits.pint.UndefinedUnitError">
+<em class="property">exception </em><code class="sig-prename descclassname">pyphot.ezunits.pint.</code><code class="sig-name descname">UndefinedUnitError</code><span class="sig-paren">(</span><em class="sig-param">unit_names</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyphot/ezunits/pint.html#UndefinedUnitError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyphot.ezunits.pint.UndefinedUnitError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ValueError</span></code></p>
+<p>Raised when the units are not defined in the unit registry.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="pyphot.ezunits.pint.UnitRegistry">
+<em class="property">class </em><code class="sig-prename descclassname">pyphot.ezunits.pint.</code><code class="sig-name descname">UnitRegistry</code><span class="sig-paren">(</span><em class="sig-param">filename=''</em>, <em class="sig-param">force_ndarray=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyphot/ezunits/pint.html#UnitRegistry"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyphot.ezunits.pint.UnitRegistry" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>The unit registry stores the definitions and relationships between
+units.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> – path of the units definition file to load.
+Empty to load the default definition file.
+None to leave the UnitRegistry empty.</p></li>
+<li><p><strong>force_ndarray</strong> – convert any input, scalar or not to a numpy.ndarray.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="pyphot.ezunits.pint.UnitRegistry.add_from_file">
+<code class="sig-name descname">add_from_file</code><span class="sig-paren">(</span><em class="sig-param">filename</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyphot/ezunits/pint.html#UnitRegistry.add_from_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyphot.ezunits.pint.UnitRegistry.add_from_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add units and prefixes defined in a definition text file.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyphot.ezunits.pint.UnitRegistry.add_prefix">
+<code class="sig-name descname">add_prefix</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">value</em>, <em class="sig-param">aliases=()</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyphot/ezunits/pint.html#UnitRegistry.add_prefix"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyphot.ezunits.pint.UnitRegistry.add_prefix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add prefix to the registry.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyphot.ezunits.pint.UnitRegistry.add_unit">
+<code class="sig-name descname">add_unit</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">value</em>, <em class="sig-param">aliases=()</em>, <em class="sig-param">**modifiers</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyphot/ezunits/pint.html#UnitRegistry.add_unit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyphot.ezunits.pint.UnitRegistry.add_unit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add unit to the registry.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyphot.ezunits.pint.UnitRegistry.get_alias">
+<code class="sig-name descname">get_alias</code><span class="sig-paren">(</span><em class="sig-param">name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyphot/ezunits/pint.html#UnitRegistry.get_alias"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyphot.ezunits.pint.UnitRegistry.get_alias" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the preferred alias for a unit</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyphot.ezunits.pint.UnitsContainer">
+<em class="property">class </em><code class="sig-prename descclassname">pyphot.ezunits.pint.</code><code class="sig-name descname">UnitsContainer</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyphot/ezunits/pint.html#UnitsContainer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyphot.ezunits.pint.UnitsContainer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></p>
+<p>The UnitsContainer stores the product of units and their respective
+exponent and implements the corresponding operations</p>
+<dl class="method">
+<dt id="pyphot.ezunits.pint.UnitsContainer.add">
+<code class="sig-name descname">add</code><span class="sig-paren">(</span><em class="sig-param">key</em>, <em class="sig-param">value</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyphot/ezunits/pint.html#UnitsContainer.add"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyphot.ezunits.pint.UnitsContainer.add" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="pyphot.ezunits.pint.converter_from_reference">
+<code class="sig-prename descclassname">pyphot.ezunits.pint.</code><code class="sig-name descname">converter_from_reference</code><span class="sig-paren">(</span><em class="sig-param">scale</em>, <em class="sig-param">offset</em>, <em class="sig-param">log_base</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyphot/ezunits/pint.html#converter_from_reference"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyphot.ezunits.pint.converter_from_reference" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="pyphot.ezunits.pint.converter_to_reference">
+<code class="sig-prename descclassname">pyphot.ezunits.pint.</code><code class="sig-name descname">converter_to_reference</code><span class="sig-paren">(</span><em class="sig-param">scale</em>, <em class="sig-param">offset</em>, <em class="sig-param">log_base</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyphot/ezunits/pint.html#converter_to_reference"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyphot.ezunits.pint.converter_to_reference" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+</div>
+<div class="section" id="module-pyphot.ezunits">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-pyphot.ezunits" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h3>pint<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>Pint is Python module/package to define, operate and manipulate
+<strong>physical quantities</strong>: the product of a numerical value and a
+unit of measurement. It allows arithmetic operations between them
+and conversions from and to different units.</p>
+<dl class="field-list simple">
+<dt class="field-odd">copyright</dt>
+<dd class="field-odd"><ol class="loweralpha simple" start="3">
+<li><p>2012 by Hernan E. Grecco.</p></li>
+</ol>
+</dd>
+<dt class="field-even">license</dt>
+<dd class="field-even"><p>BSD, see LICENSE for more details.</p>
+</dd>
+</dl>
+<dl class="function">
+<dt id="pyphot.ezunits.hasUnit">
+<code class="sig-prename descclassname">pyphot.ezunits.</code><code class="sig-name descname">hasUnit</code><span class="sig-paren">(</span><em class="sig-param">val</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyphot/ezunits.html#hasUnit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyphot.ezunits.hasUnit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">pyphot</a></h1>
+
+
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=mfouesneau&repo=pyphot&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Home</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#package-main-content">Package main content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#quick-start">Quick Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#internal-vega-reference">Internal Vega reference</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="more_examples.html">More example usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="photometry.html">Details on predicting photometry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="libcontent.html">Provided Filter library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="licks.html">Extention to Lick indices</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">API</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="pyphot.html">pyphot package</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">API</a><ul>
+  <li><a href="pyphot.html">pyphot package</a><ul>
+      <li>Previous: <a href="pyphot.astropy.html" title="previous chapter">pyphot.astropy package</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, M. Fouesneau.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/pyphot.ezunits.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+    <a href="https://github.com/mfouesneau/pyphot" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    </a>
+    
+
+    
+  </body>
+</html>

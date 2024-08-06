@@ -1,0 +1,200 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>pyphot.svo &#8212; pyphot 1.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for pyphot.svo</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot; Link to the SVO filter profile service</span>
+
+<span class="sd">http://svo2.cab.inta-csic.es/theory/fps/</span>
+
+<span class="sd">If your research benefits from the use of the SVO Filter Profile Service, include the following acknowledgement in your publication:</span>
+
+<span class="sd">&gt; This research has made use of the SVO Filter Profile Service</span>
+<span class="sd">&gt; (http://svo2.cab.inta-csic.es/theory/fps/) supported from the Spanish MINECO</span>
+<span class="sd">&gt; through grant AYA2017-84089.</span>
+
+<span class="sd">and please include the following references in your publication:</span>
+
+<span class="sd">* The SVO Filter Profile Service. Rodrigo, C., Solano, E., Bayo, A., 2012; https://ui.adsabs.harvard.edu/abs/2012ivoa.rept.1015R/abstract</span>
+<span class="sd">* The SVO Filter Profile Service. Rodrigo, C., Solano, E., 2020; https://ui.adsabs.harvard.edu/abs/2020sea..confE.182R/abstract</span>
+
+<span class="sd">Example</span>
+<span class="sd">-------</span>
+
+<span class="sd">&gt;&gt;&gt; lst = &quot;2MASS/2MASS.J 2MASS/2MASS.H 2MASS/2MASS.Ks HST/ACS_WFC.F475W HST/ACS_WFC.F814W&quot;.split()</span>
+<span class="sd">    objects = [get_pyphot_filter(k) for k in lst]</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">io</span> <span class="kn">import</span> <span class="n">BytesIO</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">astropy.io</span> <span class="kn">import</span> <span class="n">votable</span>
+
+<span class="n">QUERY_URL</span> <span class="o">=</span> <span class="s2">&quot;http://svo2.cab.inta-csic.es/theory/fps/fps.php&quot;</span>
+<span class="n">DETECTOR_TYPE</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;energy&#39;</span><span class="p">,</span> <span class="s1">&#39;photon&#39;</span><span class="p">]</span>    <span class="c1"># svo returns 0, 1</span>
+
+
+<div class="viewcode-block" id="get_pyphot_astropy_filter"><a class="viewcode-back" href="../../pyphot.html#pyphot.svo.get_pyphot_astropy_filter">[docs]</a><span class="k">def</span> <span class="nf">get_pyphot_astropy_filter</span><span class="p">(</span><span class="n">identifier</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Query the SVO filter profile service and return the filter object</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    identifier : str</span>
+<span class="sd">        SVO identifier of the filter profile</span>
+<span class="sd">        e.g., 2MASS/2MASS.Ks HST/ACS_WFC.F475W</span>
+<span class="sd">        The identifier is the first column on the webpage of the facilities.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    filter : pyphot.astropy.UnitFilter</span>
+<span class="sd">        Filter object</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">from</span> <span class="nn">.astropy</span> <span class="kn">import</span> <span class="n">UnitFilter</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;ID&#39;</span><span class="p">:</span> <span class="n">identifier</span><span class="p">}</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">QUERY_URL</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">query</span><span class="p">)</span>
+    <span class="n">response</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+    <span class="n">table</span> <span class="o">=</span> <span class="n">votable</span><span class="o">.</span><span class="n">parse_single_table</span><span class="p">(</span><span class="n">BytesIO</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">))</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="n">p</span><span class="o">.</span><span class="n">name</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">value</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">table</span><span class="o">.</span><span class="n">params</span><span class="p">}</span>
+    <span class="n">tab</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">to_table</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">UnitFilter</span><span class="p">(</span><span class="n">tab</span><span class="p">[</span><span class="s1">&#39;Wavelength&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s1">&#39;nm&#39;</span><span class="p">),</span>
+                      <span class="n">tab</span><span class="p">[</span><span class="s1">&#39;Transmission&#39;</span><span class="p">],</span>
+                      <span class="n">name</span><span class="o">=</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;filterID&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="s1">&#39;_&#39;</span><span class="p">),</span>
+                      <span class="n">dtype</span><span class="o">=</span><span class="n">DETECTOR_TYPE</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;DetectorType&#39;</span><span class="p">])])</span></div>
+
+
+<div class="viewcode-block" id="get_pyphot_filter"><a class="viewcode-back" href="../../pyphot.html#pyphot.svo.get_pyphot_filter">[docs]</a><span class="k">def</span> <span class="nf">get_pyphot_filter</span><span class="p">(</span><span class="n">identifier</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Query the SVO filter profile service and return the filter object</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    identifier : str</span>
+<span class="sd">        SVO identifier of the filter profile</span>
+<span class="sd">        e.g., 2MASS/2MASS.Ks HST/ACS_WFC.F475W</span>
+<span class="sd">        The identifier is the first column on the webpage of the facilities.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    filter : pyphot.astropy.UnitFilter</span>
+<span class="sd">        Filter object</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">from</span> <span class="nn">.sandbox</span> <span class="kn">import</span> <span class="n">UnitFilter</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;ID&#39;</span><span class="p">:</span> <span class="n">identifier</span><span class="p">}</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">QUERY_URL</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">query</span><span class="p">)</span>
+    <span class="n">response</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+    <span class="n">table</span> <span class="o">=</span> <span class="n">votable</span><span class="o">.</span><span class="n">parse_single_table</span><span class="p">(</span><span class="n">BytesIO</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">))</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="n">p</span><span class="o">.</span><span class="n">name</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">value</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">table</span><span class="o">.</span><span class="n">params</span><span class="p">}</span>
+    <span class="n">tab</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">to_table</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">UnitFilter</span><span class="p">(</span><span class="n">tab</span><span class="p">[</span><span class="s1">&#39;Wavelength&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s1">&#39;nm&#39;</span><span class="p">),</span>
+                      <span class="n">tab</span><span class="p">[</span><span class="s1">&#39;Transmission&#39;</span><span class="p">],</span>
+                      <span class="n">name</span><span class="o">=</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;filterID&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="s1">&#39;_&#39;</span><span class="p">),</span>
+                      <span class="n">dtype</span><span class="o">=</span><span class="n">DETECTOR_TYPE</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;DetectorType&#39;</span><span class="p">])])</span></div>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">pyphot</a></h1>
+
+
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=mfouesneau&repo=pyphot&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../more_examples.html">More example usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../photometry.html">Details on predicting photometry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../libcontent.html">Provided Filter library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../licks.html">Extention to Lick indices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">API</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, M. Fouesneau.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+    <a href="https://github.com/mfouesneau/pyphot" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    </a>
+    
+
+    
+  </body>
+</html>

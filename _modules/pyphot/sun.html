@@ -1,0 +1,243 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>pyphot.sun &#8212; pyphot 1.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for pyphot.sun</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot; Handle the Sun Spectrum</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
+<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">wraps</span>
+<span class="kn">import</span> <span class="nn">numpy</span>
+<span class="kn">from</span> <span class="nn">.config</span> <span class="kn">import</span> <span class="n">libsdir</span>
+<span class="kn">from</span> <span class="nn">.simpletable</span> <span class="kn">import</span> <span class="n">SimpleTable</span>
+<span class="kn">from</span> <span class="nn">.ezunits</span> <span class="kn">import</span> <span class="n">unit</span>
+<span class="k">try</span><span class="p">:</span> 
+    <span class="kn">from</span> <span class="nn">astropy.io</span> <span class="kn">import</span> <span class="n">fits</span> <span class="k">as</span> <span class="n">pyfits</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">pyfits</span>
+
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Sun&#39;</span><span class="p">]</span>
+
+<span class="n">_default_sun</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;observed&#39;</span><span class="p">:</span> <span class="s2">&quot;</span><span class="si">{0}</span><span class="s2">/sun_reference_stis_001.fits&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">libsdir</span><span class="p">),</span> 
+                <span class="s1">&#39;theoretical&#39;</span><span class="p">:</span> <span class="s2">&quot;</span><span class="si">{0}</span><span class="s2">/sun_kurucz93.fits&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">libsdir</span><span class="p">)}</span>
+<span class="n">_default_distance</span> <span class="o">=</span> <span class="s1">&#39;1 * au&#39;</span>
+
+
+<div class="viewcode-block" id="Sun"><a class="viewcode-back" href="../../pyphot.html#pyphot.sun.Sun">[docs]</a><span class="k">class</span> <span class="nc">Sun</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Class that handles the Sun&#39;s spectrum and references.  </span>
+
+<span class="sd">    Observed solar spectrum comes from:</span>
+<span class="sd">    ftp://ftp.stsci.edu/cdbs/current_calspec/sun_reference_stis_001.fits</span>
+
+<span class="sd">    and theoretical spectrum comes from:</span>
+<span class="sd">    ftp://ftp.stsci.edu/cdbs/grid/k93models/standards/sun_kurucz93.fits</span>
+
+<span class="sd">    The theoretical spectrum is scaled to match the observed spectrum from 1.5 -</span>
+<span class="sd">    2.5 microns, and then it is used where the observed spectrum ends.</span>
+<span class="sd">    The theoretical model of the Sun from Kurucz&#39;93 atlas using the following</span>
+<span class="sd">    parameters when the Sun is at 1 au.</span>
+
+<span class="sd">     log_Z         T_eff        log_g           V_{Johnson}</span>
+<span class="sd">     +0.0           5777        +4.44              -26.75 </span>
+<span class="sd">    </span>
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    source: str</span>
+<span class="sd">        filename of the sun library</span>
+<span class="sd">    data: SimpleTable</span>
+<span class="sd">        data table</span>
+<span class="sd">    units: tuple</span>
+<span class="sd">        detected units from file header</span>
+<span class="sd">    wavelength: array</span>
+<span class="sd">        wavelength (with units when found)</span>
+<span class="sd">    flux: array</span>
+<span class="sd">        flux(wavelength) values (with units when provided)</span>
+<span class="sd">    distance: float</span>
+<span class="sd">        distance to the observed Sun (default, 1 au)</span>
+<span class="sd">    flavor: str, (default theoretical)</span>
+<span class="sd">        either &#39;observed&#39; using the stis reference,</span>
+<span class="sd">        or  &#39;theoretical&#39; for the Kurucz model.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">distance</span><span class="o">=</span><span class="mi">1</span> <span class="o">*</span> <span class="n">unit</span><span class="p">[</span><span class="s1">&#39;au&#39;</span><span class="p">],</span> <span class="n">flavor</span><span class="o">=</span><span class="s1">&#39;theoretical&#39;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Constructor &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">distance</span> <span class="o">=</span> <span class="n">distance</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">distance_conversion</span> <span class="o">=</span> <span class="mf">1.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_source_flavor</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">flavor</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_set_source_flavor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source</span><span class="p">,</span> <span class="n">flavor</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">flavor</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="n">_default_sun</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;Flavor must be either theoretical or observed&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">flavor</span> <span class="o">=</span> <span class="n">flavor</span>
+        <span class="k">if</span> <span class="n">source</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">source</span> <span class="o">=</span> <span class="n">source</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">source</span> <span class="o">=</span> <span class="n">_default_sun</span><span class="p">[</span><span class="n">flavor</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">distance_conversion</span> <span class="o">=</span> <span class="p">((</span><span class="n">unit</span><span class="p">[</span><span class="n">_default_distance</span><span class="p">]</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">distance</span><span class="o">.</span><span class="n">units</span><span class="p">))</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">distance</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">magnitude</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">_readfile</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="n">fname</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">source</span>
+        <span class="c1"># get extension</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">SimpleTable</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="n">silent</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="s1">&#39;WAVELENGTH_UNIT&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">_units</span><span class="p">[</span><span class="s1">&#39;WAVELENGTH&#39;</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="s1">&#39;FLUX_UNIT&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">_units</span><span class="p">[</span><span class="s1">&#39;FLUX&#39;</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">_units</span><span class="p">[</span><span class="s1">&#39;WAVELENGTH&#39;</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">_units</span><span class="p">[</span><span class="s1">&#39;FLUX&#39;</span><span class="p">]</span>
+        <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+            <span class="k">pass</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">uw</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="s1">&#39;WAVELENGTH_UNIT&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;=&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span>
+            <span class="n">uf</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="s1">&#39;FLUX_UNIT&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;=&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="n">uw</span><span class="p">,</span> <span class="n">uf</span>
+        <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+            <span class="n">uw</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="s1">&#39;WAVELENGTH_UNIT&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;=&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span>
+            <span class="n">uf</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="s1">&#39;FLUX_UNIT&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;=&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="n">uw</span><span class="p">,</span> <span class="n">uf</span>
+
+    <span class="k">def</span> <span class="fm">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Enter context &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_readfile</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span>
+
+    <span class="k">def</span> <span class="fm">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>  <span class="o">*</span><span class="n">exc_info</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; end context &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">wavelength</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; wavelength (with units when found) &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_readfile</span><span class="p">()</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">WAVELENGTH</span> <span class="o">*</span> <span class="n">unit</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">units</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()]</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">WAVELENGTH</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">flux</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; flux(wavelength) values (with units when provided) &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_readfile</span><span class="p">()</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">FLUX</span> <span class="o">*</span> <span class="n">unit</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">units</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()]</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">distance_conversion</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">FLUX</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">distance_conversion</span></div>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">pyphot</a></h1>
+
+
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=mfouesneau&repo=pyphot&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../more_examples.html">More example usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../photometry.html">Details on predicting photometry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../libcontent.html">Provided Filter library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../licks.html">Extention to Lick indices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">API</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, M. Fouesneau.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+    <a href="https://github.com/mfouesneau/pyphot" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    </a>
+    
+
+    
+  </body>
+</html>
