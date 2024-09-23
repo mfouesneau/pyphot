@@ -3,7 +3,6 @@
 requires = ["setuptools",
             "setuptools_scm",
             "wheel",
-            "cython",
             "numpy",
             "scipy",
             "matplotlib",
