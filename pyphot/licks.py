@@ -72,7 +72,7 @@ def _drop_units(q):
     """ Drop the unit definition silently """
     try:
         return q.magnitude
-    except:
+    except AttributeError:
         return q
 
 
@@ -412,14 +412,14 @@ class LickLibrary(object):
             hdr = []
             for line in f:
                 if line[0] != comment:
-                    l = line.split()
+                    elements = line.split()
                     attr = dict(
-                        band=(float(l[1]), float(l[2])),
-                        blue=(float(l[3]), float(l[4])),
-                        red=(float(l[5]), float(l[6])),
-                        unit='mag' if int(l[7]) > 0 else 'ew',
+                        band=(float(elements[1]), float(elements[2])),
+                        blue=(float(elements[3]), float(elements[4])),
+                        red=(float(elements[5]), float(elements[6])),
+                        unit='mag' if int(elements[7]) > 0 else 'ew',
                     )
-                    name = l[8]
+                    name = elements[8]
                     data[name] = attr
                 else:
                     hdr.append(line[1:-1])

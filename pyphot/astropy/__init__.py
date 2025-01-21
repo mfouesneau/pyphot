@@ -13,8 +13,12 @@ new_units = dict(
 add_enabled_units([def_unit([k], Unit(v)) for k, v in new_units.items()])\
     .__enter__()
 
-from .vega import Vega
-from .sun import Sun
-from .sandbox import (UncertainFilter, UnitAscii_Library, UnitFilter,
+from .vega import Vega # noqa: E402
+from .sun import Sun  # noqa: E402
+from .sandbox import (UncertainFilter, UnitAscii_Library, UnitFilter,  # noqa: E402
                       UnitHDF_Library, UnitLibrary, UnitLickIndex,
                       UnitLickLibrary, get_library)
+
+__all__ = [Vega, Sun, UncertainFilter, UnitAscii_Library, UnitFilter, UnitHDF_Library,
+           UnitLibrary, UnitLickIndex, UnitLickLibrary, get_library]
+ 

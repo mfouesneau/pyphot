@@ -85,7 +85,7 @@ class Vega(object):
         self._readfile()
         try:
             return self.data.WAVELENGTH * Unit(self.units[0].lower())
-        except:
+        except Exception:
             return self.data.WAVELENGTH
 
     @property
@@ -94,7 +94,7 @@ class Vega(object):
         self._readfile()
         try:
             return self.data.FLUX * Unit(self.units[1].lower())
-        except:
+        except Exception:
             return self.data.FLUX
 
     def getFlux(self, filters):

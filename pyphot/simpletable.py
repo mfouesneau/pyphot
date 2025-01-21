@@ -52,7 +52,7 @@ try:
     from astropy.io import fits as pyfits
 except ImportError:
     try:
-        import pyfits       
+        import pyfits       # noqa
     except ImportError:
         pyfits = None
 
@@ -90,11 +90,11 @@ if PY3:
     itervalues = operator.methodcaller('values')
     basestring = (str, bytes)
 else:
-    range = xrange
+    range = xrange  # noqa: F821
     from itertools import izip as zip
     iteritems = operator.methodcaller('iteritems')
     itervalues = operator.methodcaller('itervalues')
-    basestring = (str, unicode)
+    basestring = (str, unicode) # noqa: F821
 
 
 # ==============================================================================
@@ -200,7 +200,7 @@ def _fits_read_header(hdr):
             val = card.value
             al, orig = val.split('=')
             alias[al] = orig
-    except:   #pyfits stsci
+    except Exception:   #pyfits stsci
         for card in hdr.ascard['TTYPE*']:
             name = card.value
             comments[name] = card.comment
@@ -919,7 +919,7 @@ def __indent__(rows, header=None, units=None, headerChar='-',
         rowSeparator = ''
 
     # make the format
-    fmt = ['{{{0:d}:{1:d}s}}'.format(k, l) for (k, l) in enumerate(length)]
+    fmt = ['{{{0:d}:{1:d}s}}'.format(k, length_) for (k, length_) in enumerate(length)]
     fmt = delim.join(fmt) + endline
     # write the string
     txt = rowSeparator
@@ -1496,10 +1496,10 @@ class SimpleTable(object):
                 self._desc.update(desc)
             else:
                 raise Exception('Format {0:s} not handled'.format(extension))
-        elif type(fname) == np.ndarray:
+        elif isinstance(fname, np.ndarray):
             self.data = fname
             self.header = {}
-        elif type(fname) == pyfits.FITS_rec:
+        elif type(fname) is pyfits.FITS_rec:
             self.data = np.array(fname)
             self.header = {}
         elif isinstance(fname, SimpleTable):
@@ -2171,7 +2171,7 @@ class SimpleTable(object):
     def __getattr__(self, k):
         try:
             return self.data.__getitem__(self.resolve_alias(k))
-        except:
+        except Exception:
             return object.__getattribute__(self, k)
 
     def __iter__(self):
@@ -2188,8 +2188,8 @@ class SimpleTable(object):
 
     def itervalues(self):
         """ Iterator over the lines of the table """
-        for l in self.data:
-            yield l
+        for val in self.data:
+            yield val
 
     def items(self):
         """ Iterator on the (key, value) pairs """
@@ -2736,7 +2736,7 @@ class SimpleTable(object):
             for fnk in fn:
                 try:
                     val = fnk(self[k])
-                except:
+                except Exception:
                     val = fill
                 d[fnk.__name__].append(val)
 
