@@ -130,3 +130,5 @@ dmypy.json
 .pixi
 *.egg-info
 pixi.lock
+paper/jats/paper.jats
+paper/paper.pdf
