@@ -8,7 +8,7 @@ from __future__ import print_function
 from functools import wraps
 import numpy
 from .config import libsdir
-from .simpletable import SimpleTable
+from ..simpletable import SimpleTable
 from astropy.units import Unit
 
 
