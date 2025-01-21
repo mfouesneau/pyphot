@@ -28,14 +28,14 @@ jobs:
         python pyphot_table.py 
         python licks_table.py
     - name: sphinx-action@master
-      uses: ammaraskar/sphinx-action@master
-      with:
-        pre-build-command: |
-          # clear previous API documentation
-          rm -f pyphot.rst pyphot.*.rst
-          # re-generate API documentation
-          make apidoc
-        docs-folder: "doc/"
+      working-directory: ./doc
+      run: |
+        # clear previous API documentation
+        rm -f pyphot.rst pyphot.*.rst
+        # re-generate API documentation
+        make apidoc
+        # compile html
+        make html
     # Publish built docs to gh-pages branch.
     # ===============================
     - name: Commit documentation changes
