@@ -10,4 +10,4 @@ __ROOT__ = '/'.join(os.path.abspath(inspect.getfile(inspect.currentframe())).spl
 # from pkg_resources import resource_filename
 # libsdir = resource_filename('pyphot', 'libs')
 from importlib import resources
-libdir = os.path.join(resources.files('pyphot'), 'libs')
+libsdir = resources.files('pyphot').joinpath('libs')
