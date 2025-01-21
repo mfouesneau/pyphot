@@ -7,7 +7,6 @@ requires-python = ">=3.9"
 dependencies = [
     "numpy>1.6",
     "scipy>0.9",
-    "matplotlib>1.0",
     "astropy>5.0",
     "tables>3.0",
 ]
@@ -55,14 +54,14 @@ ci = [
   "isort"]
 
 docs = [
-  "sphinx>=6.0",
+  "sphinx>=5.3",
   "sphinx-book-theme>=0.3.3",
   "sphinx-automodapi>=0.14",
   "sphinx_copybutton>=0.5",
   "sphinx-mdinclude>=0.6",
   "sphinxcontrib-htmlhelp>=2.1.0",
   "sphinxcontrib-serializinghtml>=2.0.0",
-  "myst-nb==0.16.0",
+  "myst-nb>=0.16.0",
   # for syntax highlighting (https://nbsphinx.readthedocs.io/en/0.8.0/installation.html#Pygments-Lexer-for-Syntax-Highlighting)
   "IPython>=8.0",
   "matplotlib",
