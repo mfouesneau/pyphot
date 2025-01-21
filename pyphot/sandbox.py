@@ -126,17 +126,8 @@ class UnitFilter(object):
     name: str
         name of the filter
 
-    cl: float
-        central wavelength of the filter
-
     norm: float
         normalization factor of the filter
-
-    lpivot: float
-        pivot wavelength of the filter
-
-    wavelength: ndarray
-        wavelength sequence defining the filter transmission curve
 
     transmit: ndarray
         transmission curve of the filter
@@ -731,9 +722,6 @@ class UncertainFilter(UnitFilter):
 
     Attributes
     ----------
-    wavelength: ndarray
-        wavelength sequence defining the filter transmission curve
-
     mean: Filter
         mean passband transmission
 

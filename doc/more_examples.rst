@@ -122,13 +122,15 @@ of the wavelength of the spectrum. Also it expects that the flux is provided in
 Conversions can be done using `pyphot.unit`, however it may be tedious
 sometimes.
 
-If you are willing to live at the bleeding edge, `pyphot.sandbox` contains the
-next generation of `pyphot` which handles the flux density conversions. With a
-single import line, you can switch to the new version.
+if you use Astropy, you can use it to convert flux densities from frequencies to flam
 
-.. code:: python
+.. code:: python 
 
-        from pyphot import sandbox as pyphot
+        from astropy import units as u
+
+        flux = u.Quantity(spec['flux']).to(pyphot.Unit('flam'), 
+                equivalencies=u.spectral_density(u.Quantity(spec['wave']))
+                )
 
 
 Check the examples associated with this new version online
