@@ -82,3 +82,4 @@ testing = { features = ["testing"], solve-group = "default" }
 
 [tool.pixi.tasks]
 ruff = { cmd = "ruff check --fix --show-fixes --output-format=github pyphot -o ruff_output.md", description = "ruff linter" }
+unittests = { cmd = "python3 -m unittest unittests/test_quick.py && rm -f table.csv licks_table.csv", description = "CI unittests in current python version" }
