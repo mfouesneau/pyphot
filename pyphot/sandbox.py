@@ -651,9 +651,11 @@ class UnitFilter(object):
     @property
     def AB_zero_mag(self):
         """ AB magnitude zero point
+
         ABmag = -2.5 * log10(f_nu) - 48.60
               = -2.5 * log10(f_lamb) - 2.5 * log10(lpivot ** 2 / c) - 48.60
               = -2.5 * log10(f_lamb) - zpts
+
         """
         if self.wavelength_unit is None:
             raise AttributeError('Needs wavelength units')
@@ -732,10 +734,10 @@ class UncertainFilter(UnitFilter):
     wavelength: ndarray
         wavelength sequence defining the filter transmission curve
 
-    mean_: Filter
+    mean: Filter
         mean passband transmission
 
-    samples_: sequence(Filter)
+    samples: sequence(Filter)
         samples from the uncertain passband transmission model
 
     name: string
@@ -772,8 +774,9 @@ class UncertainFilter(UnitFilter):
             wavelength to express the model in addition to the training points
         n_samples: int
             number of samples to generate from the model.
-        **kwawrgs: dict
+        kwargs: dict
             UncertainFilter keywords
+
         """
         if xprime is None:
             xpred = model.X_train_
@@ -1037,9 +1040,11 @@ class UncertainFilter(UnitFilter):
     @property
     def AB_zero_mag(self):
         """ AB magnitude zero point
+
         ABmag = -2.5 * log10(f_nu) - 48.60
               = -2.5 * log10(f_lamb) - 2.5 * log10(lpivot ** 2 / c) - 48.60
               = -2.5 * log10(f_lamb) - zpts
+
         """
         return self._get_mean_and_samples_attribute('AB_zero_mag')
 
@@ -1186,12 +1191,14 @@ class UnitLibrary(object):
 
     def to_csv(self, directory='./', progress=True, **kwargs):
         """ Export each filter into a csv file with its own name
+
         Parameters
         ----------
         directory: str
             directory to write into
         progress: bool
             show progress if set
+
         """
         from .helpers import progress_enumerate
         try:
@@ -1209,12 +1216,14 @@ class UnitLibrary(object):
 
     def to_hdf(self, fname='filters.hd5', progress=True, **kwargs):
         """ Export each filter into a csv file with its own name
+
         Parameters
         ----------
         directory: str
             directory to write into
         progress: bool
             show progress if set
+
         """
         from .helpers import progress_enumerate
         with self as s:
@@ -1555,7 +1564,7 @@ def reduce_resolution(wi, fi, fwhm0=0.55 * Unit('AA'),
         of wavelength. These definition are hard-coded in this function
 
     Parameters
-    ---------
+    ----------
     wi: ndarray (n, )
         wavelength definition
     fi: ndarray (nspec, n) or (n, )

@@ -1,12 +1,69 @@
-[build-system]
+[project]
+name = "pyphot"
+version = "1.6.0"
+description = "A tool for computing photometry from spectra"
+readme = "README.rst"
+requires-python = ">=3.9"
+dependencies = [
+    "numpy>1.6",
+    "scipy>0.9",
+    "matplotlib>1.0",
+    "astropy>5.0",
+    "tables>3.0",
+]
+authors = [{name="Morgan Fouesneau"}]
+classifiers=[
+      'Intended Audience :: Science/Research',
+      'Operating System :: OS Independent',
+      'Programming Language :: Python :: 3',
+      'License :: OSI Approved :: MIT License',
+      'Topic :: Scientific/Engineering :: Astronomy'
+      ]
 
-requires = ["setuptools",
-            "setuptools_scm",
+[build-system]
+requires = ["setuptools>=60",
+            "setuptools-scm>=6.2",
             "wheel",
-            "numpy",
-            "scipy",
-            "matplotlib",
-            "astropy",
-            "tables",
-            "pandas",
-            "extension-helpers"]
+            ]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+# By default, include-package-data is true in pyproject.toml, so you do
+# NOT have to specify this line.
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["."]                 # list of folders that contain the packages (["."] by default)
+include = ["pyphot*"]         # package names should match these glob patterns (["*"] by default)
+exclude = ["unittests"]       # exclude packages matching these glob patterns (empty by default)
+namespaces = true             # to disable scanning PEP 420 namespaces (true by default)
+
+[tool.setuptools.package-data]
+pyphot = ['*.fits', '*.txt', '*.dat', '*hdf5', 'libs/**']
+
+[project.optional-dependencies]
+
+testing = [
+    "pytest",
+    "pytest-doctestplus",
+    "codecov",
+    "pytest-cov"]
+
+ci = [
+  "toml",
+  "ruff",
+  "isort"]
+
+docs = [
+  "sphinx>=6.0",
+  "sphinx-book-theme>=0.3.3",
+  "sphinx-automodapi>=0.14",
+  "sphinx_copybutton>=0.5",
+  "sphinx-mdinclude>=0.6",
+  "sphinxcontrib-htmlhelp>=2.1.0",
+  "sphinxcontrib-serializinghtml>=2.0.0",
+  "myst-nb==0.16.0",
+  # for syntax highlighting (https://nbsphinx.readthedocs.io/en/0.8.0/installation.html#Pygments-Lexer-for-Syntax-Highlighting)
+  "IPython>=8.0",
+  "matplotlib",
+  "numpydoc"]

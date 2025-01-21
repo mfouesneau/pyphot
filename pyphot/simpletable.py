@@ -1864,7 +1864,7 @@ class SimpleTable(object):
             Row-oriented data for table instead of ``data`` argument
         copy_indices : bool, optional
             Copy any indices in the input data (default=True)
-        **kwargs : dict, optional
+        kwargs : dict, optional
             Additional keyword args when converting table-like object
 
         Returns

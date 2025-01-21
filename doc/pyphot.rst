@@ -45,9 +45,8 @@ pyphot.pbar module
    :undoc-members:
    :show-inheritance:
 
-pyphot.phot module (deprecated)
+pyphot.phot module
 ------------------
-use either `sandbox` or `astropy` submodules
 
 .. automodule:: pyphot.phot
    :members:
@@ -94,6 +93,13 @@ pyphot.vega module
    :undoc-members:
    :show-inheritance:
 
+pyphot.version module
+---------------------
+
+.. automodule:: pyphot.version
+   :members:
+   :undoc-members:
+   :show-inheritance:
 
 Module contents
 ---------------
