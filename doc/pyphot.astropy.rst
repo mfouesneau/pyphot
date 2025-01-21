@@ -20,14 +20,6 @@ pyphot.astropy.sandbox module
    :undoc-members:
    :show-inheritance:
 
-pyphot.astropy.simpletable module
----------------------------------
-
-.. automodule:: pyphot.astropy.simpletable
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 pyphot.astropy.sun module
 -------------------------
 

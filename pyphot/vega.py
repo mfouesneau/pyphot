@@ -31,10 +31,7 @@ class Vega(object):
         data table
     units: tuple
         detected units from file header
-    wavelength: array
-        wavelength (with units when found)
-    flux: array
-        flux(wavelength) values (with units when provided)
+        
 
     An instance can be used as a context manager as:
 
@@ -43,6 +40,7 @@ class Vega(object):
         with Vega() as v:
             vega_f, vega_mag, flamb = v.getSed(filters)
         print vega_f, vega_mag, flamb
+
     """
 
     def __init__(self, source=_default_vega):

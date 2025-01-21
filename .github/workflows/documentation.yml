@@ -21,8 +21,7 @@ jobs:
       working-directory: ./
       run: |
         pip install --upgrade pip
-        pip install -r requirements.txt
-        pip install .
+        pip install ".[docs]"
     - name: build doc tables
       working-directory: ./doc
       run: |
@@ -32,9 +31,6 @@ jobs:
       uses: ammaraskar/sphinx-action@master
       with:
         pre-build-command: |
-          python -m pip install -r requirements.txt
-          python -m pip install -r docs/requirements.txt
-          python -m pip show markupsafe
           # clear previous API documentation
           rm -f pyphot.rst pyphot.*.rst
           # re-generate API documentation

@@ -48,10 +48,6 @@ class Sun(object):
         data table
     units: tuple
         detected units from file header
-    wavelength: array
-        wavelength (with units when found)
-    flux: array
-        flux(wavelength) values (with units when provided)
     distance: float
         distance to the observed Sun (default, 1 au)
     flavor: str, (default theoretical)

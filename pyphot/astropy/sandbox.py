@@ -658,9 +658,11 @@ class UnitFilter(object):
     @property
     def AB_zero_mag(self):
         """AB magnitude zero point
+
         ABmag = -2.5 * log10(f_nu) - 48.60
               = -2.5 * log10(f_lamb) - 2.5 * log10(lpivot ** 2 / c) - 48.60
               = -2.5 * log10(f_lamb) - zpts
+
         """
         if self.wavelength_unit is None:
             raise AttributeError("Needs wavelength units")
@@ -744,10 +746,10 @@ class UncertainFilter(UnitFilter):
     wavelength: ndarray
         wavelength sequence defining the filter transmission curve
 
-    mean_: Filter
+    mean: Filter
         mean passband transmission
 
-    samples_: sequence(Filter)
+    samples: sequence(Filter)
         samples from the uncertain passband transmission model
 
     name: string
@@ -793,7 +795,7 @@ class UncertainFilter(UnitFilter):
             wavelength to express the model in addition to the training points
         n_samples: int
             number of samples to generate from the model.
-        **kwawrgs: dict
+        kwargs: dict
             UncertainFilter keywords
         """
         if xprime is None:
@@ -1062,9 +1064,11 @@ class UncertainFilter(UnitFilter):
     @property
     def AB_zero_mag(self):
         """AB magnitude zero point
+
         ABmag = -2.5 * log10(f_nu) - 48.60
               = -2.5 * log10(f_lamb) - 2.5 * log10(lpivot ** 2 / c) - 48.60
               = -2.5 * log10(f_lamb) - zpts
+
         """
         return self._get_mean_and_samples_attribute("AB_zero_mag")
 
@@ -1211,12 +1215,14 @@ class UnitLibrary(object):
 
     def to_csv(self, directory="./", progress=True, **kwargs):
         """Export each filter into a csv file with its own name
+        
         Parameters
         ----------
         directory: str
             directory to write into
         progress: bool
             show progress if set
+
         """
         from .helpers import progress_enumerate
 
@@ -1239,12 +1245,14 @@ class UnitLibrary(object):
 
     def to_hdf(self, fname="filters.hd5", progress=True, **kwargs):
         """Export each filter into a csv file with its own name
+
         Parameters
         ----------
         directory: str
             directory to write into
         progress: bool
             show progress if set
+
         """
         from .helpers import progress_enumerate
 
@@ -1593,7 +1601,7 @@ def _reduce_resolution(wi, fi, fwhm0=0.55, sigma_floor=0.2):
         of wavelength. These definition are hard-coded in this function
 
     Parameters
-    ---------
+    ----------
     wi: ndarray (n, )
         wavelength definition
     fi: ndarray (nspec, n) or (n, )
@@ -1657,7 +1665,7 @@ def reduce_resolution(wi, fi, fwhm0=0.55 * Unit("AA"), sigma_floor=0.2 * Unit("A
         of wavelength. These definition are hard-coded in this function
 
     Parameters
-    ---------
+    ----------
     wi: ndarray (n, )
         wavelength definition
     fi: ndarray (nspec, n) or (n, )
@@ -1882,13 +1890,17 @@ class UnitLickIndex(object):
         f: ndarray (N, len(wnew))
             normalized flux in the selection region
 
-        .. example::
+        Example
+        -------
+
+        .. code-block:: python
 
             # indice of CaII
             # wavelength are always supposed in AA
             w, f = region_around_line(
                 wavelength, flux, [3925, 3930],[3938, 3945]]
                 )
+
         """
         w = np.asarray(wi)
         flux = np.atleast_2d(fi)

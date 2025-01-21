@@ -16,7 +16,8 @@ due to differences in continuum shape.  Proper calibration involves observing
 many of the original Lick/IDS standard stars and deriving offsets to the
 standard system.
 
-.. references::
+references
+~~~~~~~~~~
 
     Worthey G., Faber S. M., Gonzalez J. J., Burstein D., 1994, ApJS, 94, 687
     Worthey G., Ottaviani D. L., 1997, ApJS, 111, 377
@@ -24,7 +25,8 @@ standard system.
     Zhang, Li & Han 2005, http://arxiv.org/abs/astro-ph/0508634v1
 
 
-.. notes::
+notes
+~~~~~
 
     In Vazdekis et al. (2010), we propose a new Line Index System, hereafter
     LIS, with three new spectral resolutions at which to measure the Lick
@@ -81,7 +83,7 @@ def reduce_resolution(wi, fi, fwhm0=0.55, sigma_floor=0.2):
         of wavelength. These definition are hard-coded in this function
 
     Parameters
-    ---------
+    ----------
     wi: ndarray (n, )
         wavelength definition
     fi: ndarray (nspec, n) or (n, )
@@ -337,13 +339,17 @@ class LickIndex(object):
         f: ndarray (N, len(wnew))
             normalized flux in the selection region
 
-        .. example::
+        example
+        ~~~~~~~
 
-            # indice of CaII
-            # wavelength are always supposed in AA
-            w, f = region_around_line(
-                wavelength, flux, [3925, 3930],[3938, 3945]]
-                )
+        .. code-block:: python
+
+                # indice of CaII
+                # wavelength are always supposed in AA
+                w, f = region_around_line(
+                    wavelength, flux, [3925, 3930],[3938, 3945]]
+                    )
+
         """
         w = np.asarray(wi)
         flux = np.atleast_2d(fi)

@@ -1,1 +1,2 @@
-__VERSION__ = "1.5.0"
+import importlib.metadata
+__VERSION__ = importlib.metadata.version('pyphot')
