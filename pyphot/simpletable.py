@@ -71,11 +71,6 @@ try:
 except ImportError:
     _astropytable = None
 
-try:
-    from .plotter import Plotter
-except ImportError:
-    Plotter = None
-
 # ==============================================================================
 # Python 3 compatibility behavior
 # ==============================================================================
@@ -2055,15 +2050,6 @@ class SimpleTable(object):
     def dtype(self):
         """ dtype of the data """
         return self.data.dtype
-
-    @property
-    def Plotter(self):
-        """ Plotter instance related to this dataset.
-        Requires plotter add-on to work """
-        if Plotter is None:
-            raise AttributeError('the add-on was not found, this property is not available')
-        else:
-            return Plotter(self, label=self.name)
 
     def __getitem__(self, v):
         return np.asarray(self.data.__getitem__(self.resolve_alias(v)))
