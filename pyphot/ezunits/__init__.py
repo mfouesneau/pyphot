@@ -28,3 +28,5 @@ unit = UnitRegistry()
 
 def hasUnit(val):
     return hasattr(val, "units")
+
+__all__ = ["UnitRegistry", "DimensionalityError", "UnitsContainer", "UndefinedUnitError", "unit", "hasUnit", "logger", "__version__"]

@@ -16,7 +16,6 @@ from __future__ import division, print_function, absolute_import
 
 __version__ = '0.1'
 
-import os
 import sys
 import copy
 import math
@@ -99,12 +98,14 @@ else:
 
 if sys.version < '3':
     from io import open
-    from StringIO import StringIO
-    string_types = basestring
-    _tokenize = lambda input: tokenize.generate_tokens(StringIO(input).readline)
+    from StringIO import StringIO   # noqa
+    string_types = basestring       # noqa
+    def _tokenize(input):
+        return tokenize.generate_tokens(StringIO(input).readline) 
 else:
     string_types = str
-    _tokenize = lambda input: tokenize.tokenize(BytesIO(input.encode('utf-8')).readline)
+    def _tokenize(input):
+        return tokenize.tokenize(BytesIO(input.encode('utf-8')).readline)
 
 PRETTY = '⁰¹²³⁴⁵⁶⁷⁸⁹·⁻'
 
@@ -301,7 +302,7 @@ class UnitsContainer(dict):
         if as_ratio:
             fun = abs
         else:
-            fun = lambda x: x
+            fun = lambda x: x  # noqa: E731
 
         tmp_plus = []
         tmp_minus = []
@@ -551,7 +552,7 @@ class UnitRegistry(object):
 
         for unit_names in _solve_dependencies(dep2):
             for unit_name in unit_names:
-                if not unit_name in self._UNITS:
+                if unit_name not in self._UNITS:
                     self.add_unit(unit_name, *pending[unit_name])
 
     def get_alias(self, name):
@@ -1114,7 +1115,7 @@ def _build_quantity_class(registry, force_ndarray):
             if func.__name__ in self.__require_units:
                 try:
                     self.ito(self.__require_units[func.__name__])
-                except:
+                except Exception:
                     raise ValueError('Quantity must be dimensionless.')
 
             value = func(*args, **kwargs)
@@ -1184,7 +1185,7 @@ def _build_quantity_class(registry, force_ndarray):
                 if uf.__name__ in self.__require_units:
                     try:
                         self.ito(self.__require_units[uf.__name__])
-                    except:
+                    except Exception:
                         raise _Exception(ValueError)
                 return self.magnitude.__array_prepare__(obj, context)
             except _Exception as ex:
@@ -1200,12 +1201,12 @@ def _build_quantity_class(registry, force_ndarray):
                 if uf.__name__ in self.__set_units:
                     try:
                         out = self.__class__(out, self.__set_units[uf.__name__])
-                    except:
+                    except Exception:
                         raise _Exception(ValueError)
                 elif uf.__name__ in self.__copy_units:
                     try:
                         out = self.__class__(out, self.units)
-                    except:
+                    except Exception:
                         raise _Exception(ValueError)
                 elif uf.__name__ in self.__prod_units:
                     tmp = self.__prod_units[uf.__name__]

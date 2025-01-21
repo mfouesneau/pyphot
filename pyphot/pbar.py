@@ -95,7 +95,7 @@ class Pbar(object):
             self.handle_resize(None, None)
             signal.signal(signal.SIGWINCH, self.handle_resize)
             self._auto_width = True
-        except:
+        except Exception:
             self.term_width = 79
             self._auto_width = False
 

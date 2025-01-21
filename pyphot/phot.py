@@ -84,7 +84,7 @@ def _drop_units(q):
     """ Drop the unit definition silently """
     try:
         return q.magnitude
-    except:
+    except AttributeError:
         return q
 
 
@@ -389,7 +389,7 @@ class Filter(object):
         if True in ind:
             try:
                 _sflux = sflux[:, ind]
-            except:
+            except Exception:
                 _sflux = sflux[ind]
             # limit integrals to where necessary
             # ind = ifT > 0.
@@ -432,7 +432,7 @@ class Filter(object):
         _lamb = _drop_units(lamb)
         try:
             _unit = str(lamb.units)
-        except:
+        except AttributeError:
             _unit = self.wavelength_unit
         ifT = np.interp(_lamb, _wavelength, self.transmit, left=0., right=0.)
         return self.__class__(_lamb, ifT, name=self.name, dtype=self.dtype, unit=_unit)
@@ -1203,7 +1203,7 @@ class Ascii_Library(Library):
         """ Load a given filter from the library """
         try:
             fil = Filter.from_ascii(fname, *args, **kwargs)
-        except:
+        except Exception:
             content = self.content
             r = [k for k in content if fname in k]
 
@@ -1362,7 +1362,7 @@ class HDF_Library(Library):
         with self as s:
             try:
                 filters = s.hdf.root.content.cols.TABLENAME[:]
-            except:
+            except Exception:
                 filters = list(s.hdf.root.filters._v_children.keys())
         if hasattr(filters[0], 'decode'):
             filters = [k.decode('utf8') for k in filters]

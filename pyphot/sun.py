@@ -1,8 +1,6 @@
 """Handle the Sun Spectrum"""
 
 from __future__ import print_function
-from functools import wraps
-import numpy
 from .config import libsdir
 from .simpletable import SimpleTable
 from .ezunits import unit
@@ -10,7 +8,7 @@ from .ezunits import unit
 try:
     from astropy.io import fits as pyfits
 except ImportError:
-    import pyfits
+    import pyfits  # noqa
 
 
 __all__ = ["Sun"]
@@ -115,7 +113,7 @@ class Sun(object):
         self._readfile()
         try:
             return self.data.WAVELENGTH * unit[self.units[0].lower()]
-        except:
+        except Exception:
             return self.data.WAVELENGTH
 
     @property
@@ -126,5 +124,5 @@ class Sun(object):
             return (
                 self.data.FLUX * unit[self.units[1].lower()] * self.distance_conversion
             )
-        except:
+        except Exception:
             return self.data.FLUX * self.distance_conversion
