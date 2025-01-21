@@ -33,9 +33,7 @@ from .config import libsdir
 import os
 
 # directories
-# __default__      = libsdir + '/filters.hd5'
-# __default__ = libsdir + '/filters'
-__default__ = libsdir + '/new_filters.hd5'
+__default__ = libsdir.joinpath('new_filters.hd5')
 
 
 class Constants(object):
