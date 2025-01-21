@@ -468,7 +468,8 @@ class UnitRegistry(object):
     # _DEFAULT_FILENAME = os.path.join(os.path.dirname(__file__), 'default_en.txt')
     #_DEFAULT_FILENAME = resource_filename('pyphot', 
     #                            os.path.join('ezunits','default_en.txt'))
-    _DEFAULT_FILENAME = os.path.join(resources.files('pyphot'), 'ezunits','default_en.txt')
+    # _DEFAULT_FILENAME = os.path.join(resources.files('pyphot'), 'ezunits','default_en.txt')
+    _DEFAULT_FILENAME = resources.files('pyphot').joinpath('ezunits','default_en.txt')
 
     def __init__(self, filename='', force_ndarray=False):
         self.Quantity = _build_quantity_class(self, force_ndarray)
