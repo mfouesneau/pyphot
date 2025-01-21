@@ -58,8 +58,12 @@ import numpy as np
 
 from .ezunits import unit, hasUnit
 from .config import libsdir
+try:
+    from scipy.integrate import trapezoid
+except ImportError:  # older scipy / numpy < 2.0
+    from scipy.integrate import trapz as trapezoid
 
-__default__ = libsdir + '/licks.dat'
+__default__ = libsdir.joinpath("licks.dat")
 
 
 def _drop_units(q):
@@ -298,9 +302,9 @@ class LickIndex(object):
                                                              red, band=band,
                                                              degree=degree)
         if unit in (0, 'ew', 'EW'):
-            return np.trapz(1. - fi, wi, axis=-1)
+            return trapezoid(1. - fi, wi, axis=-1)
         else:
-            m = np.trapz(fi, wi, axis=-1)
+            m = trapezoid(fi, wi, axis=-1)
             m = -2.5 * np.log10(m / np.ptp(wi))
             return m
 

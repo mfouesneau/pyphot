@@ -38,8 +38,8 @@ from .licks import LickIndex, LickLibrary
 # directories
 # __default__      = libsdir + '/filters.hd5'
 # __default__ = libsdir + '/filters'
-__default__ = libsdir + '/new_filters.hd5'
-__default_lick__ = libsdir + '/licks.dat'
+__default__ = libsdir.joinpath('new_filters.hd5')
+__default_lick__ = libsdir.joinpath('licks.dat')
 
 from .ezunits import unit as Unit
 
@@ -311,8 +311,8 @@ class UnitFilter(object):
             s = self.reinterp(v.wavelength)
             w = s._wavelength
             if s.transmit.max() > 0:
-                leff = np.trapz(w * s.transmit * v.flux.value, w, axis=-1)
-                leff /= np.trapz(s.transmit * v.flux.value, w, axis=-1)
+                leff = trapezoid(w * s.transmit * v.flux.value, w, axis=-1)
+                leff /= trapezoid(s.transmit * v.flux.value, w, axis=-1)
             else:
                 leff = float('nan')
         if s.wavelength_unit is not None:
@@ -329,7 +329,7 @@ class UnitFilter(object):
         _sflux = _drop_units(sflux)
         _slamb = _drop_units(slamb)
 
-        if True in np.isinf(sflux):
+        if np.isinf(_sflux).any():
             indinf = np.where(np.isinf(_sflux))
             indfin = np.where(np.isfinite(_sflux))
             _sflux[indinf] = np.interp(_slamb[indinf], _slamb[indfin],
@@ -475,12 +475,12 @@ class UnitFilter(object):
             _sflux = np.atleast_2d(_sflux)[..., ind]
             # limit integrals to where necessary
             if 'photon' in passb.dtype:
-                a = np.trapz(_slamb[ind] * ifT[ind] * _sflux, _slamb[ind],
+                a = trapezoid(_slamb[ind] * ifT[ind] * _sflux, _slamb[ind],
                              axis=axis)
-                b = np.trapz(_slamb[ind] * ifT[ind], _slamb[ind])
+                b = trapezoid(_slamb[ind] * ifT[ind], _slamb[ind])
             elif 'energy' in passb.dtype:
-                a = np.trapz(ifT[ind] * _sflux, _slamb[ind], axis=axis)
-                b = np.trapz(ifT[ind], _slamb[ind])
+                a = trapezoid(ifT[ind] * _sflux, _slamb[ind], axis=axis)
+                b = trapezoid(ifT[ind], _slamb[ind])
             if (np.isinf(a).any() | np.isinf(b).any()):
                 print(self.name, "Warn for inf value")
             return np.squeeze(a / b) * _f_unit
