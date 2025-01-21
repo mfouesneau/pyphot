@@ -16,44 +16,34 @@ affiliations:
    index: 1
  - name: Observatoire astronomique de Strasbourg, Université de Strasbourg, CNRS, UMR 7550, 67000 Strasbourg, France
    index: 2
-date: 5 August 2024
+date: 22 January 2025
 bibliography: paper.bib
 
 ---
 
 # Summary
 
-Photometry involves measuring the flux or intensity of light emitted by
-astronomical objects. It is a fundamental technique used in astronomy to study
-any object that emits light, such as stars, galaxies, and quasars. Photometry
-provides information about the brightness, color, and spectral energy
-distribution of these objects, which is essential for understanding their
-physical properties and evolutionary history.
+Pyphot is a Python package designed for performing synthetic photometry in astronomy. It provides a comprehensive set of tools for calculating fluxes and magnitudes of astronomical objects given their spectral energy distributions (SEDs) and filter transmission curves. Key features include a library of commonly used filter systems (e.g., Johnson-Cousins, SDSS), the ability to define custom filter systems, tools for handling SEDs, and integration with other astronomical Python packages. Pyphot also extends to calculations of spectral line indices from the Line Index System, commonly used methods of determining ages, mass distribution properties, and metallicities of unresolved (integrated light) stellar populations. Pyphot is targeted towards astronomers and astrophysicists working with photometric data.
 
-The type of detector and the units of flux can vary depending on the wavelength
-range being considered.  Converting between these units requires knowledge of
-the spectral response of the instrument used for observation. One of the
-challenges in computing photometry is ensuring that one performs the
-calculations in the correct units and handling conversions between different
-units (e.g. Vega to AB magnitude or vice-versa). 
+# Statement of need
 
-To address this challenge, the `pyphot` tool provides a comprehensive set of
-functions and utilities for computing photometry from spectra. It includes
-built-in support for unit handling and conversions based on either the
-implementations of physical units in the `Astropy` package [@astropy]
-(`astropy.units`) or in the `Pint` package[^1]. It also provides a database of
-pre-defined filter transmission curves, lick index definitions
-[@worthey1994] and interfaces with the [SVO filter profile
-service](http://svo2.cab.inta-csic.es/theory/fps/) [@svofps2020] to
-enable a broader range of filters.
+Synthetic photometry is a crucial task in astronomy, used to estimate the flux an object would have through a given filter. Prior to pyphot, a standardized, readily available tool for performing synthetic photometry in Python was lacking. Researchers often relied on ad-hoc scripts or software with limited flexibility and interoperability, hindering reproducibility and collaboration. Pyphot addresses this need by providing a user-friendly, well-documented, and versatile package for synthetic photometry. It simplifies the process of calculating magnitudes and fluxes, enables the use of standard and custom filter systems, and promotes reproducible research practices within the astronomical community. By offering a centralized resource for synthetic photometry, pyphot facilitates collaboration and ensures consistent results across different studies.
 
-By using `pyphot`, researchers and students can perform photometric computations
-with confidence, knowing that the units are handled correctly and conversions
-are applied accurately. This ensures the reliability and reproducibility of
-scientific results in the field of astronomy. The source code for Gala has been archived to Zenodo with
-the linked DOI: @zenodopyphot
+Photometry involves measuring the flux or intensity of light emitted by astronomical objects. It is a fundamental technique used in astronomy to study any object that emits light, such as stars, galaxies, and quasars. Photometry provides information about the brightness, color, and spectral energy distribution of these objects, which is essential for understanding their physical properties and evolutionary history.
 
-`pyphot` has supported 25 of scientific publications[^2] since 2019.
+The type of detector and the units of flux can vary depending on the wavelength range being considered.  Converting between these units requires knowledge of the spectral response of the instrument used for observation. One of the challenges in computing photometry is ensuring that one performs the calculations in the correct units and handling conversions between different units (e.g. Vega to AB magnitude or vice-versa). The online documentation[^3] of `pyphot` provides the mathematical details and references
+
+To address this challenge, the `pyphot` tool provides a comprehensive set of functions and utilities for computing photometry from spectra. It includes built-in support for unit handling and conversions based on either the implementations of physical units in the `Astropy` package [@astropy] (`astropy.units`) or in the `Pint` package[^1]. It also provides a database of pre-defined filter transmission curves, lick index definitions [@worthey1994] and interfaces with the [SVO filter profile service](http://svo2.cab.inta-csic.es/theory/fps/) [@svofps2020] to enable a broader range of filters.
+
+In addition to calculating photometry, `pyphot` provides a set of tools to define and calculate lick indices. The Lick system of spectral line indices is one of the most commonly used methods of determining ages and metallicities of unresolved (integrated light) stellar populations. The calibration of the lick system is complicated because the original Lick spectra were not flux calibrated, so there are usually systematic effects due to differences in continuum shape. Proper calibration involves observing many of the original lick standard stars and deriving offsets to the standard system.
+
+@Vazdekis2010 proposed a new Line Index System, hereafter LIS, with three new spectral resolutions at which to measure the Lick indices. Note that this new system should not be restricted to the Lick set of indices in a flux calibrated system. In fact, LIS can be used for any index in the literature (e.g., for the @Rose1985 indices), including newly defined indices (e.g., @Cervantes2009). An additional challenge comes from the definition of the LIS system for different spectral resolutions initially designed for studies of globular clusters, low and intermediate-mass galaxies, and massive galaxie. `pyphot` deals with adapting the spectral resolution internally to match the definitions and provides a database of pre-defined compiled list of indices.
+
+By using `pyphot`, researchers and students can perform photometric computations with confidence, knowing that the units are handled correctly and conversions are applied accurately. This ensures the reliability and reproducibility of scientific results in the field of astronomy. The source code for Pyphot has been archived to Zenodo with the linked DOI: @zenodopyphot
+
+`pyphot` has supported 29 of scientific publications[^2] since 2019.
+
+[^3]: [`pyphot` mathematical details on predicting photometry](https://mfouesneau.github.io/pyphot/photometry.html)
 
 [^1]: https://pint.readthedocs.io/en/stable/
 
@@ -62,9 +52,6 @@ the linked DOI: @zenodopyphot
 
 # Acknowledgements
 
-We acknowledge contributions from Tim Morton, Cliff Johnson, and Karl Gordon
-during the genesis of this project.  This project was in part motivated by the
-2016 NYC Gaia Sprint, hosted by the Center for Computational Astrophysics at the
-Simons Foundation in New York City.
+We acknowledge contributions from Tim Morton, Cliff Johnson, and Karl Gordon during the genesis of this project.  Turning this project into an independent package was in part motivated by the 2016 NYC Gaia Sprint, hosted by the Center for Computational Astrophysics at the Simons Foundation in New York City. 
 
 # References
