@@ -1,8 +1,4 @@
 """
-Sandbox of new developments
-
-Use at your own risks
-
 Photometric package using Astropy Units
 =======================================
 
