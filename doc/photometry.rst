@@ -110,7 +110,7 @@ counter** detectors
 
 .. note::
 
-        Table A2 of Bessell et al. 1998 gives zero points for the UBVRIJHKL(+Kp and L’) filters in the Counsins-Glass-Johnson system.
+        Table A2 of `Bessell et al. (1998) <https://ui.adsabs.harvard.edu/abs/1998A%26A...333..231B>`_ gives zero points for the UBVRIJHKL(+Kp and L') filters in the Counsins-Glass-Johnson system.
 
 If one defines the **effective wavelength** :math:`\lambda_{\rm eff}` as the
 photon weighted mean wavelength:
@@ -248,9 +248,16 @@ Jansky definition
 
 The jansky (symbol Jy) is a non-SI unit of spectral flux density, it is equivalent to :math:`10^{−26} W.m^{-2}.Hz^{-1}` or :math:`10^{-23} erg/s/cm^2/Hz`.
 
+.. math::
+
+        \begin{equation}
+        {f_{Jy}} = \frac{10^5}{10^{-8}c} {\lambda_p^2} {f_\lambda},
+        \end{equation}
+
+where :math:`c` is the speed of light in :math:`m/s`,  :math:`\lambda_p` is the pivot wavelength in :math:`Å`, and :math:`{f_\lambda}` the flux (Vega, AB, or ST) in flam (:math:`erg.s^{-1}.cm^{-2}.Å^{-1}`).
+
 .. code-block:: python
 
-        import numpy as np
         f = lib['hst_wfc3_f110w']
         print(f.AB_zero_Jy, f.Vega_zero_Jy, f.ST_zero_Jy)
 
@@ -258,17 +265,19 @@ The jansky (symbol Jy) is a non-SI unit of spectral flux density, it is equivale
 References
 ~~~~~~~~~~
 
-* Bessel, M. S. 1990, PASP, 91, 589;
+* Bessel, M. S. 1983, PASP, 95, 480, "VRI photometry : an addendum." `1983PASP...95..480B <https://ui.adsabs.harvard.edu/abs/1983PASP...95..480B>`_;
 
-* Bessel, M. S. 1983, PASP, 95, 480;
+* Bessel, M. S. 1990, PASP, 102, 1181, "UBVRI passbands" `1990PASP..102.1181B <https://ui.adsabs.harvard.edu/abs/1990PASP..102.1181B>`_;
 
-* Bessel, M. S. 1990, PASP, 102, 1181;
+* Bessel, M. S. 1998, A&A, 333, 231, "Model atmospheres broad-band colors, bolometric corrections and temperature calibrations for O - M stars." `1998A&A...333..231B <https://ui.adsabs.harvard.edu/abs/1998A%26A...333..231B/abstract>`_;
 
-* Hayes, D. S., \& Latham, D. W. 1975, ApJ, 197, 593;
+* Hayes, D. S., \& Latham, D. W. 1975, ApJ, 197, 593, "A rediscussion of the atmospheric extinction and the absolute spectral-energy distribution of Vega." `1975ApJ...197..593H <https://ui.adsabs.harvard.edu/abs/1975ApJ...197..593H>`_;
 
-* Johnson, H. L. \& Morgan, W. W. 1953, ApJ, 117, 313
+* Johnson, H. L. \& Morgan, W. W. 1953, ApJ, 117, 313, "Fundamental stellar photometry for standards of spectral type on the Revised System of the Yerkes Spectral Atlas." `1953ApJ...117..313J <https://ui.adsabs.harvard.edu/abs/1953ApJ...117..313J>`_;
 
-* Oke, J.B. 1974, ApJS, 27, 21;
+* Koornneef, Bohlin, Buser, Horne, Turnshek : Synthetic photometry and the calibration of HST. `1986HiA.....7..833K <https://ui.adsabs.harvard.edu/abs/1986HiA.....7..833K>`_
 
-* Koornneef, Bohlin, Buser, Horne, Turnshek : Synthetic photometry and the calibration of HST.
+* Oke, J.B. 1974, ApJS, 27, 21, "Absolute Spectral Energy Distributions for White Dwarfs" `1974ApJS...27...21O <https://ui.adsabs.harvard.edu/abs/1974ApJS...27...21O>`_;
+
+
 

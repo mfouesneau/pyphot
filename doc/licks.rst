@@ -17,7 +17,7 @@ due to differences in continuum shape.  Proper calibration involves observing
 many of the original Lick/IDS standard stars and deriving offsets to the
 standard system.
 
-In Vazdekis et al. (2010), they propose a new Line Index System, hereafter
+In `Vazdekis et al. (2010) <https://ui.adsabs.harvard.edu/abs/2010MNRAS.404.1639V>`_, they propose a new Line Index System, hereafter
 LIS, with three new spectral resolutions at which to measure the Lick
 indices. Note that this new system should not be restricted to the Lick set
 of indices in a flux calibrated system. In fact, LIS can be used for any
@@ -89,14 +89,19 @@ Some indices are given in `magnitudes`, and some in `equivalent width` units.
 
 
 References
-----------
+~~~~~~~~~~
 
-* Worthey G., Faber S. M., Gonzalez J. J., Burstein D., 1994, ApJS, 94, 687
-* Worthey G., Ottaviani D. L., 1997, ApJS, 111, 377
-* Puzia et al. 2002
-* Zhang, Li & Han 2005, http://arxiv.org/abs/astro-ph/0508634v1
-* Vazdekis et al., 2010
-* Johansson, Thomas & Maraston, 2010,  http://wwwmpa.mpa-garching.mpg.de/~jonasj/milesff/milesff.pdf
+* Johansson, Thomas & Maraston, 2010, MNRAS, 406, 165, "Empirical calibrations of optical absorption-line indices based on the stellar library MILES" `2010MNRAS.406..165J <https://ui.adsabs.harvard.edu/abs/2010MNRAS.406..165J>`_
+
+* Puzia et al. 2002, A&A, 395, 45, "Integrated spectroscopy of bulge globular clusters and fields. I. The data base and comparison of individual Lick indices in clusters and bulge" `2002A&A...395...45P <https://ui.adsabs.harvard.edu/abs/2002A&A...395...45P>`_ 
+
+* Vazdekis et al., 2010, MNRAS, 404, 1639, "Evolutionary stellar population synthesis with MILES - I. The base models and a new line index system" `2010MNRAS.404.1639V <https://ui.adsabs.harvard.edu/abs/2010MNRAS.404.1639V>`_
+
+* Worthey G., Faber S. M., Gonzalez J. J., Burstein D., 1994, ApJS, 94, 687, "Old Stellar Populations. V. Absorption Feature Indices for the Complete Lick/IDS Sample of Stars" `1994ApJS...94..687W <https://ui.adsabs.harvard.edu/abs/1994ApJS...94..687W>`_
+
+* Worthey G., Ottaviani D. L., 1997, ApJS, 111, 377, "Hγ and Hδ Absorption Features in Stars and Stellar Populations" `1997ApJS..111..377W <https://ui.adsabs.harvard.edu/abs/1997ApJS..111..377W>`_
+
+* Zhang, Li & Han 2005 MNRAS, 364, 503, "Evolutionary population synthesis for binary stellar population at high spectral resolution: integrated spectral energy distributions and absorption-feature indices", `2005MNRAS.364..503Z <https://ui.adsabs.harvard.edu/abs/2005MNRAS.364..503Z>`_
 
 
 This page shows the content of the provided library with respective properties

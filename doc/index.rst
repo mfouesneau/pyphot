@@ -10,22 +10,23 @@ This is a set of tools to compute synthetic photometry in a simple way, ideal to
 integrate in larger projects.
 
 The inputs are photonic or energetic response functions for the desired
-photometric bands and stellar spectra. The modules are flexible to handle units 
+photometric bands and stellar spectra. The modules are flexible to handle units
 in the wavelength definition through a simplified version of `pint` (link)
 
 Filters are represented individually by a `Filter` object. Collections of
 filters are handled with a `Library`. We provide an internal library that
 contains a signitificant amount of common filters.
 
-Each filter is minimally defined by a `wavelength` and `throughput`. Many
-properties such as central of pivot wavelength are computed internally. 
+Each filter is minimally defined by a `wavelength`, `throughput`, and detector
+type either `energy` or `photon` (default). Many properties such as central of
+pivot wavelengths are computed internally. 
 
-**When units** are provided for the wavelength of the filters, zero points in
+Units are provided for the wavelength of the filters, zero points in
 multiple units are also accessible (AB, Vega magnitude, Jy, erg/s/cm2/AA). The
 default detector type is assumed to be photonic, but energetic detectors are
 also handled for the computations.
 
-.. tip::
+.. note::
 
         All provided filters have defined units and detector type
         that are used transparently throughout the package.
@@ -40,34 +41,49 @@ also handled for the computations.
 Package main content
 ~~~~~~~~~~~~~~~~~~~~
 
-This package is mostly organized around 2 main classes:
+This package is mainly organized around two backend to handle quantities with units: a lightweight version of
+`Pint`_ (:class:`pyphot.ezunits`) and the `Astropy Units <https://docs.astropy.org/en/stable/units/index.html>`_. 
+As these do no provide the same functionalities, the package is designed to be able to switch between the two by importing either from :class:`pyphot.sandbox` or :class:`pyphot.astropy`.
 
-* :class:`pyphot.phot.Filter` that handles filter definitions and manipulations.
+.. _Pint: https://pint.readthedocs.io/en/stable/
+
+.. tip::
+
+        You can transparently switch between pint and astropy units with aliasing the import line:
+
+        .. code:: python
+
+                from pyphot import astropy as pyphot
+                # or 
+                from pyphot import sandbox as pyphot
+
+
+This package is mostly organized around 2 main classes (from either root module above):
+
+* :class:`~pyphot.sandbox.UnitFilter` that handles filter definitions and manipulations.
  
-* :class:`pyphot.phot.Library` that handles a collection of filters in a few formats. 
+* :class:`~pyphot.sandbox.UnitLibrary` that handles a collection of filters in a few formats. 
 
-Both classes are able to manipulate units through a lightweight version of
-**Pint** :class:`pyphot.ezunits` (...link....)
 
 Additionally, and for convenience 
 
 * the library class is derived into an ascii file reader
-  :class:`pyphot.phot.Ascii_Library`, and a single hdf file reader
-  :class:`pyphot.phot.HDF_Library`. 
+  :class:`~pyphot.phot.Ascii_Library`, and a single hdf file reader
+  :class:`~pyphot.phot.HDF_Library`. 
 
-* :class:`pyphot.vega.Vega` provides an interface to a synthetic reference of
-  Vega.
+* :class:`~pyphot.svo` provides an interface to the `SVO Filter Profile Service <http://svo2.cab.inta-csic.es/theory/fps/>`_ to download filters directly from the SVO database.
 
-* :class:`pyphot.sun.Sun` provides an interface to a synthetic and empirical reference of
-  the Sun spectrum.
+* :class:`~pyphot.vega.Vega` provides an interface to a synthetic reference of Vega.
 
-* :class:`pyphot.licks` provides an extension to computing lick indices.
+* :class:`~pyphot.sun.Sun` provides an interface to a synthetic and empirical reference of the Sun spectrum.
+
+* :class:`~pyphot.licks` provides an extension to computing lick indices.
 
 Contents
 ---------
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
    Home <index>
    more_examples
@@ -95,9 +111,10 @@ Installation
         python setup.py intall
 
 
-
 Quick Start
 ~~~~~~~~~~~
+
+Additional examples can be found on the :doc:`more_examples` page.
 
 .. code-block:: python
 
@@ -171,17 +188,93 @@ If one wants to use a given transmission curve as filter, defined by `lamb_T` an
 Internal Vega reference
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-As mentioned in the above, sometimes a spectrum of reference of Vega is
-necessary. 
+As mentioned in the above, sometimes a spectrum of reference of Vega is necessary. 
 
-We use the synthetic spectrum provided by Bohlin 2007, a common reference
+We use the synthetic spectrum provided by `Bohlin 2007 <https://ui.adsabs.harvard.edu/abs/2007ASPC..364..315B/abstract>`_, a common reference
 througout many photometric suites.
 
 The interface to the Vega template is given through the :class:`pyphot.vega.Vega` class.
 
+Internal Sun reference
+~~~~~~~~~~~~~~~~~~~~~~~
+
+We also provide observed and theoretical references for the solar spectrum following 
+`Colina, Bohlin, & Castelli 1996 <https://ui.adsabs.harvard.edu/abs/1996AJ....112..307C/abstract>`_.
+
+The observed solar spectrum comes from CALSPEC 
+`sun_reference_stis_001.fits <ftp://ftp.stsci.edu/cdbs/current_calspec/sun_reference_stis_001.fits>`_ 
+which provides the ultraviolet to near-infrared absolute flux distribution of
+the Sun covering the 0.12-2.5 μm wavelength range. The solar reference spectrum
+combines absolute flux measurements from satellites and from the ground with a
+model spectrum for the near-infrared. 
+
+The theoretical spectrum comes from the Kurucz'93 atlas:
+`<sun_kurucz93.fits ftp://ftp.stsci.edu/cdbs/grid/k93models/standards/sun_kurucz93.fits>`_
+The theoretical spectrum is scaled to match the observed spectrum from 1.5 - 2.5 microns, and then it is used where the observed spectrum ends.
+The theoretical model of the Sun uses the following parameters when the Sun is at 1 au:
+
+
+.. list-table:: Solar Parameters
+        :header-rows: 1
+
+        * - log_Z
+          - T_eff
+          - log_g
+          - V_{Johnson}
+        * - +0.0
+          - 5777
+          - +4.44
+          - -26.75
+
+The interface to the Sun templates is given through the :class:`pyphot.sun.Sun` class.
+
+Contributors
+~~~~~~~~~~~~
+
+Author: Morgan Fouesneau (`@mfouesneau <https://github.com/mfouesneau>`_)
+
+Direct contributions to the code base:
+
+* Ariane Lancon (`@lancon <https://github.com/lancon>`_)
+* Tim Morton (`@timothydmorton <https://github.com/timothydmorton>`_)
+
+Related projects
+~~~~~~~~~~~~~~~~
+
+* `cphot <https://github.com/mfouesneau/cphot>`_ is a spin-off project that provides a C++ version of pyphot
+
+
+Citation
+~~~~~~~~
+
+If you use this software in your work, please cite it using the following:
+
+.. tabs::
+
+        .. tab:: bibtex
+
+                .. code-block::
+
+                        @software{zenodopyphot,
+                        author       = {Fouesneau, Morgan},
+                        title        = {pyphot},
+                        month        = jan,
+                        year         = 2025,
+                        publisher    = {Zenodo},
+                        version      = {pyphot\_v1.6.0},
+                        doi          = {10.5281/zenodo.14712174},
+                        url          = {https://doi.org/10.5281/zenodo.14712174},
+                        }
+        
+        .. tab:: citation cff
+                 
+                `Learn more about CITATION files.  <https://citation-file-format.github.io/>`_
+
+                .. literalinclude:: ../CITATION.cff
+
 
 Indices and tables
-------------------
+~~~~~~~~~~~~~~~~~~
 
 * :ref:`genindex`
 * :ref:`modindex`

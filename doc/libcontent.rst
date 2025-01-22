@@ -5,6 +5,18 @@ Provided Filter library
 This page shows the content of the provided library with respective properties
 of the passband filters. The code to generate the table is also provided below.
 
+.. important::
+
+  The internal library is not exhaustive and is meant to be a starting point for
+  users to build their own library or contribute to this one.
+
+  :class:`~pyphot.svo` provides an interface to the `SVO Filter Profile Service <http://svo2.cab.inta-csic.es/theory/fps/>`_ which provides a more exhaustive list of passbands.
+
+  .. code-block:: python
+
+        from pyphot import svo 
+        lst = ("2MASS/2MASS.J", "2MASS/2MASS.H")
+        pbands = [svo.get_pyphot_filter(k) for k in lst]
 
 .. literalinclude:: pyphot_table.py
    :language: python

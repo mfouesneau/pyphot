@@ -61,6 +61,7 @@ docs = [
   "sphinx-mdinclude>=0.6",
   "sphinxcontrib-htmlhelp>=2.1.0",
   "sphinxcontrib-serializinghtml>=2.0.0",
+  "sphinx-tabs>=3.0",
   "myst-nb>=0.16.0",
   # for syntax highlighting (https://nbsphinx.readthedocs.io/en/0.8.0/installation.html#Pygments-Lexer-for-Syntax-Highlighting)
   "IPython>=8.0",
@@ -84,3 +85,4 @@ testing = { features = ["testing"], solve-group = "default" }
 ruff = { cmd = "ruff check --fix --show-fixes --output-format=github pyphot -o ruff_output.md", description = "ruff linter" }
 unittests = { cmd = "python3 -m unittest unittests/test_quick.py && rm -f table.csv licks_table.csv", description = "CI unittests in current python version" }
 joss = { cmd = "docker run --rm --volume $PWD/paper:/data --user $(id -u):$(id -g) --env JOURNAL=joss openjournals/inara && echo 'check paper/paper.pdf'", description = "Compile Joss paper" }
+docs = { cmd = "cd doc && make apidoc && make html", description = "Build the documentation" }

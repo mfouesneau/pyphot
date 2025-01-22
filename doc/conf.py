@@ -34,6 +34,8 @@ extensions = [
     "sphinx.ext.autodoc",
     "sphinx.ext.autosummary",
     "sphinx_automodapi.automodapi",
+    "sphinx.ext.autosectionlabel",
+    "sphinx_tabs.tabs",
     "sphinx.ext.napoleon",
     "sphinx.ext.viewcode", 
     'sphinx.ext.todo',
