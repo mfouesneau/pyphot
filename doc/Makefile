@@ -9,6 +9,7 @@ BUILDDIR      = _build
 APIBUILD      = sphinx-apidoc
 APIOPTS       = -o ./
 APIDIR        = ../pyphot
+APICLEANFILES = pyphot.rst pyphot*.rst 
 
 # User-friendly check for sphinx-build
 ifeq ($(shell which $(SPHINXBUILD) >/dev/null 2>&1; echo $$?), 1)
@@ -20,12 +21,17 @@ endif
 
 # Put it first so that "make" without argument is like "make help".
 help:
-	@$(SPHINXBUILD) -M help "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
+help:
+	@echo "Please use \`make <target>' where <target> is one of"
+	@echo "  html       to make standalone HTML files"
+	@echo "  apidoc     to make/refresh the API documentation"
+	@echo "  clean      to clean the build directory"
 
 clean:
 	rm -rf $(BUILDDIR)/*
 
 apidoc:
+	rm -rf $(APICLEANFILES)
 	$(APIBUILD) $(APIOPTS) $(APIDIR)
 
 html:
