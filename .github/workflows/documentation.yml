@@ -2,6 +2,9 @@ name: sphinxdocumentation
 
 on:
   push:
+    paths-ignore:
+          - "joss/**"
+          - "paper/**"
     branches:    
       - master
 

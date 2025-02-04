@@ -5,6 +5,7 @@ on:
     paths-ignore:
           - "joss/**"
           - "doc/**"
+          - "paper/**"
 
 jobs:
   build:
