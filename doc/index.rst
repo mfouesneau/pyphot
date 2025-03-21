@@ -6,25 +6,28 @@
 PYPHOT -- A tool for computing photometry from spectra
 ======================================================
 
-This is a set of tools to compute synthetic photometry in a simple way, ideal to
-integrate in larger projects.
+This is a set of tools to compute synthetic photometry in a simple way, suitable for
+integration in larger projects.
 
-The inputs are photonic or energetic response functions for the desired
-photometric bands and stellar spectra. The modules are flexible to handle units
-in the wavelength definition through a simplified version of `pint` (link)
+The inputs are response functions for the desired photometric passbands, and stellar spectra. The modules are flexible to handle units in the wavelength definition through 
+a simplified version of `pint` (link)
 
 Filters are represented individually by a `Filter` object. Collections of
 filters are handled with a `Library`. We provide an internal library that
-contains a signitificant amount of common filters.
+contains a signitificant amount of common filters. Note that we use the word "filter" 
+in a generic sense: in many cases it corresponds in fact to a total throughput, that includes
+the actual filter transmission, the transmission of the optics, the wavelength-dependent efficiency
+of the detector, and (for ground-based photometric systems) the transmission of the 
+atmosphere.
 
-Each filter is minimally defined by a `wavelength`, `throughput`, and detector
-type either `energy` or `photon` (default). Many properties such as central of
-pivot wavelengths are computed internally. 
+Each filter is minimally defined by a `wavelength`, a `throughput`, and a detector
+type that may be either `energy` or `photon` (default). Many properties such as central 
+or pivot wavelengths are computed internally. 
 
-Units are provided for the wavelength of the filters, zero points in
+Units are provided for the wavelengths of the filters, zero points in
 multiple units are also accessible (AB, Vega magnitude, Jy, erg/s/cm2/AA). The
-default detector type is assumed to be photonic, but energetic detectors are
-also handled for the computations.
+default detector is assumed to be a photon-counting device, but energy-sensitive
+detectors are also handled for the computations.
 
 .. note::
 
