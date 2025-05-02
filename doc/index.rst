@@ -119,6 +119,8 @@ Quick Start
 
 Additional examples can be found on the :doc:`more_examples` page.
 
+If one wishes to find out details about one of the available transmission curves:
+
 .. code-block:: python
 
         import pyphot
@@ -133,7 +135,6 @@ Additional examples can be found on the :doc:`more_examples` page.
 
 .. code-block:: none
 
-        Library contains:  196  filters
         Filter object information:
             name:                 SPITZER_IRAC_45
             detector type:        photon
@@ -141,41 +142,47 @@ Additional examples can be found on the :doc:`more_examples` page.
             central wavelength:   45110.141614 angstrom
             pivot wavelength:     45020.219955 angstrom
             effective wavelength: 44425.747085 angstrom
+            photon wavelength:    44603.204646 angstrom
+            minimum wavelength:   39250.000000 angstrom
+            maximum wavelength:   50640.000000 angstrom
             norm:                 4664.680820
+            effective width:      8714.143135 angstrom
+            fullwidth half-max:   10110.000000
             definition contains 417 points
 
             Zeropoints
-                Vega: 28.933084 mag,
-                      2.671569250882836e-12 erg / angstrom * centimeter ** 2 * second,
-                      175.8794962126167 Jy
+                Vega: 28.933083 mag,
+                      2.6715713304827696e-12 erg / angstrom * centimeter ** 2 * second,
+                      180.61811118349118 Jy
+                      3.246733893355585 photon / angstrom * centimeter ** 2 * second
                   AB: 25.674986 mag,
                       5.370385702161592e-11 erg / angstrom * centimeter ** 2 * second,
-                      3535.5277855945205 Jy
+                      3630.780547701007 Jy
                   ST: 21.100000 mag,
                       3.6307805477010028e-09 erg / angstrom * centimeter ** 2 * second,
-                      239027.9995089771 Jy 
+                      245467.79536259372 Jy
 
         [...]
 
-Suppose one has a calibrated spectrum and wants to compute the vega magnitude
-throug the HST WFC3 F110W passband, 
+Suppose one has a calibrated spectrum and wants to compute the corresponding vega magnitude
+through the HST/WFC3 F110W passband: 
 
 .. code-block:: python
 
-        # convert to magnitudes
         import numpy as np
         f = lib['hst_wfc3_f110w']
         # compute the integrated flux through the filter f
-        # note that it work on many spectra at once
+        # (note that 'spectra' can be a 2D array holding many spectra)
         fluxes = f.get_flux(lamb, spectra, axis=1)
-        # convert to vega magnitudes
+        # convert fluxes to vega magnitudes
         mags = -2.5 * np.log10(fluxes) - f.Vega_zero_mag
         # or similarly
         mags = -2.5 * np.log10(fluxes / f.Vega_zero_flux)
 
 
-If one wants to use a given transmission curve as filter, defined by `lamb_T` and
-`T`, one would use the :class:`pyphot.phot.Filter` directly as 
+To use one's own transmission curve, defined by `lamb_T` and
+`T`, instead of one of the pre-defined ones, one would use 
+the :class:`pyphot.phot.Filter` directly: 
 
 .. code-block:: python
 
@@ -238,7 +245,7 @@ Author: Morgan Fouesneau (`@mfouesneau <https://github.com/mfouesneau>`_)
 
 Direct contributions to the code base:
 
-* Ariane Lancon (`@lancon <https://github.com/lancon>`_)
+* Ariane Lançon (`@lancon <https://github.com/lancon>`_)
 * Tim Morton (`@timothydmorton <https://github.com/timothydmorton>`_)
 
 Related projects
