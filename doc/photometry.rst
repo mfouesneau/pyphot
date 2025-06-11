@@ -2,18 +2,28 @@ Details on predicting photometry
 ================================
 
 It is sometimes not obvious that there are important differences between
-photometric systems. But even less known the difference between detector
+photometric systems. But even less known is the difference between detector
 count types (energy or photons) which requires also special care.
 
 In this section, we review the important details for computing the luminosity
-and the magnitude of a star through a photometric passband filter. We do not
+and the magnitude of a star through a photometric passband. We do not
 discuss calibration, which in principle is covered by instrument documentations.
 
+Synthetic photometry uses transmission curves that typically include a variety of
+wavelength-dependent components (a filter transmission, the response of the optical
+elements of the telescope and instrument, the detector sensitivity, sometimes a telluric 
+absorption component, ..). Transmission curves are usually named after the associated filter, 
+and it is up to the user to verify that the other components are also included. In this
+documentation, we use the terms filter throughput, transmission curve, response function,
+or simply filter, interchangeably, to refer to a transmission curve, generally leaving the 
+verification of the nature of these transmission curves to the user. 
+
+Most modern detectors count photons, rather than cumulating the energies of these photons. 
 If we consider a filter throughput (a.k.a, transmission curve, or response
 function) defined in wavelength by the dimensionless function :math:`T(\lambda)`, 
 this function tells you what fraction of the arriving photons at wavelength
-:math:`\lambda` actually get through the instrument.  Therefore, the total number of
-photons, per unit time per unit area, received in this filter is
+:math:`\lambda` actually get detected (on average).  Therefore, the total number of
+photons, per unit time per unit collecting area, expected to be detected in this filter is
 
 .. math::
 
@@ -22,7 +32,7 @@ photons, per unit time per unit area, received in this filter is
         \end{equation}
 
 where :math:`f_\lambda` is the wavelength dependent flux density of an object
-given in energy per unit time per unit area per unit wavelength.
+given in energy per unit time, per unit collecting area, and per unit wavelength.
 
 Consequently, interpreting :math:`\lambda T(\lambda)` as a distribution leads to
 the statistical mean of the flux density, :math:`\overline{f_\lambda}` 
@@ -33,9 +43,9 @@ the statistical mean of the flux density, :math:`\overline{f_\lambda}`
         \overline{f_\lambda}(T) = \frac{\int_\lambda \lambda f_\lambda T(\lambda) d\lambda}{\int_\lambda \lambda T(\lambda) d\lambda}.
         \end{equation}
 
-Note that this is not the mean flux density because of the :math:`\lambda` factor in
-the integrals, it is the mean photon rate density in this filter commonly
-expressed in stellar physics literature as :math:`erg/s/cm^2/\unicode{x212B}` or 
+Note that although this is formally a weighted mean of a flux density, with weights proportional to :math:`\lambda T(\lambda)` (the denominator ensuring that the sum of the weights is 1), it actually
+measures the mean photon rate density in this filter. The result is commonly
+expressed in the same units as :math:`f_\lambda`, i.e. :math:`erg/s/cm^2/\unicode{x212B}` or 
 :math:`W/m^2/\unicode{x212B}`.
 
 .. code-block:: python
@@ -57,10 +67,10 @@ photons, we obtain the usual definition of magnitude
         mag_\lambda(T) = -2.5\,\log_{10}\left(\overline{f_\lambda}\right) - ZP\left(\overline{f_\lambda}\right),
         \end{equation}
 
-where :math:`ZP(\overline{f_\lambda})` gives the pass-band reference value
+where :math:`ZP(\overline{f_\lambda})` gives the passband reference value
 (zeropoint) for a given photometric/magnitude system.
 
-However, the zeropoints themselves depend on the adopted photometric system used
+However, the zeropoints themselves depend on the photometric system adopted
 to report the measurements. They may vary fundamentally from one to another.
 Below we briefly describe the main systems used in large surveys.
 
@@ -94,9 +104,9 @@ vega, :math:`-2.5 \log_{10} \overline{f_\lambda}(Vega)`, or
 Johnson system
 ~~~~~~~~~~~~~~
 
-The Johson system is defined such that the star Alpha Lyr (Vega) has :math:`V=0.03`
+The Johnson system is defined such that the star Alpha Lyr (Vega) has :math:`V=0.03`
 and all colors equal to zero. It is very similar to the Vega magnitude system,
-but using mean flux definition (instead of photon counts), i.e., **energy
+but using mean flux definition (instead of photon counts), as appropriate for historical **energy
 counter** detectors
 
 .. math::
@@ -106,7 +116,7 @@ counter** detectors
         \label{eq:Johnsonmag}
         \end{equation}
 
-(the true definition of mean flux throughout a given transmission filter.)
+(this is the mean flux weighted simply by the normalized throughout.)
 
 .. note::
 
@@ -265,11 +275,11 @@ where :math:`c` is the speed of light in :math:`m/s`,  :math:`\lambda_p` is the 
 References
 ~~~~~~~~~~
 
-* Bessel, M. S. 1983, PASP, 95, 480, "VRI photometry : an addendum." `1983PASP...95..480B <https://ui.adsabs.harvard.edu/abs/1983PASP...95..480B>`_;
+* Bessell, M. S. 1983, PASP, 95, 480, "VRI photometry : an addendum." `1983PASP...95..480B <https://ui.adsabs.harvard.edu/abs/1983PASP...95..480B>`_;
 
-* Bessel, M. S. 1990, PASP, 102, 1181, "UBVRI passbands" `1990PASP..102.1181B <https://ui.adsabs.harvard.edu/abs/1990PASP..102.1181B>`_;
+* Bessell, M. S. 1990, PASP, 102, 1181, "UBVRI passbands" `1990PASP..102.1181B <https://ui.adsabs.harvard.edu/abs/1990PASP..102.1181B>`_;
 
-* Bessel, M. S. 1998, A&A, 333, 231, "Model atmospheres broad-band colors, bolometric corrections and temperature calibrations for O - M stars." `1998A&A...333..231B <https://ui.adsabs.harvard.edu/abs/1998A%26A...333..231B/abstract>`_;
+* Bessell, M. S., Castelli, F., \& Plez, B. 1998, A&A, 333, 231, "Model atmospheres broad-band colors, bolometric corrections and temperature calibrations for O - M stars." `1998A&A...333..231B <https://ui.adsabs.harvard.edu/abs/1998A%26A...333..231B/abstract>`_;
 
 * Hayes, D. S., \& Latham, D. W. 1975, ApJ, 197, 593, "A rediscussion of the atmospheric extinction and the absolute spectral-energy distribution of Vega." `1975ApJ...197..593H <https://ui.adsabs.harvard.edu/abs/1975ApJ...197..593H>`_;
 
