@@ -1,0 +1,966 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>API &#8212; pyphot  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=984d411d"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'modules';</script>
+    <link rel="canonical" href="https://mfouesneau.github.io/pyphot/modules.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="pyphot package" href="pyphot.html" />
+    <link rel="prev" title="Extention to Lick indices" href="licks.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">pyphot  documentation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="more_examples.html">More example usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="photometry.html">Details on predicting photometry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="libcontent.html">Provided Filter library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="licks.html">Extention to Lick indices</a></li>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">API</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="pyphot.html">pyphot package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyphot.astropy.html">pyphot.astropy package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyphot.ezunits.html">pyphot.ezunits package</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/mfouesneau/pyphot" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/mfouesneau/pyphot/blob/master/doc/modules.rst?plain=1" target="_blank"
+   class="btn btn-sm btn-source-file-button dropdown-item"
+   title="Show source"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="btn__text-container">Show source</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/mfouesneau/pyphot/issues/new?title=Issue%20on%20page%20%2Fmodules.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/modules.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>API</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="api">
+<h1>API<a class="headerlink" href="#api" title="Link to this heading">#</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pyphot.html">pyphot package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pyphot.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyphot.astropy.html">pyphot.astropy package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.astropy.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.astropy.html#module-pyphot.astropy.config">pyphot.astropy.config module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.astropy.html#module-pyphot.astropy.sandbox">pyphot.astropy.sandbox module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.astropy.html#module-pyphot.astropy.sun">pyphot.astropy.sun module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.astropy.html#module-pyphot.astropy.vega">pyphot.astropy.vega module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.astropy.html#module-pyphot.astropy">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pyphot.ezunits.html">pyphot.ezunits package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.ezunits.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.ezunits.html#module-pyphot.ezunits.pint">pyphot.ezunits.pint module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.ezunits.html#module-pyphot.ezunits">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pyphot.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyphot.html#module-pyphot.config">pyphot.config module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyphot.html#module-pyphot.helpers">pyphot.helpers module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyphot.html#pyphot.helpers.STmag_from_flux"><code class="docutils literal notranslate"><span class="pre">STmag_from_flux()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyphot.html#pyphot.helpers.STmag_to_flux"><code class="docutils literal notranslate"><span class="pre">STmag_to_flux()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyphot.html#pyphot.helpers.deprecated"><code class="docutils literal notranslate"><span class="pre">deprecated()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyphot.html#pyphot.helpers.extractPhotometry"><code class="docutils literal notranslate"><span class="pre">extractPhotometry()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyphot.html#pyphot.helpers.extractSEDs"><code class="docutils literal notranslate"><span class="pre">extractSEDs()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyphot.html#pyphot.helpers.fluxErrTomag"><code class="docutils literal notranslate"><span class="pre">fluxErrTomag()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyphot.html#pyphot.helpers.fluxToMag"><code class="docutils literal notranslate"><span class="pre">fluxToMag()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyphot.html#pyphot.helpers.magErrToFlux"><code class="docutils literal notranslate"><span class="pre">magErrToFlux()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyphot.html#pyphot.helpers.magToFlux"><code class="docutils literal notranslate"><span class="pre">magToFlux()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyphot.html#pyphot.helpers.progress_enumerate"><code class="docutils literal notranslate"><span class="pre">progress_enumerate()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pyphot.html#module-pyphot.licks">pyphot.licks module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyphot.html#pyphot.licks.LickIndex"><code class="docutils literal notranslate"><span class="pre">LickIndex</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.licks.LickIndex.__init__"><code class="docutils literal notranslate"><span class="pre">LickIndex.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.licks.LickIndex.band"><code class="docutils literal notranslate"><span class="pre">LickIndex.band</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.licks.LickIndex.blue"><code class="docutils literal notranslate"><span class="pre">LickIndex.blue</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.licks.LickIndex.continuum_normalized_region_around_line"><code class="docutils literal notranslate"><span class="pre">LickIndex.continuum_normalized_region_around_line()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.licks.LickIndex.get"><code class="docutils literal notranslate"><span class="pre">LickIndex.get()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.licks.LickIndex.index_unit"><code class="docutils literal notranslate"><span class="pre">LickIndex.index_unit</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.licks.LickIndex.info"><code class="docutils literal notranslate"><span class="pre">LickIndex.info()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.licks.LickIndex.red"><code class="docutils literal notranslate"><span class="pre">LickIndex.red</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.licks.LickIndex.to_dict"><code class="docutils literal notranslate"><span class="pre">LickIndex.to_dict()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pyphot.html#pyphot.licks.LickLibrary"><code class="docutils literal notranslate"><span class="pre">LickLibrary</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.licks.LickLibrary.__init__"><code class="docutils literal notranslate"><span class="pre">LickLibrary.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.licks.LickLibrary.content"><code class="docutils literal notranslate"><span class="pre">LickLibrary.content</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.licks.LickLibrary.description"><code class="docutils literal notranslate"><span class="pre">LickLibrary.description</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.licks.LickLibrary.find"><code class="docutils literal notranslate"><span class="pre">LickLibrary.find()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.licks.LickLibrary.get_library_content"><code class="docutils literal notranslate"><span class="pre">LickLibrary.get_library_content()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pyphot.html#pyphot.licks.reduce_resolution"><code class="docutils literal notranslate"><span class="pre">reduce_resolution()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pyphot.html#module-pyphot.pbar">pyphot.pbar module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyphot.html#simple-progressbar">Simple progressbar</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyphot.html#pyphot.pbar.Pbar"><code class="docutils literal notranslate"><span class="pre">Pbar</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.pbar.Pbar.time"><code class="docutils literal notranslate"><span class="pre">Pbar.time</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.pbar.Pbar.eta"><code class="docutils literal notranslate"><span class="pre">Pbar.eta</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.pbar.Pbar.rate"><code class="docutils literal notranslate"><span class="pre">Pbar.rate</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.pbar.Pbar.length"><code class="docutils literal notranslate"><span class="pre">Pbar.length</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.pbar.Pbar.keep"><code class="docutils literal notranslate"><span class="pre">Pbar.keep</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.pbar.Pbar.file"><code class="docutils literal notranslate"><span class="pre">Pbar.file</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.pbar.Pbar.mininterval"><code class="docutils literal notranslate"><span class="pre">Pbar.mininterval</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.pbar.Pbar.miniters"><code class="docutils literal notranslate"><span class="pre">Pbar.miniters</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.pbar.Pbar.units"><code class="docutils literal notranslate"><span class="pre">Pbar.units</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.pbar.Pbar.__init__"><code class="docutils literal notranslate"><span class="pre">Pbar.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.pbar.Pbar.build_str_meter"><code class="docutils literal notranslate"><span class="pre">Pbar.build_str_meter()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.pbar.Pbar.decorator"><code class="docutils literal notranslate"><span class="pre">Pbar.decorator()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.pbar.Pbar.format_interval"><code class="docutils literal notranslate"><span class="pre">Pbar.format_interval()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.pbar.Pbar.handle_resize"><code class="docutils literal notranslate"><span class="pre">Pbar.handle_resize()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.pbar.Pbar.iterover"><code class="docutils literal notranslate"><span class="pre">Pbar.iterover()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.pbar.Pbar.print_status"><code class="docutils literal notranslate"><span class="pre">Pbar.print_status()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.pbar.Pbar.update"><code class="docutils literal notranslate"><span class="pre">Pbar.update()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pyphot.html#module-pyphot.phot">pyphot.phot module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyphot.html#photometric-package">Photometric package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyphot.html#pyphot.phot.Ascii_Library"><code class="docutils literal notranslate"><span class="pre">Ascii_Library</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.Ascii_Library.__init__"><code class="docutils literal notranslate"><span class="pre">Ascii_Library.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.Ascii_Library.add_filters"><code class="docutils literal notranslate"><span class="pre">Ascii_Library.add_filters()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.Ascii_Library.get_library_content"><code class="docutils literal notranslate"><span class="pre">Ascii_Library.get_library_content()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.Ascii_Library.load_all_filters"><code class="docutils literal notranslate"><span class="pre">Ascii_Library.load_all_filters()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.Ascii_Library.load_filters"><code class="docutils literal notranslate"><span class="pre">Ascii_Library.load_filters()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pyphot.html#pyphot.phot.Constants"><code class="docutils literal notranslate"><span class="pre">Constants</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.Constants.c"><code class="docutils literal notranslate"><span class="pre">Constants.c</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.Constants.h"><code class="docutils literal notranslate"><span class="pre">Constants.h</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pyphot.html#pyphot.phot.Filter"><code class="docutils literal notranslate"><span class="pre">Filter</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.Filter.name"><code class="docutils literal notranslate"><span class="pre">Filter.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.Filter.norm"><code class="docutils literal notranslate"><span class="pre">Filter.norm</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.Filter.transmit"><code class="docutils literal notranslate"><span class="pre">Filter.transmit</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.Filter.dtype"><code class="docutils literal notranslate"><span class="pre">Filter.dtype</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.Filter.unit"><code class="docutils literal notranslate"><span class="pre">Filter.unit</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.Filter.AB_zero_Jy"><code class="docutils literal notranslate"><span class="pre">Filter.AB_zero_Jy</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.Filter.AB_zero_flux"><code class="docutils literal notranslate"><span class="pre">Filter.AB_zero_flux</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.Filter.AB_zero_mag"><code class="docutils literal notranslate"><span class="pre">Filter.AB_zero_mag</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.Filter.ST_zero_Jy"><code class="docutils literal notranslate"><span class="pre">Filter.ST_zero_Jy</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.Filter.ST_zero_flux"><code class="docutils literal notranslate"><span class="pre">Filter.ST_zero_flux</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.Filter.ST_zero_mag"><code class="docutils literal notranslate"><span class="pre">Filter.ST_zero_mag</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.Filter.Vega_zero_Jy"><code class="docutils literal notranslate"><span class="pre">Filter.Vega_zero_Jy</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.Filter.Vega_zero_flux"><code class="docutils literal notranslate"><span class="pre">Filter.Vega_zero_flux</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.Filter.Vega_zero_mag"><code class="docutils literal notranslate"><span class="pre">Filter.Vega_zero_mag</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.Filter.Vega_zero_photons"><code class="docutils literal notranslate"><span class="pre">Filter.Vega_zero_photons</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.Filter.__init__"><code class="docutils literal notranslate"><span class="pre">Filter.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.Filter.applyTo"><code class="docutils literal notranslate"><span class="pre">Filter.applyTo()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.Filter.apply_transmission"><code class="docutils literal notranslate"><span class="pre">Filter.apply_transmission()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.Filter.cl"><code class="docutils literal notranslate"><span class="pre">Filter.cl</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.Filter.from_ascii"><code class="docutils literal notranslate"><span class="pre">Filter.from_ascii()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.Filter.fwhm"><code class="docutils literal notranslate"><span class="pre">Filter.fwhm</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.Filter.getFlux"><code class="docutils literal notranslate"><span class="pre">Filter.getFlux()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.Filter.get_Nphotons"><code class="docutils literal notranslate"><span class="pre">Filter.get_Nphotons()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.Filter.get_flux"><code class="docutils literal notranslate"><span class="pre">Filter.get_flux()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.Filter.info"><code class="docutils literal notranslate"><span class="pre">Filter.info()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.Filter.leff"><code class="docutils literal notranslate"><span class="pre">Filter.leff</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.Filter.lmax"><code class="docutils literal notranslate"><span class="pre">Filter.lmax</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.Filter.lmin"><code class="docutils literal notranslate"><span class="pre">Filter.lmin</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.Filter.lphot"><code class="docutils literal notranslate"><span class="pre">Filter.lphot</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.Filter.lpivot"><code class="docutils literal notranslate"><span class="pre">Filter.lpivot</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.Filter.make_integration_filter"><code class="docutils literal notranslate"><span class="pre">Filter.make_integration_filter()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.Filter.reinterp"><code class="docutils literal notranslate"><span class="pre">Filter.reinterp()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.Filter.set_dtype"><code class="docutils literal notranslate"><span class="pre">Filter.set_dtype()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.Filter.set_wavelength_unit"><code class="docutils literal notranslate"><span class="pre">Filter.set_wavelength_unit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.Filter.to_Table"><code class="docutils literal notranslate"><span class="pre">Filter.to_Table()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.Filter.to_dict"><code class="docutils literal notranslate"><span class="pre">Filter.to_dict()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.Filter.wavelength"><code class="docutils literal notranslate"><span class="pre">Filter.wavelength</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.Filter.width"><code class="docutils literal notranslate"><span class="pre">Filter.width</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.Filter.write_to"><code class="docutils literal notranslate"><span class="pre">Filter.write_to()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pyphot.html#pyphot.phot.HDF_Library"><code class="docutils literal notranslate"><span class="pre">HDF_Library</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.HDF_Library.__init__"><code class="docutils literal notranslate"><span class="pre">HDF_Library.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.HDF_Library.add_filter"><code class="docutils literal notranslate"><span class="pre">HDF_Library.add_filter()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.HDF_Library.get_library_content"><code class="docutils literal notranslate"><span class="pre">HDF_Library.get_library_content()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.HDF_Library.load_all_filters"><code class="docutils literal notranslate"><span class="pre">HDF_Library.load_all_filters()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.HDF_Library.load_filters"><code class="docutils literal notranslate"><span class="pre">HDF_Library.load_filters()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pyphot.html#pyphot.phot.Library"><code class="docutils literal notranslate"><span class="pre">Library</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.Library.__init__"><code class="docutils literal notranslate"><span class="pre">Library.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.Library.add_filter"><code class="docutils literal notranslate"><span class="pre">Library.add_filter()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.Library.content"><code class="docutils literal notranslate"><span class="pre">Library.content</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.Library.find"><code class="docutils literal notranslate"><span class="pre">Library.find()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.Library.from_ascii"><code class="docutils literal notranslate"><span class="pre">Library.from_ascii()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.Library.from_hd5"><code class="docutils literal notranslate"><span class="pre">Library.from_hd5()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.Library.get_library_content"><code class="docutils literal notranslate"><span class="pre">Library.get_library_content()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.Library.load_all_filters"><code class="docutils literal notranslate"><span class="pre">Library.load_all_filters()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.Library.to_csv"><code class="docutils literal notranslate"><span class="pre">Library.to_csv()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.Library.to_hdf"><code class="docutils literal notranslate"><span class="pre">Library.to_hdf()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pyphot.html#pyphot.phot.UncertainFilter"><code class="docutils literal notranslate"><span class="pre">UncertainFilter</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.UncertainFilter.mean"><code class="docutils literal notranslate"><span class="pre">UncertainFilter.mean</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.UncertainFilter.samples"><code class="docutils literal notranslate"><span class="pre">UncertainFilter.samples</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.UncertainFilter.name"><code class="docutils literal notranslate"><span class="pre">UncertainFilter.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.UncertainFilter.dtype"><code class="docutils literal notranslate"><span class="pre">UncertainFilter.dtype</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.UncertainFilter.unit"><code class="docutils literal notranslate"><span class="pre">UncertainFilter.unit</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.UncertainFilter.AB_zero_Jy"><code class="docutils literal notranslate"><span class="pre">UncertainFilter.AB_zero_Jy</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.UncertainFilter.AB_zero_flux"><code class="docutils literal notranslate"><span class="pre">UncertainFilter.AB_zero_flux</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.UncertainFilter.AB_zero_mag"><code class="docutils literal notranslate"><span class="pre">UncertainFilter.AB_zero_mag</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.UncertainFilter.ST_zero_Jy"><code class="docutils literal notranslate"><span class="pre">UncertainFilter.ST_zero_Jy</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.UncertainFilter.ST_zero_flux"><code class="docutils literal notranslate"><span class="pre">UncertainFilter.ST_zero_flux</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.UncertainFilter.ST_zero_mag"><code class="docutils literal notranslate"><span class="pre">UncertainFilter.ST_zero_mag</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.UncertainFilter.Vega_zero_Jy"><code class="docutils literal notranslate"><span class="pre">UncertainFilter.Vega_zero_Jy</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.UncertainFilter.Vega_zero_flux"><code class="docutils literal notranslate"><span class="pre">UncertainFilter.Vega_zero_flux</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.UncertainFilter.Vega_zero_mag"><code class="docutils literal notranslate"><span class="pre">UncertainFilter.Vega_zero_mag</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.UncertainFilter.Vega_zero_photons"><code class="docutils literal notranslate"><span class="pre">UncertainFilter.Vega_zero_photons</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.UncertainFilter.__init__"><code class="docutils literal notranslate"><span class="pre">UncertainFilter.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.UncertainFilter.apply_transmission"><code class="docutils literal notranslate"><span class="pre">UncertainFilter.apply_transmission()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.UncertainFilter.cl"><code class="docutils literal notranslate"><span class="pre">UncertainFilter.cl</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.UncertainFilter.from_ascii"><code class="docutils literal notranslate"><span class="pre">UncertainFilter.from_ascii()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.UncertainFilter.from_gp_model"><code class="docutils literal notranslate"><span class="pre">UncertainFilter.from_gp_model()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.UncertainFilter.fwhm"><code class="docutils literal notranslate"><span class="pre">UncertainFilter.fwhm</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.UncertainFilter.getFlux"><code class="docutils literal notranslate"><span class="pre">UncertainFilter.getFlux()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.UncertainFilter.get_Nphotons"><code class="docutils literal notranslate"><span class="pre">UncertainFilter.get_Nphotons()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.UncertainFilter.info"><code class="docutils literal notranslate"><span class="pre">UncertainFilter.info()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.UncertainFilter.leff"><code class="docutils literal notranslate"><span class="pre">UncertainFilter.leff</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.UncertainFilter.lmax"><code class="docutils literal notranslate"><span class="pre">UncertainFilter.lmax</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.UncertainFilter.lmin"><code class="docutils literal notranslate"><span class="pre">UncertainFilter.lmin</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.UncertainFilter.lphot"><code class="docutils literal notranslate"><span class="pre">UncertainFilter.lphot</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.UncertainFilter.lpivot"><code class="docutils literal notranslate"><span class="pre">UncertainFilter.lpivot</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.UncertainFilter.reinterp"><code class="docutils literal notranslate"><span class="pre">UncertainFilter.reinterp()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.UncertainFilter.set_dtype"><code class="docutils literal notranslate"><span class="pre">UncertainFilter.set_dtype()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.UncertainFilter.set_wavelength_unit"><code class="docutils literal notranslate"><span class="pre">UncertainFilter.set_wavelength_unit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.UncertainFilter.to_Table"><code class="docutils literal notranslate"><span class="pre">UncertainFilter.to_Table()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.UncertainFilter.transmit"><code class="docutils literal notranslate"><span class="pre">UncertainFilter.transmit</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.UncertainFilter.wavelength"><code class="docutils literal notranslate"><span class="pre">UncertainFilter.wavelength</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.UncertainFilter.wavelength_unit"><code class="docutils literal notranslate"><span class="pre">UncertainFilter.wavelength_unit</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.UncertainFilter.width"><code class="docutils literal notranslate"><span class="pre">UncertainFilter.width</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pyphot.html#pyphot.phot.get_library"><code class="docutils literal notranslate"><span class="pre">get_library()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyphot.html#pyphot.phot.set_method_default_units"><code class="docutils literal notranslate"><span class="pre">set_method_default_units</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.set_method_default_units.__init__"><code class="docutils literal notranslate"><span class="pre">set_method_default_units.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.phot.set_method_default_units.force_units"><code class="docutils literal notranslate"><span class="pre">set_method_default_units.force_units()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pyphot.html#module-pyphot.sandbox">pyphot.sandbox module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyphot.html#photometric-package-using-astropy-units">Photometric package using Astropy Units</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyphot.html#pyphot.sandbox.Constants"><code class="docutils literal notranslate"><span class="pre">Constants</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.Constants.c"><code class="docutils literal notranslate"><span class="pre">Constants.c</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.Constants.h"><code class="docutils literal notranslate"><span class="pre">Constants.h</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UncertainFilter"><code class="docutils literal notranslate"><span class="pre">UncertainFilter</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UncertainFilter.mean"><code class="docutils literal notranslate"><span class="pre">UncertainFilter.mean</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UncertainFilter.samples"><code class="docutils literal notranslate"><span class="pre">UncertainFilter.samples</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UncertainFilter.name"><code class="docutils literal notranslate"><span class="pre">UncertainFilter.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UncertainFilter.dtype"><code class="docutils literal notranslate"><span class="pre">UncertainFilter.dtype</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UncertainFilter.unit"><code class="docutils literal notranslate"><span class="pre">UncertainFilter.unit</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UncertainFilter.AB_zero_Jy"><code class="docutils literal notranslate"><span class="pre">UncertainFilter.AB_zero_Jy</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UncertainFilter.AB_zero_flux"><code class="docutils literal notranslate"><span class="pre">UncertainFilter.AB_zero_flux</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UncertainFilter.AB_zero_mag"><code class="docutils literal notranslate"><span class="pre">UncertainFilter.AB_zero_mag</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UncertainFilter.ST_zero_Jy"><code class="docutils literal notranslate"><span class="pre">UncertainFilter.ST_zero_Jy</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UncertainFilter.ST_zero_flux"><code class="docutils literal notranslate"><span class="pre">UncertainFilter.ST_zero_flux</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UncertainFilter.ST_zero_mag"><code class="docutils literal notranslate"><span class="pre">UncertainFilter.ST_zero_mag</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UncertainFilter.Vega_zero_Jy"><code class="docutils literal notranslate"><span class="pre">UncertainFilter.Vega_zero_Jy</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UncertainFilter.Vega_zero_flux"><code class="docutils literal notranslate"><span class="pre">UncertainFilter.Vega_zero_flux</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UncertainFilter.Vega_zero_mag"><code class="docutils literal notranslate"><span class="pre">UncertainFilter.Vega_zero_mag</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UncertainFilter.Vega_zero_photons"><code class="docutils literal notranslate"><span class="pre">UncertainFilter.Vega_zero_photons</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UncertainFilter.__init__"><code class="docutils literal notranslate"><span class="pre">UncertainFilter.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UncertainFilter.apply_transmission"><code class="docutils literal notranslate"><span class="pre">UncertainFilter.apply_transmission()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UncertainFilter.cl"><code class="docutils literal notranslate"><span class="pre">UncertainFilter.cl</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UncertainFilter.from_ascii"><code class="docutils literal notranslate"><span class="pre">UncertainFilter.from_ascii()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UncertainFilter.from_gp_model"><code class="docutils literal notranslate"><span class="pre">UncertainFilter.from_gp_model()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UncertainFilter.fwhm"><code class="docutils literal notranslate"><span class="pre">UncertainFilter.fwhm</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UncertainFilter.getFlux"><code class="docutils literal notranslate"><span class="pre">UncertainFilter.getFlux()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UncertainFilter.get_Nphotons"><code class="docutils literal notranslate"><span class="pre">UncertainFilter.get_Nphotons()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UncertainFilter.info"><code class="docutils literal notranslate"><span class="pre">UncertainFilter.info()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UncertainFilter.leff"><code class="docutils literal notranslate"><span class="pre">UncertainFilter.leff</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UncertainFilter.lmax"><code class="docutils literal notranslate"><span class="pre">UncertainFilter.lmax</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UncertainFilter.lmin"><code class="docutils literal notranslate"><span class="pre">UncertainFilter.lmin</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UncertainFilter.lphot"><code class="docutils literal notranslate"><span class="pre">UncertainFilter.lphot</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UncertainFilter.lpivot"><code class="docutils literal notranslate"><span class="pre">UncertainFilter.lpivot</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UncertainFilter.reinterp"><code class="docutils literal notranslate"><span class="pre">UncertainFilter.reinterp()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UncertainFilter.set_dtype"><code class="docutils literal notranslate"><span class="pre">UncertainFilter.set_dtype()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UncertainFilter.set_wavelength_unit"><code class="docutils literal notranslate"><span class="pre">UncertainFilter.set_wavelength_unit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UncertainFilter.to_Table"><code class="docutils literal notranslate"><span class="pre">UncertainFilter.to_Table()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UncertainFilter.transmit"><code class="docutils literal notranslate"><span class="pre">UncertainFilter.transmit</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UncertainFilter.wavelength"><code class="docutils literal notranslate"><span class="pre">UncertainFilter.wavelength</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UncertainFilter.wavelength_unit"><code class="docutils literal notranslate"><span class="pre">UncertainFilter.wavelength_unit</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UncertainFilter.width"><code class="docutils literal notranslate"><span class="pre">UncertainFilter.width</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UnitAscii_Library"><code class="docutils literal notranslate"><span class="pre">UnitAscii_Library</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UnitAscii_Library.__init__"><code class="docutils literal notranslate"><span class="pre">UnitAscii_Library.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UnitAscii_Library.add_filters"><code class="docutils literal notranslate"><span class="pre">UnitAscii_Library.add_filters()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UnitAscii_Library.get_library_content"><code class="docutils literal notranslate"><span class="pre">UnitAscii_Library.get_library_content()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UnitAscii_Library.load_all_filters"><code class="docutils literal notranslate"><span class="pre">UnitAscii_Library.load_all_filters()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UnitAscii_Library.load_filters"><code class="docutils literal notranslate"><span class="pre">UnitAscii_Library.load_filters()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UnitFilter"><code class="docutils literal notranslate"><span class="pre">UnitFilter</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UnitFilter.name"><code class="docutils literal notranslate"><span class="pre">UnitFilter.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UnitFilter.norm"><code class="docutils literal notranslate"><span class="pre">UnitFilter.norm</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UnitFilter.transmit"><code class="docutils literal notranslate"><span class="pre">UnitFilter.transmit</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UnitFilter.dtype"><code class="docutils literal notranslate"><span class="pre">UnitFilter.dtype</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UnitFilter.unit"><code class="docutils literal notranslate"><span class="pre">UnitFilter.unit</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UnitFilter.AB_zero_Jy"><code class="docutils literal notranslate"><span class="pre">UnitFilter.AB_zero_Jy</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UnitFilter.AB_zero_flux"><code class="docutils literal notranslate"><span class="pre">UnitFilter.AB_zero_flux</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UnitFilter.AB_zero_mag"><code class="docutils literal notranslate"><span class="pre">UnitFilter.AB_zero_mag</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UnitFilter.ST_zero_Jy"><code class="docutils literal notranslate"><span class="pre">UnitFilter.ST_zero_Jy</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UnitFilter.ST_zero_flux"><code class="docutils literal notranslate"><span class="pre">UnitFilter.ST_zero_flux</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UnitFilter.ST_zero_mag"><code class="docutils literal notranslate"><span class="pre">UnitFilter.ST_zero_mag</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UnitFilter.Vega_zero_Jy"><code class="docutils literal notranslate"><span class="pre">UnitFilter.Vega_zero_Jy</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UnitFilter.Vega_zero_flux"><code class="docutils literal notranslate"><span class="pre">UnitFilter.Vega_zero_flux</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UnitFilter.Vega_zero_mag"><code class="docutils literal notranslate"><span class="pre">UnitFilter.Vega_zero_mag</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UnitFilter.Vega_zero_photons"><code class="docutils literal notranslate"><span class="pre">UnitFilter.Vega_zero_photons</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UnitFilter.__init__"><code class="docutils literal notranslate"><span class="pre">UnitFilter.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UnitFilter.applyTo"><code class="docutils literal notranslate"><span class="pre">UnitFilter.applyTo()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UnitFilter.apply_transmission"><code class="docutils literal notranslate"><span class="pre">UnitFilter.apply_transmission()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UnitFilter.cl"><code class="docutils literal notranslate"><span class="pre">UnitFilter.cl</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UnitFilter.from_ascii"><code class="docutils literal notranslate"><span class="pre">UnitFilter.from_ascii()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UnitFilter.fwhm"><code class="docutils literal notranslate"><span class="pre">UnitFilter.fwhm</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UnitFilter.getFlux"><code class="docutils literal notranslate"><span class="pre">UnitFilter.getFlux()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UnitFilter.get_Nphotons"><code class="docutils literal notranslate"><span class="pre">UnitFilter.get_Nphotons()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UnitFilter.get_flux"><code class="docutils literal notranslate"><span class="pre">UnitFilter.get_flux()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UnitFilter.info"><code class="docutils literal notranslate"><span class="pre">UnitFilter.info()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UnitFilter.leff"><code class="docutils literal notranslate"><span class="pre">UnitFilter.leff</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UnitFilter.lmax"><code class="docutils literal notranslate"><span class="pre">UnitFilter.lmax</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UnitFilter.lmin"><code class="docutils literal notranslate"><span class="pre">UnitFilter.lmin</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UnitFilter.lphot"><code class="docutils literal notranslate"><span class="pre">UnitFilter.lphot</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UnitFilter.lpivot"><code class="docutils literal notranslate"><span class="pre">UnitFilter.lpivot</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UnitFilter.make_integration_filter"><code class="docutils literal notranslate"><span class="pre">UnitFilter.make_integration_filter()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UnitFilter.reinterp"><code class="docutils literal notranslate"><span class="pre">UnitFilter.reinterp()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UnitFilter.set_dtype"><code class="docutils literal notranslate"><span class="pre">UnitFilter.set_dtype()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UnitFilter.set_wavelength_unit"><code class="docutils literal notranslate"><span class="pre">UnitFilter.set_wavelength_unit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UnitFilter.to_Table"><code class="docutils literal notranslate"><span class="pre">UnitFilter.to_Table()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UnitFilter.to_dict"><code class="docutils literal notranslate"><span class="pre">UnitFilter.to_dict()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UnitFilter.wavelength"><code class="docutils literal notranslate"><span class="pre">UnitFilter.wavelength</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UnitFilter.width"><code class="docutils literal notranslate"><span class="pre">UnitFilter.width</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UnitFilter.write_to"><code class="docutils literal notranslate"><span class="pre">UnitFilter.write_to()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UnitHDF_Library"><code class="docutils literal notranslate"><span class="pre">UnitHDF_Library</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UnitHDF_Library.__init__"><code class="docutils literal notranslate"><span class="pre">UnitHDF_Library.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UnitHDF_Library.add_filter"><code class="docutils literal notranslate"><span class="pre">UnitHDF_Library.add_filter()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UnitHDF_Library.get_library_content"><code class="docutils literal notranslate"><span class="pre">UnitHDF_Library.get_library_content()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UnitHDF_Library.load_all_filters"><code class="docutils literal notranslate"><span class="pre">UnitHDF_Library.load_all_filters()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UnitHDF_Library.load_filters"><code class="docutils literal notranslate"><span class="pre">UnitHDF_Library.load_filters()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UnitLibrary"><code class="docutils literal notranslate"><span class="pre">UnitLibrary</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UnitLibrary.__init__"><code class="docutils literal notranslate"><span class="pre">UnitLibrary.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UnitLibrary.add_filter"><code class="docutils literal notranslate"><span class="pre">UnitLibrary.add_filter()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UnitLibrary.content"><code class="docutils literal notranslate"><span class="pre">UnitLibrary.content</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UnitLibrary.find"><code class="docutils literal notranslate"><span class="pre">UnitLibrary.find()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UnitLibrary.from_ascii"><code class="docutils literal notranslate"><span class="pre">UnitLibrary.from_ascii()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UnitLibrary.from_hd5"><code class="docutils literal notranslate"><span class="pre">UnitLibrary.from_hd5()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UnitLibrary.get_library_content"><code class="docutils literal notranslate"><span class="pre">UnitLibrary.get_library_content()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UnitLibrary.load_all_filters"><code class="docutils literal notranslate"><span class="pre">UnitLibrary.load_all_filters()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UnitLibrary.to_csv"><code class="docutils literal notranslate"><span class="pre">UnitLibrary.to_csv()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UnitLibrary.to_hdf"><code class="docutils literal notranslate"><span class="pre">UnitLibrary.to_hdf()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UnitLickIndex"><code class="docutils literal notranslate"><span class="pre">UnitLickIndex</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UnitLickIndex.get"><code class="docutils literal notranslate"><span class="pre">UnitLickIndex.get()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UnitLickLibrary"><code class="docutils literal notranslate"><span class="pre">UnitLickLibrary</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UnitLickLibrary.__init__"><code class="docutils literal notranslate"><span class="pre">UnitLickLibrary.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UnitLickLibrary.content"><code class="docutils literal notranslate"><span class="pre">UnitLickLibrary.content</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UnitLickLibrary.description"><code class="docutils literal notranslate"><span class="pre">UnitLickLibrary.description</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UnitLickLibrary.find"><code class="docutils literal notranslate"><span class="pre">UnitLickLibrary.find()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.UnitLickLibrary.get_library_content"><code class="docutils literal notranslate"><span class="pre">UnitLickLibrary.get_library_content()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pyphot.html#pyphot.sandbox.get_library"><code class="docutils literal notranslate"><span class="pre">get_library()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyphot.html#pyphot.sandbox.hasUnit"><code class="docutils literal notranslate"><span class="pre">hasUnit()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyphot.html#pyphot.sandbox.reduce_resolution"><code class="docutils literal notranslate"><span class="pre">reduce_resolution()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyphot.html#pyphot.sandbox.set_method_default_units"><code class="docutils literal notranslate"><span class="pre">set_method_default_units</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.set_method_default_units.__init__"><code class="docutils literal notranslate"><span class="pre">set_method_default_units.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sandbox.set_method_default_units.force_units"><code class="docutils literal notranslate"><span class="pre">set_method_default_units.force_units()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pyphot.html#module-pyphot.simpletable">pyphot.simpletable module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyphot.html#requirements">Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyphot.html#pyphot.simpletable.AstroHelpers"><code class="docutils literal notranslate"><span class="pre">AstroHelpers</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.simpletable.AstroHelpers.conesearch"><code class="docutils literal notranslate"><span class="pre">AstroHelpers.conesearch()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.simpletable.AstroHelpers.deg2dms"><code class="docutils literal notranslate"><span class="pre">AstroHelpers.deg2dms()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.simpletable.AstroHelpers.deg2hms"><code class="docutils literal notranslate"><span class="pre">AstroHelpers.deg2hms()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.simpletable.AstroHelpers.dms2deg"><code class="docutils literal notranslate"><span class="pre">AstroHelpers.dms2deg()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.simpletable.AstroHelpers.euler"><code class="docutils literal notranslate"><span class="pre">AstroHelpers.euler()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.simpletable.AstroHelpers.hms2deg"><code class="docutils literal notranslate"><span class="pre">AstroHelpers.hms2deg()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.simpletable.AstroHelpers.sphdist"><code class="docutils literal notranslate"><span class="pre">AstroHelpers.sphdist()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pyphot.html#pyphot.simpletable.AstroTable"><code class="docutils literal notranslate"><span class="pre">AstroTable</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.simpletable.AstroTable.__init__"><code class="docutils literal notranslate"><span class="pre">AstroTable.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.simpletable.AstroTable.coneSearch"><code class="docutils literal notranslate"><span class="pre">AstroTable.coneSearch()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.simpletable.AstroTable.get_DEC"><code class="docutils literal notranslate"><span class="pre">AstroTable.get_DEC()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.simpletable.AstroTable.get_RA"><code class="docutils literal notranslate"><span class="pre">AstroTable.get_RA()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.simpletable.AstroTable.info"><code class="docutils literal notranslate"><span class="pre">AstroTable.info()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.simpletable.AstroTable.selectWhere"><code class="docutils literal notranslate"><span class="pre">AstroTable.selectWhere()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.simpletable.AstroTable.set_DEC"><code class="docutils literal notranslate"><span class="pre">AstroTable.set_DEC()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.simpletable.AstroTable.set_RA"><code class="docutils literal notranslate"><span class="pre">AstroTable.set_RA()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.simpletable.AstroTable.where"><code class="docutils literal notranslate"><span class="pre">AstroTable.where()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.simpletable.AstroTable.zoneSearch"><code class="docutils literal notranslate"><span class="pre">AstroTable.zoneSearch()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pyphot.html#pyphot.simpletable.SimpleTable"><code class="docutils literal notranslate"><span class="pre">SimpleTable</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.simpletable.SimpleTable.fname"><code class="docutils literal notranslate"><span class="pre">SimpleTable.fname</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.simpletable.SimpleTable.caseless"><code class="docutils literal notranslate"><span class="pre">SimpleTable.caseless</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.simpletable.SimpleTable.aliases"><code class="docutils literal notranslate"><span class="pre">SimpleTable.aliases</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.simpletable.SimpleTable.units"><code class="docutils literal notranslate"><span class="pre">SimpleTable.units</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.simpletable.SimpleTable.desc"><code class="docutils literal notranslate"><span class="pre">SimpleTable.desc</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.simpletable.SimpleTable.header"><code class="docutils literal notranslate"><span class="pre">SimpleTable.header</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.simpletable.SimpleTable.__init__"><code class="docutils literal notranslate"><span class="pre">SimpleTable.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.simpletable.SimpleTable.addCol"><code class="docutils literal notranslate"><span class="pre">SimpleTable.addCol()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.simpletable.SimpleTable.addLine"><code class="docutils literal notranslate"><span class="pre">SimpleTable.addLine()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.simpletable.SimpleTable.add_column"><code class="docutils literal notranslate"><span class="pre">SimpleTable.add_column()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.simpletable.SimpleTable.append_row"><code class="docutils literal notranslate"><span class="pre">SimpleTable.append_row()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.simpletable.SimpleTable.colnames"><code class="docutils literal notranslate"><span class="pre">SimpleTable.colnames</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.simpletable.SimpleTable.compress"><code class="docutils literal notranslate"><span class="pre">SimpleTable.compress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.simpletable.SimpleTable.delCol"><code class="docutils literal notranslate"><span class="pre">SimpleTable.delCol()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.simpletable.SimpleTable.dtype"><code class="docutils literal notranslate"><span class="pre">SimpleTable.dtype</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.simpletable.SimpleTable.empty_row"><code class="docutils literal notranslate"><span class="pre">SimpleTable.empty_row</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.simpletable.SimpleTable.evalexpr"><code class="docutils literal notranslate"><span class="pre">SimpleTable.evalexpr()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.simpletable.SimpleTable.find_duplicate"><code class="docutils literal notranslate"><span class="pre">SimpleTable.find_duplicate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.simpletable.SimpleTable.get"><code class="docutils literal notranslate"><span class="pre">SimpleTable.get()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.simpletable.SimpleTable.groupby"><code class="docutils literal notranslate"><span class="pre">SimpleTable.groupby()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.simpletable.SimpleTable.info"><code class="docutils literal notranslate"><span class="pre">SimpleTable.info()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.simpletable.SimpleTable.items"><code class="docutils literal notranslate"><span class="pre">SimpleTable.items()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.simpletable.SimpleTable.iterkeys"><code class="docutils literal notranslate"><span class="pre">SimpleTable.iterkeys()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.simpletable.SimpleTable.itervalues"><code class="docutils literal notranslate"><span class="pre">SimpleTable.itervalues()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.simpletable.SimpleTable.join_by"><code class="docutils literal notranslate"><span class="pre">SimpleTable.join_by()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.simpletable.SimpleTable.keys"><code class="docutils literal notranslate"><span class="pre">SimpleTable.keys()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.simpletable.SimpleTable.match"><code class="docutils literal notranslate"><span class="pre">SimpleTable.match()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.simpletable.SimpleTable.name"><code class="docutils literal notranslate"><span class="pre">SimpleTable.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.simpletable.SimpleTable.nbytes"><code class="docutils literal notranslate"><span class="pre">SimpleTable.nbytes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.simpletable.SimpleTable.ncols"><code class="docutils literal notranslate"><span class="pre">SimpleTable.ncols</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.simpletable.SimpleTable.nrows"><code class="docutils literal notranslate"><span class="pre">SimpleTable.nrows</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.simpletable.SimpleTable.pop_columns"><code class="docutils literal notranslate"><span class="pre">SimpleTable.pop_columns()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.simpletable.SimpleTable.pprint"><code class="docutils literal notranslate"><span class="pre">SimpleTable.pprint()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.simpletable.SimpleTable.pprint_entry"><code class="docutils literal notranslate"><span class="pre">SimpleTable.pprint_entry()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.simpletable.SimpleTable.remove_column"><code class="docutils literal notranslate"><span class="pre">SimpleTable.remove_column()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.simpletable.SimpleTable.remove_columns"><code class="docutils literal notranslate"><span class="pre">SimpleTable.remove_columns()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.simpletable.SimpleTable.resolve_alias"><code class="docutils literal notranslate"><span class="pre">SimpleTable.resolve_alias()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.simpletable.SimpleTable.reverse_alias"><code class="docutils literal notranslate"><span class="pre">SimpleTable.reverse_alias()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.simpletable.SimpleTable.select"><code class="docutils literal notranslate"><span class="pre">SimpleTable.select()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.simpletable.SimpleTable.selectWhere"><code class="docutils literal notranslate"><span class="pre">SimpleTable.selectWhere()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.simpletable.SimpleTable.setComment"><code class="docutils literal notranslate"><span class="pre">SimpleTable.setComment()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.simpletable.SimpleTable.setUnit"><code class="docutils literal notranslate"><span class="pre">SimpleTable.setUnit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.simpletable.SimpleTable.set_alias"><code class="docutils literal notranslate"><span class="pre">SimpleTable.set_alias()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.simpletable.SimpleTable.set_comment"><code class="docutils literal notranslate"><span class="pre">SimpleTable.set_comment()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.simpletable.SimpleTable.set_unit"><code class="docutils literal notranslate"><span class="pre">SimpleTable.set_unit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.simpletable.SimpleTable.shape"><code class="docutils literal notranslate"><span class="pre">SimpleTable.shape</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.simpletable.SimpleTable.sort"><code class="docutils literal notranslate"><span class="pre">SimpleTable.sort()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.simpletable.SimpleTable.stack"><code class="docutils literal notranslate"><span class="pre">SimpleTable.stack()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.simpletable.SimpleTable.stats"><code class="docutils literal notranslate"><span class="pre">SimpleTable.stats()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.simpletable.SimpleTable.take"><code class="docutils literal notranslate"><span class="pre">SimpleTable.take()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.simpletable.SimpleTable.to_astropy_table"><code class="docutils literal notranslate"><span class="pre">SimpleTable.to_astropy_table()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.simpletable.SimpleTable.to_dask"><code class="docutils literal notranslate"><span class="pre">SimpleTable.to_dask()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.simpletable.SimpleTable.to_dict"><code class="docutils literal notranslate"><span class="pre">SimpleTable.to_dict()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.simpletable.SimpleTable.to_pandas"><code class="docutils literal notranslate"><span class="pre">SimpleTable.to_pandas()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.simpletable.SimpleTable.to_records"><code class="docutils literal notranslate"><span class="pre">SimpleTable.to_records()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.simpletable.SimpleTable.to_vaex"><code class="docutils literal notranslate"><span class="pre">SimpleTable.to_vaex()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.simpletable.SimpleTable.to_xarray"><code class="docutils literal notranslate"><span class="pre">SimpleTable.to_xarray()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.simpletable.SimpleTable.where"><code class="docutils literal notranslate"><span class="pre">SimpleTable.where()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.simpletable.SimpleTable.write"><code class="docutils literal notranslate"><span class="pre">SimpleTable.write()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pyphot.html#pyphot.simpletable.stats"><code class="docutils literal notranslate"><span class="pre">stats</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.simpletable.stats.has_nan"><code class="docutils literal notranslate"><span class="pre">stats.has_nan()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.simpletable.stats.max"><code class="docutils literal notranslate"><span class="pre">stats.max()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.simpletable.stats.mean"><code class="docutils literal notranslate"><span class="pre">stats.mean()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.simpletable.stats.min"><code class="docutils literal notranslate"><span class="pre">stats.min()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.simpletable.stats.p16"><code class="docutils literal notranslate"><span class="pre">stats.p16()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.simpletable.stats.p50"><code class="docutils literal notranslate"><span class="pre">stats.p50()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.simpletable.stats.p84"><code class="docutils literal notranslate"><span class="pre">stats.p84()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.simpletable.stats.std"><code class="docutils literal notranslate"><span class="pre">stats.std()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.simpletable.stats.var"><code class="docutils literal notranslate"><span class="pre">stats.var()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pyphot.html#module-pyphot.sun">pyphot.sun module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyphot.html#pyphot.sun.Sun"><code class="docutils literal notranslate"><span class="pre">Sun</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sun.Sun.source"><code class="docutils literal notranslate"><span class="pre">Sun.source</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sun.Sun.data"><code class="docutils literal notranslate"><span class="pre">Sun.data</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sun.Sun.units"><code class="docutils literal notranslate"><span class="pre">Sun.units</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sun.Sun.distance"><code class="docutils literal notranslate"><span class="pre">Sun.distance</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sun.Sun.flavor"><code class="docutils literal notranslate"><span class="pre">Sun.flavor</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sun.Sun.__init__"><code class="docutils literal notranslate"><span class="pre">Sun.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sun.Sun.flux"><code class="docutils literal notranslate"><span class="pre">Sun.flux</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.sun.Sun.wavelength"><code class="docutils literal notranslate"><span class="pre">Sun.wavelength</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pyphot.html#module-pyphot.svo">pyphot.svo module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyphot.html#pyphot.svo.get_pyphot_astropy_filter"><code class="docutils literal notranslate"><span class="pre">get_pyphot_astropy_filter()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyphot.html#pyphot.svo.get_pyphot_filter"><code class="docutils literal notranslate"><span class="pre">get_pyphot_filter()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pyphot.html#module-pyphot.vega">pyphot.vega module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyphot.html#pyphot.vega.Vega"><code class="docutils literal notranslate"><span class="pre">Vega</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.vega.Vega.source"><code class="docutils literal notranslate"><span class="pre">Vega.source</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.vega.Vega.data"><code class="docutils literal notranslate"><span class="pre">Vega.data</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.vega.Vega.units"><code class="docutils literal notranslate"><span class="pre">Vega.units</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.vega.Vega.__init__"><code class="docutils literal notranslate"><span class="pre">Vega.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.vega.Vega.flux"><code class="docutils literal notranslate"><span class="pre">Vega.flux</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.vega.Vega.getFlux"><code class="docutils literal notranslate"><span class="pre">Vega.getFlux()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.vega.Vega.getMag"><code class="docutils literal notranslate"><span class="pre">Vega.getMag()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.html#pyphot.vega.Vega.wavelength"><code class="docutils literal notranslate"><span class="pre">Vega.wavelength</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pyphot.html#pyphot.vega.from_Vegamag_to_Flux"><code class="docutils literal notranslate"><span class="pre">from_Vegamag_to_Flux()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyphot.html#pyphot.vega.from_Vegamag_to_Flux_SN_errors"><code class="docutils literal notranslate"><span class="pre">from_Vegamag_to_Flux_SN_errors()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pyphot.html#module-pyphot.version">pyphot.version module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyphot.html#module-pyphot">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="licks.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Extention to Lick indices</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="pyphot.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">pyphot package</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By M. Fouesneau
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2016, M. Fouesneau.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
