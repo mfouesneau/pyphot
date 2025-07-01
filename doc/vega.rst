@@ -22,7 +22,7 @@ Delta Scuti variables are commonly used as standard candles to establish
 distances because of their relatively flat spectral energy distribution across
 optical wavelengths and "stability" over decades make it an ideal
 reference for establishing magnitude zero-points across multiple filter systems
-(`Oke & Gunn 1983 < https://ui.adsabs.harvard.edu/abs/1983ApJ...266..713O>`_).
+(`Oke & Gunn 1983 <https://ui.adsabs.harvard.edu/abs/1983ApJ...266..713O>`_).
 
 However, the fact that Vega is actually a variable star with small but
 measurable brightness variations has led the astronomical community to adopt
@@ -59,14 +59,19 @@ Since version 1.7.0, Pyphot includes a set of Vega flavors one can use transpare
 * `alpha_stis_011` is a special model from Bohlin which is a composite flux of a special Kurucz 9550K model from 900-1152A (Kurucz 2003), IUE data from 1152-1675A, STIS CCD fluxes from 1675-10200A (Bohlin & Gilliland 2004a), and the 9550K model longward of 10200A. It differs significantly in the uv-optical range by accounting for the new TMAP AND TLUSTY WD NLTE models (`Bohlin, Hubeny, Rauch (2020) <https://ui.adsabs.harvard.edu/abs/2020AJ....160...21B>`_) but corresponds to `alpha_mod_004` above 1 micron.
 
 Impact of Vega Flavors on zeropoints provided by Pyphot:
+
 * Changes in temperature will introduce a wavelength dependent shift in the vega zero points.
 * Changes in logg, metallicity, turbulence will introduce non trivial variations in the vega zero points.
 
 By default, Pyphot uses the `alpha_stis_003` flavor as the Vega standard, which may be updated to `alpha_stis_011` in the future.
 
 
-TODO: Need to set a vega flavor keyword in the passband class (calculations call `with Vega() as v: ...`)
+TODO: 
+=====
 
+* Need to set a vega flavor keyword in the passband class (calculations call `with Vega() as v: ...`)
+* Add text/example on how to change the flavor of Vega used in the calculations.
+* make a plots that shows major differences and their scale: ~percent and below for minor updates, up to 10% in the UV for  `alpha_mod_004` vs `alpha_stis_011`.
 
 
 References
