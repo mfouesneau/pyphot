@@ -63,6 +63,16 @@ Impact of Vega Flavors on zeropoints provided by Pyphot:
 * Changes in temperature will introduce a wavelength dependent shift in the vega zero points.
 * Changes in logg, metallicity, turbulence will introduce non trivial variations in the vega zero points.
 
+.. code-block:: python
+
+    import pyphot
+    from pyphot import vega
+
+    vega_s011 = Vega(flavor="stis_011") 
+    vega_m004 = Vega(flavor="mod_004")
+    vega_default = Vega()  # uses the default flavor, which is stis_003
+
+
 .. note:: 
 
     By default, Pyphot uses the `alpha_stis_003` flavor as the Vega standard, which may be updated to `alpha_stis_011` in the future.
