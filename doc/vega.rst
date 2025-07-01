@@ -78,8 +78,8 @@ Impact of Vega Flavors on zeropoints provided by Pyphot:
     By default, Pyphot uses the `alpha_stis_003` flavor as the Vega standard, which may be updated to `alpha_stis_011` in the future.
 
 
-TODO: 
-=====
+TODO
+----
 
 * Need to set a vega flavor keyword in the passband class (calculations call `with Vega() as v: ...`)
 * Add text/example on how to change the flavor of Vega used in the calculations.
@@ -87,7 +87,7 @@ TODO:
 
 
 References
-~~~~~~~~~~
+----------
 
 .. custom ADS format: %l, %Y, %q, %V, %p, "%T", `%R <%u>`_
 
