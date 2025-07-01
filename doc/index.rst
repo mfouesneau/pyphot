@@ -200,10 +200,12 @@ Internal Vega reference
 
 As mentioned in the above, sometimes a spectrum of reference of Vega is necessary. 
 
-We use the synthetic spectrum provided by `Bohlin 2007 <https://ui.adsabs.harvard.edu/abs/2007ASPC..364..315B/abstract>`_, a common reference
+We use the synthetic spectrum `alpha_stis_003` provided by `Bohlin 2007 <https://ui.adsabs.harvard.edu/abs/2007ASPC..364..315B/abstract>`_, a common reference
 througout many photometric suites.
 
 The interface to the Vega template is given through the :class:`pyphot.vega.Vega` class.
+
+Additional flavors and description of the internal Vega reference can be found on the :doc:`vega` page.
 
 Internal Sun reference
 ~~~~~~~~~~~~~~~~~~~~~~~
