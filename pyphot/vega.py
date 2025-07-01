@@ -12,7 +12,7 @@ from functools import wraps
 
 import numpy
 
-from .config import libsdir
+from .config import libsdir, __vega_default_flavor__
 from .ezunits import unit
 from .simpletable import SimpleTable
 
@@ -24,6 +24,7 @@ _default_vega = {
     "mod_003": "{0}/alpha_lyr_mod_003.fits".format(libsdir),
     "mod_004": "{0}/alpha_lyr_mod_004.fits".format(libsdir),
     "stis_011": "{0}/alpha_lyr_stis_011.fits".format(libsdir),
+    "stis_003": "{0}/alpha_lyr_stis_003.fits".format(libsdir),
     "legacy": "{0}/vega.hd5".format(libsdir),
 }
 
@@ -57,13 +58,13 @@ class Vega(object):
         print vega_f, vega_mag, flamb
     """
 
-    def __init__(self, source=None, flavor="legacy"):
+    def __init__(self, source=None, flavor=__vega_default_flavor__):
         """Constructor"""
         self.data = None
         self.units = None
         self._set_source_flavor(source, flavor)
 
-    def _set_source_flavor(self, source=None, flavor="mod_003"):
+    def _set_source_flavor(self, source=None, flavor=__vega_default_flavor__):
         """Set the source and flavor of the Vega spectrum"""
         if source is not None:
             self.source = source

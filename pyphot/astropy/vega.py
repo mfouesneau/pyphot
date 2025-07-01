@@ -23,6 +23,7 @@ _default_vega = {
     "mod_003": "{0}/alpha_lyr_mod_003.fits".format(libsdir),
     "mod_004": "{0}/alpha_lyr_mod_004.fits".format(libsdir),
     "stis_011": "{0}/alpha_lyr_stis_011.fits".format(libsdir),
+    "stis_003": "{0}/alpha_lyr_stis_003.fits".format(libsdir),
     "legacy": "{0}/vega.hd5".format(libsdir),
 }
 

@@ -11,3 +11,6 @@ __ROOT__ = '/'.join(os.path.abspath(inspect.getfile(inspect.currentframe())).spl
 # libsdir = resource_filename('pyphot', 'libs')
 from importlib import resources
 libsdir = resources.files('pyphot').joinpath('libs')
+
+# Set default vega flavor
+__vega_default_flavor__ = 'stis_003'

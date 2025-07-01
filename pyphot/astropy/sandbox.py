@@ -19,29 +19,31 @@ This also include functions to keep libraries up to date
     comparison to the uncertainties induced by trapeze integration.
 """
 
-from __future__ import print_function, division
+from __future__ import division, print_function
+
 import os
 from functools import wraps
+
 import numpy as np
 import tables
 
 try:
     from scipy.integrate import trapezoid
 except ImportError:  # older scipy / numpy < 2.0
-    from scipy.integrate import trapz as trapezoid
+    from scipy.integrate import trapz as trapezoid  # type: ignore
 
 from ..simpletable import SimpleTable
+from .config import __vega_default_flavor__, libsdir
 from .vega import Vega
-from .config import libsdir
 
 # from .licks import LickIndex, LickLibrary
 
 # directories
-__default__ = libsdir.joinpath('new_filters.hd5')
+__default__ = libsdir.joinpath("new_filters.hd5")
 __default_lick__ = libsdir.joinpath("licks.dat")
 
-from astropy.units import Unit
 from astropy import constants
+from astropy.units import Unit
 
 
 class Constants(object):
@@ -145,7 +147,15 @@ class UnitFilter(object):
         wavelength units
     """
 
-    def __init__(self, wavelength, transmit, name="", dtype="photon", unit=None):
+    def __init__(
+        self,
+        wavelength,
+        transmit,
+        name="",
+        dtype="photon",
+        unit=None,
+        vega=__vega_default_flavor__,
+    ):
         """Constructor"""
         self.name = name
         self.set_dtype(dtype)
@@ -155,6 +165,7 @@ class UnitFilter(object):
         except AttributeError:
             self._wavelength = wavelength
         self.set_wavelength_unit(unit)
+        self._vega_flavor = vega
 
         # make sure input data are ordered and cleaned of weird values.
         idx = np.argsort(self._wavelength)
@@ -308,7 +319,7 @@ class UnitFilter(object):
         """Unitwise Effective wavelength
         leff = int (lamb * T * Vega dlamb) / int(T * Vega dlamb)
         """
-        with Vega() as v:
+        with Vega(flavor=self._vega_flavor) as v:
             s = self.reinterp(v.wavelength)
             w = s._wavelength
             if s.transmit.max() > 0:
@@ -330,7 +341,7 @@ class UnitFilter(object):
         _sflux = _drop_units(sflux)
         _slamb = _drop_units(slamb)
 
-        if True in np.isinf(sflux):
+        if np.isinf(_sflux).any():
             indinf = np.where(np.isinf(_sflux))
             indfin = np.where(np.isfinite(_sflux))
             _sflux[indinf] = np.interp(
@@ -366,7 +377,7 @@ class UnitFilter(object):
         if self.wavelength_unit is None:
             raise AttributeError("Needs wavelength units")
 
-        with Vega() as v:
+        with Vega(flavor=self._vega_flavor) as v:
             wave = v.wavelength.value
             # Cheating units to avoid making a new filter
             f_vega = self.get_flux(v.wavelength, v.flux, axis=-1)
@@ -428,7 +439,7 @@ class UnitFilter(object):
 
             see `self.get_Nphotons`
         """
-        with Vega() as v:
+        with Vega(flavor=self._vega_flavor) as v:
             return self.get_Nphotons(v.wavelength, v.flux)
 
     @set_method_default_units("AA", "flam", output_unit="erg*s**-1*cm**-2*AA**-1")
@@ -700,7 +711,7 @@ class UnitFilter(object):
     @property
     def Vega_zero_flux(self):
         """Vega flux zero point in erg/s/cm2/AA"""
-        with Vega() as v:
+        with Vega(flavor=self._vega_flavor) as v:
             f_vega = self.get_flux(v.wavelength, v.flux, axis=-1)
         return f_vega
 
@@ -1215,7 +1226,7 @@ class UnitLibrary(object):
 
     def to_csv(self, directory="./", progress=True, **kwargs):
         """Export each filter into a csv file with its own name
-        
+
         Parameters
         ----------
         directory: str
