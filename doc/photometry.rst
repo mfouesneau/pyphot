@@ -99,6 +99,9 @@ vega, :math:`-2.5 \log_{10} \overline{f_\lambda}(Vega)`, or
         # or similarly
         mags = -2.5 * np.log10(fluxes / f.Vega_zero_flux)
 
+
+We use the synthetic spectrum `alpha_stis_003` provided by `Bohlin 2007 <https://ui.adsabs.harvard.edu/abs/2007ASPC..364..315B/abstract>`_, a common reference
+througout many photometric suites. Additional flavors and description of the internal Vega reference can be found on the :doc:`vega` page.
        
 
 Johnson system

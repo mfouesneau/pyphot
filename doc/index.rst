@@ -93,6 +93,7 @@ Contents
    photometry
    libcontent
    licks
+   vega
    modules
 
 
