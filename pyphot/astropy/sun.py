@@ -1,9 +1,13 @@
 """Handle the Sun Spectrum"""
 
 from __future__ import print_function
-from .config import libsdir
-from ..simpletable import SimpleTable
+
+import warnings
+
 from astropy.units import Unit
+
+from ..simpletable import SimpleTable
+from .config import libsdir
 
 try:
     from astropy.io import fits as pyfits
@@ -11,7 +15,7 @@ except ImportError:
     import pyfits  # noqa
 
 
-__all__ = ['Sun']
+__all__ = ["Sun"]
 
 _default_sun = {
     "observed": "{0}/sun_reference_stis_001.fits".format(libsdir),
@@ -82,7 +86,9 @@ class Sun(object):
             return
         fname = self.source
         # get extension
-        self.data = SimpleTable(fname, silent=True)
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore")
+            self.data = SimpleTable(fname, silent=True)
         try:
             self.data.header["WAVELENGTH_UNIT"] = self.data._units["WAVELENGTH"]
             self.data.header["FLUX_UNIT"] = self.data._units["FLUX"]
