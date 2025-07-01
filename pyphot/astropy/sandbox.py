@@ -1365,7 +1365,7 @@ class UnitAscii_Library(UnitLibrary):
             os.path.isdir(self.source)
             lst = glob(self.source + "/*")
         except TypeError:
-            lst = self.source
+            lst = [self.source]
         dircheck = True
         while dircheck is True:
             dircheck = False
