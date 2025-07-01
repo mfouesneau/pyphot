@@ -1,9 +1,12 @@
 """Handle the Sun Spectrum"""
 
 from __future__ import print_function
+
+import warnings
+
 from .config import libsdir
-from .simpletable import SimpleTable
 from .ezunits import unit
+from .simpletable import SimpleTable
 
 try:
     from astropy.io import fits as pyfits
@@ -81,7 +84,9 @@ class Sun(object):
             return
         fname = self.source
         # get extension
-        self.data = SimpleTable(fname, silent=True)
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore")
+            self.data = SimpleTable(fname, silent=True)
         try:
             self.data.header["WAVELENGTH_UNIT"] = self.data._units["WAVELENGTH"]
             self.data.header["FLUX_UNIT"] = self.data._units["FLUX"]
