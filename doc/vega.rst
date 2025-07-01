@@ -81,8 +81,6 @@ Impact of Vega Flavors on zeropoints provided by Pyphot:
 TODO
 ----
 
-* Need to set a vega flavor keyword in the passband class (calculations call `with Vega() as v: ...`)
-* Add text/example on how to change the flavor of Vega used in the calculations.
 * make a plots that shows major differences and their scale: ~percent and below for minor updates, up to 10% in the UV for  `alpha_mod_004` vs `alpha_stis_011`.
 
 
