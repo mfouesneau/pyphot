@@ -201,12 +201,39 @@ Internal Vega reference
 
 As mentioned in the above, sometimes a spectrum of reference of Vega is necessary. 
 
-We use the synthetic spectrum `alpha_stis_003` provided by `Bohlin 2007 <https://ui.adsabs.harvard.edu/abs/2007ASPC..364..315B/abstract>`_, a common reference
+By default, we use the synthetic spectrum `alpha_lyr_stis_003` provided by `Bohlin 2007 <https://ui.adsabs.harvard.edu/abs/2007ASPC..364..315B/abstract>`_, a common reference
 througout many photometric suites.
 
 The interface to the Vega template is given through the :class:`pyphot.vega.Vega` class.
 
 Additional flavors and description of the internal Vega reference can be found on the :doc:`vega` page.
+
+To use a specific Vega flavor for the photometric calculations in Pyphot, you can set the `vega` keyword parameter  when creating a passband or use the `set_vega_flavor` method to update it. 
+For example, to use the `alpha_lyr_stis_011` flavor when creating a passband filter, you can do the following:
+
+.. code-block:: python
+
+    from pyphot.astropy import UnitFilter, Unit as u
+
+    # Create a passband using the Vega flavor
+    pb = UnitFilter(
+        [4000, 5000, 6000] * u.AA,
+        [0.1, 0.8, 0.1],
+        name="Example Passband",
+        dtype="photon"
+        vega="stis_011"  # Specify the Vega flavor,
+    )
+
+Or alternatively, you can set/reset the Vega flavor after:
+
+.. code-block:: python
+
+    from pyphot import svo
+
+    pb = svo.get_pyphot_filter("GALEX/GALEX.FUV")
+    # Set the Vega flavor to use
+    pb.set_vega_flavor("stis_011")
+
 
 Internal Sun reference
 ~~~~~~~~~~~~~~~~~~~~~~~

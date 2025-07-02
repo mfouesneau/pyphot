@@ -44,30 +44,40 @@ the AB magnitude system providing an alternative that maintains compatibility
 while addressing some of Vega's limitations (`Fukugita et al. 1996
 <https://ui.adsabs.harvard.edu/abs/1996AJ....111.1748F>`_).
 
-Vega Flavors in Pyphot
-----------------------
+Vega Flavors
+------------
+
 
 .. important::
+
+    Since version 1.6.1, Pyphot includes a set of Vega flavors one can use transparently as photometric standards.
+    
+    * Pyphot provides `alpha_stis_003` (aliased to `legacy`) as the default Vega flavor (and only one before version 1.6.1). This flavor is also the reference for the values provided in the documentation.
+    * (since version 1.6.1) Pyphot provides also `alpha_lyr_mod_003`, `alpha_lyr_mod_004`, and `alpha_stis_011` as alternative Vega flavors.
+    * in a future release, Pyphot will switch the default Vega flavor to `alpha_stis_011` which is a more recent model that incorporates updated NLTE models and provides a more accurate representation of Vega's spectral energy distribution, particularly in the ultraviolet and optical ranges.
 
     Impact of Vega Flavors on zeropoints provided by Pyphot:
 
     * Changes in temperature will introduce a wavelength dependent shift in the vega zero points.
     * Changes in logg, metallicity, turbulence will introduce non trivial variations in the vega zero points.
 
-Since version 1.7.0, Pyphot includes a set of Vega flavors one can use transparently as photometric standards. We summarize the available flavors below:
+
+
+`CALSPEC
+<https://www.stsci.edu/hst/instrumentation/reference-data-for-calibration-and-tools/astronomical-catalogs/calspec>`_
+provides a collection of composite stellar spectra that are flux standards for
+the calibration of systems such as HST. In particular, it compiles many flavors
+of Vega of which we summarize the most relevant ones below: 
 
 * `alpha_lyr_004` from `Bohlin, Colina, & Finley (1995) <https://ui.adsabs.harvard.edu/abs/1995AJ....110.1316B>`_. It corrsponds to pure hydrogen white dwarf models are the absolute flux standards.
 * `alpha_lyr_005` from Colina, Bohlin & Castelli (1996), Instrument Science Report (`OSG-CAL-96-01 <https://www.stsci.edu/instruments/observatory/PDF/scs8.rev.pdf>`_). It corresponds to the combination of ultraviolet covered by average IUE spectrum; Optical up to 1.05 microns covered by Hayes (1985) average spectrum (IAU Symp 111, p 225); near-infrared covered by ATLAS12 based model computed by Dr. Castelli, rebinned to 25A, and normalized to Hayes (1985) Johnson V flux. V filter as in Buser & Kurucz 1979, AA 70, 555. (All wavelengths are vacuum.)
-* `alpha_stis_003` (legacy) from `Bohlin (2007) <https://ui.adsabs.harvard.edu/abs/2007ASPC..364..315B>`_ a special model from Kurucz 9400K Vega spectrum T/g=9400/3.9 [M/H]=-0.5 fit against STIS data with microturbulence of 0. km/s, and where V = 0.023 mag.
-* `alpha_mod_001` from `Bohlin (2014) <https://ui.adsabs.harvard.edu/abs/2014AJ....147..127B>`_ Special Model from Kurucz 9400K Vega spectrum T/g=9400/3.9 [M/H]=-0.5 at R=500 which reconciles visible and IR absolute flux, and where Vega Flux(5556A)=3.44e-9
-* `alpha_mod_002` is identical to `alpha_mod_001` but normalized to STIS flux at 5545-5570A, corresponding to a scaled flux by $0.994242$.
-* `alpha_mod_003` is a different temperature, logg using Kurucz 9550K Vega spectrum T/g=9550/3.95 [M/H]=-0.5 at R=500 and normalized to Flux(5556A) = 3.44e-9 (over 5545-5570A).
-* `alpha_mod_004` from `Bohlin, Hubeny, Rauch (2020) <https://ui.adsabs.harvard.edu/abs/2020AJ....160...21B>`_ is similar to `alpha_mod_003` but with a Flux(5556A)=3.47e-9. In the details, it also includes additional lines.
-* `alpha_stis_011` is a special model from Bohlin which is a composite flux of a special Kurucz 9550K model from 900-1152A (Kurucz 2003), IUE data from 1152-1675A, STIS CCD fluxes from 1675-10200A (Bohlin & Gilliland 2004a), and the 9550K model longward of 10200A. It differs significantly in the uv-optical range by accounting for the new TMAP AND TLUSTY WD NLTE models (`Bohlin, Hubeny, Rauch (2020) <https://ui.adsabs.harvard.edu/abs/2020AJ....160...21B>`_) but corresponds to `alpha_mod_004` above 1 micron.
+* `alpha_lyr_stis_003` (legacy) from `Bohlin (2007) <https://ui.adsabs.harvard.edu/abs/2007ASPC..364..315B>`_ a special model from Kurucz 9400K Vega spectrum T/g=9400/3.9 [M/H]=-0.5 fit against STIS data with microturbulence of 0. km/s, and where V = 0.023 mag.
+* `alpha_lyr_mod_001` from `Bohlin (2014) <https://ui.adsabs.harvard.edu/abs/2014AJ....147..127B>`_ Special Model from Kurucz 9400K Vega spectrum T/g=9400/3.9 [M/H]=-0.5 at R=500 which reconciles visible and IR absolute flux, and where Vega Flux(5556A)=3.44e-9
+* `alpha_lyr_mod_002` is identical to `alpha_mod_001` but normalized to STIS flux at 5545-5570A, corresponding to a scaled flux by $0.994242$.
+* `alpha_lyr_mod_003` is a different temperature, logg using Kurucz 9550K Vega spectrum T/g=9550/3.95 [M/H]=-0.5 at R=500 and normalized to Flux(5556A) = 3.44e-9 (over 5545-5570A).
+* `alpha_lyr_mod_004` from `Bohlin, Hubeny, Rauch (2020) <https://ui.adsabs.harvard.edu/abs/2020AJ....160...21B>`_ is similar to `alpha_mod_003` but with a Flux(5556A)=3.47e-9. In the details, it also includes additional lines.
+* `alpha_lyr_stis_011` is a special model from Bohlin which is a composite flux of a special Kurucz 9550K model from 900-1152A (Kurucz 2003), IUE data from 1152-1675A, STIS CCD fluxes from 1675-10200A (Bohlin & Gilliland 2004a), and the 9550K model longward of 10200A. It differs significantly in the uv-optical range by accounting for the new TMAP AND TLUSTY WD NLTE models (`Bohlin, Hubeny, Rauch (2020) <https://ui.adsabs.harvard.edu/abs/2020AJ....160...21B>`_) but corresponds to `alpha_mod_004` above 1 micron.
 
-.. note:: 
-
-    By default, Pyphot uses the `alpha_stis_003` flavor as the Vega standard, which may be updated to `alpha_stis_011` in the future.
 
 The figure below shows the differences between the various Vega flavors
 available in Pyphot. The top panel shows the absolute fluxes, while the bottom
@@ -196,6 +206,35 @@ distribution, particularly in the ultraviolet and optical ranges.
 .. note::
 
     We note that `alpha_stis_011` seems to be corrupt around 1200 Å which has no impact of currently existing passbands.
+
+Example Vega Flavors Usage
+----------------------------
+
+To use a specific Vega flavor for the photometric calculations in Pyphot, you can set the `vega` keyword parameter  when creating a passband or use the `set_vega_flavor` method to update it. 
+For example, to use the `alpha_stis_011` flavor when creating a passband filter, you can do the following:
+
+.. code-block:: python
+
+    from pyphot.astropy import UnitFilter, Unit as u
+
+    # Create a passband using the Vega flavor
+    pb = UnitFilter(
+        [4000, 5000, 6000] * u.AA,
+        [0.1, 0.8, 0.1],
+        name="Example Passband",
+        dtype="photon"
+        vega="stis_011"  # Specify the Vega flavor,
+    )
+
+Or alternatively, you can set/reset the Vega flavor after:
+
+.. code-block:: python
+
+    from pyphot import svo
+
+    pb = svo.get_pyphot_filter("GALEX/GALEX.FUV")
+    # Set the Vega flavor to use
+    pb.set_vega_flavor("stis_011")
 
 
 
