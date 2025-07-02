@@ -38,10 +38,11 @@ extensions = [
     "sphinx_tabs.tabs",
     "sphinx.ext.napoleon",
     "sphinx.ext.viewcode", 
-    'sphinx.ext.todo',
+    "sphinx.ext.todo",
     "matplotlib.sphinxext.plot_directive",
     "sphinx_copybutton",
-    'sphinx_mdinclude',
+    "sphinx_mdinclude",
+    "sphinx_design",
     "myst_nb",
 ]
 numpydoc_show_class_members = False

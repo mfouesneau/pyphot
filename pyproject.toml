@@ -63,6 +63,7 @@ docs = [
   "sphinxcontrib-serializinghtml>=2.0.0",
   "sphinx-tabs>=3.0",
   "myst-nb>=0.16.0",
+  "sphinx-design>=0.6",
   # for syntax highlighting (https://nbsphinx.readthedocs.io/en/0.8.0/installation.html#Pygments-Lexer-for-Syntax-Highlighting)
   "IPython>=8.0",
   "matplotlib",

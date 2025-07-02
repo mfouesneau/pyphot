@@ -47,6 +47,13 @@ while addressing some of Vega's limitations (`Fukugita et al. 1996
 Vega Flavors in Pyphot
 ----------------------
 
+.. important::
+
+    Impact of Vega Flavors on zeropoints provided by Pyphot:
+
+    * Changes in temperature will introduce a wavelength dependent shift in the vega zero points.
+    * Changes in logg, metallicity, turbulence will introduce non trivial variations in the vega zero points.
+
 Since version 1.7.0, Pyphot includes a set of Vega flavors one can use transparently as photometric standards. We summarize the available flavors below:
 
 * `alpha_lyr_004` from `Bohlin, Colina, & Finley (1995) <https://ui.adsabs.harvard.edu/abs/1995AJ....110.1316B>`_. It corrsponds to pure hydrogen white dwarf models are the absolute flux standards.
@@ -58,30 +65,138 @@ Since version 1.7.0, Pyphot includes a set of Vega flavors one can use transpare
 * `alpha_mod_004` from `Bohlin, Hubeny, Rauch (2020) <https://ui.adsabs.harvard.edu/abs/2020AJ....160...21B>`_ is similar to `alpha_mod_003` but with a Flux(5556A)=3.47e-9. In the details, it also includes additional lines.
 * `alpha_stis_011` is a special model from Bohlin which is a composite flux of a special Kurucz 9550K model from 900-1152A (Kurucz 2003), IUE data from 1152-1675A, STIS CCD fluxes from 1675-10200A (Bohlin & Gilliland 2004a), and the 9550K model longward of 10200A. It differs significantly in the uv-optical range by accounting for the new TMAP AND TLUSTY WD NLTE models (`Bohlin, Hubeny, Rauch (2020) <https://ui.adsabs.harvard.edu/abs/2020AJ....160...21B>`_) but corresponds to `alpha_mod_004` above 1 micron.
 
-Impact of Vega Flavors on zeropoints provided by Pyphot:
-
-* Changes in temperature will introduce a wavelength dependent shift in the vega zero points.
-* Changes in logg, metallicity, turbulence will introduce non trivial variations in the vega zero points.
-
-.. code-block:: python
-
-    import pyphot
-    from pyphot import vega
-
-    vega_s011 = Vega(flavor="stis_011") 
-    vega_m004 = Vega(flavor="mod_004")
-    vega_default = Vega()  # uses the default flavor, which is stis_003
-
-
 .. note:: 
 
     By default, Pyphot uses the `alpha_stis_003` flavor as the Vega standard, which may be updated to `alpha_stis_011` in the future.
 
+The figure below shows the differences between the various Vega flavors
+available in Pyphot. The top panel shows the absolute fluxes, while the bottom
+panel shows the relative differences with respect to the `alpha_stis_003` (the
+legacy Pyphot reference flavor).  flavor.
 
-TODO
-----
+.. figure:: vega_flavors_comparison.png
+   :align: center
+   :scale: 70 %
 
-* make a plots that shows major differences and their scale: ~percent and below for minor updates, up to 10% in the UV for  `alpha_mod_004` vs `alpha_stis_011`.
+   **Figure:**  Variations of Vega Flavors relative to Pyphot legacy reference flavor (`alpha_stis_003`).
+   The differences between the various flavors could be significant, particularly in the ultraviolet. These result from stellar template parameter changes (e.g. temperature), the reference atmospheres (e.g. LTE, NLTE) and specific calibration details.
+
+.. dropdown:: Figure source code 
+
+    .. code-block:: python
+
+        import numpy as np
+        import matplotlib.pyplot as plt
+        from pyphot import Vega
+        
+        def plot_vega_comparison(which):
+            _, axes = plt.subplots(2, 1, figsize=(12, 6), sharex=True)
+
+            # Use the first as reference
+            with Vega(flavor=which[0]) as vega:
+                vega_reference = vega
+
+            # Plot each flavor and the relative difference to the reference
+            for flavor in which:
+                with Vega(flavor=flavor) as vega:
+                    axes[0].loglog(
+                        vega.wavelength.magnitude, vega.flux.magnitude, label=flavor, lw=0.5
+                    )  # type: ignore
+                    fref = np.interp(
+                        vega.wavelength.magnitude,
+                        vega_reference.wavelength.magnitude,
+                        vega_reference.flux.magnitude,
+                    )  # type: ignore
+                    axes[1].plot(
+                        vega.wavelength.magnitude,
+                        (vega.flux.magnitude - fref) / fref,
+                        label=flavor,
+                        lw=0.5,
+                    )  # type: ignore
+
+            # polish
+            axes[1].set_ylim(-0.20, 0.20)
+            axes[0].set_ylim(1e-14, 3e-8)
+            axes[0].set_ylabel(r"Flux $(erg/s/cm^2/Å)$")
+            axes[1].set_ylabel(r"$(f - f_0) / f_0$")
+            axes[1].text(
+                0.95,
+                0.05,
+                f"Relative to {which[0]}",
+                transform=axes[1].transAxes,
+                ha="right",
+                va="bottom",
+            )
+            axes[1].set_xlabel("Wavelength (Å)")
+            axes[0].set_xlim(700, 50_000)
+            lg = axes[0].legend(loc="best", fontsize="small", frameon=False)
+            plt.setp(lg.get_lines(), lw=2);
+
+        which = ["stis_003", "mod_002", "mod_003", "mod_004", "stis_011"]
+        plot_vega_comparison(which)
+        plt.suptitle("Variations of Vega Flavors relative to Pyphot nominal", fontsize="large")
+
+
+The following figure compares the `alpha_stis_003` and `alpha_stis_011` flavors,
+which are the two most commonly used Vega flavors in Pyphot. The
+`alpha_stis_011` flavor is a more recent model that incorporates updated NLTE
+models and provides a more accurate representation of Vega's spectral energy
+distribution, particularly in the ultraviolet and optical ranges.
+
+
+.. figure:: vega_stis_flavors_comparison.png
+   :alt: Vega stis flavors comparison
+   :align: center
+   :scale: 70 %
+
+   **Figure:** Variations of Vega STIS Flavors. The variations are of the order of 5% in the optical, primarily induced by the update in temperature.
+
+.. dropdown:: Figure source code 
+
+    .. code-block:: python
+
+        from pyphot import svo
+
+        # filters to add for reference
+        pbs = [
+            svo.get_pyphot_filter(name)
+            for name in [
+                "GALEX/GALEX.FUV", "GALEX/GALEX.NUV",
+                "Generic/Johnson.U", "Generic/Johnson.B", "Generic/Johnson.V", "Generic/Johnson.R", "Generic/Johnson.I",
+                "Generic/Bessell_JHKLM.J", "Generic/Bessell_JHKLM.H", "Generic/Bessell_JHKLM.K",
+                "WISE/WISE.W1", "WISE/WISE.W2",
+            ]
+        ]
+
+        which = ["stis_003", "stis_011"]
+        plot_vega_comparison(which)
+        plt.suptitle(
+            "Variations of Vega stis flavors relative to Pyphot nominal", fontsize="large"
+        )
+        axes = plt.gcf().get_axes()
+
+        # add passbands
+        ax1 = plt.twinx(axes[0])
+        for p in pbs:
+            ax1.plot(
+                p.wavelength.to("AA").magnitude,
+                p.transmit / p.transmit.max(),
+                label=p.name, lw=0.5, color="0.5",
+            )
+            ax1.text(
+                p.cl.to("AA").magnitude,
+                0.1,
+                p.name.split(".")[-1],
+                ha="center", va="bottom", fontsize="small", color="0.5",
+            )
+
+        ax1.set_ylim(0, 2.0)
+        plt.setp([ax1.get_yticklabels(), ax1.get_yticklines()], visible=False)
+
+.. note::
+
+    We note that `alpha_stis_011` seems to be corrupt around 1200 Å which has no impact of currently existing passbands.
+
 
 
 References
@@ -89,14 +204,14 @@ References
 
 .. custom ADS format: %l, %Y, %q, %V, %p, "%T", `%R <%u>`_
 
+* Bohlin, R. C., Colina, L., & Finley, D. S., 1995, AJ, 110, 1316, "White Dwarf Standard Stars: G191-B2B, GD 71, GD 153, HZ 43", `1995AJ....110.1316B <https://ui.adsabs.harvard.edu/abs/1995AJ....110.1316B>`_
+* Bohlin, R. C., 2007, ASPC, 364, 315, "HST Stellar Standards with 1% Accuracy in Absolute Flux", `2007ASPC..364..315B <https://ui.adsabs.harvard.edu/abs/2007ASPC..364..315B>`_
+* Bohlin, R. C., 2014, AJ, 147, 127, "Hubble Space Telescope CALSPEC Flux Standards: Sirius (and Vega)", `2014AJ....147..127B <https://ui.adsabs.harvard.edu/abs/2014AJ....147..127B>`_
 * Bohlin, R. C., Gordon, K. D., & Tremblay, P.-E., 2014, PASP, 126, 711, "Techniques and Review of Absolute Flux Calibration from the Ultraviolet to the Mid-Infrared", `2014PASP..126..711B <https://ui.adsabs.harvard.edu/abs/2014PASP..126..711B>`_
+* Bohlin, R. C., Hubeny, I., & Rauch, T., 2020, AJ, 160, 21, "New Grids of Pure-hydrogen White Dwarf NLTE Model Atmospheres and the HST/STIS Flux Calibration", `2020AJ....160...21B <https://ui.adsabs.harvard.edu/abs/2020AJ....160...21B>`_
 * Colina, Bohlin & Castelli 1996, Instrument Science Report, "Absolute Flux Calibrated Spectrum of Vega" `OSG-CAL-96-01 <https://www.stsci.edu/instruments/observatory/PDF/scs8.rev.pdf>`_
 * Fukugita, M., Ichikawa, T., Gunn, J. E., Doi, M., Shimasaku, K., & Schneider, D. P., 1996, AJ, 111, 1748, "The Sloan Digital Sky Survey Photometric System", `1996AJ....111.1748F <https://ui.adsabs.harvard.edu/abs/1996AJ....111.1748F>`_
 * Johnson, H. L. \& Morgan, W. W. 1953, ApJ, 117, 313, "Fundamental stellar photometry for standards of spectral type on the Revised System of the Yerkes Spectral Atlas." `1953ApJ...117..313J <https://ui.adsabs.harvard.edu/abs/1953ApJ...117..313J>`_; 
 * Oke, J. B. and Gunn, J. E., 1983, ApJ, 266, 713, "Secondary standard stars for absolute spectrophotometry.”  `1983ApJ...266..713O <https://ui.adsabs.harvard.edu/abs/1983ApJ...266..713O>`_;
-* Bohlin, R. C., Colina, L., & Finley, D. S., 1995, AJ, 110, 1316, "White Dwarf Standard Stars: G191-B2B, GD 71, GD 153, HZ 43", `1995AJ....110.1316B <https://ui.adsabs.harvard.edu/abs/1995AJ....110.1316B>`_
-* Bohlin, R. C., 2007, ASPC, 364, 315, "HST Stellar Standards with 1% Accuracy in Absolute Flux", `2007ASPC..364..315B <https://ui.adsabs.harvard.edu/abs/2007ASPC..364..315B>`_
-* Bohlin, R. C., 2014, AJ, 147, 127, "Hubble Space Telescope CALSPEC Flux Standards: Sirius (and Vega)", `2014AJ....147..127B <https://ui.adsabs.harvard.edu/abs/2014AJ....147..127B>`_
-* Bohlin, R. C., Hubeny, I., & Rauch, T., 2020, AJ, 160, 21, "New Grids of Pure-hydrogen White Dwarf NLTE Model Atmospheres and the HST/STIS Flux Calibration", `2020AJ....160...21B <https://ui.adsabs.harvard.edu/abs/2020AJ....160...21B>`_
 
 
