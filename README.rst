@@ -13,6 +13,8 @@ pyphot -- A tool for computing photometry from spectra
 .. image:: https://static.pepy.tech/badge/pyphot/month
    :target: https://pepy.tech/project/pyphot
 
+.. image:: https://img.shields.io/badge/python-3.9,_3.10,_3.11,_3.12,_3.13-blue.svg
+
 This is a set of tools to compute synthetic photometry in a simple way, ideal to
 integrate in larger projects.
 
@@ -46,6 +48,7 @@ computations.
 
 What's new?
 -----------
+* [July 2, 2025] Added Vega flavors to the Vega class, allowing users to select different Vega reference spectra for photometric calculations. (v1.7.0)
 * [January 21, 2025] Moved installation to use `pyproject.toml`; Updated documentation; Updates for deprecated calls. (v1.6.0)
 * [January 21, 2025] Support for Python 3.13 (v1.5.0); 
 * [June 26, 2024] Dropping support for Python <= 3.8 (due to HDF5 modules). Minor updates for Scipy 1.14.0 and Numpy 2.0

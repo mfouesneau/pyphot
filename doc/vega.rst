@@ -50,10 +50,10 @@ Vega Flavors
 
 .. important::
 
-    Since version 1.6.1, Pyphot includes a set of Vega flavors one can use transparently as photometric standards.
+    Since version 1.7.0, Pyphot includes a set of Vega flavors one can use transparently as photometric standards.
     
     * Pyphot provides `alpha_stis_003` (aliased to `legacy`) as the default Vega flavor (and only one before version 1.6.1). This flavor is also the reference for the values provided in the documentation.
-    * (since version 1.6.1) Pyphot provides also `alpha_lyr_mod_003`, `alpha_lyr_mod_004`, and `alpha_stis_011` as alternative Vega flavors.
+    * (since version 1.7.0) Pyphot provides also `alpha_lyr_mod_003`, `alpha_lyr_mod_004`, and `alpha_stis_011` as alternative Vega flavors.
     * in a future release, Pyphot will switch the default Vega flavor to `alpha_stis_011` which is a more recent model that incorporates updated NLTE models and provides a more accurate representation of Vega's spectral energy distribution, particularly in the ultraviolet and optical ranges.
 
     Impact of Vega Flavors on zeropoints provided by Pyphot:

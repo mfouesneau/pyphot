@@ -206,7 +206,7 @@ througout many photometric suites.
 
 The interface to the Vega template is given through the :class:`pyphot.vega.Vega` class.
 
-Additional flavors and description of the internal Vega reference can be found on the :doc:`vega` page.
+Since v.1.7.0, additional flavors and description of the internal Vega reference can be found on the :doc:`vega` page.
 
 To use a specific Vega flavor for the photometric calculations in Pyphot, you can set the `vega` keyword parameter  when creating a passband or use the `set_vega_flavor` method to update it. 
 For example, to use the `alpha_lyr_stis_011` flavor when creating a passband filter, you can do the following:
