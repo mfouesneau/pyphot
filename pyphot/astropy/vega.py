@@ -52,9 +52,9 @@ class Vega(object):
 
     >>> filters = ['HST_WFC3_F275W', 'HST_WFC3_F336W', 'HST_WFC3_F475W',\
                    'HST_WFC3_F814W', 'HST_WFC3_F110W', 'HST_WFC3_F160W']
-        with Vega() as v:
+        with Vega(flavor='stis_011') as v:
             vega_f, vega_mag, flamb = v.getSed(filters)
-        print vega_f, vega_mag, flamb
+        print(vega_f, vega_mag, flamb)
     """
 
     def __init__(self, source=None, flavor="legacy"):
