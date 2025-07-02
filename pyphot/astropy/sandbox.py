@@ -1,8 +1,4 @@
 """
-Sandbox of new developments
-
-Use at your own risks
-
 Photometric package using Astropy Units
 =======================================
 
@@ -35,8 +31,6 @@ except ImportError:  # older scipy / numpy < 2.0
 from ..simpletable import SimpleTable
 from .config import __vega_default_flavor__, libsdir
 from .vega import Vega
-
-# from .licks import LickIndex, LickLibrary
 
 # directories
 __default__ = libsdir.joinpath("new_filters.hd5")
@@ -145,6 +139,10 @@ class UnitFilter(object):
 
     unit: str
         wavelength units
+
+    vega: str
+        Vega flavor to use for calculations, default is 'default'
+        (see :class:`pyphot.vega.Vega` for details)
     """
 
     def __init__(
@@ -166,11 +164,19 @@ class UnitFilter(object):
             self._wavelength = wavelength
         self.set_wavelength_unit(unit)
         self._vega_flavor = vega
-
         # make sure input data are ordered and cleaned of weird values.
         idx = np.argsort(self._wavelength)
         self._wavelength = self._wavelength[idx]
         self.transmit = np.clip(transmit[idx], 0.0, np.nanmax(transmit))
+        self._reset_attributes()
+
+    def set_vega_flavor(self, vega):
+        """Set the Vega flavor to use for calculations."""
+        self._vega_flavor = vega
+        self._reset_attributes()
+
+    def _reset_attributes(self):
+        """reset calculated attributes"""
 
         self.norm = trapezoid(self.transmit, self._wavelength)
         self._lT = trapezoid(self._wavelength * self.transmit, self._wavelength)
@@ -534,7 +540,14 @@ class UnitFilter(object):
         except Exception:
             _unit = self.wavelength_unit
         ifT = np.interp(_lamb, _wavelength, self.transmit, left=0.0, right=0.0)
-        return self.__class__(_lamb, ifT, name=self.name, dtype=self.dtype, unit=_unit)
+        return self.__class__(
+            _lamb,
+            ifT,
+            name=self.name,
+            dtype=self.dtype,
+            unit=_unit,
+            vega=self._vega_flavor,
+        )
 
     def __call__(self, slamb, sflux):
         return self.applyTo(slamb, sflux)
@@ -771,10 +784,21 @@ class UncertainFilter(UnitFilter):
 
     unit: str
         wavelength units
+
+    vega: str
+        Vega flavor to use for calculations, default is 'default'
+        (see :class:`pyphot.vega.Vega` for details)
     """
 
     def __init__(
-        self, wavelength, mean_transmit, samples, name="", dtype="photon", unit=None
+        self,
+        wavelength,
+        mean_transmit,
+        samples,
+        name="",
+        dtype="photon",
+        unit=None,
+        vega=__vega_default_flavor__,
     ):
         """Constructor"""
         self.mean_ = UnitFilter(
@@ -787,6 +811,7 @@ class UncertainFilter(UnitFilter):
                 name=name + "_{0:d}".format(num),
                 dtype=dtype,
                 unit=unit,
+                vega=vega,
             )
             for (num, transmit_k) in enumerate(samples)
         ]
@@ -1047,6 +1072,7 @@ class UncertainFilter(UnitFilter):
             name=self.name,
             dtype=mean_val.dtype,
             unit=mean_val.wavelength_unit,
+            vega=self._vega_flavor,
         )
 
     def apply_transmission(self, slamb, sflux):
