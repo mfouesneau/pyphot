@@ -63,7 +63,7 @@ What's new?
 
 Installation
 ------------
-Before installation, make sure you have HDF5 version 1.8.4 or above (this is required for pytables, see details at: https://github.com/PyTables/PyTables).
+Before installation, make sure you have HDF5 version 1.8.4 or above (this is required for pytables, see details at: https://github.com/PyTables/PyTables). We will remove this dependency in a future release.
 
 For OSX:
 
@@ -85,13 +85,15 @@ For Debian-based distributions:
 
   pip install pyphot
 
+  pip install git+https://github.com/mfouesneau/pyphot   # if you want the unreleased version
+
 * Manual installation
 
-download the repository and run the setup
+Download the repository and run the setup
 
 .. code::
 
-  python setup.py install
+  pip install .
 
 
 
