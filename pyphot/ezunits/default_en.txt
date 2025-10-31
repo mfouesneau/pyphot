@@ -294,7 +294,7 @@ fluid_dram = floz / 8 = fldr = fluidram
 firkin = barrel / 4
 
 #Astronomy related
-lsun = 3.839e26 * watt = Lsun 
+lsun = 3.828e26 * watt = Lsun
 msun = 1.98892e30 * kilogram = Msun
 rsun = 6.955e8 * meter = Rsun
 stephan_constant = 5.67037321e-8 * watt * meter ** -2 * kelvin ** -4
