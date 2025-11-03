@@ -6,6 +6,8 @@ import warnings
 from typing import Optional, Literal, Tuple, cast
 import numpy.typing as npt
 
+from pyphot.future.libraries import get_library
+
 from . import config
 from .unit_adapters import QuantityType
 
@@ -65,6 +67,12 @@ class Sun:
          or  'theoretical' for the Kurucz model.
     """
 
+    _data: Optional[SimpleTable]
+    units: Optional[Tuple[str, str]]
+    distance: QuantityType
+    distance_conversion: float
+    flavor: Optional[Literal["observed", "theoretical"]]
+
     def __init__(
         self,
         *,
@@ -75,7 +83,9 @@ class Sun:
         """Constructor"""
         self._data: Optional[SimpleTable] = None
         self.units: Optional[Tuple[str, str]] = None
-        self.distance: QuantityType = distance or get_library_default_distance()
+        if distance is None:
+            distance = get_library_default_distance()
+        self.distance: QuantityType = distance
         self.distance_conversion: float = 1.0
         self._set_source_flavor(source=source, flavor=flavor)
 
@@ -83,7 +93,7 @@ class Sun:
         self,
         *,
         source: Optional[str],
-        flavor: Optional[str],
+        flavor: Optional[Literal["observed", "theoretical"]],
     ):
         """Set the source and flavor of the Sun spectrum"""
         if source is not None:
