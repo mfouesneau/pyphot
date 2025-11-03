@@ -46,7 +46,7 @@ backends = OrderedDict(
 # provide a typing hint for the units adapters
 
 UnitAdapterType = Union[
-    *list(
+    tuple(
         {
             NewType(cls.__name__, cls)  # type: ignore
             for cls in backends.values()
@@ -56,7 +56,7 @@ UnitAdapterType = Union[
 ]
 
 QuantityType = Union[
-    *list(
+    tuple(
         {
             cls.typing.Quantity
             for cls in backends.values()
@@ -66,7 +66,7 @@ QuantityType = Union[
 ]
 
 UndefinedUnitError = Union[
-    *list(
+    tuple(
         {
             cls.typing.UndefinedUnitError
             for cls in backends.values()
@@ -76,7 +76,7 @@ UndefinedUnitError = Union[
 ]
 
 DimensionalityError = Union[
-    *list(
+    tuple(
         {
             cls.typing.DimensionalityError
             for cls in backends.values()
