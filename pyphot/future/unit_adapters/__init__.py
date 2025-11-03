@@ -46,35 +46,43 @@ backends = OrderedDict(
 # provide a typing hint for the units adapters
 
 UnitAdapterType = Union[
-    *{
-        NewType(cls.__name__, cls)  # type: ignore
-        for cls in backends.values()
-        if cls is not None and cls.__name__ is not None
-    }
+    *list(
+        {
+            NewType(cls.__name__, cls)  # type: ignore
+            for cls in backends.values()
+            if cls is not None and cls.__name__ is not None
+        }
+    )
 ]
 
 QuantityType = Union[
-    *{
-        cls.typing.Quantity
-        for cls in backends.values()
-        if cls is not None and cls.__name__ is not None
-    }
+    *list(
+        {
+            cls.typing.Quantity
+            for cls in backends.values()
+            if cls is not None and cls.__name__ is not None
+        }
+    )
 ]
 
 UndefinedUnitError = Union[
-    *{
-        cls.typing.UndefinedUnitError
-        for cls in backends.values()
-        if cls is not None and cls.__name__ is not None
-    }
+    *list(
+        {
+            cls.typing.UndefinedUnitError
+            for cls in backends.values()
+            if cls is not None and cls.__name__ is not None
+        }
+    )
 ]
 
 DimensionalityError = Union[
-    *{
-        cls.typing.DimensionalityError
-        for cls in backends.values()
-        if cls is not None and cls.__name__ is not None
-    }
+    *list(
+        {
+            cls.typing.DimensionalityError
+            for cls in backends.values()
+            if cls is not None and cls.__name__ is not None
+        }
+    )
 ]
 
 # Provide tools to setup the units adapters
