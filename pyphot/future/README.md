@@ -25,7 +25,8 @@ If you change the vega flavor, you may have a mix of Vega definitions, which wil
 
 ## Incoming
 
-- update lick package to the new units interface
+- Update lick package to the new units interface
+  - unit tests
 
 - replace internal simpletable by https://github.com/mfouesneau/simpletable
   - better support of varied formats

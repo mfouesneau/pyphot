@@ -3,6 +3,7 @@
 import pytest
 
 from typing import cast
+import numpy as np
 
 from pyphot.future.libraries import get_library
 from pyphot.future import vega, sun, config
@@ -21,9 +22,7 @@ def test_instanciate_sun(flavor):
     _ = sun.Sun(flavor=flavor)
 
 
-def test_sun_magnitudes(self):
-    import numpy as np
-
+def test_sun_magnitudes():
     sun_obs = sun.Sun(flavor="observed")
     sun_th = sun.Sun()  # default is theoric spectrum
     sun_th_10pc = sun.Sun(distance=10 * config.units.U("pc"))
@@ -42,9 +41,9 @@ def test_sun_magnitudes(self):
         vegamag = f.Vega_zero_mag
         print(
             "{0:12s} {1:0.5e} {2:+3.4f}".format(
-                name, flux.magnitude, -2.5 * np.log10(flux.magnitude) - vegamag
+                name, flux.value, -2.5 * np.log10(flux.value) - vegamag
             )
         )
-        sun_vega_mag = -2.5 * np.log10(flux.magnitude) - vegamag
+        sun_vega_mag = -2.5 * np.log10(flux.value) - vegamag
 
         assert abs(sun_vega_mag - expect_mag) < 1e-2
