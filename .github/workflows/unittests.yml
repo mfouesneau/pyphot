@@ -1,28 +1,28 @@
 name: unittests
 
-on: 
+on:
   push:
     paths-ignore:
-          - "joss/**"
-          - "doc/**"
-          - "paper/**"
+      - "joss/**"
+      - "doc/**"
+      - "paper/**"
 
 jobs:
   build:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ["3.9", "3.10", "3.11", "3.12", "3.13"]
+        python-version: ["3.9", "3.10", "3.11", "3.12", "3.13", "3.14"]
     steps:
-    - uses: actions/checkout@v2
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v2
-      with:
-        python-version: ${{ matrix.python-version }}
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install ".[testing]"
-    - name: Running quick tests
-      run: |
-        python3 -m unittest unittests/test_quick.py
+      - uses: actions/checkout@v2
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install ".[testing]"
+      - name: Running quick tests
+        run: |
+          python3 -m unittest unittests/test_quick.py
