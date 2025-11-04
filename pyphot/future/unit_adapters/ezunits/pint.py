@@ -607,7 +607,7 @@ class UnitRegistry(object):
             prefix, unit_name, _ = candidates[0]
         else:
             logger.warning(
-                "Parsing {} yield multiple results. " "Options are: {}".format(
+                "Parsing {} yield multiple results. Options are: {}".format(
                     name, candidates
                 )
             )
@@ -635,7 +635,7 @@ class UnitRegistry(object):
             prefix, unit_name, _ = candidates[0]
         else:
             logger.warning(
-                "Parsing {} yield multiple results. " "Options are: {}".format(
+                "Parsing {} yield multiple results. Options are: {}".format(
                     candidate, candidates
                 )
             )
