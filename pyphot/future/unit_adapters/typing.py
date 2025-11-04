@@ -1,5 +1,5 @@
 from __future__ import annotations
-from typing import Union, TypeAlias
+from typing import Union
 
 
 # Add each quantity type if available
