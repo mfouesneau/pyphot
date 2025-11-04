@@ -2,7 +2,7 @@
 
 ## New features
 
-- add hint typing in the code
+- add hint typing in the code (not tested with mypy; pyright ok)
 - adapters to interface transparently with varied unit frameworks (e.g., astropy.units, pint)
   - `future.config.set_units_backend` to switch between different unit frameworks
   - default priority is `astropy`, `pint`, `ezunits[legacy]`
@@ -12,6 +12,7 @@
   - test_units_adapters, test_units_adapters_decorator
   - test_future_filter, test_future_library
   - test_future_vega_sun
+  - test_future_licks
 
 ```{warning} configuration update only affects newly created objects
 
@@ -25,8 +26,7 @@ If you change the vega flavor, you may have a mix of Vega definitions, which wil
 
 ## Incoming
 
-- Update lick package to the new units interface
-  - unit tests
+- missing test on `Ascii_Library`
 
 - replace internal simpletable by https://github.com/mfouesneau/simpletable
   - better support of varied formats
@@ -35,5 +35,3 @@ If you change the vega flavor, you may have a mix of Vega definitions, which wil
 
 - remove dependency on astropy for the svo module
   - astropy.io.votable is used for parsing VOTable files from the SVO service
-
-- detailed unittests
