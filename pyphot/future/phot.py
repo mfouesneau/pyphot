@@ -13,7 +13,7 @@ This module defines the `Filter` class.
     comparison to the uncertainties induced by trapeze integration.
 """
 
-from typing import Literal, Union, Optional, Any, Dict, Sequence, Tuple, List
+from typing import Literal, Union, Optional, Any, Dict, cast
 import warnings
 
 import numpy as np
@@ -31,7 +31,7 @@ from ..simpletable import SimpleTable
 __all__ = ["Filter"]
 
 
-def _drop_units(q):
+def _drop_units(q: Any) -> Any:
     """Drop the unit definition silently"""
     try:
         return q.value
@@ -42,7 +42,7 @@ def _drop_units(q):
             return q
 
 
-def _split_value_unit(q: QuantityType) -> tuple[Any, Union[str, None]]:
+def _split_value_unit(q: Union[QuantityType, Any]) -> tuple[Any, Union[str, None]]:
     """Split a quantity into value and unit"""
     try:
         return q.value, str(q.unit)
@@ -188,9 +188,13 @@ class Filter:
         Filter
             Filter reinterpolated onto the new wavelength definition
         """
-        _wavelength = self._get_filter_wavelength_in_units_of(lamb)
         _lamb, _unit_lamb = _split_value_unit(lamb)
         _unit_lamb = _unit_lamb or self.wavelength_unit  # defaulting to filter's unit
+        # make sure the interpolation target has units
+        _wavelength = self._get_filter_wavelength_in_units_of(
+            _lamb * config.units.U(_unit_lamb)
+        )
+
         ifT = np.interp(_lamb, _wavelength, self.transmit, left=0.0, right=0.0)
         return self.__class__(
             _lamb,
@@ -230,21 +234,23 @@ class Filter:
         if self.wavelength_unit is not None:
             return self._wavelength * config.units.U(self.wavelength_unit)
         else:
-            return self._wavelength
+            raise ValueError("Wavelength unit is not defined")
 
     @property
     def lmax(self) -> QuantityType:
         """Calculated as the last value with a transmission at least 1% of
         maximum transmission"""
         cond = (self.transmit / self.transmit.max()) > 1.0 / 100
-        return max(self.wavelength[cond])
+        w = cast(npt.NDArray, self.wavelength)
+        return max(w[cond])
 
     @property
     def lmin(self) -> QuantityType:
         """Calculate das the first value with a transmission at least 1% of
         maximum transmission"""
         cond = (self.transmit / self.transmit.max()) > 1.0 / 100
-        return min(self.wavelength[cond])
+        w = cast(npt.NDArray, self.wavelength)
+        return min(w[cond])
 
     @property
     def width(self) -> QuantityType:
@@ -270,7 +276,7 @@ class Filter:
         """
         vals = self.transmit / self.transmit.max() - 0.5
         zero_crossings = np.where(np.diff(np.sign(vals)))[0]
-        lambs = self.wavelength[zero_crossings]
+        lambs = cast(npt.NDArray, self.wavelength[zero_crossings])
         return np.diff(lambs)[0]
 
     @property
@@ -293,7 +299,7 @@ class Filter:
         if self.wavelength_unit is not None:
             return self._lpivot * config.units.U(self.wavelength_unit)
         else:
-            return self._lpivot
+            raise ValueError("Wavelength unit is not defined")
 
     @property
     def cl(self) -> QuantityType:
@@ -305,7 +311,7 @@ class Filter:
         if self.wavelength_unit is not None:
             return self._cl * config.units.U(self.wavelength_unit)
         else:
-            return self._cl
+            raise ValueError("Wavelength unit is not defined")
 
     @property
     def leff(self) -> QuantityType:
@@ -321,13 +327,11 @@ class Filter:
                 leff /= trapezoid(s.transmit * v.flux.value, w, axis=-1)
             else:
                 leff = float("nan")
-        if s.wavelength_unit is not None:
-            leff = leff * U(s.wavelength_unit)
-            if self.wavelength_unit is not None:
-                return leff.to(self.wavelength_unit)
-            return leff
+        if (s.wavelength_unit is not None) and (self.wavelength_unit is not None):
+            leff = cast(QuantityType, leff * U(s.wavelength_unit))
+            return leff.to(self.wavelength_unit)
         else:
-            return leff
+            raise ValueError("Wavelength unit is not defined")
 
     @property
     def lphot(self) -> QuantityType:
@@ -444,20 +448,20 @@ class Filter:
         return f * config.units.U("Jy")
 
     @property
-    def ST_zero_mag(self):
+    def ST_zero_mag(self) -> float:
         """ST magnitude zero point
         STmag = -2.5 * log10(f_lamb) -21.1
         """
         return 21.1
 
     @property
-    def ST_zero_flux(self):
+    def ST_zero_flux(self) -> QuantityType:
         """ST flux zero point in erg/s/cm2/AA"""
         unit_ = config.units.U("erg*s**-1*cm**-2*AA**-1")
         return 10 ** (-0.4 * self.ST_zero_mag) * unit_
 
     @property
-    def ST_zero_Jy(self):
+    def ST_zero_Jy(self) -> QuantityType:
         """ST flux zero point in Jansky (Jy)"""
         c = 1e-8 * Constants.get("c").to("m/s").value
         f = 1e5 / c * self.lpivot.to("AA").value ** 2 * self.ST_zero_flux.value
@@ -466,8 +470,8 @@ class Filter:
     @enforce_default_units(None, "AA", "flam", output="erg*s**-1*cm**-2*AA**-1")
     def get_flux(
         self,
-        slamb: Union[npt.NDArray[np.floating], QuantityType],
-        sflux: Union[npt.NDArray[np.floating], QuantityType],
+        slamb: QuantityType,
+        sflux: QuantityType,
         axis: int = -1,
     ) -> QuantityType:
         """Get integrated flux through the filter
@@ -494,8 +498,8 @@ class Filter:
     @enforce_default_units(None, "AA", "flam", output="photon*s**-1*cm**-2*AA**-1")
     def get_Nphotons(
         self,
-        slamb: Union[npt.NDArray[np.floating], QuantityType],
-        sflux: Union[npt.NDArray[np.floating], QuantityType],
+        slamb: QuantityType,
+        sflux: QuantityType,
         axis: int = -1,
     ) -> QuantityType:
         """Get integrated number of photons through the filter

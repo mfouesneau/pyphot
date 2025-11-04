@@ -1,5 +1,6 @@
 """Test the photometric library features"""
 
+from re import I
 import pytest
 import pathlib
 from typing import cast
@@ -15,7 +16,7 @@ def test_hdf_library():
     """Test HDF library"""
     try:
         import tables
-    except:
+    except ImportError:
         pytest.skip("tables not installed")
     lib = get_library()
     assert isinstance(lib, HDF_Library)

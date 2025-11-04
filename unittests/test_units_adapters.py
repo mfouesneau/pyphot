@@ -3,7 +3,7 @@
 import pytest
 
 from typing import List, Tuple, cast
-from pyphot.future.unit_adapters import get_adapter, backends, UnitAdapterType
+from pyphot.future.unit_adapters import backends, UnitAdapterType, QuantityType
 
 # make sure we test all available backends
 test_backends = [name for name, adapter in backends.items() if adapter is not None]
@@ -56,7 +56,7 @@ def test_pyphot_units(Adapter: UnitAdapterType):
 
     U = Adapter.U
     # Astronomy related
-    values: List[Tuple[str, Adapter.typing.Quantity]] = [
+    values: List[Tuple[str, QuantityType]] = [
         ("lsun", 3.828e26 * U("watt")),
         ("erg", 1e-7 * U("joule")),
         ("flam", 1.0 * U("erg * s ** (-1) * AA ** (-1) * cm **(-2)")),
@@ -68,7 +68,7 @@ def test_pyphot_units(Adapter: UnitAdapterType):
 
     for what, ref in values:
         # forcing cast as StructuredQuantity does not define value
-        ratio = cast(Adapter.typing.Quantity, (U(what)) / ref.to(what))
-        assert (
-            abs(ratio.value - 1) < 1e-10
-        ), f"Error: '{what}' does not match reference {ref} ({ratio.value})"
+        ratio = cast(QuantityType, (U(what)) / ref.to(what))
+        assert abs(ratio.value - 1) < 1e-10, (
+            f"Error: '{what}' does not match reference {ref} ({ratio.value})"
+        )

@@ -174,7 +174,7 @@ def reduce_resolution(
     return flux_red * config.units.U("flam")
 
 
-def _split_value_unit(q: QuantityType) -> tuple[Any, Union[str, None]]:
+def _split_value_unit(q: Union[QuantityType, Any]) -> tuple[Any, Union[str, None]]:
     """Split a quantity into value and unit"""
     try:
         return q.value, str(q.unit)
@@ -191,49 +191,100 @@ class LickDefinition:
     - `band` covers the index itself.
     - `index_unit` gives the index measurement type as either magnitude (mag) or equivalent width (ew)
 
-    Consistency is checked in __post_init__
+    Consistency is checked such that all fields are set with consistent units (priority to band field)
+    wavelength_unit is also associated
     """
 
-    blue: QuantityType = None
-    red: QuantityType = None
-    band: QuantityType = None
+    blue: QuantityType
+    red: QuantityType
+    band: QuantityType
     index_unit: Literal["mag", "ew"] = "mag"
     wavelength_unit: Optional[str] = None
 
-    def __post_init__(self):
+    @staticmethod
+    def _ensure_consistency(
+        *,
+        band: Union[QuantityType, Tuple[float, float]],
+        blue: Union[QuantityType, Tuple[float, float]],
+        red: Union[QuantityType, Tuple[float, float]],
+        index_unit: Literal["mag", "ew"] = "mag",
+        wavelength_unit: Optional[str] = None,
+        _skip: bool = False,
+    ) -> dict:
         """Check the definition is consistent
 
         All fields are set with consistent units (priority to band field)
         wavelength_unit is also associated
 
         """
+        if _skip:
+            return {}
+
         u = config.units
 
-        if u.has_unit(self.band):
-            _, band_unit = _split_value_unit(self.band)
-        elif u.has_unit(self.blue):
-            _, band_unit = _split_value_unit(self.blue)
-        elif u.has_unit(self.red):
-            _, band_unit = _split_value_unit(self.red)
-        elif self.wavelength_unit:
-            band_unit = self.wavelength_unit
+        if u.has_unit(band):
+            _, band_unit = _split_value_unit(band)
+        elif u.has_unit(blue):
+            _, band_unit = _split_value_unit(blue)
+        elif u.has_unit(red):
+            _, band_unit = _split_value_unit(red)
+        elif wavelength_unit:
+            band_unit = wavelength_unit
         else:
             raise ValueError(
                 "Could not determine the units of wavelength from the index definition"
                 "blue/red/band need units or wavelength_unit must be provided"
             )
 
-        values = {
-            key: u.val_in_unit(key, getattr(self, key), band_unit, warn=False)
-            for key in ("blue", "red", "band")
-        }
-        values["wavelength_unit"] = band_unit
-        values["index_unit"] = self.index_unit
-        if values["index_unit"] not in ("mag", "ew"):
+        if index_unit not in ("mag", "ew"):
             raise ValueError(
                 f"Invalid index unit: {values['index_unit']}. Expected 'mag' or 'ew'"
             )
-        self.__dict__.update(values)
+        return dict(
+            band=u.val_in_unit("band", band, band_unit, warn=False),
+            blue=u.val_in_unit("blue", blue, band_unit, warn=False),
+            red=u.val_in_unit("red", red, band_unit, warn=False),
+            wavelength_unit=band_unit,
+            index_unit=index_unit,
+        )
+
+    def __init__(
+        self,
+        *,
+        band: Union[QuantityType, Tuple[float, float]],
+        blue: Union[QuantityType, Tuple[float, float]],
+        red: Union[QuantityType, Tuple[float, float]],
+        index_unit: Literal["mag", "ew"] = "mag",
+        wavelength_unit: Optional[str] = None,
+    ):
+        """Build a LickDefinition from values
+
+        Parameters
+        ----------
+        band : QuantityType or tuple of float
+            Bandpass of the lick
+        blue : QuantityType or tuple of float
+            Blue limit of the lick
+        red : QuantityType or tuple of float
+            Red limit of the lick
+        index_unit : Literal["mag", "ew"], optional
+            Unit of the index, by default "mag"
+        wavelength_unit : Optional[str], optional
+            Unit of the wavelength, by default None
+
+        Returns
+        -------
+        LickDefinition
+            The LickDefinition object
+        """
+        sure = self._ensure_consistency(
+            band=band,
+            blue=blue,
+            red=red,
+            wavelength_unit=wavelength_unit,
+            index_unit=index_unit,
+        )
+        self.__dict__.update(sure)
 
 
 class LickIndex(object):

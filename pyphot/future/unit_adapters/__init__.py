@@ -3,8 +3,11 @@ Checks which backends are available and provides a global typing hint for the un
 """
 
 from dataclasses import dataclass
-from typing import NewType, Union
+from typing import Any
 from collections import OrderedDict, namedtuple
+from functools import reduce
+import operator
+
 
 __all__ = [
     "get_adapter",
@@ -17,7 +20,7 @@ __all__ = [
     "enforce_default_units",
 ]
 
-from .units_adapter import enforce_default_units
+from .units_adapter import enforce_default_units, UnitsAdapter
 
 try:
     from .ezunits_adapter import EzUnitsAdapter
@@ -25,14 +28,23 @@ except ImportError:
     EzUnitsAdapter = None
 
 try:
-    from .astropy_adapter import ApUnitsAdapter
+    from .astropy_adapter import ApUnitsAdapter, ap_Quantity
 except ImportError:
     ApUnitsAdapter = None
+    ap_Quantity = Any
 
 try:
     from .pint_adapter import PintUnitsAdapter
 except ImportError:
     PintUnitsAdapter = None
+
+
+from .typing import (
+    QuantityType,
+    UnitAdapterType,
+    DimensionalityError,
+    UndefinedUnitError,
+)
 
 # order provides backend priority for defaults
 backends = OrderedDict(
@@ -42,48 +54,6 @@ backends = OrderedDict(
         ("ezunits", EzUnitsAdapter),
     ]
 )
-
-# provide a typing hint for the units adapters
-
-UnitAdapterType = Union[
-    tuple(
-        {
-            NewType(cls.__name__, cls)  # type: ignore
-            for cls in backends.values()
-            if cls is not None and cls.__name__ is not None
-        }
-    )
-]
-
-QuantityType = Union[
-    tuple(
-        {
-            cls.typing.Quantity
-            for cls in backends.values()
-            if cls is not None and cls.__name__ is not None
-        }
-    )
-]
-
-UndefinedUnitError = Union[
-    tuple(
-        {
-            cls.typing.UndefinedUnitError
-            for cls in backends.values()
-            if cls is not None and cls.__name__ is not None
-        }
-    )
-]
-
-DimensionalityError = Union[
-    tuple(
-        {
-            cls.typing.DimensionalityError
-            for cls in backends.values()
-            if cls is not None and cls.__name__ is not None
-        }
-    )
-]
 
 # Provide tools to setup the units adapters
 
@@ -115,11 +85,12 @@ def get_adapter(name) -> UnitAdapterType:
         raise ImportError(
             f"{name} backend requires a package to be installed. run `pip install {name}`."
         )
-    return backend
+    return backend()
 
 
 def find_default_units_backend() -> UnitAdapterType:
     """Set the default units adapter."""
     for backend in backends.values():
         if backend is not None:
-            return backend
+            return backend()
+    raise RuntimeError("No units adapter found.")

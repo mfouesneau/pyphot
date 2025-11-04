@@ -149,7 +149,7 @@ class UncertainFilter(Filter):
 
     def _get_mean_attribute(
         self, attr: str, *args, **kwargs
-    ) -> Union[npt.NDArray[Any], QuantityType]:
+    ) -> Union[npt.NDArray[Any], QuantityType, Any]:
         """Returns the attribute from the mean passband"""
         attr = getattr(self, attr)
         try:

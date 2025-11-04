@@ -44,22 +44,22 @@ def test_lickdefinition(info):
     """Make sure the definition is robust"""
     # check all ranges are set with wavelength_unit units
     # without altering the values
-    l = licks.LickDefinition(**info)  # type: ignore
-    check_equality_ref_values(l, info)
+    lref = licks.LickDefinition(**info)  # type: ignore
+    check_equality_ref_values(lref, info)
 
     # check consistencywhen attributes are with units
     l1 = licks.LickDefinition(
-        blue=l.blue.to("nm"),
-        band=l.band.to("AA"),  # band sets the consistency unit
-        red=l.red.to("cm"),
-        index_unit=l.index_unit,
+        blue=lref.blue.to("nm"),
+        band=lref.band.to("AA"),  # band sets the consistency unit
+        red=lref.red.to("cm"),
+        index_unit=lref.index_unit,
     )
     for what in ("blue", "band", "red"):
-        value = getattr(l, what)
-        assert cast(licks.QuantityType, value).unit == l.band.unit
+        value = getattr(lref, what)
+        assert cast(licks.QuantityType, value).unit == lref.band.unit
         assert abs(value[0].value - info[what][0]) < 1e-6
         assert abs(value[1].value - info[what][1]) < 1e-6
-    assert l1.wavelength_unit == l.band.unit
+    assert l1.wavelength_unit == lref.band.unit
 
 
 def test_library_against_references():
@@ -86,6 +86,7 @@ def test_all_indices(name: str):
     index = fk.get(vega.wavelength, vega.flux, axis=-1)
 
     # define header and table format (as csv)
+    """
     hdr = (
         "name",
         "wavelength units",
@@ -97,17 +98,18 @@ def test_all_indices(name: str):
         "max red",
         "value(vega)",
     )
+    """
     fmt = "{0:s},{1:s},{2:s},{3:.3f},{4:.3f},{5:.3f},{6:.5f},{7:.3f},{8:.3f},{9:.3f}\n"
     rec = (
         fk.name,
         fk.wavelength_unit,
         fk.index_unit,
-        fk.band[0].value,
-        fk.band[1].value,
-        fk.blue[0].value,
-        fk.blue[1].value,
-        fk.red[0].value,
-        fk.red[1].value,
+        fk.band.value[0],
+        fk.band.value[1],
+        fk.blue.value[0],
+        fk.blue.value[1],
+        fk.red.value[0],
+        fk.red.value[1],
         index,
     )
     print(fmt.format(*rec))

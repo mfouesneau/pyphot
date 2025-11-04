@@ -443,7 +443,7 @@ class HDF_Library(Library):
                 unit=unit,
             )
 
-        if interp & (lamb is not None):
+        if (lamb is not None) and interp:
             fil = fil.reinterp(lamb)
         return fil
 

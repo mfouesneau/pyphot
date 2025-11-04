@@ -166,20 +166,12 @@ class Sun:
     def wavelength(self) -> QuantityType:
         """wavelength (with units when found)"""
         data, λ_units, _ = self._readfile()
-        λ = cast(npt.NDArray, data["WAVELENGTH"])
-        try:
-            return λ * config.units.U(λ_units.lower())
-        except Exception as e:
-            print(e)
-            return λ
+        λ = cast(npt.ArrayLike, data["WAVELENGTH"])
+        return λ * config.units.U(λ_units.lower())
 
     @property
     def flux(self) -> QuantityType:
         """flux(wavelength) values (with units when provided)"""
         data, _, f_units = self._readfile()
         flux = cast(npt.NDArray, data["FLUX"]) * self.distance_conversion
-        try:
-            return flux * config.units.U(f_units.lower())
-        except Exception as e:
-            print(e)
-            return flux
+        return flux * config.units.U(f_units.lower())

@@ -4,6 +4,15 @@ from dataclasses import dataclass
 from importlib import resources
 from .unit_adapters import find_default_units_backend, get_adapter as get_units_adapter
 
+__all__ = [
+    "__ROOT__",
+    "__default_passband_lib__",
+    "__default_lick_lib__",
+    "__vega_default_flavor__",
+    "units",
+    "set_units_backend",
+    "set_vega_flavor",
+]
 
 # directories
 __ROOT__ = "/".join(
