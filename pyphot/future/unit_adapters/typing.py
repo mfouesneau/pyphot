@@ -1,4 +1,6 @@
-from typing import TypeAlias, Union
+from __future__ import annotations
+from typing import Union, TypeAlias
+
 
 # Add each quantity type if available
 try:
@@ -19,7 +21,7 @@ except ImportError:
 from . import units_adapter
 
 
-QuantityType: TypeAlias = Union[
+QuantityType = Union[
     "astropy_adapter.ap_Quantity",
     "pint_adapter.pint_Quantity",
     "ezunits_adapter.ez_Quantity",
@@ -33,14 +35,14 @@ UnitAdapterType = Union[
     "units_adapter.UnitsAdapter",
 ]
 
-DimensionalityError: TypeAlias = Union[
+DimensionalityError = Union[
     "astropy_adapter.UnitConversionError",
     "pint_adapter.DimensionalityError",
     "ezunits_adapter.DimensionalityError",
     ValueError,
 ]
 
-UndefinedUnitError: TypeAlias = Union[
+UndefinedUnitError = Union[
     "pint_adapter.UndefinedUnitError",
     "ezunits_adapter.DimensionalityError",
     ValueError,
