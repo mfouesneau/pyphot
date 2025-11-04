@@ -2,7 +2,7 @@
 Adapter to use transparently with the internal ezunits (frozen pint version 0.1; pyphot legacy)
 """
 
-from typing import Any, Union, NewType, Optional, cast
+from typing import Any, Union, Optional, cast
 
 from pint import Quantity as pint_Quantity
 from pint.errors import DimensionalityError, UndefinedUnitError

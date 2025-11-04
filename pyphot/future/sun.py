@@ -6,7 +6,6 @@ import warnings
 from typing import Optional, Literal, Tuple, cast
 import numpy.typing as npt
 
-from pyphot.future.libraries import get_library
 
 from . import config
 from .unit_adapters import QuantityType

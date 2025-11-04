@@ -33,7 +33,6 @@ except ImportError:
     from collections import Iterable
 
 # from pkg_resources import resource_filename
-from importlib import resources
 
 from io import BytesIO
 from numbers import Number

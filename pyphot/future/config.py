@@ -1,6 +1,5 @@
 import os
 import inspect
-from dataclasses import dataclass
 from importlib import resources
 from .unit_adapters import find_default_units_backend, get_adapter as get_units_adapter
 

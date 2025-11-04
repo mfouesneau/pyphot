@@ -3,7 +3,7 @@ Adapter to use transparently with the internal ezunits (frozen pint version 0.1;
 """
 
 from .units_adapter import UnitsAdapter, UnitTyping, raise_warning
-from typing import Any, Union, Optional, cast
+from typing import Any, Union, Optional
 
 from astropy.units import Quantity as ap_Quantity
 from astropy.units.core import UnitConversionError

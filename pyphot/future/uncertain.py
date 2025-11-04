@@ -7,7 +7,6 @@ from typing import Literal, Union, Optional, Any, Sequence, Tuple
 
 import numpy as np
 import numpy.typing as npt
-from scipy.integrate import trapezoid
 
 from . import config
 from .unit_adapters import QuantityType

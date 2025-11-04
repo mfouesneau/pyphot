@@ -2,11 +2,8 @@
 Checks which backends are available and provides a global typing hint for the units adapters.
 """
 
-from dataclasses import dataclass
 from typing import Any
-from collections import OrderedDict, namedtuple
-from functools import reduce
-import operator
+from collections import OrderedDict
 
 
 __all__ = [
@@ -20,7 +17,7 @@ __all__ = [
     "enforce_default_units",
 ]
 
-from .units_adapter import enforce_default_units, UnitsAdapter
+from .units_adapter import enforce_default_units
 
 try:
     from .ezunits_adapter import EzUnitsAdapter

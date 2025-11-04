@@ -1,4 +1,4 @@
-from typing import TypeAlias, Union, Any
+from typing import TypeAlias, Union
 
 # Add each quantity type if available
 try:

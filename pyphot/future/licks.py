@@ -238,7 +238,7 @@ class LickDefinition:
 
         if index_unit not in ("mag", "ew"):
             raise ValueError(
-                f"Invalid index unit: {values['index_unit']}. Expected 'mag' or 'ew'"
+                f"Invalid index unit: {index_unit}. Expected 'mag' or 'ew'"
             )
         return dict(
             band=u.val_in_unit("band", band, band_unit, warn=False),

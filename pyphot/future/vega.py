@@ -8,10 +8,8 @@ Vega.wavelength and Vega.flux have now units!
 from __future__ import print_function
 
 import warnings
-from functools import wraps
 from typing import Optional, Tuple, cast
 
-import numpy as np
 import numpy.typing as npt
 
 from . import config
