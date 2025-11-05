@@ -3,9 +3,9 @@ pyphot -- A tool for computing photometry from spectra
 
 .. image:: https://img.shields.io/pypi/v/pyphot.svg
     :target: https://pypi.org/project/pyphot/
-    
-.. image:: https://zenodo.org/badge/70060728.svg
-   :target: https://zenodo.org/badge/latestdoi/70060728
+
+.. image:: https://zenodo.org/badge/latestdoi/70060728.svg
+   :target: https://doi.org/10.5281/zenodo.7016774
 
 .. image:: https://static.pepy.tech/badge/pyphot
    :target: https://pepy.tech/project/pyphot
@@ -40,9 +40,9 @@ computations.
 
 .. image:: https://img.shields.io/badge/render%20on-nbviewer-orange.svg
   :target: https://nbviewer.jupyter.org/github/mfouesneau/pyphot/tree/master/examples/
-  
-  
-  
+
+
+
 .. note::
     `cphot <https://github.com/mfouesneau/cphot>`_ is a spin-off project that provides a C++ version of pyphot
 
@@ -50,7 +50,7 @@ What's new?
 -----------
 * [July 2, 2025] Added Vega flavors to the Vega class, allowing users to select different Vega reference spectra for photometric calculations. (v1.7.0)
 * [January 21, 2025] Moved installation to use `pyproject.toml`; Updated documentation; Updates for deprecated calls. (v1.6.0)
-* [January 21, 2025] Support for Python 3.13 (v1.5.0); 
+* [January 21, 2025] Support for Python 3.13 (v1.5.0);
 * [June 26, 2024] Dropping support for Python <= 3.8 (due to HDF5 modules). Minor updates for Scipy 1.14.0 and Numpy 2.0
 * [November 22, 2021] new filters, SVO interface, automated tests and documentation.
 * [November 6, 2019] astropy version available in beta (`from pyphot import astropy as pyphot`)
