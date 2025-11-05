@@ -1,4 +1,4 @@
-from typing import Any, Tuple
+from typing import Any, Tuple, Union
 from astropy.io import fits
 from astropy.io.fits import Header
 from astropy.io.fits import TableHDU, BinTableHDU
@@ -10,7 +10,7 @@ from .header import HeaderInfo
 try:
     from astropy.io import fits
 
-    def fix_endian_issue(arr: npt.NDArray | Any) -> npt.NDArray:
+    def fix_endian_issue(arr: Union[npt.NDArray, Any]) -> npt.NDArray:
         """Fix endian issue in array which happens often when reading FITS files"""
         return arr.astype(arr.dtype.newbyteorder())
 
