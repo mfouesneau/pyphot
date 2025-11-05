@@ -25,4 +25,4 @@ jobs:
           pip install ".[testing]"
       - name: Running quick tests
         run: |
-          python3 -m unittest unittests/test_quick.py
+          python3 -m pytest
