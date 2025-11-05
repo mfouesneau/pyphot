@@ -112,9 +112,8 @@ class Library(object):
                         export_filter(fk)
 
     @classmethod
-    def from_hd5(cls, filename, **kwargs):
-        # return UnitHDF_Library(filename, **kwargs)
-        ...
+    def from_hd5(cls, filename, **kwargs) -> "HDF_Library":
+        return HDF_Library(filename, **kwargs)
 
     @classmethod
     def from_ascii(cls, filename, **kwargs):

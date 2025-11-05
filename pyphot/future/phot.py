@@ -15,6 +15,8 @@ This module defines the `Filter` class.
 
 from typing import Literal, Union, Optional, Any, Dict, cast
 import warnings
+from io import IOBase
+from os import PathLike
 
 import numpy as np
 import numpy.typing as npt
@@ -24,6 +26,7 @@ from . import config
 from .constants import Constants
 from .unit_adapters import QuantityType, enforce_default_units
 from .vega import Vega
+from .io.ascii import from_ascii, from_csv
 
 from ..simpletable import SimpleTable
 
@@ -840,7 +843,13 @@ class Filter:
     applyTo = apply_transmission
 
     @classmethod
-    def from_ascii(cls, fname: str, dtype: str = "csv", **kwargs) -> "Filter":
+    def from_ascii(
+        cls,
+        fname: Union[str, PathLike, IOBase],
+        *,
+        dtype: str = "csv",
+        **kwargs,
+    ) -> "Filter":
         """Load a Filter from an ASCII file
 
         Parameters
@@ -866,34 +875,40 @@ class Filter:
         detector = kwargs.pop("detector", "photon")
         unit = kwargs.pop("unit", None)
 
-        t = SimpleTable(fname, dtype=dtype, **kwargs)
-        w = t["WAVELENGTH"].astype(float)
-        r = t["THROUGHPUT"].astype(float)
+        # parse file
+        if dtype == "csv":
+            df, hdr = from_csv(fname)
+        elif dtype == "txt":
+            df, hdr = from_ascii(fname)
+        else:
+            raise ValueError(f"Unknown dtype {dtype}")
 
-        # update properties from file header
-        detector = t.header.get("DETECTOR", detector)
-        unit = t.header.get("WAVELENGTH_UNIT", unit)
-        name = t.header.get("NAME", name)
+        # parse the necessary data
+        w = df["WAVELENGTH"].values.astype(float)
+        r = df["THROUGHPUT"].values.astype(float)
+        detector = hdr.header.get("DETECTOR", detector)
+        unit = hdr.header.get("WAVELENGTH_UNIT", unit)
+        name = hdr.header.get("NAME", name)
 
-        # try from the comments in the header first
+        # also check the header comments
         if name in (None, "None", "none", ""):
             name = [
                 k.split()[1]
-                for k in t.header.get("COMMENT", "").split("\n")
+                for k in hdr.header.get("COMMENT", "").split("\n")
                 if "COMPNAME" in k
             ]
             name = "".join(name).replace('"', "").replace("'", "")
-        # if that did not work try the table header directly
+        # if that did not work try COMPNAME in the table header directly
         if name in (None, "None", "none", ""):
-            name = t.header["NAME"]
+            name = hdr.header.get("COMPNAME", name)
 
-        _filter = cls(w, r, name=name, dtype=detector, unit=unit)
-
+        # instanciate filter
+        _filter = Filter(w, r, name=name, dtype=detector, unit=unit)
         # reinterpolate if requested
         if lamb is not None:
-            return _filter.reinterp(lamb)
-        else:
-            return _filter
+            _filter = _filter.reinterp(lamb)
+
+        return _filter
 
     def to_Table(self, **kwargs) -> SimpleTable:
         """Export filter to a SimpleTable object

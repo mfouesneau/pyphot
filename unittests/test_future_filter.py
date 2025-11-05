@@ -85,3 +85,43 @@ def test_vega_reference_non_overlapping():
 
     assert math.isnan(f.leff.value)
     assert f.Vega_zero_flux == 0.0 * config.units.U("flam")
+
+
+def generate_ascii_filter_test_data():
+    from textwrap import dedent
+
+    data = """
+    # WAVELENGTH_UNIT	nm
+    # NAME           	TESTDATA
+    # DETECTOR       	photon
+    #
+    ## WAVELENGTH	None	nm
+    ## THROUGHPUT	None	filter throughput definition
+    #
+    WAVELENGTH,THROUGHPUT
+    300.000000,0.000000
+    309.000000,0.000000
+    399.000000,0.000000
+    400.000000,1.000000
+    500.000000,1.000000
+    501.000000,0.000000
+    600.000000,0.000000
+    """
+    return dedent(data[1:])
+
+
+def test_filter_from_ascii_data():
+    from io import StringIO
+
+    datastr = StringIO(generate_ascii_filter_test_data())
+    dtype = "csv"
+    kwargs = {}
+
+    r = Filter.from_ascii(datastr, dtype=dtype, **kwargs)
+    assert r is not None
+    assert r.name == "TESTDATA"
+    assert r.dtype == "photon"
+    assert r.wavelength_unit == "nm"
+    assert abs(r.cl.value - 450.0) < 1e-6
+    assert abs(r.lmin.value - 400.0) < 1e-6
+    assert abs(r.lmax.value - 500.0) < 1e-6
