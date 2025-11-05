@@ -26,12 +26,11 @@ If you change the vega flavor, you may have a mix of Vega definitions, which wil
 
 ## Incoming
 
-- missing test on `Ascii_Library`
-
 - replace internal simpletable by https://github.com/mfouesneau/simpletable
   - better support of varied formats
   - simpler API based on Pandas
   - DictDataFrame interface probably best here (avoid pandas)
+  - Blocking python 3.9, 3.10 not supported in new simpletable
 
 - remove dependency on astropy for the svo module
   - astropy.io.votable is used for parsing VOTable files from the SVO service
