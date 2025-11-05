@@ -4,8 +4,8 @@ pyphot -- A tool for computing photometry from spectra
 .. image:: https://img.shields.io/pypi/v/pyphot.svg
     :target: https://pypi.org/project/pyphot/
 
-.. image:: https://zenodo.org/badge/latestdoi/70060728.svg
-   :target: https://doi.org/10.5281/zenodo.7016774
+.. image:: https://zenodo.org/badge/70060728.svg
+   :target: https://zenodo.org/badge/latestdoi/7016774
 
 .. image:: https://static.pepy.tech/badge/pyphot
    :target: https://pepy.tech/project/pyphot
