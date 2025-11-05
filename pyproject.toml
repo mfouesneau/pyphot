@@ -1,6 +1,6 @@
 [project]
 name = "pyphot"
-version = "1.7.0"
+version = "2.0.dev"
 description = "A tool for computing photometry from spectra"
 readme = "README.rst"
 requires-python = ">=3.9"
@@ -9,6 +9,7 @@ dependencies = [
     "scipy>0.9",
     "astropy>5.0",
     "tables>3.0",
+    "pandas>=2.3.3",
 ]
 authors = [{name="Morgan Fouesneau"}]
 classifiers=[
