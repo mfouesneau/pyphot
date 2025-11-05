@@ -1,8 +1,8 @@
 """Test the future SVO filter interface"""
 
-from pyphot.future.svo import get_pyphot_filter
-from pyphot.future.phot import Filter
-from pyphot.future import config
+from pyphot.svo import get_pyphot_filter
+from pyphot.phot import Filter
+from pyphot import config
 
 
 def test_svo_filter_interface(unit_backend=None):

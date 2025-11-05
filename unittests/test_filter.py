@@ -4,10 +4,10 @@ import pytest
 from typing import cast
 import numpy as np
 
-from pyphot.future.libraries import get_library
-from pyphot.future import config
-from pyphot.future.phot import _drop_units, Filter
-from pyphot.future.vega import Vega
+from pyphot.libraries import get_library
+from pyphot import config
+from pyphot.phot import _drop_units, Filter
+from pyphot.vega import Vega
 
 config.set_vega_flavor("stis_003")  # make sure we compare apples to apples
 # assume internal default library for this

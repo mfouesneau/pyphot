@@ -3,7 +3,7 @@
 import pytest
 
 from typing import List, Tuple, cast
-from pyphot.future.unit_adapters import backends, UnitAdapterType, QuantityType
+from pyphot.unit_adapters import backends, UnitAdapterType, QuantityType
 
 # make sure we test all available backends
 test_backends = [name for name, adapter in backends.items() if adapter is not None]

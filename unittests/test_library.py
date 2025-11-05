@@ -1,13 +1,12 @@
 """Test the photometric library features"""
 
-from re import I
 import pytest
 import pathlib
 from typing import cast
 
-from pyphot.future.libraries import HDF_Library, Ascii_Library, get_library
+from pyphot.libraries import HDF_Library, Ascii_Library, get_library
 from pyphot import config
-from pyphot.future.phot import _drop_units, Filter
+from pyphot.phot import _drop_units, Filter
 
 lib = get_library()
 

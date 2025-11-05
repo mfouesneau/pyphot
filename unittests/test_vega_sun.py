@@ -5,9 +5,9 @@ import pytest
 from typing import cast
 import numpy as np
 
-from pyphot.future.libraries import get_library
-from pyphot.future import vega, sun, config
-from pyphot.future.phot import Filter
+from pyphot.libraries import get_library
+from pyphot import vega, sun, config
+from pyphot.phot import Filter
 
 
 @pytest.mark.parametrize("flavor", list(vega._default_vega.keys()))
@@ -45,5 +45,5 @@ def test_sun_magnitudes():
             )
         )
         sun_vega_mag = -2.5 * np.log10(flux.value) - vegamag
-
+        print(sun_vega_mag, expect_mag, abs(sun_vega_mag - expect_mag))
         assert abs(sun_vega_mag - expect_mag) < 1e-2

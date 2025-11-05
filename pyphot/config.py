@@ -1,8 +1,17 @@
 import os
 import inspect
-from dataclasses import dataclass
 from importlib import resources
+from .unit_adapters import find_default_units_backend, get_adapter as get_units_adapter
 
+__all__ = [
+    "__ROOT__",
+    "__default_passband_lib__",
+    "__default_lick_lib__",
+    "__vega_default_flavor__",
+    "units",
+    "set_units_backend",
+    "set_vega_flavor",
+]
 
 # directories
 __ROOT__ = "/".join(
@@ -18,6 +27,23 @@ __default_lick_lib__ = libsdir.joinpath("licks.dat")
 
 # Set default vega flavor
 __vega_default_flavor__ = "stis_003"
+
+# provide a unit adapter by default that can be imported
+units = find_default_units_backend()
+
+
+def set_units_backend(backend: str):
+    """Set the units backend to use throughout pyphot.
+
+    Parameters
+    ----------
+    backend : str
+        The name of the units backend to use.
+
+    see :py:mod:`pyphot.unit_adapters`
+    """
+    global units
+    units = get_units_adapter(backend)
 
 
 def set_vega_flavor(flavor: str):

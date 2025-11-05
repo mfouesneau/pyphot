@@ -4,8 +4,8 @@ import pytest
 
 from typing import cast, Union
 
-from pyphot.future import licks
-from pyphot.future import config
+from pyphot import licks
+from pyphot import config
 
 references = {
     "Mg_1": dict(
@@ -77,7 +77,7 @@ def test_library_against_references():
 @pytest.mark.parametrize("name", lib.content)
 def test_all_indices(name: str):
     # convert to magnitudes
-    from pyphot.future.vega import Vega
+    from pyphot.vega import Vega
 
     vega = Vega()
     # using the internal collection of indices

@@ -2,8 +2,8 @@
 
 import pytest
 
-from pyphot.future import config
-from pyphot.future.unit_adapters import enforce_default_units, backends
+from pyphot import config
+from pyphot.unit_adapters import enforce_default_units, backends
 
 
 @pytest.mark.parametrize("backend", list(backends.keys()))
