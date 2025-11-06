@@ -30,5 +30,6 @@ new_units = """
 unit = UnitRegistry()
 unit.load_definitions(new_units)
 
-# monkey patch pint to have a value attribute
+# monkey patch pint to have a value and unit attribute
 setattr(Quantity, "value", property(lambda self: self.magnitude))
+setattr(Quantity, "unit", property(lambda self: self.units))
