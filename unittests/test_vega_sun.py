@@ -28,7 +28,7 @@ def test_sun_magnitudes(AdapterName):
     if AdapterName is not None:
         try:
             config.set_units_backend(AdapterName)
-        except ValueError:
+        except ImportError:
             pytest.skip(f"Skipping test for {AdapterName} adapter")
     sun_obs = sun.Sun(flavor="observed")
     sun_th = sun.Sun()  # default is theoric spectrum
