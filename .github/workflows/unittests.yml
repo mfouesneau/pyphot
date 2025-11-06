@@ -26,4 +26,8 @@ jobs:
       - name: Running tests
         run: |
           python3 -m pytest --cov pyphot
+          echo "Coverage report"
+          echo "# Coverage Report" >> $GITHUB_STEP_SUMMARY
+          echo "```" >> $GITHUB_STEP_SUMMARY
           coverage report >> $GITHUB_STEP_SUMMARY
+          echo "```\n" >> $GITHUB_STEP_SUMMARY
