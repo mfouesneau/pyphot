@@ -26,8 +26,19 @@ jobs:
       - name: Running tests
         run: |
           python3 -m pytest --cov pyphot
+
+          # Add the title and opening code fence to the summary
           echo "# Coverage Report" >> $GITHUB_STEP_SUMMARY
-          echo '```' >> $GITHUB_STEP_SUMMARYY
-          echo "--- Coverage Report Output (Console & Summary) ---"
-          python3 -m coverage report | tee -a /dev/stderr | cat >> $GITHUB_STEP_SUMMARY
-          echo '```' >> $GITHUB_STEP_SUMMARYY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+
+          # Generate the report and save it to a temporary file
+          # (mktemp creates a unique, safe temporary file name)
+          TEMP_REPORT_FILE=$(mktemp)
+          python3 -m coverage report > "$TEMP_REPORT_FILE"
+
+          # Append the *content* of the temporary file to the summary
+          cat "$TEMP_REPORT_FILE" >> $GITHUB_STEP_SUMMARY
+          cat "$TEMP_REPORT_FILE"
+
+          # Add the closing code fence
+          echo '```' >> $GITHUB_STEP_SUMMARY
