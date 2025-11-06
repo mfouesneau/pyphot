@@ -1,2 +1,3 @@
 import importlib.metadata
-__VERSION__ = importlib.metadata.version('pyphot')
+
+__VERSION__ = importlib.metadata.version("pyphot")

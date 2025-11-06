@@ -14,15 +14,15 @@
 import sys
 from pathlib import Path
 
-sys.path.insert(0, str(Path('..').resolve()))
+sys.path.insert(0, str(Path("..").resolve()))
 
 
 # -- Project information -----------------------------------------------------
 
 # General information about the project.
-project = 'pyphot'
-copyright = '2016, M. Fouesneau'
-author = 'M. Fouesneau'
+project = "pyphot"
+copyright = "2016, M. Fouesneau"
+author = "M. Fouesneau"
 
 
 # -- General configuration ---------------------------------------------------
@@ -37,7 +37,7 @@ extensions = [
     "sphinx.ext.autosectionlabel",
     "sphinx_tabs.tabs",
     "sphinx.ext.napoleon",
-    "sphinx.ext.viewcode", 
+    "sphinx.ext.viewcode",
     "sphinx.ext.todo",
     "matplotlib.sphinxext.plot_directive",
     "sphinx_copybutton",
