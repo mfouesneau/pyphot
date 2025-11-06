@@ -1,10 +1,8 @@
 """Test pbar module functionality"""
 
-import pytest
 import sys
 import io
-import time
-from unittest.mock import Mock, patch, MagicMock, call
+from unittest.mock import Mock, patch
 from array import array
 
 from pyphot.pbar import Pbar

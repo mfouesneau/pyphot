@@ -2,7 +2,6 @@
 
 import pytest
 from typing import Any
-from unittest.mock import Mock, patch
 
 import pyphot.legacy as legacy
 from pyphot.phot import Filter

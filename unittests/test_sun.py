@@ -1,10 +1,8 @@
 """testing the vega/sun interfaces"""
 
 import pytest
-import os
-import tempfile
 import pandas as pd
-from unittest.mock import patch, Mock, mock_open
+from unittest.mock import patch
 
 from typing import cast
 import numpy as np

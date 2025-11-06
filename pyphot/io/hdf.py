@@ -1,5 +1,4 @@
 from typing import Optional
-import numpy.typing as npt
 import pandas as pd
 from .header import HeaderInfo
 

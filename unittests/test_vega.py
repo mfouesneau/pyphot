@@ -1,18 +1,12 @@
 """testing the vega/sun interfaces"""
 
 import pytest
-import os
-import tempfile
 import pandas as pd
-from unittest.mock import patch, Mock, mock_open
+from unittest.mock import patch
 
-from typing import cast
 import numpy as np
 
-from pyphot.libraries import get_library
-from pyphot import vega, config
-from pyphot.phot import Filter
-from pyphot.unit_adapters import backends
+from pyphot import vega
 
 
 @pytest.mark.parametrize("flavor", list(vega._default_vega.keys()))

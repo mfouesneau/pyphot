@@ -2,7 +2,6 @@
 
 from __future__ import print_function
 
-import warnings
 from typing import Optional, Literal, Tuple, cast
 import numpy.typing as npt
 import pandas as pd

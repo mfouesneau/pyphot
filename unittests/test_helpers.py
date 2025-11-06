@@ -1,6 +1,5 @@
 """Test helpers module functionality"""
 
-import pytest
 import warnings
 from unittest.mock import Mock, patch
 from math import pi
