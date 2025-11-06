@@ -8,11 +8,12 @@
   - default priority is `astropy`, `pint`, `ezunits[legacy]`
 - a more robust and general unit ensuring decorator `future.units_adapter.enforce_default_units` which also updates the docstring accordingly
 - vega flavor can now be switched globally `future.config.set_vega_flavor`
-- added specific unittests
-  - test_units_adapters, test_units_adapters_decorator
-  - test_future_filter, test_future_library
-  - test_future_vega_sun
-  - test_future_licks
+  - still available locally (since v.1.7.0)
+- added specific unittests - coverage > 70%
+- internal simpletable removed in favor of pandas
+  - python.io for ascii, fits, hdf5adapted from https://github.com/mfouesneau/simpletable
+
+
 
 ```{warning} configuration update only affects newly created objects
 
@@ -26,11 +27,9 @@ If you change the vega flavor, you may have a mix of Vega definitions, which wil
 
 ## Incoming
 
-- replace internal simpletable by https://github.com/mfouesneau/simpletable
-  - better support of varied formats
-  - simpler API based on Pandas
-  - DictDataFrame interface probably best here (avoid pandas)
-  - Blocking python 3.9, 3.10 not supported in new simpletable
+- io.hdf does not allow export yet.
+
+- update documentation with new features/refactoring
 
 - remove dependency on astropy for the svo module
   - astropy.io.votable is used for parsing VOTable files from the SVO service
