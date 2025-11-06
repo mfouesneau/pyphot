@@ -376,7 +376,7 @@ def test_buffer_width_success(mock_ioctl, mock_signal):
     pbar.handle_resize.side_effect = side_effect
 
     width = pbar._buffer_width()
-
+    assert width > 0
     assert pbar._auto_width is True
     mock_signal.signal.assert_called_once()
 
