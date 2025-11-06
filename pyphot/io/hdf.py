@@ -98,7 +98,7 @@ def from_hdf5(
     raise ValueError("Something went wrong without much information from pytables")
 
 
-def to_hdf(
+def to_hdf5(
     df: pd.DataFrame,
     filename: Union[str, tables.File, PathLike],
     *,
