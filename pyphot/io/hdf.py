@@ -74,7 +74,6 @@ def from_hdf5(
         desc = {}
 
         colnames = node.colnames  # type: ignore / it does exist
-        print(attrs)
         for k, colname in enumerate(colnames):
             _u = getattr(attrs, f"FIELD_{k:d}_UNIT", None)
             _u = getattr(attrs, f"{colname:s}_UNIT", _u)
