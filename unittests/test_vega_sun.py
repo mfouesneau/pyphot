@@ -8,6 +8,10 @@ import numpy as np
 from pyphot.libraries import get_library
 from pyphot import vega, sun, config
 from pyphot.phot import Filter
+from pyphot.unit_adapters import backends
+
+# make sure we test all available backends
+test_backends = [name for name, adapter in backends.items() if adapter is not None]
 
 
 @pytest.mark.parametrize("flavor", list(vega._default_vega.keys()))
@@ -22,7 +26,13 @@ def test_instanciate_sun(flavor):
     _ = sun.Sun(flavor=flavor)
 
 
-def test_sun_magnitudes():
+@pytest.mark.parametrize("AdapterName", list(backends.keys()))
+def test_sun_magnitudes(AdapterName):
+    if AdapterName is not None:
+        try:
+            config.set_units_backend(AdapterName)
+        except ValueError:
+            pytest.skip(f"Skipping test for {AdapterName} adapter")
     sun_obs = sun.Sun(flavor="observed")
     sun_th = sun.Sun()  # default is theoric spectrum
     sun_th_10pc = sun.Sun(distance=10 * config.units.U("pc"))
@@ -39,11 +49,5 @@ def test_sun_magnitudes():
     ):
         flux = f.get_flux(sun_flavor.wavelength, sun_flavor.flux)
         vegamag = f.Vega_zero_mag
-        print(
-            "{0:12s} {1:0.5e} {2:+3.4f}".format(
-                name, flux.value, -2.5 * np.log10(flux.value) - vegamag
-            )
-        )
         sun_vega_mag = -2.5 * np.log10(flux.value) - vegamag
-        print(sun_vega_mag, expect_mag, abs(sun_vega_mag - expect_mag))
         assert abs(sun_vega_mag - expect_mag) < 1e-2
