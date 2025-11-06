@@ -193,7 +193,9 @@ class enforce_default_units:
         new_args = []
         # assume args correspond to the first arguments of the function
         for arg_name, arg_value, unit in zip(fn_argnames[:n_args], fn_args, self.args):
-            if arg_value in (None, ""):
+            if arg_value is None:
+                continue
+            if isinstance(arg_value, str) and arg_value.strip() == "":
                 continue
             new_args.append(
                 adapter.val_in_unit(
