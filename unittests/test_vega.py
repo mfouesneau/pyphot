@@ -361,7 +361,7 @@ def test_vega_case_insensitive_flavor():
     # This test documents the current behavior
 
     # This should work (lowercase matches key)
-    vega_obj1 = vega.Vega(flavor="legacy")
+    vega.Vega(flavor="legacy")
 
     # This should fail (uppercase doesn't match key, even though validation passes)
     with pytest.raises(KeyError):

@@ -390,6 +390,7 @@ def test_buffer_width_exception(mock_signal):
     pbar = Pbar()
     width = pbar._buffer_width()
 
+    assert width > 0
     assert pbar.term_width == 79
     assert pbar._auto_width is False
 
