@@ -28,6 +28,8 @@ from .constants import Constants
 from .unit_adapters import QuantityType, enforce_default_units
 from .vega import Vega
 from .io.ascii import from_ascii, from_csv
+from .io.hdf import from_hdf5
+from .io import to_file
 
 __all__ = ["Filter"]
 
@@ -927,6 +929,7 @@ class Filter:
 
         if self.wavelength_unit is not None:
             data.attrs["WAVELENGTH_UNIT"] = self.wavelength_unit
+            data.attrs["units"] = {"WAVELENGTH": self.wavelength_unit}
         data.attrs["DETECTOR"] = self.dtype
         data.attrs["COMPNAME"] = str(self.name)
         data.attrs["NAME"] = str(self.name)
@@ -964,4 +967,4 @@ class Filter:
         Uses `SimpleTable.write` parameters
         """
         data = self.to_Table()
-        data.write(fname, **kwargs)
+        to_file(data, fname, **kwargs)
