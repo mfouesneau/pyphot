@@ -442,12 +442,12 @@ def to_csv(
 
 def to_ascii(
     self: pd.DataFrame,
-    filepath_or_buffer: FilePath | BaseBuffer,
+    filepath_or_buffer: Union[FilePath, BaseBuffer],
     *,
     sep: "str" = " ",
     commentchar: str = "#",
     **kwargs,
-) -> str | None:
+) -> Optional[str]:
     r"""
     Write object to an ASCII values file while preserving attrs
 
