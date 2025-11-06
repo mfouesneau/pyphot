@@ -1,7 +1,7 @@
 """Export dataframe to ASCII format while preserving attrs"""
 
 import pandas as pd
-from typing import Callable, Hashable, Sequence, List, Tuple, cast, Union
+from typing import Callable, Hashable, Sequence, List, Tuple, cast, Union, Optional
 from pandas.io.common import get_handle
 from pandas._typing import (
     CompressionOptions,
@@ -17,7 +17,7 @@ from .header import HeaderInfo
 
 
 def ascii_read_header(
-    fname: str | FilePath | IOBase,
+    fname: Union[str, FilePath, IOBase],
     *,
     commentchar: str = "#",
     delimiter: str = ",",
@@ -59,7 +59,7 @@ def ascii_read_header(
     """
 
     # define some internal functions
-    def parseStrNone(v: str) -> str | None:
+    def parseStrNone(v: str) -> Optional[str]:
         """robust parse"""
         _v = v.strip().split()
         if len(_v) == 0:
@@ -70,7 +70,7 @@ def ascii_read_header(
                 return None
             return _v
 
-    def parseColInfo(line: str) -> tuple[str, str | None, str | None]:
+    def parseColInfo(line: str) -> Tuple[str, Optional[str], Optional[str]]:
         """parse column info"""
         line = line.replace(commentchar, "").strip()
         tokens = line.split("\t")
@@ -174,8 +174,8 @@ def ascii_read_header(
 
 def ascii_generate_header(
     df: pd.DataFrame,
-    comments: str | None = "#",
-    delimiter: str | None = " ",
+    comments: Optional[str] = "#",
+    delimiter: Optional[str] = " ",
     commented_header: bool = True,
 ) -> str:
     """Generate the corresponding ascii Header that contains all necessary info
@@ -257,30 +257,30 @@ def ascii_generate_header(
 
 def to_csv(
     self: pd.DataFrame,
-    filepath_or_buffer: FilePath | BaseBuffer,
+    filepath_or_buffer: Union[FilePath, BaseBuffer],
     *,
-    sep: "str" = ",",
+    sep: str = ",",
     commentchar: str = "#",
-    na_rep: "str" = "",
-    float_format: "str | Callable | None" = None,
-    columns: "Sequence[Hashable] | None" = None,
-    header: bool | List[str] = True,
+    na_rep: str = "",
+    float_format: Union[str, Callable, None] = None,
+    columns: Union[Sequence[Hashable], None] = None,
+    header: Union[bool, List[str]] = True,
     index: bool = True,
-    index_label: IndexLabel | None = None,
+    index_label: Optional[IndexLabel] = None,
     mode: str = "w",
-    encoding: str | None = None,
+    encoding: Optional[str] = None,
     compression: CompressionOptions = "infer",
-    quoting: int | None = None,
+    quoting: Optional[int] = None,
     quotechar: str = '"',
-    lineterminator: str | None = None,
-    chunksize: int | None = None,
-    date_format: str | None = None,
+    lineterminator: Optional[str] = None,
+    chunksize: Optional[int] = None,
+    date_format: Optional[str] = None,
     doublequote: bool = True,
-    escapechar: str | None = None,
+    escapechar: Optional[str] = None,
     decimal: str = ".",
     errors: OpenFileErrors = "strict",
-    storage_options: StorageOptions | None = None,
-) -> str | None:
+    storage_options: Optional[StorageOptions] = None,
+) -> Optional[str]:
     r"""
     Write object to a comma-separated values (csv) file while preserving attrs
 
