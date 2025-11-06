@@ -111,7 +111,11 @@ class Sun:
 
             self.flavor = flavor
             self.source = _default_sun[flavor]
-            self.distance_conversion = float(((_default_distance / self.distance) ** 2))
+            # careful that the units are not always simplified
+            # .to('') to enforce simplified distance
+            self.distance_conversion = float(
+                ((_default_distance / self.distance).to("") ** 2)
+            )
         self._data = None
         self.units = None
 
