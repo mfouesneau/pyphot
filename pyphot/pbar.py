@@ -166,8 +166,9 @@ class Pbar(object):
         txt: str
             string representing the meter
         """
-        if n > total:
-            total = None
+        if total is not None:
+            if n > total:
+                total = None
 
         vals = {"n": n}
         vals["elapsed"] = self.format_interval(elapsed)
