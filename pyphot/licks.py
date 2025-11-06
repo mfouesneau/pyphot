@@ -415,7 +415,7 @@ class LickIndex(object):
         flux: npt.NDArray[np.floating],
         blue: tuple[float, float],
         red: tuple[float, float],
-        band: tuple[float, float] | None = None,
+        band: Optional[Tuple[float, float]] = None,
         unit: str = "ew",
         degree: int = 1,
         **kwargs,
