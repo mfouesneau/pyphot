@@ -50,6 +50,8 @@ def from_file(
         df, hdr = ascii.from_csv(fname, **kwargs)
     elif ext in ("txt", "dat"):
         df, hdr = ascii.from_ascii(fname, **kwargs)
+    elif ext in ("vot", "votable", "xml"):
+        df, hdr = votable.from_votable(fname, **kwargs)
     elif ext in ("fits",):
         with warnings.catch_warnings():
             warnings.simplefilter("ignore")
@@ -63,3 +65,46 @@ def from_file(
     df.attrs["FLUX_UNIT"] = hdr.units["FLUX"].split("=")[0].rstrip()
 
     return df, hdr
+
+
+def to_file(
+    df: pd.DataFrame,
+    fname: str,
+    *,
+    format: Optional[str] = None,
+    header_info: Optional[HeaderInfo] = None,
+    **kwargs,
+):
+    """Write a file from a DataFrame and a Header
+
+    Parameters
+    ----------
+    df : pd.DataFrame
+        DataFrame to write.
+    fname : str
+        File name to read.
+    header_info: Optional[HeaderInfo] = None
+        Header information to write.
+    format : str, optional
+        File format to read. If not provided, the format is inferred from the file extension.
+    **kwargs
+        Additional keyword arguments to pass to the reader.
+
+    """
+    # handle legacy files by extension
+    if format:
+        ext = format.lower()
+    else:
+        ext = fname.split(".")[-1].lower()
+    if ext in ("hd5", "hdf", "hdf5"):
+        hdf.to_hdf5(df, fname, header_info=header_info, **kwargs)
+    elif ext in ("csv"):
+        ascii.to_csv(df, fname, **kwargs)
+    elif ext in ("txt", "dat"):
+        ascii.to_ascii(df, fname, **kwargs)
+    elif ext in ("fits",):
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore")
+            fits.to_fits(df, fname, header_info=header_info, **kwargs)
+    else:
+        raise ValueError(f"Unsupported file format: {ext}")
