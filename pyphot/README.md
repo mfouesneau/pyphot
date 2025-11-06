@@ -28,5 +28,5 @@ If you change the vega flavor, you may have a mix of Vega definitions, which wil
 
 ## Incoming
 
-- io.hdf does not allow export yet.
 - update documentation with new features/refactoring
+- update example notebooks
