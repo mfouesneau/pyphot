@@ -28,7 +28,6 @@ from .constants import Constants
 from .unit_adapters import QuantityType, enforce_default_units
 from .vega import Vega
 from .io.ascii import from_ascii, from_csv
-from .io.hdf import from_hdf5
 from .io import to_file
 
 __all__ = ["Filter"]
