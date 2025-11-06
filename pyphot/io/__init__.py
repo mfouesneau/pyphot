@@ -7,9 +7,11 @@ import warnings
 from . import fits
 from . import ascii
 from . import hdf
+from . import votable
+
 from .header import HeaderInfo
 
-__all__ = ["fits", "ascii", "hdf", "HeaderInfo", "from_file"]
+__all__ = ["fits", "ascii", "hdf", "votable", "HeaderInfo", "from_file"]
 
 
 def from_file(

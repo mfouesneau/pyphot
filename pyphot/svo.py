@@ -21,18 +21,55 @@ Example
 """
 
 from io import BytesIO
-from typing import List, Literal
+from typing import List, Literal, cast
 
 import requests
-from astropy.io import votable
 
+from . import config
 from .phot import Filter
+from .unit_adapters import QuantityType
+from .io.votable import from_votable
 
 QUERY_URL: str = "http://svo2.cab.inta-csic.es/theory/fps/fps.php"
 DETECTOR_TYPE: List[Literal["energy", "photon"]] = [
     "energy",
     "photon",
 ]  # svo returns 0, 1
+
+__all__ = ["get_pyphot_filter"]
+
+
+def _get_pyphot_filter_astropy(identifier: str) -> Filter:
+    """Query the SVO filter profile service and return the filter object
+    This function uses the astropy.io.votable module to parse the response from the SVO filter profile service.
+    This does not play well with other unit backends than astropy.units
+
+    Parameters
+    ----------
+    identifier : str
+        SVO identifier of the filter profile
+        e.g., 2MASS/2MASS.Ks HST/ACS_WFC.F475W
+        The identifier is the first column on the webpage of the facilities.
+
+    Returns
+    -------
+    filter : Filter
+        Filter object
+    """
+    from astropy.io import votable
+
+    query = {"ID": identifier}
+    response = requests.get(QUERY_URL, params=query)
+    response.raise_for_status()
+    table = votable.parse_single_table(BytesIO(response.content))
+    params = {p.name: p.value for p in table.params}
+    tab = table.to_table()
+    return Filter(
+        tab["Wavelength"].to("nm"),
+        tab["Transmission"],
+        name=params["filterID"].replace("/", "_"),
+        dtype=DETECTOR_TYPE[int(params["DetectorType"])],  # type: ignore
+    )
 
 
 def get_pyphot_filter(identifier: str) -> Filter:
@@ -53,12 +90,14 @@ def get_pyphot_filter(identifier: str) -> Filter:
     query = {"ID": identifier}
     response = requests.get(QUERY_URL, params=query)
     response.raise_for_status()
-    table = votable.parse_single_table(BytesIO(response.content))
-    params = {p.name: p.value for p in table.params}
-    tab = table.to_table()
-    return Filter(
-        tab["Wavelength"].to("nm"),
-        tab["Transmission"],
-        name=params["filterID"].replace("/", "_"),
-        dtype=DETECTOR_TYPE[int(params["DetectorType"])],  # type: ignore
+    df, header = from_votable(BytesIO(response.content))
+
+    wavelength = cast(
+        QuantityType,
+        df["Wavelength"].to_numpy() * config.units.U(header.units["Wavelength"]),
     )
+    transmission = df["Transmission"].to_numpy()
+    name = header.header["filterID"]["value"].replace("/", "_")
+    dtype = DETECTOR_TYPE[int(header.header["DetectorType"]["value"])]
+
+    return Filter(wavelength.to("nm"), transmission, name=name, dtype=dtype)

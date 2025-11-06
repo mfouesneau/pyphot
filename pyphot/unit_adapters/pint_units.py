@@ -25,6 +25,7 @@ new_units = """
     micron = micrometer
     microns = micrometer
     AA = angstrom
+    Angstrom = angstrom
 """.splitlines()
 
 unit = UnitRegistry()
