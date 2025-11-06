@@ -1,4 +1,4 @@
-from typing import Any, Tuple, Union
+from typing import Any, Tuple, Union, Optional
 from astropy.io import fits
 from astropy.io.fits import Header
 from astropy.io.fits import TableHDU, BinTableHDU
@@ -103,7 +103,7 @@ try:
             The loaded DataFrame and its header information.
         """
         with fits.open(filename) as hdu:
-            extension: TableHDU | BinTableHDU = hdu[extension_number]  # pyright: ignore[reportAssignmentType]
+            extension: Union[TableHDU, BinTableHDU] = hdu[extension_number]  # pyright: ignore[reportAssignmentType]
             hdr_info = fits_read_header(extension.header)
             data = fix_endian_issue(extension.data)
         return data, hdr_info
@@ -209,7 +209,7 @@ def to_fits(
     df: pd.DataFrame,
     filename: str,
     extension_number: int = 1,
-    header_info: HeaderInfo | None = None,
+    header_info: Optional[HeaderInfo] = None,
     output_verify: str = "exception",
     checksum: bool = False,
     index: bool = True,
@@ -228,7 +228,7 @@ def to_fits(
         The path to the FITS file.
     extension_number : int, optional
         The extension number to save, by default 1.
-    header_info : HeaderInfo | None, optional
+    header_info : Optional[HeaderInfo], optional
         Header information to save with the FITS file
         by default None and taken from data.attrs
         override data.attrs if provided
