@@ -25,4 +25,5 @@ jobs:
           pip install ".[testing]"
       - name: Running tests
         run: |
-          python3 -m pytest
+          python3 -m pytest --cov pyphot
+          coverage report >> $GITHUB_STEP_SUMMARY
