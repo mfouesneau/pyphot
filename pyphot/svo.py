@@ -21,7 +21,7 @@ Example
 """
 
 from io import BytesIO
-from typing import List, LiteralString
+from typing import List, Literal
 
 import requests
 from astropy.io import votable
@@ -29,7 +29,10 @@ from astropy.io import votable
 from .phot import Filter
 
 QUERY_URL: str = "http://svo2.cab.inta-csic.es/theory/fps/fps.php"
-DETECTOR_TYPE: List[LiteralString] = ["energy", "photon"]  # svo returns 0, 1
+DETECTOR_TYPE: List[Literal["energy", "photon"]] = [
+    "energy",
+    "photon",
+]  # svo returns 0, 1
 
 
 def get_pyphot_filter(identifier: str) -> Filter:
