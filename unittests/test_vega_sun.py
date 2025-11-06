@@ -10,9 +10,6 @@ from pyphot import vega, sun, config
 from pyphot.phot import Filter
 from pyphot.unit_adapters import backends
 
-# make sure we test all available backends
-test_backends = [name for name, adapter in backends.items() if adapter is not None]
-
 
 @pytest.mark.parametrize("flavor", list(vega._default_vega.keys()))
 def test_instanciate_vega(flavor):

@@ -10,8 +10,11 @@ from pyphot.unit_adapters import enforce_default_units, backends
 def test_decorator(backend):
     """Test the ezunits related decorator"""
 
-    # set default backedn
-    config.set_units_backend(backend)
+    # set default backend
+    try:
+        config.set_units_backend(backend)
+    except ImportError:
+        pytest.skip(f"Backend {backend} not available")
     # get the default backend decorator
     decorator = enforce_default_units
 

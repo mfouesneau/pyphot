@@ -3,18 +3,17 @@
 import pytest
 
 from typing import List, Tuple, cast
-from pyphot.unit_adapters import backends, UnitAdapterType, QuantityType
-
-# make sure we test all available backends
-test_backends = [name for name, adapter in backends.items() if adapter is not None]
+from pyphot.unit_adapters import backends, QuantityType
 
 
-@pytest.mark.parametrize("Adapter", list(backends.values()))
-def test_adapter_decorator(Adapter: UnitAdapterType):
+@pytest.mark.parametrize("AdapterName", list(backends.keys()))
+def test_adapter_decorator(AdapterName):
     """Test the ezunits related decorator"""
 
+    Adapter = backends[AdapterName]
+
     if Adapter is None:
-        pytest.skip(f"Skipping test for {Adapter.__name__} adapter")
+        pytest.skip(f"Skipping test for {AdapterName} adapter")
 
     U = Adapter.U
     decorator = Adapter.decorate
@@ -48,11 +47,13 @@ def test_adapter_decorator(Adapter: UnitAdapterType):
         pass
 
 
-@pytest.mark.parametrize("Adapter", list(backends.values()))
-def test_pyphot_units(Adapter: UnitAdapterType):
+@pytest.mark.parametrize("AdapterName", list(backends.keys()))
+def test_pyphot_units(AdapterName):
     """Checking correct definitions of needed units"""
+    Adapter = backends[AdapterName]
+
     if Adapter is None:
-        pytest.skip(f"Skipping test for {Adapter.__name__} adapter")
+        pytest.skip(f"Skipping test for {AdapterName} adapter")
 
     U = Adapter.U
     # Astronomy related
