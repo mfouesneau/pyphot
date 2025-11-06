@@ -28,5 +28,6 @@ jobs:
           python3 -m pytest --cov pyphot
           echo "# Coverage Report" >> $GITHUB_STEP_SUMMARY
           echo "```" >> $GITHUB_STEP_SUMMARY
-          python3 -m coverage report | cat >> $GITHUB_STEP_SUMMARY
+          echo "--- Coverage Report Output (Console & Summary) ---"
+          python3 -m coverage report | tee -a /dev/stderr | cat >> $GITHUB_STEP_SUMMARY
           echo "```" >> $GITHUB_STEP_SUMMARY
