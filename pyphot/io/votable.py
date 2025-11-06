@@ -256,7 +256,7 @@ class VOTableParser:
         for field in table["fields"]:
             print(f"  {field['name']} ({field['datatype']}) - {field['description']}")
 
-        print(f"\nParameters:")
+        print("\nParameters:")
         for param in table["params"]:
             print(f"  {param['name']}: {param['value']} ({param['unit']})")
 
@@ -295,7 +295,6 @@ def from_votable(
     """
     parser = VOTableParser(fname, is_url=is_url)
     table = parser.tables[table_index]
-    params = {p["name"]: p["value"] for p in table["params"]}
     fields = table["fields"]
     columns = (field["name"] for field in fields)
     data_ = parser.get_table_as_dict(table_index)
