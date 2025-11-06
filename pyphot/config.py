@@ -41,6 +41,7 @@ def set_units_backend(backend: str):
         The name of the units backend to use.
 
     see :py:mod:`pyphot.unit_adapters`
+
     """
     global units
     units = get_units_adapter(backend)
@@ -55,6 +56,7 @@ def set_vega_flavor(flavor: str):
         The name of the vega flavor to use.
 
     see :py:mod:`pyphot.vega`
+
     """
     global __vega_default_flavor__
     __vega_default_flavor__ = flavor

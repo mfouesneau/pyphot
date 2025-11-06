@@ -26,19 +26,18 @@ def get_library_default_distance() -> QuantityType:
 
 
 class Sun:
-    """
-     Class that handles the Sun's spectrum and references.
+    """Class that handles the Sun's spectrum and references.
 
-     Observed solar spectrum comes from:
-     ftp://ftp.stsci.edu/cdbs/current_calspec/sun_reference_stis_001.fits
+    Observed solar spectrum comes from:
+    ftp://ftp.stsci.edu/cdbs/current_calspec/sun_reference_stis_001.fits
 
-     and theoretical spectrum comes from:
-     ftp://ftp.stsci.edu/cdbs/grid/k93models/standards/sun_kurucz93.fits
+    and theoretical spectrum comes from:
+    ftp://ftp.stsci.edu/cdbs/grid/k93models/standards/sun_kurucz93.fits
 
-     The theoretical spectrum is scaled to match the observed spectrum from 1.5 -
-     2.5 microns, and then it is used where the observed spectrum ends.
-     The theoretical model of the Sun from Kurucz'93 atlas using the following
-     parameters when the Sun is at 1 au.
+    The theoretical spectrum is scaled to match the observed spectrum from 1.5 -
+    2.5 microns, and then it is used where the observed spectrum ends.
+    The theoretical model of the Sun from Kurucz'93 atlas using the following
+    parameters when the Sun is at 1 au.
 
     +-----------+------------+----------+-------------+
     | log(Z)    | Teff       | log_g    | V_{Johnson} |
@@ -46,23 +45,23 @@ class Sun:
     | +0.0      | +5777      | +4.44    | -26.75      |
     +-----------+------------+----------+-------------+
 
-     Attributes
-     ----------
-     source: str
-         filename of the sun library
-     data: SimpleTable
-         data table
-     units: tuple
-         detected units from file header
-     wavelength: array
-         wavelength (with units when found)
-     flux: array
-         flux(wavelength) values (with units when provided)
-     distance: float
-         distance to the observed Sun (default, 1 au)
-     flavor: str, (default theoretical)
-         either 'observed' using the stis reference,
-         or  'theoretical' for the Kurucz model.
+    Attributes
+    ----------
+    source: str
+        filename of the sun library
+    data: SimpleTable
+        data table
+    units: tuple
+        detected units from file header
+    wavelength: array
+        wavelength (with units when found)
+    flux: array
+        flux(wavelength) values (with units when provided)
+    distance: float
+        distance to the observed Sun (default, 1 au)
+    flavor: str, (default theoretical)
+        either 'observed' using the stis reference,
+        or  'theoretical' for the Kurucz model.
     """
 
     _data: Optional[pd.DataFrame]

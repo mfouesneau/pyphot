@@ -54,6 +54,7 @@ class Vega:
         with Vega(flavor='stis_011') as v:
             vega_f, vega_mag, flamb = v.getSed(filters)
         print(vega_f, vega_mag, flamb)
+
     """
 
     _data: Optional[pd.DataFrame] = None

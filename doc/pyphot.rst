@@ -7,8 +7,8 @@ Subpackages
 .. toctree::
    :maxdepth: 4
 
-   pyphot.astropy
-   pyphot.ezunits
+   pyphot.io
+   pyphot.unit_adapters
 
 Submodules
 ----------
@@ -18,93 +18,117 @@ pyphot.config module
 
 .. automodule:: pyphot.config
    :members:
-   :undoc-members:
    :show-inheritance:
+   :undoc-members:
+
+pyphot.constants module
+-----------------------
+
+.. automodule:: pyphot.constants
+   :members:
+   :show-inheritance:
+   :undoc-members:
 
 pyphot.helpers module
 ---------------------
 
 .. automodule:: pyphot.helpers
    :members:
-   :undoc-members:
    :show-inheritance:
+   :undoc-members:
+
+pyphot.legacy module
+--------------------
+
+.. automodule:: pyphot.legacy
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+pyphot.libraries module
+-----------------------
+
+.. automodule:: pyphot.libraries
+   :members:
+   :show-inheritance:
+   :undoc-members:
 
 pyphot.licks module
 -------------------
 
 .. automodule:: pyphot.licks
    :members:
-   :undoc-members:
    :show-inheritance:
+   :undoc-members:
 
 pyphot.pbar module
 ------------------
 
 .. automodule:: pyphot.pbar
    :members:
-   :undoc-members:
    :show-inheritance:
+   :undoc-members:
 
 pyphot.phot module
 ------------------
 
 .. automodule:: pyphot.phot
    :members:
-   :undoc-members:
    :show-inheritance:
-
-pyphot.sandbox module
----------------------
-
-.. automodule:: pyphot.sandbox
-   :members:
    :undoc-members:
-   :show-inheritance:
-
-pyphot.simpletable module
--------------------------
-
-.. automodule:: pyphot.simpletable
-   :members:
-   :undoc-members:
-   :show-inheritance:
 
 pyphot.sun module
 -----------------
 
 .. automodule:: pyphot.sun
    :members:
-   :undoc-members:
    :show-inheritance:
+   :undoc-members:
 
 pyphot.svo module
 -----------------
 
 .. automodule:: pyphot.svo
    :members:
-   :undoc-members:
    :show-inheritance:
+   :undoc-members:
+
+pyphot.typing module
+--------------------
+
+.. automodule:: pyphot.typing
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+pyphot.uncertain module
+-----------------------
+
+.. automodule:: pyphot.uncertain
+   :members:
+   :show-inheritance:
+   :undoc-members:
 
 pyphot.vega module
 ------------------
 
 .. automodule:: pyphot.vega
    :members:
-   :undoc-members:
    :show-inheritance:
+   :undoc-members:
 
 pyphot.version module
 ---------------------
 
 .. automodule:: pyphot.version
    :members:
-   :undoc-members:
    :show-inheritance:
+   :undoc-members:
 
 Module contents
 ---------------
 
 .. automodule:: pyphot
    :members:
-   :undoc-members:
    :show-inheritance:
+   :undoc-members:
