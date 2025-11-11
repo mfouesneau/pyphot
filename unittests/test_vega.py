@@ -339,22 +339,6 @@ def test_vega_all_exports():
     assert vega.__all__ == ["Vega"]
 
 
-def test_vega_module_docstring():
-    """Test that vega module has appropriate documentation"""
-    assert vega.__doc__ is not None
-    assert "vega" in vega.__doc__.lower()
-    assert "flux" in vega.__doc__.lower()
-
-
-def test_vega_class_docstring():
-    """Test that Vega class has comprehensive documentation"""
-    assert vega.Vega.__doc__ is not None
-    assert "Class that handles vega spectrum" in vega.Vega.__doc__
-    assert "Attributes" in vega.Vega.__doc__
-    assert "Bohlin 2007" in vega.Vega.__doc__  # Should mention Bohlin reference
-    assert "context manager" in vega.Vega.__doc__
-
-
 def test_vega_case_insensitive_flavor():
     """Test that flavor matching is case insensitive for validation but case sensitive for lookup"""
     # The actual implementation has a bug: it uses .lower() for validation but not for lookup

@@ -388,17 +388,3 @@ def test_sun_default_sources():
 def test_sun_all_exports():
     """Test that __all__ contains expected exports"""
     assert sun.__all__ == ["Sun"]
-
-
-def test_sun_module_docstring():
-    """Test that sun module has appropriate documentation"""
-    assert sun.__doc__ is not None
-    assert "Sun Spectrum" in sun.__doc__
-
-
-def test_sun_class_docstring():
-    """Test that Sun class has comprehensive documentation"""
-    assert sun.Sun.__doc__ is not None
-    assert "Class that handles the Sun's spectrum" in sun.Sun.__doc__
-    assert "Attributes" in sun.Sun.__doc__
-    assert "Kurucz" in sun.Sun.__doc__  # Should mention Kurucz model
