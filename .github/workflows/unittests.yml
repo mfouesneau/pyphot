@@ -1,11 +1,11 @@
 name: unittests
 
-on: 
+on:
   push:
     paths-ignore:
-          - "joss/**"
-          - "doc/**"
-          - "paper/**"
+      - "joss/**"
+      - "doc/**"
+      - "paper/**"
 
 jobs:
   build:
@@ -14,15 +14,31 @@ jobs:
       matrix:
         python-version: ["3.9", "3.10", "3.11", "3.12", "3.13"]
     steps:
-    - uses: actions/checkout@v2
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v2
-      with:
-        python-version: ${{ matrix.python-version }}
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install ".[testing]"
-    - name: Running quick tests
-      run: |
-        python3 -m unittest unittests/test_quick.py
+      - uses: actions/checkout@v2
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install ".[testing]"
+      - name: Running tests
+        run: |
+          python3 -m pytest --cov pyphot
+
+          # Add the title and opening code fence to the summary
+          echo "# Coverage Report" >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+
+          # Generate the report and save it to a temporary file
+          # (mktemp creates a unique, safe temporary file name)
+          TEMP_REPORT_FILE=$(mktemp)
+          python3 -m coverage report > "$TEMP_REPORT_FILE"
+
+          # Append the *content* of the temporary file to the summary
+          cat "$TEMP_REPORT_FILE" >> $GITHUB_STEP_SUMMARY
+          cat "$TEMP_REPORT_FILE"
+
+          # Add the closing code fence
+          echo '```' >> $GITHUB_STEP_SUMMARY

@@ -6,90 +6,100 @@
 PYPHOT -- A tool for computing photometry from spectra
 ======================================================
 
-This is a set of tools to compute synthetic photometry in a simple way, suitable for
-integration in larger projects.
+.. image:: https://img.shields.io/pypi/v/pyphot.svg
+    :target: https://pypi.org/project/pyphot/
 
-The inputs are response functions for the desired photometric passbands, and stellar spectra. The modules are flexible to handle units in the wavelength definition through 
-a simplified version of `pint` (link)
+.. image:: https://zenodo.org/badge/70060728.svg
+    :target: https://zenodo.org/badge/latestdoi/70060728
+
+.. image:: https://static.pepy.tech/badge/pyphot
+    :target: https://pepy.tech/project/pyphot
+
+.. image:: https://static.pepy.tech/badge/pyphot/month
+    :target: https://pepy.tech/project/pyphot
+
+.. image:: https://img.shields.io/badge/python-3.9,_3.10,_3.11,_3.12,_3.13-blue.svg
+
+This is a set of tools to compute synthetic photometry in a simple way, suitable
+for integration in larger projects.
+
+.. important::
+   New major release (v2.0.0) which introduces new features and **breaking changes**.
+
+   See :doc:`What's new <whats_new>`.
+
+.. info::
+   Support for python 3.14 is currently blocked by `pytables` not supporting it yet.
+
+
+The inputs are response functions for the desired photometric passbands, and
+stellar spectra.
 
 Filters are represented individually by a `Filter` object. Collections of
 filters are handled with a `Library`. We provide an internal library that
-contains a signitificant amount of common filters. Note that we use the word "filter" 
-in a generic sense: in many cases it corresponds in fact to a total throughput, that includes
-the actual filter transmission, the transmission of the optics, the wavelength-dependent efficiency
-of the detector, and (for ground-based photometric systems) the transmission of the 
-atmosphere.
+contains a signitificant amount of common filters. Note that we use the word
+"filter" in a generic sense: in many cases it corresponds in fact to a total
+throughput, that includes the actual filter transmission, the transmission of
+the optics, the wavelength-dependent efficiency of the detector, and (for
+ground-based photometric systems) the transmission of the atmosphere.
 
-Each filter is minimally defined by a `wavelength`, a `throughput`, and a detector
-type that may be either `energy` or `photon` (default). Many properties such as central 
-or pivot wavelengths are computed internally. 
+Each filter is minimally defined by a `wavelength`, a `throughput`, and a
+detector type that may be either `energy` or `photon` (default). Many properties
+such as central or pivot wavelengths are computed internally.
 
-Units are provided for the wavelengths of the filters, zero points in
-multiple units are also accessible (AB, Vega magnitude, Jy, erg/s/cm2/AA). The
-default detector is assumed to be a photon-counting device, but energy-sensitive
+Units are provided for the wavelengths of the filters, zero points in multiple
+units are also accessible (AB, Vega magnitude, Jy, erg/s/cm2/AA). The default
+detector is assumed to be a photon-counting device, but energy-sensitive
 detectors are also handled for the computations.
 
 .. note::
 
-        All provided filters have defined units and detector type
-        that are used transparently throughout the package.
+    Pyphot handles units from `Astropy Units <https://docs.astropy.org/en/stable/units/index.html>`_ (as default), `Pint <https://pint.readthedocs.io/en/stable/>`_, and `EzUnits` (:mod:`~pyphot.unit_adapters.ezunits`).
+    You can switch between them using the :func:`pyphot.config.set_units_backend` function.
 
-.. image:: https://mybinder.org/badge.svg 
-  :target: https://mybinder.org/v2/gh/mfouesneau/pyphot/master?filepath=examples%2FQuickStart.ipynb
- 
-.. image:: https://img.shields.io/badge/render%20on-nbviewer-orange.svg
-  :target: https://nbviewer.jupyter.org/github/mfouesneau/pyphot/tree/master/examples/
-  
+    .. code-block:: python
+
+        import pyphot.config
+        pyphot.config.set_units_backend('astropy')
+        pyphot.config.set_units_backend('pint')
+        pyphot.config.set_units_backend('ezunits')
+
+
 
 Package main content
 ~~~~~~~~~~~~~~~~~~~~
 
-This package is mainly organized around two backend to handle quantities with units: a lightweight version of
-`Pint`_ (:class:`pyphot.ezunits`) and the `Astropy Units <https://docs.astropy.org/en/stable/units/index.html>`_. 
-As these do no provide the same functionalities, the package is designed to be able to switch between the two by importing either from :class:`pyphot.sandbox` or :class:`pyphot.astropy`.
+This package is mostly organized around 2 main classes:
 
-.. _Pint: https://pint.readthedocs.io/en/stable/
+* :class:`~pyphot.phot.Filter` that handles filter definitions and manipulations.
 
-.. tip::
-
-        You can transparently switch between pint and astropy units with aliasing the import line:
-
-        .. code:: python
-
-                from pyphot import astropy as pyphot
-                # or 
-                from pyphot import sandbox as pyphot
+* :class:`~pyphot.libraries.Library` that handles a collection of filters in a few formats.
 
 
-This package is mostly organized around 2 main classes (from either root module above):
-
-* :class:`~pyphot.sandbox.UnitFilter` that handles filter definitions and manipulations.
- 
-* :class:`~pyphot.sandbox.UnitLibrary` that handles a collection of filters in a few formats. 
-
-
-Additionally, and for convenience 
+Additionally, and for convenience
 
 * the library class is derived into an ascii file reader
-  :class:`~pyphot.phot.Ascii_Library`, and a single hdf file reader
-  :class:`~pyphot.phot.HDF_Library`. 
-
-* :class:`~pyphot.svo` provides an interface to the `SVO Filter Profile Service <http://svo2.cab.inta-csic.es/theory/fps/>`_ to download filters directly from the SVO database.
+  :class:`~pyphot.libraries.Ascii_Library`, and a single hdf file reader
+  :class:`~pyphot.libraries.HDF_Library`.
 
 * :class:`~pyphot.vega.Vega` provides an interface to a synthetic reference of Vega.
 
 * :class:`~pyphot.sun.Sun` provides an interface to a synthetic and empirical reference of the Sun spectrum.
 
-* :class:`~pyphot.licks` provides an extension to computing lick indices.
+* :class:`~pyphot.licks` provides an extension to computing lick indices (:class:`~pyphot.licks.LickIndex`, :class:`~pyphot.licks.LickLibrary`).
 
-Contents
----------
+* :func:`pyphot.svo.get_pyphot_filter` provides an interface to the `SVO Filter Profile Service <http://svo2.cab.inta-csic.es/theory/fps/>`_ to download filters directly from the SVO database.
+
+Documentation Contents
+----------------------
 
 .. toctree::
    :maxdepth: 1
 
    Home <index>
-   more_examples
+   What's New <whats_new>
+   QuickStart
+   examples
    photometry
    libcontent
    licks
@@ -99,14 +109,18 @@ Contents
 
 Installation
 ~~~~~~~~~~~~
+Pyphot is available on `PyPI <https://pypi.org/project/pyphot/>`_ and can be installed using any common package manager.
 
-* Using pip: Use the `--user` option if you don't have permissions to install libraries
+* Using pip: (Use the `--user` option if you don't have permissions to install libraries)
+
+.. image:: https://img.shields.io/pypi/v/pyphot.svg
+    :target: https://pypi.org/project/pyphot/
 
 .. code-block:: none
 
         pip install git+https://github.com/mfouesneau/pyphot
 
-* Manually:
+* Manually from latest source on GitHub:
 
 .. code-block:: none
 
@@ -115,91 +129,10 @@ Installation
         python setup.py intall
 
 
-Quick Start
-~~~~~~~~~~~
-
-Additional examples can be found on the :doc:`more_examples` page.
-
-If one wishes to find out details about one of the available transmission curves:
-
-.. code-block:: python
-
-        import pyphot
-        # get the internal default library of passbands filters
-        lib = pyphot.get_library()
-        print("Library contains: ", len(lib), " filters")
-        # find all filter names that relates to IRAC 
-        # and print some info
-        f = lib.find('irac')
-        for name in f:
-            lib[name].info(show_zeropoints=True)
-
-.. code-block:: none
-
-        Filter object information:
-            name:                 SPITZER_IRAC_45
-            detector type:        photon
-            wavelength units:     AA
-            central wavelength:   45110.141614 angstrom
-            pivot wavelength:     45020.219955 angstrom
-            effective wavelength: 44425.747085 angstrom
-            photon wavelength:    44603.204646 angstrom
-            minimum wavelength:   39250.000000 angstrom
-            maximum wavelength:   50640.000000 angstrom
-            norm:                 4664.680820
-            effective width:      8714.143135 angstrom
-            fullwidth half-max:   10110.000000
-            definition contains 417 points
-
-            Zeropoints
-                Vega: 28.933083 mag,
-                      2.6715713304827696e-12 erg / angstrom * centimeter ** 2 * second,
-                      180.61811118349118 Jy
-                      3.246733893355585 photon / angstrom * centimeter ** 2 * second
-                  AB: 25.674986 mag,
-                      5.370385702161592e-11 erg / angstrom * centimeter ** 2 * second,
-                      3630.780547701007 Jy
-                  ST: 21.100000 mag,
-                      3.6307805477010028e-09 erg / angstrom * centimeter ** 2 * second,
-                      245467.79536259372 Jy
-
-        [...]
-
-Suppose one has a calibrated spectrum and wants to compute the corresponding vega magnitude
-through the HST/WFC3 F110W passband: 
-
-.. code-block:: python
-
-        import numpy as np
-        f = lib['hst_wfc3_f110w']
-        # compute the integrated flux through the filter f
-        # (note that 'spectra' can be a 2D array holding many spectra)
-        fluxes = f.get_flux(lamb, spectra, axis=1)
-        # convert fluxes to vega magnitudes
-        mags = -2.5 * np.log10(fluxes) - f.Vega_zero_mag
-        # or similarly
-        mags = -2.5 * np.log10(fluxes / f.Vega_zero_flux)
-
-
-To use one's own transmission curve, defined by `lamb_T` and
-`T`, instead of one of the pre-defined ones, one would use 
-the :class:`pyphot.phot.Filter` directly: 
-
-.. code-block:: python
-
-        # convert to magnitudes
-        from pyphot import Filter
-        # if lamb_T has units the Filter object will use those.
-        f = Filter(lamb_T, T, name='my_filter', dtype='photon', unit='Angstrom')
-        # compute the integrated flux through the filter f
-        fluxes = f.get_flux(lamb, spectra, axis=1)
-        ...
-
-       
 Internal Vega reference
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-As mentioned in the above, sometimes a spectrum of reference of Vega is necessary. 
+As mentioned in the above, sometimes a spectrum of reference of Vega is necessary.
 
 By default, we use the synthetic spectrum `alpha_lyr_stis_003` provided by `Bohlin 2007 <https://ui.adsabs.harvard.edu/abs/2007ASPC..364..315B/abstract>`_, a common reference
 througout many photometric suites.
@@ -208,7 +141,7 @@ The interface to the Vega template is given through the :class:`pyphot.vega.Vega
 
 Since v.1.7.0, additional flavors and description of the internal Vega reference can be found on the :doc:`vega` page.
 
-To use a specific Vega flavor for the photometric calculations in Pyphot, you can set the `vega` keyword parameter  when creating a passband or use the `set_vega_flavor` method to update it. 
+To use a specific Vega flavor for the photometric calculations in Pyphot, you can set the `vega` keyword parameter  when creating a passband or use the `set_vega_flavor` method to update it.
 For example, to use the `alpha_lyr_stis_011` flavor when creating a passband filter, you can do the following:
 
 .. code-block:: python
@@ -238,15 +171,15 @@ Or alternatively, you can set/reset the Vega flavor after:
 Internal Sun reference
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-We also provide observed and theoretical references for the solar spectrum following 
+We also provide observed and theoretical references for the solar spectrum following
 `Colina, Bohlin, & Castelli 1996 <https://ui.adsabs.harvard.edu/abs/1996AJ....112..307C/abstract>`_.
 
-The observed solar spectrum comes from CALSPEC 
-`sun_reference_stis_001.fits <ftp://ftp.stsci.edu/cdbs/current_calspec/sun_reference_stis_001.fits>`_ 
+The observed solar spectrum comes from CALSPEC
+`sun_reference_stis_001.fits <ftp://ftp.stsci.edu/cdbs/current_calspec/sun_reference_stis_001.fits>`_
 which provides the ultraviolet to near-infrared absolute flux distribution of
 the Sun covering the 0.12-2.5 μm wavelength range. The solar reference spectrum
 combines absolute flux measurements from satellites and from the ground with a
-model spectrum for the near-infrared. 
+model spectrum for the near-infrared.
 
 The theoretical spectrum comes from the Kurucz'93 atlas:
 `<sun_kurucz93.fits ftp://ftp.stsci.edu/cdbs/grid/k93models/standards/sun_kurucz93.fits>`_
@@ -278,6 +211,16 @@ Direct contributions to the code base:
 * Ariane Lançon (`@lancon <https://github.com/lancon>`_)
 * Tim Morton (`@timothydmorton <https://github.com/timothydmorton>`_)
 
+How to contribute
+~~~~~~~~~~~~~~~~~
+
+This project is open source and new contributions and contributors are very welcome!
+
+Please open a new issue or new pull request for bugs, feedback, or new features you would like to see. If there is an issue you would like to work on, please leave a comment, and we will be happy to assist.
+
+Please have a look at our `code of conduct <https://github.com/mfouesneau/pyphot/blob/main/CODE_OF_CONDUCT.md>`_.
+
+
 Related projects
 ~~~~~~~~~~~~~~~~
 
@@ -295,19 +238,19 @@ If you use this software in your work, please cite it using the following:
 
                 .. code-block::
 
-                        @software{zenodopyphot,
+                        @software{fouesneau2025pyphot,
                         author       = {Fouesneau, Morgan},
                         title        = {pyphot},
                         month        = jan,
                         year         = 2025,
                         publisher    = {Zenodo},
-                        version      = {pyphot\_v1.6.0},
+                        version      = {pyphot\_v2.0.0},
                         doi          = {10.5281/zenodo.14712174},
                         url          = {https://doi.org/10.5281/zenodo.14712174},
                         }
-        
+
         .. tab:: citation cff
-                 
+
                 `Learn more about CITATION files.  <https://citation-file-format.github.io/>`_
 
                 .. literalinclude:: ../CITATION.cff
@@ -319,4 +262,3 @@ Indices and tables
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
-

@@ -128,7 +128,11 @@ dmypy.json
 
 # pixi environments
 .pixi
+*.lock
 *.egg-info
 pixi.lock
 paper/jats/paper.jats
 paper/paper.pdf
+
+# other
+**/.DS_Store

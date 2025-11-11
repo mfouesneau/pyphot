@@ -14,15 +14,15 @@
 import sys
 from pathlib import Path
 
-sys.path.insert(0, str(Path('..').resolve()))
+sys.path.insert(0, str(Path("..").resolve()))
 
 
 # -- Project information -----------------------------------------------------
 
 # General information about the project.
-project = 'pyphot'
-copyright = '2016, M. Fouesneau'
-author = 'M. Fouesneau'
+project = "pyphot"
+copyright = "2016, M. Fouesneau"
+author = "M. Fouesneau"
 
 
 # -- General configuration ---------------------------------------------------
@@ -37,7 +37,7 @@ extensions = [
     "sphinx.ext.autosectionlabel",
     "sphinx_tabs.tabs",
     "sphinx.ext.napoleon",
-    "sphinx.ext.viewcode", 
+    "sphinx.ext.viewcode",
     "sphinx.ext.todo",
     "matplotlib.sphinxext.plot_directive",
     "sphinx_copybutton",
@@ -108,8 +108,77 @@ copybutton_selector = "div:not(.output) > div.highlight pre"
 # descriptions of the relevant function/method.
 autodoc_typehints = "description"
 
+# whether the types of undocumented parameters and return values are documented
+autodoc_typehints_description_target = "all"
+
+# controls the format of typehints Suppress the leading module names of the typehints
+autodoc_typehints_format = "short"
+
 # Don't show class signature with the class' name.
 autodoc_class_signature = "separated"
 
 # remove module name prefix from functions
 add_module_names = False
+
+# Eliminate duplicate object warnings while preserving full API documentation coverage.
+# https://github.com/dougborg/katana-openapi-client/pull/10
+autoapi_python_class_content = "init"
+
+# separate class and init docstrings
+autoclass_content = "both"
+
+# Define the order in which automodule and autoclass members are listed
+autodoc_member_order = "alphabetical"
+
+autodoc_default_options = {"special-members": "__init__"}
+
+# Prevent imported members from being fully documented at module level
+# They will appear as links/references instead
+# ! That does not work!
+autodoc_inherit_docstrings = False
+
+
+def autodoc_skip_member(app, what, name, obj, skip, options):
+    """
+    Skip imported members from submodules to prevent documentation duplication.
+    """
+    if skip:
+        return True
+
+    # Only apply to module-level members
+    if what != "module":
+        return False
+
+    # Get the documenter from the call stack
+    import inspect
+
+    frame = inspect.currentframe()
+    try:
+        # Walk up the call stack to find the ModuleDocumenter
+        while frame:
+            local_vars = frame.f_locals
+            if "self" in local_vars:
+                documenter = local_vars["self"]
+                # Check if this is a ModuleDocumenter with the info we need
+                if hasattr(documenter, "modname") and hasattr(documenter, "object"):
+                    current_module = documenter.modname
+
+                    # Check if obj comes from a submodule
+                    if hasattr(obj, "__module__"):
+                        obj_module = obj.__module__
+
+                        # Skip if object is from a submodule
+                        if obj_module != current_module and obj_module.startswith(
+                            current_module + "."
+                        ):
+                            return True
+                    break
+            frame = frame.f_back
+    finally:
+        del frame
+
+    return False
+
+
+def setup(app):
+    app.connect("autodoc-skip-member", autodoc_skip_member)
