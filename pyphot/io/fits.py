@@ -1,3 +1,10 @@
+"""Module for reading and writing FITS files
+
+.. important::
+    This module relies on `astropy.io.fits <https://docs.astropy.org/en/stable/io/fits/index.html>`_
+
+"""
+
 from typing import Any, Tuple, Union, Optional
 from astropy.io import fits
 from astropy.io.fits import Header

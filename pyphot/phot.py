@@ -56,52 +56,29 @@ class Filter:
     """Evolution of Filter that makes sure the input spectra and output fluxes
     have units to avoid mis-interpretation.
 
-    Note the usual (non SI) units of flux definitions:
-        flam     = erg/s/cm**2/AA
-        fnu      = erg/s/cm**2/Hz
-        photflam = photon/s/cm**2/AA
-        photnu   = photon/s/cm**2/Hz
+    .. note:: the usual (non SI) units of flux definitions:
+
+        - flam     = erg/s/cm**2/AA
+        - fnu      = erg/s/cm**2/Hz
+        - photflam = photon/s/cm**2/AA
+        - photnu   = photon/s/cm**2/Hz
 
     Define a filter by its name, wavelength and transmission
     The type of detector (energy or photon counter) can be specified for
     adapting calculations. (default: photon)
 
-    Attributes
-    ----------
-    name: str
-        name of the filter
-
-    cl: float
-        central wavelength of the filter
-
-    norm: float
-        normalization factor of the filter
-
-    lpivot: float
-        pivot wavelength of the filter
-
-    wavelength: ndarray
-        wavelength sequence defining the filter transmission curve
-
-    transmit: ndarray
-        transmission curve of the filter
-
-    dtype: str
-        detector type, either "photon" or "energy" counter
-
-    unit: str
-        wavelength units
-
-    vega: str
-        Vega flavor to use for calculations, default is 'default'
-        (see :class:`pyphot.vega.Vega` for details)
     """
 
     dtype: Literal["photon", "energy"]
+    """Type of detector (photon or energy)"""
     name: str
+    """Name of the filter"""
     norm: float
+    """Normalization factor"""
     transmit: npt.NDArray[np.floating]
+    """Transmission/throughput curve"""
     wavelength_unit: str
+    """Wavelength unit"""
 
     _cl: float
     _lT: float
@@ -119,7 +96,29 @@ class Filter:
         unit: Optional[str] = None,
         vega: Optional[str] = None,
     ):
-        """Constructor"""
+        """Constructor
+
+        Parameters
+        ----------
+        wavelength: ndarray | QuantityType
+            wavelength sequence defining the filter transmission curve
+
+        transmit: ndarray
+            transmission curve of the filter
+
+        name: str
+            name of the filter
+
+        dtype: str
+            detector type, either "photon" or "energy" counter
+
+        unit: str
+            wavelength units
+
+        vega: str
+            Vega flavor to use for calculations, default is 'default'
+            (see :class:`pyphot.vega.Vega` for details)
+        """
         self.name = name
         self.set_dtype(dtype)
 
@@ -289,12 +288,12 @@ class Filter:
 
         for `photon` filters:
 
-        ..math::
+        .. math::
             \lambda_{pivot}^2 = \frac{\int \lambda T(\lambda) d\lambda}{\int T(\lambda) d\lambda / \lambda}
 
         for `energy` filters:
 
-        ..math::
+        .. math::
             \lambda_{pivot}^2 = \frac{\int T(\lambda) d\lambda}{\int T(\lambda) d\lambda / \lambda^2}
 
         """
@@ -307,7 +306,7 @@ class Filter:
     def cl(self) -> QuantityType:
         r"""Unitwise Central wavelength
 
-        ..math::
+        .. math::
             \lambda_{cl} = \frac{\int \lambda T(\lambda) d\lambda}{\int T(\lambda) d\lambda}
         """
         if self.wavelength_unit is not None:
@@ -376,9 +375,12 @@ class Filter:
     def AB_zero_mag(self) -> float:
         r"""AB magnitude zero point
 
-        ABmag = -2.5 * log10(f_nu) - 48.60
-              = -2.5 * log10(f_lamb) - 2.5 * log10(lpivot ** 2 / c) - 48.60
-              = -2.5 * log10(f_lamb) - zpts
+        .. math::
+            \begin{align}
+            \mathrm{ABmag} &= -2.5 \log_{10}(f_{\nu}) - 48.60 \\
+                           &= -2.5 \log_{10}(f_{\lambda}) - 2.5 \log_{10}(\lambda_{pivot}^2 / c) - 48.60 \\
+                           &= -2.5 \log_{10}(f_{\lambda}) - zpts
+            \end{align}
 
         """
         if self.wavelength_unit is None:
@@ -415,17 +417,21 @@ class Filter:
 
         .. note::
 
-            see `self.get_Nphotons`
+            see :meth:`Filter.get_Nphotons`
         """
         with Vega(flavor=self._vega_flavor) as v:
             return self.get_Nphotons(v.wavelength, v.flux)
 
     @property
     def Vega_zero_mag(self):
-        """vega magnitude zero point
+        r"""vega magnitude zero point
 
-        vegamag = -2.5 * log10(f_lamb) + 2.5 * log10(f_vega)
-        vegamag = -2.5 * log10(f_lamb) - zpts
+        .. math::
+            \begin{align}
+            \mathrm{mag} &= -2.5 \log_{10}(f_\lambda / f_\mathrm{Vega}) \\
+                         &= -2.5 \log_{10}(f_\lambda) - \mathrm{zeropoint}
+            \end{align}
+
         """
         flux = self.Vega_zero_flux.value
         if flux > 0:
@@ -435,7 +441,7 @@ class Filter:
 
     @property
     def Vega_zero_flux(self):
-        """Vega flux zero point in erg/s/cm2/AA"""
+        """Vega flux zero point in flam (erg/s/cm2/AA)"""
         with Vega(flavor=self._vega_flavor) as v:
             f_vega = self.get_flux(v.wavelength, v.flux, axis=-1)
         return f_vega
@@ -586,12 +592,12 @@ class Filter:
 
         for `photon` filters:
 
-        ..math::
+        .. math::
             \lambda_{pivot}^2 = \frac{\int \lambda T(\lambda) d\lambda}{\int T(\lambda) d\lambda / \lambda}
 
         for `energy` filters:
 
-        ..math::
+        .. math::
             \lambda_{pivot}^2 = \frac{\int T(\lambda) d\lambda}{\int T(\lambda) d\lambda / \lambda^2}
         """
         if self.transmit.max() <= 0:

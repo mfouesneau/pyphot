@@ -1,23 +1,25 @@
 """Link to the SVO filter profile service
 
-http://svo2.cab.inta-csic.es/theory/fps/
+See also their website http://svo2.cab.inta-csic.es/theory/fps/
 
-If your research benefits from the use of the SVO Filter Profile Service, include the following acknowledgement in your publication:
+.. important::
+    If your research benefits from the use of the SVO Filter Profile Service, include the following acknowledgement in your publication:
 
-> This research has made use of the SVO Filter Profile Service
-> (http://svo2.cab.inta-csic.es/theory/fps/) supported from the Spanish MINECO
-> through grant AYA2017-84089.
+    This research has made use of the SVO Filter Profile Service(http://svo2.cab.inta-csic.es/theory/fps/) supported from the Spanish MINECO through grant AYA2017-84089 and described in `Rodrigo et al, (2012) <https://ui.adsabs.harvard.edu/abs/2012ivoa.rept.1015R/abstract>`_ and `Rodrigo et al. (2020) <https://ui.adsabs.harvard.edu/abs/2020sea..confE.182R/abstract>`_
 
-and please include the following references in your publication:
+    with references:
 
-* The SVO Filter Profile Service. Rodrigo, C., Solano, E., Bayo, A., 2012; https://ui.adsabs.harvard.edu/abs/2012ivoa.rept.1015R/abstract
-* The SVO Filter Profile Service. Rodrigo, C., Solano, E., 2020; https://ui.adsabs.harvard.edu/abs/2020sea..confE.182R/abstract
+    * The SVO Filter Profile Service. Rodrigo, C., Solano, E., Bayo, A., 2012; `2012ivoa.rept.1015R <https://ui.adsabs.harvard.edu/abs/2012ivoa.rept.1015R/abstract>`_
+    * The SVO Filter Profile Service. Rodrigo, C., Solano, E., 2020; `2020sea..confE.182R <https://ui.adsabs.harvard.edu/abs/2020sea..confE.182R/abstract>`_
 
 Example
 -------
 
 >>> lst = "2MASS/2MASS.J 2MASS/2MASS.H 2MASS/2MASS.Ks HST/ACS_WFC.F475W HST/ACS_WFC.F814W".split()
     objects = [get_pyphot_filter(k) for k in lst]
+
+.. note::
+    This module uses :mod:`pyphot.io.votable` to parse the SVO filter profile service response. (i.e. it does not depend on Astropy)
 """
 
 from io import BytesIO

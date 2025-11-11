@@ -1,7 +1,7 @@
 """
 A module containing fundamental constants used in photometry calculations.
 
-This module provides access to fundamental constants used in photometry calculations while ensuring consistency with the units defined in the `config` module. (not all unit packages provide these constants)
+This module provides access to fundamental constants used in photometry calculations while ensuring consistency with the units defined in the :mod:`config` module. (not all unit packages provide these constants)
 """
 
 from dataclasses import dataclass
@@ -14,19 +14,16 @@ __all__ = ["constants"]
 
 @dataclass
 class ConstantDef:
-    """Definition of a constant used in photometry calculations.
-
-    Attributes:
-        value: The value of the constant.
-        unit: The unit of the constant.
-        long_name: The long name of the constant.
-        source: The source of the constant.
-    """
+    """Definition of a constant used in photometry calculations."""
 
     value: Any
+    """The value of the constant."""
     unit: str
+    """The unit of the constant."""
     long_name: Optional[str] = None
+    """The long name of the constant."""
     source: Optional[str] = None
+    """The source of the constant."""
 
 
 @dataclass
@@ -80,3 +77,7 @@ class Constants:
 
 
 constants = Constants()
+"""Constants used in photometry calculations.
+
+This class provides access to fundamental constants used in photometry calculations while ensuring consistency with the units defined in the `config` module.
+"""

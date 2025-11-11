@@ -1,54 +1,33 @@
-"""Lick indices calculations
+"""This module provides function to compute spectral indices
+
+The Lick system of spectral line indices is one of the most commonly used methods of determining ages and metallicities of unresolved (integrated light) stellar populations.
+
+The calibration of the Lick / IDS system is complicated because the original Lick spectra were not flux calibrated, so there are usually systematic effects due to differences in continuum shape.  Proper calibration involves observing many of the original Lick/IDS standard stars and deriving offsets to the standard system.
+
+In `Vazdekis et al. (2010) <https://ui.adsabs.harvard.edu/abs/2010MNRAS.404.1639V>`_, they propose a new Line Index System, hereafter
+LIS, with three new spectral resolutions at which to measure the Lick indices. Note that this new system should not be restricted to the Lick set of indices in a flux calibrated system. In fact, LIS can be used for any index in the literature (e.g., for the `Rose (1984) indices <https://ui.adsabs.harvard.edu/abs/1985AJ.....90.1927R>`_), including newly defined indices (e.g., `Cervantes & Vazdekis 2009 <https://ui.adsabs.harvard.edu/abs/2009MNRAS.392..691C>`_).
+
+Indices are defined through :class:`~pyphot.licks.LickIndex`
 
 
-This package provides function to compute spectral indices
+The LIS system is defined for 3 different spectral resolutions which are best suited for the following astrophysical cases:
+
+* LIS-5.0AA: globular clusters
+* LIS-8.4AA: low and intermediate-mass galaxies
+* LIS-14.0AA: massive galaxies
+
+:func:`~pyphot.licks.reduce_resolution` adapts the resolution of the spectra to match the lick definitions.
+
+Conversions to transform the data from the Lick/IDS system to LIS can be found in `Johansson, Thomas & Maraston (2010) <https://ui.adsabs.harvard.edu/abs/2010MNRAS.404.1639V>`_, which provides a discussion of indices
+and the information content of them.
+
+A collection of many common indices is available in the internal library :data:`pyphot.config.__default_lick_lib__`
+`licks.dat` and accessible through :class:`~pyphot.licks.LickLibrary`.
 
 
-A collection of many common indices is available in `licks.dat`
 
-The Lick system of spectral line indices is one of the most commonly used
-methods of determining ages and metallicities of unresolved (integrated light)
-stellar populations.
-
-The calibration of the Lick/ IDS system is complicated because the original
-Lick spectra were not flux calibrated, so there are usually systematic effects
-due to differences in continuum shape.  Proper calibration involves observing
-many of the original Lick/IDS standard stars and deriving offsets to the
-standard system.
-
-references
-~~~~~~~~~~
-
-    Worthey G., Faber S. M., Gonzalez J. J., Burstein D., 1994, ApJS, 94, 687
-    Worthey G., Ottaviani D. L., 1997, ApJS, 111, 377
-    Puzia et al. 2002
-    Zhang, Li & Han 2005, http://arxiv.org/abs/astro-ph/0508634v1
-
-
-notes
-~~~~~
-
-    In Vazdekis et al. (2010), we propose a new Line Index System, hereafter
-    LIS, with three new spectral resolutions at which to measure the Lick
-    indices. Note that this new system should not be restricted to the Lick set
-    of indices in a flux calibrated system. In fact, LIS can be used for any
-    index in the literature (e.g., for the Rose (1984) indices), including
-    newly defined indices (e.g., Cervantes & Vazdekis 2009).
-
-
-    The LIS system is defined for 3 different spectral resolutions which are
-    best suited for the following astrophysical cases:
-
-    LIS-5.0AA: globular clusters
-    LIS-8.4AA: low and intermediate-mass galaxies
-    LIS-14.0AA: massive galaxies
-    Conversions to transform the data from the Lick/IDS system to LIS can be
-    found
-
-
-    discussion of indices and information
-    Johansson, Thomas & Maraston 2010
-    http://wwwmpa.mpa-garching.mpg.de/~jonasj/milesff/milesff.pdf
+.. seealso::
+    :doc:`licks` contains a lot more information and literature references about the Lick/IDS system.
 
 """
 
@@ -291,7 +270,9 @@ class LickIndex(object):
     """Define a Lick Index similarily to a Filter object"""
 
     _lick: LickDefinition
+    """LickDefinition object"""
     name: str
+    """Name of the index"""
 
     def __init__(
         self,
@@ -571,13 +552,32 @@ class LickIndex(object):
 
 
 class LickLibrary:
-    """Collection of Lick indices"""
+    """Collection of Lick indices
+
+    .. seealso::
+        This library behaves like the photometric one :class:`pyphot.libraries.Library`
+
+    """
 
     source: str
+    """Source of the library"""
     _content: Dict[str, LickDefinition]
+    """Content of the library"""
     _hdr: List[str]
+    """Header of the library"""
 
     def __init__(self, fname: Optional[str] = None, comment: str = "#"):
+        """
+        Initialize the LickLibrary object.
+
+        Parameters
+        ----------
+        fname: str, optional
+            ascii file containing the indices' definitions
+        comment: str, optional
+            character indicating comment in the file
+
+        """
         self.source: str = fname or str(config.__default_lick_lib__)
         data, hdr = self._read_lick_list(fname, comment)
         self._content = data
@@ -659,16 +659,31 @@ class LickLibrary:
                 f = [s._load_filter(k) for k in name]
         return f
 
-    def _load_filter(self, fname, **kwargs):
+    def _load_filter(self, fname, **kwargs) -> LickIndex:
         """Load a given filter from the library"""
         with self as current_lib:
             return LickIndex(fname, current_lib._content[fname])
 
     @property
-    def content(self):
+    def content(self) -> List[str]:
+        """Get the content of the library"""
         return self.get_library_content()
 
-    def find(self, name, case_sensitive=True):
+    def find(self, name: str, case_sensitive: bool = True) -> List[str]:
+        """Find indices in the library
+
+        Parameters
+        ----------
+        name : str
+            Name of the filter to find
+        case_sensitive : bool, optional
+            Whether to perform a case-sensitive search, by default True
+
+        Returns
+        -------
+        List[str]
+            List of indices that match the given name
+        """
         r = []
         if not case_sensitive:
             _n = name.lower()

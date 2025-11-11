@@ -29,23 +29,9 @@ _default_vega = {
 
 class Vega:
     """
-    Class that handles vega spectrum and references.  This class know where to
-    find the Vega synthetic spectrum in order to compute fluxes
-    and magnitudes in given filters
-
-    Default Vega spectrum is Bohlin 2007, alpha_Lyr_mod_003.fits
-    from the HST CDBS database, which is a synthetic spectrum of Vega
-
-    Attributes
-    ----------
-    source: str
-        filename of the vega library
-    data: SimpleTable
-        data table
-    units: tuple
-        detected units from file header
-    flavor: str, ["mod_002", "mod_003", "mod_004"] or ["stis_011", "stis_003"] or "legacy" or "legacy"
-        flavor of the vega spectrum
+    Class that handles vega spectrum and references. This class know where to
+    find the Vega synthetic spectrum in order to compute fluxes and magnitudes
+    in given filters
 
     An instance can be used as a context manager as:
 
@@ -55,13 +41,27 @@ class Vega:
             vega_f, vega_mag, flamb = v.getSed(filters)
         print(vega_f, vega_mag, flamb)
 
+    .. seealso::
+        See the documentation :doc:`vega` for more information about the
+        different flavors of Vega spectra and associated references.
+
     """
 
     _data: Optional[pd.DataFrame] = None
+    """Data table read from the source file"""
     units: Optional[Tuple[str, str]] = None
+    """Units of the data (wavelength, flux)"""
 
     def __init__(self, *, source: Optional[str] = None, flavor: str = "legacy"):
-        """Constructor"""
+        """Constructor
+
+        Parameters
+        ----------
+        source : str, optional
+            Source of the Vega spectrum. If not provided, the default flavor is used.
+        flavor : str, optional
+            Flavor of the Vega spectrum. If not provided, the default flavor is used.
+        """
         self._data: Optional[pd.DataFrame] = None
         self.units: Optional[Tuple[str, str]] = None
         self._set_source_flavor(source=source, flavor=flavor)

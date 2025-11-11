@@ -45,30 +45,18 @@ class Sun:
     | +0.0      | +5777      | +4.44    | -26.75      |
     +-----------+------------+----------+-------------+
 
-    Attributes
-    ----------
-    source: str
-        filename of the sun library
-    data: SimpleTable
-        data table
-    units: tuple
-        detected units from file header
-    wavelength: array
-        wavelength (with units when found)
-    flux: array
-        flux(wavelength) values (with units when provided)
-    distance: float
-        distance to the observed Sun (default, 1 au)
-    flavor: str, (default theoretical)
-        either 'observed' using the stis reference,
-        or  'theoretical' for the Kurucz model.
     """
 
     _data: Optional[pd.DataFrame]
+    """Data table read from the source file"""
     units: Optional[Tuple[str, str]]
+    """ Units of the data (wavelength, flux)"""
     distance: QuantityType
+    """Distance to the instance of the Sun"""
     distance_conversion: float
+    """Conversion factor to convert distance to the default_distance (usually au)"""
     flavor: Optional[Literal["observed", "theoretical"]]
+    """Flavor of the Sun spectrum"""
 
     def __init__(
         self,
@@ -151,6 +139,7 @@ class Sun:
 
     @property
     def data(self) -> pd.DataFrame:
+        """Return the data extracted from the source"""
         if self._data is not None:
             return self._data
         else:

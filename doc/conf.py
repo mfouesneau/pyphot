@@ -108,8 +108,49 @@ copybutton_selector = "div:not(.output) > div.highlight pre"
 # descriptions of the relevant function/method.
 autodoc_typehints = "description"
 
+# whether the types of undocumented parameters and return values are documented
+autodoc_typehints_description_target = "all"
+
+# controls the format of typehints Suppress the leading module names of the typehints
+autodoc_typehints_format = "short"
+
 # Don't show class signature with the class' name.
 autodoc_class_signature = "separated"
 
 # remove module name prefix from functions
 add_module_names = False
+
+# Eliminate duplicate object warnings while preserving full API documentation coverage.
+# https://github.com/dougborg/katana-openapi-client/pull/10
+autoapi_python_class_content = "init"
+
+# separate class and init docstrings
+autoclass_content = "both"
+
+# Define the order in which automodule and autoclass members are listed
+autodoc_member_order = "alphabetical"
+
+autodoc_default_options = {"special-members": "__init__"}
+
+
+def autodoc_skip_member(app, what, name, obj, skip, options):
+    """
+    Tells autodoc to skip members that are imported into __init__.py
+    from a submodule, preventing duplication.
+    """
+    # 1. Check if the object is being documented at the package level
+    if what == "module" and name in options.get("members", []):
+        # 2. Check if the object is actually defined elsewhere
+        # (This is the key check to identify an imported item)
+        if hasattr(obj, "__module__") and not obj.__module__.endswith(".__init__"):
+            # Check for classes, functions, etc. whose source module is a submodule
+            # and is being documented as part of the package.
+            return True  # Skip this member
+
+    return skip  # Let Sphinx use its normal rules
+
+
+def setup(app):
+    # Register the skip function with Sphinx
+    # app.connect("autodoc-skip-member", autodoc_skip_member)
+    ...

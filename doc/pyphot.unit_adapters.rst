@@ -1,6 +1,11 @@
 pyphot.unit\_adapters package
 =============================
 
+.. automodule:: pyphot.unit_adapters
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
 Subpackages
 -----------
 
@@ -64,14 +69,6 @@ pyphot.unit\_adapters.units\_adapter module
 -------------------------------------------
 
 .. automodule:: pyphot.unit_adapters.units_adapter
-   :members:
-   :show-inheritance:
-   :undoc-members:
-
-Module contents
----------------
-
-.. automodule:: pyphot.unit_adapters
    :members:
    :show-inheritance:
    :undoc-members:

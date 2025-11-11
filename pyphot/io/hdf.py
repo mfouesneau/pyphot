@@ -1,4 +1,9 @@
-"""Read and write HDF5 files with pytables preserving metadata (tables, https://www.pytables.org/)"""
+"""Read and write HDF5 files with pytables preserving metadata (tables, https://www.pytables.org/)
+
+.. important::
+    This module relies on `pytables <https://www.pytables.org/>`_
+
+"""
 
 from typing import Optional, Literal, Union
 import pandas as pd

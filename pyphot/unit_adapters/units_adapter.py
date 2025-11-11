@@ -235,7 +235,7 @@ class enforce_default_units:
         if self.args or self.kwargs or self.output:
             docstring.append(""".. important::""")
             docstring.append(
-                f"   Decorated function {self.func.__name__} with default units.\n"
+                f"   Decorated function :func:`{self.func.__name__}` with default units.\n"
             )
         if self.args:
             docstring.append("   Parameters Units:\n")

@@ -1,6 +1,11 @@
 pyphot package
 ==============
 
+.. automodule:: pyphot
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
 Subpackages
 -----------
 
@@ -121,14 +126,6 @@ pyphot.version module
 ---------------------
 
 .. automodule:: pyphot.version
-   :members:
-   :show-inheritance:
-   :undoc-members:
-
-Module contents
----------------
-
-.. automodule:: pyphot
    :members:
    :show-inheritance:
    :undoc-members:

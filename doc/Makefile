@@ -9,7 +9,7 @@ BUILDDIR      = _build
 APIBUILD      = sphinx-apidoc
 APIOPTS       = -o ./
 APIDIR        = ../pyphot
-APICLEANFILES = pyphot.rst pyphot*.rst 
+APICLEANFILES = pyphot.rst pyphot*.rst
 
 # Internal variables.
 ALLSPHINXOPTS   = -d $(BUILDDIR)/doctrees $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) .
@@ -36,10 +36,9 @@ clean:
 
 apidoc:
 	rm -rf $(APICLEANFILES)
-	$(APIBUILD) $(APIOPTS) $(APIDIR)
+	$(APIBUILD) $(APIOPTS) $(APIDIR) --module-first
 
 html:
-	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) $(BUILDDIR)/html 
+	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) $(BUILDDIR)/html
 	@echo
 	@echo "Build finished. The HTML pages are in $(BUILDDIR)/html."
-

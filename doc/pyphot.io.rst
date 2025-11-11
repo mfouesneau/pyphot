@@ -1,6 +1,11 @@
 pyphot.io package
 =================
 
+.. automodule:: pyphot.io
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
 Submodules
 ----------
 
@@ -40,14 +45,6 @@ pyphot.io.votable module
 ------------------------
 
 .. automodule:: pyphot.io.votable
-   :members:
-   :show-inheritance:
-   :undoc-members:
-
-Module contents
----------------
-
-.. automodule:: pyphot.io
    :members:
    :show-inheritance:
    :undoc-members:

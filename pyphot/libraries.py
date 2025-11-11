@@ -1,4 +1,4 @@
-"""Collections of Filters and LickIndex"""
+"""Collections of Filters"""
 
 from typing import Optional, List, Sequence, Union, Literal
 import os
@@ -16,6 +16,7 @@ class Library(object):
     """Common grounds for filter libraries"""
 
     source: Optional[str]
+    """Source of the library"""
 
     def __init__(
         self,
@@ -116,9 +117,9 @@ class Library(object):
         return HDF_Library(filename, **kwargs)
 
     @classmethod
-    def from_ascii(cls, filename, **kwargs):
-        # return UnitAscii_Library(filename, **kwargs)
-        ...
+    def from_ascii(cls, filename, **kwargs) -> "Ascii_Library":
+        """Read in an ASCII library"""
+        return Ascii_Library(filename, **kwargs)
 
     @property
     def content(self) -> List[str]:
@@ -187,7 +188,7 @@ class Library(object):
 
 
 class Ascii_Library(Library):
-    """Interface one or multiple directory or many files as a filter library
+    """Interface one or multiple directory or many files as a filter :class:`Library`
 
     >>> lib = Ascii_Library(['ground', 'hst', 'myfilter.csv'])
     """
@@ -353,11 +354,23 @@ class Ascii_Library(Library):
 
 
 class HDF_Library(Library):
-    """Storage based on HDF"""
+    """:class:`Library` for storage based on HDF files"""
 
     hdf: Optional[tables.File]
+    """Source file stream of the library"""
     mode: "Literal['r', 'w', 'a', 'r+']" = "r"
+    """Mode of the library (file). It can be one of the following:
+
+            * *'r'*: Read-only; no data can be modified.
+            * *'w'*: Write; a new file is created (an existing file
+              with the same name would be deleted).
+            * *'a'*: Append; an existing file is opened for reading
+              and writing, and if the file does not exist it is created.
+            * *'r+'*: It is similar to 'a', but the file must already
+              exist.
+    """
     _in_context: int
+    """Number of times the library is in context (potentially nested)"""
 
     def __init__(
         self,

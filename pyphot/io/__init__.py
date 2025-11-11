@@ -1,4 +1,20 @@
-"""Adapted from SimpleTable (v2.0; https://github.com/mfouesneau/simpletable) with minimal depedencies"""
+"""
+IO module
+~~~~~~~~~
+This module provides functions for reading and writing data in various formats.
+
+It is Adapted from SimpleTable (v2.0; https://github.com/mfouesneau/simpletable) with minimal depedencies.
+
+Formats:
+    - FITS: :mod:`~pyphot.io.fits`
+    - ASCII: :mod:`~pyphot.io.ascii`
+    - HDF5: :mod:`~pyphot.io.hdf`
+    - VOTABLE: :mod:`~pyphot.io.votable`
+
+For all formats, reading and writing preserve metadata.
+The data are given as `pd.DataFrame` objects and the header as a :class:`HeaderInfo` object.
+
+"""
 
 from typing import Optional
 import pandas as pd
