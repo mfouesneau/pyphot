@@ -132,25 +132,53 @@ autodoc_member_order = "alphabetical"
 
 autodoc_default_options = {"special-members": "__init__"}
 
+# Prevent imported members from being fully documented at module level
+# They will appear as links/references instead
+# ! That does not work!
+autodoc_inherit_docstrings = False
+
 
 def autodoc_skip_member(app, what, name, obj, skip, options):
     """
-    Tells autodoc to skip members that are imported into __init__.py
-    from a submodule, preventing duplication.
+    Skip imported members from submodules to prevent documentation duplication.
     """
-    # 1. Check if the object is being documented at the package level
-    if what == "module" and name in options.get("members", []):
-        # 2. Check if the object is actually defined elsewhere
-        # (This is the key check to identify an imported item)
-        if hasattr(obj, "__module__") and not obj.__module__.endswith(".__init__"):
-            # Check for classes, functions, etc. whose source module is a submodule
-            # and is being documented as part of the package.
-            return True  # Skip this member
+    if skip:
+        return True
 
-    return skip  # Let Sphinx use its normal rules
+    # Only apply to module-level members
+    if what != "module":
+        return False
+
+    # Get the documenter from the call stack
+    import inspect
+
+    frame = inspect.currentframe()
+    try:
+        # Walk up the call stack to find the ModuleDocumenter
+        while frame:
+            local_vars = frame.f_locals
+            if "self" in local_vars:
+                documenter = local_vars["self"]
+                # Check if this is a ModuleDocumenter with the info we need
+                if hasattr(documenter, "modname") and hasattr(documenter, "object"):
+                    current_module = documenter.modname
+
+                    # Check if obj comes from a submodule
+                    if hasattr(obj, "__module__"):
+                        obj_module = obj.__module__
+
+                        # Skip if object is from a submodule
+                        if obj_module != current_module and obj_module.startswith(
+                            current_module + "."
+                        ):
+                            return True
+                    break
+            frame = frame.f_back
+    finally:
+        del frame
+
+    return False
 
 
 def setup(app):
-    # Register the skip function with Sphinx
-    # app.connect("autodoc-skip-member", autodoc_skip_member)
-    ...
+    app.connect("autodoc-skip-member", autodoc_skip_member)
