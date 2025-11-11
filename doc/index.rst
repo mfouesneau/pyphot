@@ -6,8 +6,27 @@
 PYPHOT -- A tool for computing photometry from spectra
 ======================================================
 
+.. image:: https://img.shields.io/pypi/v/pyphot.svg
+    :target: https://pypi.org/project/pyphot/
+
+.. image:: https://zenodo.org/badge/70060728.svg
+    :target: https://zenodo.org/badge/latestdoi/70060728
+
+.. image:: https://static.pepy.tech/badge/pyphot
+    :target: https://pepy.tech/project/pyphot
+
+.. image:: https://static.pepy.tech/badge/pyphot/month
+    :target: https://pepy.tech/project/pyphot
+
+.. image:: https://img.shields.io/badge/python-3.9,_3.10,_3.11,_3.12,_3.13-blue.svg
+
 This is a set of tools to compute synthetic photometry in a simple way, suitable
 for integration in larger projects.
+
+.. important::
+   New major release (v2.0.0) which introduces new features and **breaking changes**.
+
+   See :doc:`What's new <whats_new>`.
 
 The inputs are response functions for the desired photometric passbands, and
 stellar spectra.
@@ -31,9 +50,7 @@ detectors are also handled for the computations.
 
 .. note::
 
-    **New in v2.0.0**
-
-    Pyphot handles units from `Astropy Units <https://docs.astropy.org/en/stable/units/index.html>`_ (as default), `Pint <https://pint.readthedocs.io/en/stable/>`_, and `EzUnits`_ (:mod:`~pyphot.unit_adapters.ezunits`).
+    Pyphot handles units from `Astropy Units <https://docs.astropy.org/en/stable/units/index.html>`_ (as default), `Pint <https://pint.readthedocs.io/en/stable/>`_, and `EzUnits` (:mod:`~pyphot.unit_adapters.ezunits`).
     You can switch between them using the :func:`pyphot.config.set_units_backend` function.
 
     .. code-block:: python
@@ -43,11 +60,6 @@ detectors are also handled for the computations.
         pyphot.config.set_units_backend('pint')
         pyphot.config.set_units_backend('ezunits')
 
-.. image:: https://mybinder.org/badge.svg
-  :target: https://mybinder.org/v2/gh/mfouesneau/pyphot/master?filepath=examples%2FQuickStart.ipynb
-
-.. image:: https://img.shields.io/badge/render%20on-nbviewer-orange.svg
-  :target: https://nbviewer.jupyter.org/github/mfouesneau/pyphot/tree/master/examples/
 
 
 Package main content
@@ -74,14 +86,16 @@ Additionally, and for convenience
 
 * :func:`pyphot.svo.get_pyphot_filter` provides an interface to the `SVO Filter Profile Service <http://svo2.cab.inta-csic.es/theory/fps/>`_ to download filters directly from the SVO database.
 
-Contents
----------
+Documentation Contents
+----------------------
 
 .. toctree::
    :maxdepth: 1
 
    Home <index>
-   more_examples
+   What's New <whats_new>
+   QuickStart
+   examples
    photometry
    libcontent
    licks
@@ -93,9 +107,7 @@ Installation
 ~~~~~~~~~~~~
 Pyphot is available on `PyPI <https://pypi.org/project/pyphot/>`_ and can be installed using any common package manager.
 
-
-
-* Using pip: Use the `--user` option if you don't have permissions to install libraries
+* Using pip: (Use the `--user` option if you don't have permissions to install libraries)
 
 .. image:: https://img.shields.io/pypi/v/pyphot.svg
     :target: https://pypi.org/project/pyphot/
@@ -104,94 +116,13 @@ Pyphot is available on `PyPI <https://pypi.org/project/pyphot/>`_ and can be ins
 
         pip install git+https://github.com/mfouesneau/pyphot
 
-* Manually from source on GitHub:
+* Manually from latest source on GitHub:
 
 .. code-block:: none
 
         git clone https://github.com/mfouesneau/pyphot
         cd pyphot
         python setup.py intall
-
-
-Quick Start
-~~~~~~~~~~~
-
-Additional examples can be found on the :doc:`more_examples` page.
-
-If one wishes to find out details about one of the available transmission curves:
-
-.. code-block:: python
-
-        import pyphot
-        # get the internal default library of passbands filters
-        lib = pyphot.get_library()
-        print("Library contains: ", len(lib), " filters")
-        # find all filter names that relates to IRAC
-        # and print some info
-        f = lib.find('irac')
-        for name in f:
-            lib[name].info(show_zeropoints=True)
-
-.. code-block:: none
-
-        Filter object information:
-            name:                 SPITZER_IRAC_45
-            detector type:        photon
-            wavelength units:     AA
-            central wavelength:   45110.141614 angstrom
-            pivot wavelength:     45020.219955 angstrom
-            effective wavelength: 44425.747085 angstrom
-            photon wavelength:    44603.204646 angstrom
-            minimum wavelength:   39250.000000 angstrom
-            maximum wavelength:   50640.000000 angstrom
-            norm:                 4664.680820
-            effective width:      8714.143135 angstrom
-            fullwidth half-max:   10110.000000
-            definition contains 417 points
-
-            Zeropoints
-                Vega: 28.933083 mag,
-                      2.6715713304827696e-12 erg / angstrom * centimeter ** 2 * second,
-                      180.61811118349118 Jy
-                      3.246733893355585 photon / angstrom * centimeter ** 2 * second
-                  AB: 25.674986 mag,
-                      5.370385702161592e-11 erg / angstrom * centimeter ** 2 * second,
-                      3630.780547701007 Jy
-                  ST: 21.100000 mag,
-                      3.6307805477010028e-09 erg / angstrom * centimeter ** 2 * second,
-                      245467.79536259372 Jy
-
-        [...]
-
-Suppose one has a calibrated spectrum and wants to compute the corresponding vega magnitude
-through the HST/WFC3 F110W passband:
-
-.. code-block:: python
-
-        import numpy as np
-        f = lib['hst_wfc3_f110w']
-        # compute the integrated flux through the filter f
-        # (note that 'spectra' can be a 2D array holding many spectra)
-        fluxes = f.get_flux(lamb, spectra, axis=1)
-        # convert fluxes to vega magnitudes
-        mags = -2.5 * np.log10(fluxes) - f.Vega_zero_mag
-        # or similarly
-        mags = -2.5 * np.log10(fluxes / f.Vega_zero_flux)
-
-
-To use one's own transmission curve, defined by `lamb_T` and
-`T`, instead of one of the pre-defined ones, one would use
-the :class:`pyphot.phot.Filter` directly:
-
-.. code-block:: python
-
-        # convert to magnitudes
-        from pyphot import Filter
-        # if lamb_T has units the Filter object will use those.
-        f = Filter(lamb_T, T, name='my_filter', dtype='photon', unit='Angstrom')
-        # compute the integrated flux through the filter f
-        fluxes = f.get_flux(lamb, spectra, axis=1)
-        ...
 
 
 Internal Vega reference
@@ -276,6 +207,16 @@ Direct contributions to the code base:
 * Ariane Lançon (`@lancon <https://github.com/lancon>`_)
 * Tim Morton (`@timothydmorton <https://github.com/timothydmorton>`_)
 
+How to contribute
+~~~~~~~~~~~~~~~~~
+
+This project is open source and new contributions and contributors are very welcome!
+
+Please open a new issue or new pull request for bugs, feedback, or new features you would like to see. If there is an issue you would like to work on, please leave a comment, and we will be happy to assist.
+
+Please have a look at our `code of conduct <https://github.com/mfouesneau/pyphot/blob/main/CODE_OF_CONDUCT.md>`_.
+
+
 Related projects
 ~~~~~~~~~~~~~~~~
 
@@ -293,13 +234,13 @@ If you use this software in your work, please cite it using the following:
 
                 .. code-block::
 
-                        @software{zenodopyphot,
+                        @software{fouesneau2025pyphot,
                         author       = {Fouesneau, Morgan},
                         title        = {pyphot},
                         month        = jan,
                         year         = 2025,
                         publisher    = {Zenodo},
-                        version      = {pyphot\_v1.6.0},
+                        version      = {pyphot\_v2.0.0},
                         doi          = {10.5281/zenodo.14712174},
                         url          = {https://doi.org/10.5281/zenodo.14712174},
                         }

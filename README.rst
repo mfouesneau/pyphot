@@ -48,6 +48,7 @@ computations.
 
 What's new?
 -----------
+* [November 7, 2025] major refactoring, remove code duplication, added type hints (v2.0.0) -- See release notes
 * [July 2, 2025] Added Vega flavors to the Vega class, allowing users to select different Vega reference spectra for photometric calculations. (v1.7.0)
 * [January 21, 2025] Moved installation to use `pyproject.toml`; Updated documentation; Updates for deprecated calls. (v1.6.0)
 * [January 21, 2025] Support for Python 3.13 (v1.5.0);

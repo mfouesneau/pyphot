@@ -1,29 +1,13 @@
 Details on predicting photometry
 ================================
 
-It is sometimes not obvious that there are important differences between
-photometric systems. But even less known is the difference between detector
-count types (energy or photons) which requires also special care.
+It is sometimes not obvious that there are important differences between photometric systems. But even less known is the difference between detector count types (energy or photons) which requires also special care.
 
-In this section, we review the important details for computing the luminosity
-and the magnitude of a star through a photometric passband. We do not
-discuss calibration, which in principle is covered by instrument documentations.
+In this section, we review the important details for computing the luminosity and the magnitude of a star through a photometric passband. We do not discuss calibration, which in principle is covered by instrument documentations.
 
-Synthetic photometry uses transmission curves that typically include a variety of
-wavelength-dependent components (a filter transmission, the response of the optical
-elements of the telescope and instrument, the detector sensitivity, sometimes a telluric 
-absorption component, ..). Transmission curves are usually named after the associated filter, 
-and it is up to the user to verify that the other components are also included. In this
-documentation, we use the terms filter throughput, transmission curve, response function,
-or simply filter, interchangeably, to refer to a transmission curve, generally leaving the 
-verification of the nature of these transmission curves to the user. 
+Synthetic photometry uses transmission curves that typically include a variety of wavelength-dependent components (a filter transmission, the response of the optical elements of the telescope and instrument, the detector sensitivity, sometimes a telluric absorption component, ...). Transmission curves are usually named after the associated filter, and it is up to the user to verify that the other components are also included. In this documentation, we use the terms filter throughput, transmission curve, response function, or simply filter, interchangeably, to refer to a transmission curve, generally leaving the verification of the nature of these transmission curves to the user. 
 
-Most modern detectors count photons, rather than cumulating the energies of these photons. 
-If we consider a filter throughput (a.k.a, transmission curve, or response
-function) defined in wavelength by the dimensionless function :math:`T(\lambda)`, 
-this function tells you what fraction of the arriving photons at wavelength
-:math:`\lambda` actually get detected (on average).  Therefore, the total number of
-photons, per unit time per unit collecting area, expected to be detected in this filter is
+Most modern detectors count photons, rather than cumulating the energies of these photons.  If we consider a filter throughput (a.k.a, transmission curve, or response function) defined in wavelength by the dimensionless function :math:`T(\lambda)`, this function tells you what fraction of the arriving photons at wavelength :math:`\lambda` actually get detected (on average).  Therefore, the total number of photons, per unit time per unit collecting area, expected to be detected in this filter is
 
 .. math::
 
@@ -31,11 +15,9 @@ photons, per unit time per unit collecting area, expected to be detected in this
         N_{tot} = \frac{1}{hc} \int_\lambda f_\lambda\,\lambda\,T(\lambda)\,d\lambda,
         \end{equation}
 
-where :math:`f_\lambda` is the wavelength dependent flux density of an object
-given in energy per unit time, per unit collecting area, and per unit wavelength.
+where :math:`f_\lambda` is the wavelength dependent flux density of an object given in energy per unit time, per unit collecting area, and per unit wavelength.
 
-Consequently, interpreting :math:`\lambda T(\lambda)` as a distribution leads to
-the statistical mean of the flux density, :math:`\overline{f_\lambda}` 
+Consequently, interpreting :math:`\lambda T(\lambda)` as a distribution leads to the statistical mean of the flux density, :math:`\overline{f_\lambda}` 
 
 .. math::
 
@@ -43,23 +25,21 @@ the statistical mean of the flux density, :math:`\overline{f_\lambda}`
         \overline{f_\lambda}(T) = \frac{\int_\lambda \lambda f_\lambda T(\lambda) d\lambda}{\int_\lambda \lambda T(\lambda) d\lambda}.
         \end{equation}
 
-Note that although this is formally a weighted mean of a flux density, with weights proportional to :math:`\lambda T(\lambda)` (the denominator ensuring that the sum of the weights is 1), it actually
-measures the mean photon rate density in this filter. The result is commonly
-expressed in the same units as :math:`f_\lambda`, i.e. :math:`erg/s/cm^2/\unicode{x212B}` or 
-:math:`W/m^2/\unicode{x212B}`.
+Note that although this is formally a weighted mean of a flux density, with weights proportional to :math:`\lambda T(\lambda)` (the denominator ensuring that the sum of the weights is 1), it actually measures the mean photon rate density in this filter. The result is commonly expressed in the same units as :math:`f_\lambda`, i.e. :math:`erg/s/cm^2/\unicode{x212B}` or :math:`W/m^2/\unicode{x212B}`.
 
 .. code-block:: python
 
-        # computing the flux of a spectrum
-        flux = lib['hst_wfc3_f110w'].get_flux(lamb, spec)
-        # lamb may have units, otherwise assuming consistent definitions.
+        # computing the mean flux of a spectrum 
+        # single_spectrum: np.array of shape (n_lambda,)
+        flux = lib['hst_wfc3_f110w'].get_flux(λ, single_spectrum)
+        # λ may have units, otherwise assuming consistent definitions.
 
-        # computing the flux of many spectra
-        fluxes = lib['hst_wfc3_f110w'].get_flux(lamb, spectra, axis=1)
+        # computing the mean flux of many spectra
+        # spectra: np.array of shape (n_spectra, n_lambda)
+        fluxes = lib['hst_wfc3_f110w'].get_flux(λ, spectra, axis=1)
 
 
-Finally, at least for instruments using CCD or CCD-like cameras, i.e., counting
-photons, we obtain the usual definition of magnitude 
+Finally, at least for instruments using CCD or CCD-like cameras, i.e., counting photons, we obtain the usual definition of magnitude 
 
 .. math::
 
@@ -67,21 +47,15 @@ photons, we obtain the usual definition of magnitude
         mag_\lambda(T) = -2.5\,\log_{10}\left(\overline{f_\lambda}\right) - ZP\left(\overline{f_\lambda}\right),
         \end{equation}
 
-where :math:`ZP(\overline{f_\lambda})` gives the passband reference value
-(zeropoint) for a given photometric/magnitude system.
+where :math:`ZP(\overline{f_\lambda})` gives the passband reference value (zeropoint) for a given photometric/magnitude system.
 
-However, the zeropoints themselves depend on the photometric system adopted
-to report the measurements. They may vary fundamentally from one to another.
-Below we briefly describe the main systems used in large surveys.
-
+However, the zeropoints themselves depend on the photometric system adopted to report the measurements. They may vary fundamentally from one to another.  Below we briefly describe the main systems used in large surveys.
 
 
 Vega magnitude system
 ~~~~~~~~~~~~~~~~~~~~~
 
-This system is defined such that the star Alpha Lyr (Vega) has magnitude 0 in
-any pass-band filter. In other words, the zeropoints are set by the magnitude of
-vega, :math:`-2.5 \log_{10} \overline{f_\lambda}(Vega)`, or
+This system is defined such that the star Alpha Lyr (Vega) has magnitude 0 in any pass-band filter. In other words, the zeropoints are set by the magnitude of vega, :math:`-2.5 \log_{10} \overline{f_\lambda}(Vega)`, or
 
 .. math:: 
 
@@ -90,27 +64,23 @@ vega, :math:`-2.5 \log_{10} \overline{f_\lambda}(Vega)`, or
         \end{equation}
 
 .. code-block:: python
-
         # convert to magnitudes
         import numpy as np
         f = lib['hst_wfc3_f110w']
         fluxes = f.get_flux(lamb, spectra, axis=1)
-        mags = -2.5 * np.log10(fluxes) - f.Vega_zero_mag
+        # careful taking the log of non-dimensionless Quantity! -> use .value
+        mags = -2.5 * np.log10(fluxes.value) - f.Vega_zero_mag
         # or similarly
         mags = -2.5 * np.log10(fluxes / f.Vega_zero_flux)
 
 
-We use the synthetic spectrum `alpha_stis_003` provided by `Bohlin 2007 <https://ui.adsabs.harvard.edu/abs/2007ASPC..364..315B/abstract>`_, a common reference
-througout many photometric suites. Additional flavors and description of the internal Vega reference can be found on the :doc:`vega` page.
+We use the synthetic spectrum `alpha_stis_003` provided by `Bohlin 2007 <https://ui.adsabs.harvard.edu/abs/2007ASPC..364..315B/abstract>`_, a common reference througout many photometric suites. Additional flavors and description of the internal Vega reference can be found on the :doc:`vega` page.
        
 
 Johnson system
 ~~~~~~~~~~~~~~
 
-The Johnson system is defined such that the star Alpha Lyr (Vega) has :math:`V=0.03`
-and all colors equal to zero. It is very similar to the Vega magnitude system,
-but using mean flux definition (instead of photon counts), as appropriate for historical **energy
-counter** detectors
+The Johnson system is defined such that the star Alpha Lyr (Vega) has :math:`V=0.03` mag and all colors equal to zero. It is very similar to the Vega magnitude system, but using mean flux definition (instead of photon counts), as appropriate for historical **energy counter** detectors
 
 .. math::
 
@@ -125,8 +95,7 @@ counter** detectors
 
         Table A2 of `Bessell et al. (1998) <https://ui.adsabs.harvard.edu/abs/1998A%26A...333..231B>`_ gives zero points for the UBVRIJHKL(+Kp and L') filters in the Counsins-Glass-Johnson system.
 
-If one defines the **effective wavelength** :math:`\lambda_{\rm eff}` as the
-photon weighted mean wavelength:
+If one defines the **effective wavelength** :math:`\lambda_{\rm eff}` as the photon weighted mean wavelength:
 
 .. math::
 
@@ -157,9 +126,13 @@ where we explicit which equation was used to compute magnitudes.
         # use. So if you define you own filter either use the constructor or the
         # method
 
+        from pyphot import Filter
+        from pyphot.config import units
+        import numpy as np
         # define a constant filter in energy count from 100 to 110 AA
-        f = Filter(np.arange(100, 110), np.ones(10), \
-                        dtype='energy', unit='AA')
+        f = Filter(np.arange(100, 110), np.ones(10), dtype='energy', unit='AA')
+        # or equivalently
+        f = Filter(np.arange(100, 110) * units.U("AA"), np.ones(10), dtype='energy')
         # manually set the detector type
         f.set_dtype('photon')
 
@@ -168,18 +141,15 @@ where we explicit which equation was used to compute magnitudes.
 AB magnitude system
 ~~~~~~~~~~~~~~~~~~~
 
-This system is defined such that, when monochromatic flux :math:`f_\nu` is measured in
-:math:`erg\,s^{-1}\,cm^{-2} Hz^{-1}`,
+This system is defined such that, when monochromatic flux :math:`f_\nu` is measured in :math:`erg\,s^{-1}\,cm^{-2} Hz^{-1}`,
 
 .. math::
 
         mag_{AB}(T) = -2.5\, \log_{10}(\overline{f_\nu}) - 48.60
 
-where the value of the constant is selected to define :math:`m_{AB}=V` for a
-flat-spectrum source. In this system, an object with constant flux per unit
-frequency interval has zero color.
+where the value of the constant is selected to define :math:`m_{AB}=V` for a flat-spectrum source. In this system, an object with constant flux per unit frequency interval has zero color.
 
-Koornneef et al. gives the respective definition of :math:`\overline{f_\nu}(T)`:
+`Koornneef et al. (1986) <https://ui.adsabs.harvard.edu/abs/1986HiA.....7..833K>`_ gives the respective definition of :math:`\overline{f_\nu}(T)`:
 
 .. math::
 
@@ -190,8 +160,7 @@ Koornneef et al. gives the respective definition of :math:`\overline{f_\nu}(T)`:
 
 To go back to wavelength units, we have :math:`d\nu = (c/\lambda^2) d\lambda`.
 
-If one defines the **pivot wavelength** :math:`\lambda_p` to convert between
-:math:`\overline{f_\nu}` and :math:`\overline{f_\lambda}` as
+If one defines the **pivot wavelength** :math:`\lambda_p` to convert between :math:`\overline{f_\nu}` and :math:`\overline{f_\lambda}` as
 
 .. math::
 
@@ -199,7 +168,7 @@ If one defines the **pivot wavelength** :math:`\lambda_p` to convert between
         \overline{f_\nu} = \frac{\lambda_p^2}{c} \overline{f_\lambda},
         \end{equation}
 
-one can easily show that
+one can show that
 
 .. math::
 
@@ -236,7 +205,7 @@ ST magnitude system
 This system is defined such as a source with flat :math:`f_\lambda` will have
 the same magnitude in every filter. 
 
-Koornneef et al. (1986; same as above) defines 
+`Koornneef et al. (1986; same as above) <https://ui.adsabs.harvard.edu/abs/1986HiA.....7..833K>`_ defines 
 
 .. math::
 
@@ -251,7 +220,8 @@ Koornneef et al. (1986; same as above) defines
         import numpy as np
         f = lib['hst_wfc3_f110w']
         fluxes = f.get_flux(lamb, spectra, axis=1)
-        mags = -2.5 * np.log10(fluxes) - f.ST_zero_mag
+        # careful taking the log of non-dimensionless Quantity! -> use .value
+        mags = -2.5 * np.log10(fluxes.value) - f.ST_zero_mag
         # or similarly
         mags = -2.5 * np.log10(fluxes / f.ST_zero_flux)
 
