@@ -28,6 +28,10 @@ for integration in larger projects.
 
    See :doc:`What's new <whats_new>`.
 
+.. info::
+   Support for python 3.14 is currently blocked by `pytables` not supporting it yet.
+
+
 The inputs are response functions for the desired photometric passbands, and
 stellar spectra.
 
