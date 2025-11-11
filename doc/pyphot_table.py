@@ -1,4 +1,7 @@
+from typing import cast
+
 import pyphot
+from pyphot import Filter
 
 # define header and table format (as csv)
 hdr = (
@@ -26,22 +29,22 @@ with open("table.csv", "w") as output:
     output.write(",".join(hdr) + "\n")
 
     for k in sorted(lib.content):
-        fk = lib[k]
+        fk = cast(Filter, lib[k])
         rec = (
             fk.name,
             fk.dtype,
             fk.wavelength_unit,
-            fk.cl.magnitude,
-            fk.lpivot.magnitude,
-            fk.leff.magnitude,
+            fk.cl.value,
+            fk.lpivot.value,
+            fk.leff.value,
             fk.Vega_zero_mag,
-            fk.Vega_zero_flux.magnitude,
-            fk.Vega_zero_Jy.magnitude,
+            fk.Vega_zero_flux.value,
+            fk.Vega_zero_Jy.value,
             fk.AB_zero_mag,
-            fk.AB_zero_flux.magnitude,
-            fk.AB_zero_Jy.magnitude,
+            fk.AB_zero_flux.value,
+            fk.AB_zero_Jy.value,
             fk.ST_zero_mag,
-            fk.ST_zero_flux.magnitude,
-            fk.ST_zero_Jy.magnitude,
+            fk.ST_zero_flux.value,
+            fk.ST_zero_Jy.value,
         )
         output.write(fmt.format(*rec))

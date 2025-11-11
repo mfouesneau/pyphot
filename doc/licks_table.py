@@ -1,4 +1,6 @@
+from typing import cast
 import pyphot
+from pyphot import LickIndex
 
 # define header and table format (as csv)
 hdr = (
@@ -19,11 +21,11 @@ with open("licks_table.csv", "w") as output:
     output.write(",".join(hdr) + "\n")
 
     for k in sorted(lib.content):
-        fk = lib[k]
+        fk = cast(LickIndex, lib[k])
         # wavelength have units
-        band = fk.band.magnitude
-        blue = fk.blue.magnitude
-        red = fk.red.magnitude
+        band = fk.band.value
+        blue = fk.blue.value
+        red = fk.red.value
         rec = (
             fk.name,
             fk.wavelength_unit,
