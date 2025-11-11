@@ -5,7 +5,7 @@ It is sometimes not obvious that there are important differences between photome
 
 In this section, we review the important details for computing the luminosity and the magnitude of a star through a photometric passband. We do not discuss calibration, which in principle is covered by instrument documentations.
 
-Synthetic photometry uses transmission curves that typically include a variety of wavelength-dependent components (a filter transmission, the response of the optical elements of the telescope and instrument, the detector sensitivity, sometimes a telluric absorption component, ...). Transmission curves are usually named after the associated filter, and it is up to the user to verify that the other components are also included. In this documentation, we use the terms filter throughput, transmission curve, response function, or simply filter, interchangeably, to refer to a transmission curve, generally leaving the verification of the nature of these transmission curves to the user. 
+Synthetic photometry uses transmission curves that typically include a variety of wavelength-dependent components (a filter transmission, the response of the optical elements of the telescope and instrument, the detector sensitivity, sometimes a telluric absorption component, ...). Transmission curves are usually named after the associated filter, and it is up to the user to verify that the other components are also included. In this documentation, we use the terms filter throughput, transmission curve, response function, or simply filter, interchangeably, to refer to a transmission curve, generally leaving the verification of the nature of these transmission curves to the user.
 
 Most modern detectors count photons, rather than cumulating the energies of these photons.  If we consider a filter throughput (a.k.a, transmission curve, or response function) defined in wavelength by the dimensionless function :math:`T(\lambda)`, this function tells you what fraction of the arriving photons at wavelength :math:`\lambda` actually get detected (on average).  Therefore, the total number of photons, per unit time per unit collecting area, expected to be detected in this filter is
 
@@ -17,7 +17,7 @@ Most modern detectors count photons, rather than cumulating the energies of thes
 
 where :math:`f_\lambda` is the wavelength dependent flux density of an object given in energy per unit time, per unit collecting area, and per unit wavelength.
 
-Consequently, interpreting :math:`\lambda T(\lambda)` as a distribution leads to the statistical mean of the flux density, :math:`\overline{f_\lambda}` 
+Consequently, interpreting :math:`\lambda T(\lambda)` as a distribution leads to the statistical mean of the flux density, :math:`\overline{f_\lambda}`
 
 .. math::
 
@@ -29,17 +29,17 @@ Note that although this is formally a weighted mean of a flux density, with weig
 
 .. code-block:: python
 
-        # computing the mean flux of a spectrum 
-        # single_spectrum: np.array of shape (n_lambda,)
-        flux = lib['hst_wfc3_f110w'].get_flux(λ, single_spectrum)
-        # λ may have units, otherwise assuming consistent definitions.
+    # computing the mean flux of a spectrum
+    # single_spectrum: np.array of shape (n_lambda,)
+    flux = lib['hst_wfc3_f110w'].get_flux(λ, single_spectrum)
+    # λ may have units, otherwise assuming consistent definitions.
 
-        # computing the mean flux of many spectra
-        # spectra: np.array of shape (n_spectra, n_lambda)
-        fluxes = lib['hst_wfc3_f110w'].get_flux(λ, spectra, axis=1)
+    # computing the mean flux of many spectra
+    # spectra: np.array of shape (n_spectra, n_lambda)
+    fluxes = lib['hst_wfc3_f110w'].get_flux(λ, spectra, axis=1)
 
 
-Finally, at least for instruments using CCD or CCD-like cameras, i.e., counting photons, we obtain the usual definition of magnitude 
+Finally, at least for instruments using CCD or CCD-like cameras, i.e., counting photons, we obtain the usual definition of magnitude
 
 .. math::
 
@@ -57,25 +57,26 @@ Vega magnitude system
 
 This system is defined such that the star Alpha Lyr (Vega) has magnitude 0 in any pass-band filter. In other words, the zeropoints are set by the magnitude of vega, :math:`-2.5 \log_{10} \overline{f_\lambda}(Vega)`, or
 
-.. math:: 
+.. math::
 
-        \begin{equation}
-        mag_{Vega}(T) = -2.5\,\log_{10}\left(\overline{f_\lambda} / \overline{f_\lambda}(Vega)\right).
-        \end{equation}
+    \begin{equation}
+    mag_{Vega}(T) = -2.5\,\log_{10}\left(\overline{f_\lambda} / \overline{f_\lambda}(Vega)\right).
+    \end{equation}
 
 .. code-block:: python
-        # convert to magnitudes
-        import numpy as np
-        f = lib['hst_wfc3_f110w']
-        fluxes = f.get_flux(lamb, spectra, axis=1)
-        # careful taking the log of non-dimensionless Quantity! -> use .value
-        mags = -2.5 * np.log10(fluxes.value) - f.Vega_zero_mag
-        # or similarly
-        mags = -2.5 * np.log10(fluxes / f.Vega_zero_flux)
+
+    # convert to magnitudes
+    import numpy as np
+    f = lib['hst_wfc3_f110w']
+    fluxes = f.get_flux(lamb, spectra, axis=1)
+    # careful taking the log of non-dimensionless Quantity! -> use .value
+    mags = -2.5 * np.log10(fluxes.value) - f.Vega_zero_mag
+    # or similarly
+    mags = -2.5 * np.log10(fluxes / f.Vega_zero_flux)
 
 
 We use the synthetic spectrum `alpha_stis_003` provided by `Bohlin 2007 <https://ui.adsabs.harvard.edu/abs/2007ASPC..364..315B/abstract>`_, a common reference througout many photometric suites. Additional flavors and description of the internal Vega reference can be found on the :doc:`vega` page.
-       
+
 
 Johnson system
 ~~~~~~~~~~~~~~
@@ -109,7 +110,7 @@ If one defines the **effective wavelength** :math:`\lambda_{\rm eff}` as the pho
 
 then the difference between the Johnson and Vega systems within the same filter is given by
 
-.. math:: 
+.. math::
 
         \begin{equation}
         \widetilde{mag}_\lambda - \overline{mag}_\lambda = 0.03 - 2.5 \log_{10} \frac{\lambda_{\rm eff}(Vega)}{\lambda_{\rm eff}(star)},
@@ -176,7 +177,7 @@ one can show that
         \lambda_p^2 = \frac{\int_\lambda T(\lambda)\,\lambda\,d\lambda}{\int_\lambda T(\lambda)\,d\lambda /\lambda}.
         \end{equation}
 
-Therefore for filters with AB magnitudes, one can compute 
+Therefore for filters with AB magnitudes, one can compute
 
 .. math::
 
@@ -203,9 +204,9 @@ ST magnitude system
 ~~~~~~~~~~~~~~~~~~~
 
 This system is defined such as a source with flat :math:`f_\lambda` will have
-the same magnitude in every filter. 
+the same magnitude in every filter.
 
-`Koornneef et al. (1986; same as above) <https://ui.adsabs.harvard.edu/abs/1986HiA.....7..833K>`_ defines 
+`Koornneef et al. (1986; same as above) <https://ui.adsabs.harvard.edu/abs/1986HiA.....7..833K>`_ defines
 
 .. math::
 
@@ -261,6 +262,3 @@ References
 * Koornneef, Bohlin, Buser, Horne, Turnshek : Synthetic photometry and the calibration of HST. `1986HiA.....7..833K <https://ui.adsabs.harvard.edu/abs/1986HiA.....7..833K>`_
 
 * Oke, J.B. 1974, ApJS, 27, 21, "Absolute Spectral Energy Distributions for White Dwarfs" `1974ApJS...27...21O <https://ui.adsabs.harvard.edu/abs/1974ApJS...27...21O>`_;
-
-
-

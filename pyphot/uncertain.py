@@ -12,7 +12,7 @@ from . import config
 from .unit_adapters import QuantityType
 
 
-__all__ = ["Filter"]
+__all__ = ["UncertainFilter"]
 from .phot import Filter, _drop_units, _split_value_unit
 
 
