@@ -20,7 +20,7 @@ def _warning_on_one_line(
     message: str, category: Any, filename: str, lineno: int, file=None, line=None
 ) -> str:
     """Prints a complete warning that includes exactly the code line triggering it from the stack trace."""
-    return " {0:s}:{1:d} {2:s}:{3:s}".format(
+    return " {:s}:{:d} {:s}:{:s}".format(
         filename, lineno, category.__name__, str(message)
     )
 

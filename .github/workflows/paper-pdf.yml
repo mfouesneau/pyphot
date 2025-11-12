@@ -4,7 +4,7 @@ on:
       paths:
         - paper/**
         - .github/workflows/paper-pdf.yml
-  
+
 
 jobs:
   paper:

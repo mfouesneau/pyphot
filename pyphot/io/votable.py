@@ -54,7 +54,7 @@ class VOTableParser:
             xml_content = source.read()
         else:
             # Assume it's a file path
-            with open(source, "r", encoding="utf-8") as f:
+            with open(source, encoding="utf-8") as f:
                 xml_content = f.read()
 
         self.root = ET.fromstring(xml_content)

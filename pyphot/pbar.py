@@ -23,7 +23,7 @@ import termios
 __all__ = ["Pbar"]
 
 
-class Pbar(object):
+class Pbar:
     """
     make a progress string  in a shape of::
 
@@ -172,7 +172,7 @@ class Pbar(object):
 
         vals = {"n": n}
         vals["elapsed"] = self.format_interval(elapsed)
-        vals["rate"] = "{0:5.2f}".format((n / elapsed)) if elapsed else "?"
+        vals["rate"] = f"{(n / elapsed):5.2f}" if elapsed else "?"
         vals["units"] = self.units
 
         if not total:
@@ -197,7 +197,7 @@ class Pbar(object):
         frac = float(n) / total
         bar_length = int(frac * self.length)
         vals["bar"] = "#" * bar_length + "-" * (self.length - bar_length)
-        vals["percent"] = "{0:3.0%}".format(frac)
+        vals["percent"] = f"{frac:3.0%}"
         vals["left"] = self.format_interval(elapsed / n * (total - n)) if n else "?"
         vals["total"] = total
 
@@ -251,7 +251,7 @@ class Pbar(object):
             except TypeError:
                 total = self._maxval
 
-        prefix = "{0:s}:".format(self.desc) if self.desc else ""
+        prefix = f"{self.desc:s}:" if self.desc else ""
 
         self.print_status(prefix + self.build_str_meter(0, total, 0))
         last_print_n = 0
@@ -306,7 +306,7 @@ class Pbar(object):
             total = self._maxval
         if desc is not None:
             self.desc = desc
-        prefix = "{0:s}:".format(self.desc) if self.desc else ""
+        prefix = f"{self.desc:s}:" if self.desc else ""
         cur_t = _time.time()
         self.print_status(
             prefix + self.build_str_meter(n, total, cur_t - self._start_t)

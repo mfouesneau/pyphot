@@ -88,7 +88,7 @@ def _reduce_resolution(
 
     # Compute width from fwhm
     const = 2.0 * np.sqrt(2.0 * np.log(2))  # conversion fwhm --> sigma
-    lick_sigma = np.sqrt((res**2 - fwhm0_AA**2)) / const
+    lick_sigma = np.sqrt(res**2 - fwhm0_AA**2) / const
 
     # Convolution by g=1/sqrt(2*pi*sigma^2) * exp(-r^2/(2*sigma^2))
     flux_red = np.zeros(flux.shape, dtype=flux.dtype)
@@ -266,7 +266,7 @@ class LickDefinition:
         self.__dict__.update(sure)
 
 
-class LickIndex(object):
+class LickIndex:
     """Define a Lick Index similarily to a Filter object"""
 
     _lick: LickDefinition
@@ -611,7 +611,7 @@ class LickLibrary:
         """
         if fname is None:
             fname = str(config.__default_lick_lib__)
-        with open(fname, "r") as f:
+        with open(fname) as f:
             data = {}
             hdr = []
             for line in f:
@@ -631,9 +631,7 @@ class LickLibrary:
         return data, hdr
 
     def __repr__(self) -> str:
-        return "Lick Index Library: {0}\n{1:s}".format(
-            self.source, object.__repr__(self)
-        )
+        return "Lick Index Library: {}\n{:s}".format(self.source, object.__repr__(self))
 
     def __enter__(self):
         """Enter context"""

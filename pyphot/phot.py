@@ -151,7 +151,7 @@ class Filter:
         elif "ener" in _d:
             self.dtype = "energy"
         else:
-            raise ValueError("Unknown detector type {0}".format(dtype))
+            raise ValueError(f"Unknown detector type {dtype}")
 
     def set_wavelength_unit(self, unit: Optional[str]):
         """Set the wavelength units"""
@@ -841,7 +841,7 @@ class Filter:
 
     def __repr__(self):
         """string representation"""
-        return "Filter: {0:s}, {1:s}".format(self.name, object.__repr__(self))
+        return f"Filter: {self.name:s}, {object.__repr__(self):s}"
 
     # legacy aliases
     getFlux = get_flux

@@ -54,7 +54,7 @@ def from_hdf5(
         node = source.get_node(tablename)
         attrs = node._v_attrs
         if not silent:
-            print("\tLoading table: {0}".format(tablename))
+            print(f"\tLoading table: {tablename}")
 
         header = {}
         aliases = {}
@@ -232,7 +232,7 @@ def to_hdf5(
 
         # add aliases
         for i, (k, v) in enumerate(header_info.alias.items()):
-            tab.attrs["ALIAS{0:d}".format(i)] = "{0:s}={1:s}".format(k, v)
+            tab.attrs[f"ALIAS{i:d}"] = f"{k:s}={v:s}"
 
         tab.flush()
 

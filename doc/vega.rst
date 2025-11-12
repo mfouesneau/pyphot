@@ -10,10 +10,10 @@ As a nearby A0V star located approximately 25 light-years from Earth, Vega was
 historically chosen as the primary standard because of its position near the
 north celestial pole, making it easily accessible to northern hemisphere
 observatories year-round (`Johnson & Morgan 1953
-<https://ui.adsabs.harvard.edu/abs/1953ApJ...117..313J>`_). 
+<https://ui.adsabs.harvard.edu/abs/1953ApJ...117..313J>`_).
 
 Vega is a Delta Scuti variable star (dwarf Cepheids), one whose variations in
-luminosity result from both radial and non-radial pulsations of its surface. 
+luminosity result from both radial and non-radial pulsations of its surface.
 Some parts of its surface contract while others simultaneously expand
 (non-radial pulsations), and the star also contracts and expands by changing its
 radius to maintain its spherical shape (radial pulsations).
@@ -51,7 +51,7 @@ Vega Flavors
 .. important::
 
     Since version 1.7.0, Pyphot includes a set of Vega flavors one can use transparently as photometric standards.
-    
+
     * Pyphot provides `alpha_stis_003` (aliased to `legacy`) as the default Vega flavor (and only one before version 1.7.0). This flavor is also the reference for the values provided in the documentation.
     * (since version 1.7.0) Pyphot provides also `alpha_lyr_mod_003`, `alpha_lyr_mod_004`, and `alpha_stis_011` as alternative Vega flavors.
     * in a future release, Pyphot will switch the default Vega flavor to `alpha_stis_011` which is a more recent model that incorporates updated NLTE models and provides a more accurate representation of Vega's spectral energy distribution, particularly in the ultraviolet and optical ranges.
@@ -67,7 +67,7 @@ Vega Flavors
 <https://www.stsci.edu/hst/instrumentation/reference-data-for-calibration-and-tools/astronomical-catalogs/calspec>`_
 provides a collection of composite stellar spectra that are flux standards for
 the calibration of systems such as HST. In particular, it compiles many flavors
-of Vega of which we summarize the most relevant ones below: 
+of Vega of which we summarize the most relevant ones below:
 
 * `alpha_lyr_004` from `Bohlin, Colina, & Finley (1995) <https://ui.adsabs.harvard.edu/abs/1995AJ....110.1316B>`_. It corrsponds to pure hydrogen white dwarf models are the absolute flux standards.
 * `alpha_lyr_005` from Colina, Bohlin & Castelli (1996), Instrument Science Report (`OSG-CAL-96-01 <https://www.stsci.edu/instruments/observatory/PDF/scs8.rev.pdf>`_). It corresponds to the combination of ultraviolet covered by average IUE spectrum; Optical up to 1.05 microns covered by Hayes (1985) average spectrum (IAU Symp 111, p 225); near-infrared covered by ATLAS12 based model computed by Dr. Castelli, rebinned to 25A, and normalized to Hayes (1985) Johnson V flux. V filter as in Buser & Kurucz 1979, AA 70, 555. (All wavelengths are vacuum.)
@@ -91,14 +91,14 @@ legacy Pyphot reference flavor).  flavor.
    **Figure:**  Variations of Vega Flavors relative to Pyphot legacy reference flavor (`alpha_stis_003`).
    The differences between the various flavors could be significant, particularly in the ultraviolet. These result from stellar template parameter changes (e.g. temperature), the reference atmospheres (e.g. LTE, NLTE) and specific calibration details.
 
-.. dropdown:: Figure source code 
+.. dropdown:: Figure source code
 
     .. code-block:: python
 
         import numpy as np
         import matplotlib.pyplot as plt
         from pyphot import Vega
-        
+
         def plot_vega_comparison(which):
             _, axes = plt.subplots(2, 1, figsize=(12, 6), sharex=True)
 
@@ -161,7 +161,7 @@ distribution, particularly in the ultraviolet and optical ranges.
 
    **Figure:** Variations of Vega STIS Flavors. The variations are of the order of 5% in the optical, primarily induced by the update in temperature.
 
-.. dropdown:: Figure source code 
+.. dropdown:: Figure source code
 
     .. code-block:: python
 
@@ -210,7 +210,7 @@ distribution, particularly in the ultraviolet and optical ranges.
 Example Vega Flavors Usage
 ----------------------------
 
-To use a specific Vega flavor for the photometric calculations in Pyphot, you can set the `vega` keyword parameter  when creating a passband or use the `set_vega_flavor` method to update it. 
+To use a specific Vega flavor for the photometric calculations in Pyphot, you can set the `vega` keyword parameter  when creating a passband or use the `set_vega_flavor` method to update it.
 For example, to use the `alpha_stis_011` flavor when creating a passband filter, you can do the following:
 
 .. code-block:: python
@@ -250,7 +250,5 @@ References
 * Bohlin, R. C., Hubeny, I., & Rauch, T., 2020, AJ, 160, 21, "New Grids of Pure-hydrogen White Dwarf NLTE Model Atmospheres and the HST/STIS Flux Calibration", `2020AJ....160...21B <https://ui.adsabs.harvard.edu/abs/2020AJ....160...21B>`_
 * Colina, Bohlin & Castelli 1996, Instrument Science Report, "Absolute Flux Calibrated Spectrum of Vega" `OSG-CAL-96-01 <https://www.stsci.edu/instruments/observatory/PDF/scs8.rev.pdf>`_
 * Fukugita, M., Ichikawa, T., Gunn, J. E., Doi, M., Shimasaku, K., & Schneider, D. P., 1996, AJ, 111, 1748, "The Sloan Digital Sky Survey Photometric System", `1996AJ....111.1748F <https://ui.adsabs.harvard.edu/abs/1996AJ....111.1748F>`_
-* Johnson, H. L. \& Morgan, W. W. 1953, ApJ, 117, 313, "Fundamental stellar photometry for standards of spectral type on the Revised System of the Yerkes Spectral Atlas." `1953ApJ...117..313J <https://ui.adsabs.harvard.edu/abs/1953ApJ...117..313J>`_; 
+* Johnson, H. L. \& Morgan, W. W. 1953, ApJ, 117, 313, "Fundamental stellar photometry for standards of spectral type on the Revised System of the Yerkes Spectral Atlas." `1953ApJ...117..313J <https://ui.adsabs.harvard.edu/abs/1953ApJ...117..313J>`_;
 * Oke, J. B. and Gunn, J. E., 1983, ApJ, 266, 713, "Secondary standard stars for absolute spectrophotometry.”  `1983ApJ...266..713O <https://ui.adsabs.harvard.edu/abs/1983ApJ...266..713O>`_;
-
-

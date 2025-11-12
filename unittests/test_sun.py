@@ -370,7 +370,7 @@ def test_distance_conversion_calculation():
 
     # Distance conversion should be (1 AU / 10 pc)^2
     default_distance = sun.get_library_default_distance()
-    expected_conversion = float(((default_distance / distance_10pc).to("") ** 2))
+    expected_conversion = float((default_distance / distance_10pc).to("") ** 2)
 
     assert abs(sun_obj.distance_conversion - expected_conversion) < 1e-10
 

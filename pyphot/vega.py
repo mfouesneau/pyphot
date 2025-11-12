@@ -18,12 +18,12 @@ from . import io
 __all__ = ["Vega"]
 
 _default_vega = {
-    "mod_002": "{0}/alpha_lyr_mod_002.fits".format(config.libsdir),
-    "mod_003": "{0}/alpha_lyr_mod_003.fits".format(config.libsdir),
-    "mod_004": "{0}/alpha_lyr_mod_004.fits".format(config.libsdir),
-    "stis_011": "{0}/alpha_lyr_stis_011.fits".format(config.libsdir),
-    "stis_003": "{0}/alpha_lyr_stis_003.fits".format(config.libsdir),
-    "legacy": "{0}/vega.hd5".format(config.libsdir),
+    "mod_002": f"{config.libsdir}/alpha_lyr_mod_002.fits",
+    "mod_003": f"{config.libsdir}/alpha_lyr_mod_003.fits",
+    "mod_004": f"{config.libsdir}/alpha_lyr_mod_004.fits",
+    "stis_011": f"{config.libsdir}/alpha_lyr_stis_011.fits",
+    "stis_003": f"{config.libsdir}/alpha_lyr_stis_003.fits",
+    "legacy": f"{config.libsdir}/vega.hd5",
 }
 
 
@@ -81,7 +81,7 @@ class Vega:
 
             if flavor.lower() not in _default_vega:
                 raise ValueError(
-                    "Unknown Vega flavor: {0}. Available flavors {1}".format(
+                    "Unknown Vega flavor: {}. Available flavors {}".format(
                         flavor, _default_vega.keys()
                     )
                 )

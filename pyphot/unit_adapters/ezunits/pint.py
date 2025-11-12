@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 pint
 ~~~~
@@ -14,8 +13,6 @@ and conversions from and to different units.
 
 """
 
-from __future__ import division, print_function, absolute_import
-
 __version__ = "0.1"
 
 import sys
@@ -30,7 +27,7 @@ try:
     # python >= 3.10
     from collections.abc import Iterable
 except ImportError:
-    from collections import Iterable
+    from collections.abc import Iterable
 
 # from pkg_resources import resource_filename
 
@@ -143,7 +140,7 @@ try:
 
 except ImportError:
 
-    class ndarray(object):
+    class ndarray:
         pass
 
     HAS_NUMPY = False
@@ -177,16 +174,16 @@ def _definitions_from_file(filename):
                     modifiers = (
                         modifier.split("=") for modifier in modifiers.split(";")
                     )
-                    modifiers = dict(
-                        (key.strip(), float(value.strip())) for key, value in modifiers
-                    )
+                    modifiers = {
+                        key.strip(): float(value.strip()) for key, value in modifiers
+                    }
                 else:
                     definition = line
                     modifiers = {}
                 result = [res.strip() for res in definition.split("=")]
                 name, value, aliases = result[0], result[1], result[2:]
             except Exception as ex:
-                logger.error("Exception: Cannot parse '{}' {}".format(line, ex))
+                logger.error(f"Exception: Cannot parse '{line}' {ex}")
                 continue
             yield name, value, aliases, modifiers
 
@@ -199,17 +196,17 @@ def _solve_dependencies(dependencies):
     :return: list of sets, each containing keys of independents tasks dependent
 
     """
-    d = dict((key, set(dependencies[key])) for key in dependencies)
+    d = {key: set(dependencies[key]) for key in dependencies}
     r = []
     while d:
         # values not in keys (items without dep)
-        t = set(i for v in d.values() for i in v) - set(d.keys())
+        t = {i for v in d.values() for i in v} - set(d.keys())
         # and keys without value (items without dep)
         t.update(k for k, v in d.items() if not v)
         # can be done right away
         r.append(t)
         # and cleaned up
-        d = dict(((k, v - t) for k, v in d.items() if v))
+        d = {k: v - t for k, v in d.items() if v}
     return r
 
 
@@ -227,21 +224,21 @@ class UndefinedUnitError(ValueError):
 
     def __str__(self):
         if isinstance(self.unit_names, string_types):
-            return "'{}' is not defined in the unit registry".format(self.unit_names)
+            return f"'{self.unit_names}' is not defined in the unit registry"
         elif isinstance(self.unit_names, (list, tuple)) and len(self.unit_names) == 1:
-            return "'{}' is not defined in the unit registry".format(self.unit_names[0])
+            return f"'{self.unit_names[0]}' is not defined in the unit registry"
         elif isinstance(self.unit_names, set) and len(self.unit_names) == 1:
             uname = list(self.unit_names)[0]
-            return "'{}' is not defined in the unit registry".format(uname)
+            return f"'{uname}' is not defined in the unit registry"
         else:
-            return "{} are not defined in the unit registry".format(self.unit_names)
+            return f"{self.unit_names} are not defined in the unit registry"
 
 
 class DimensionalityError(ValueError):
     """Raised when trying to convert between incompatible units."""
 
     def __init__(self, units1, units2, dim1=None, dim2=None):
-        super(DimensionalityError, self).__init__()
+        super().__init__()
         self.units1 = units1
         self.units2 = units2
         self.dim1 = dim1
@@ -249,8 +246,8 @@ class DimensionalityError(ValueError):
 
     def __str__(self):
         if self.dim1 or self.dim2:
-            dim1 = " ({})".format(self.dim1)
-            dim2 = " ({})".format(self.dim2)
+            dim1 = f" ({self.dim1})"
+            dim2 = f" ({self.dim2})"
         else:
             dim1 = ""
             dim2 = ""
@@ -267,7 +264,7 @@ class AliasDict(dict):
     def add_alias(self, key, value, preferred=False):
         if value not in self:
             raise IndexError(
-                "The aliased value '{}' is not present in the dictionary".format(value)
+                f"The aliased value '{value}' is not present in the dictionary"
             )
         self[key] = value = self.get_aliased(value)
         if preferred:
@@ -289,11 +286,9 @@ class UnitsContainer(dict):
         dict.__init__(self, *args, **kwargs)
         for key, value in self.items():
             if not isinstance(key, string_types):
-                raise TypeError("key must be a str, not {}".format(type(key)))
+                raise TypeError(f"key must be a str, not {type(key)}")
             if not isinstance(value, NUMERIC_TYPES):
-                raise TypeError(
-                    "value must be a NUMERIC_TYPES, not {}".format(type(value))
-                )
+                raise TypeError(f"value must be a NUMERIC_TYPES, not {type(value)}")
             if not isinstance(value, float):
                 self[key] = float(value)
 
@@ -302,9 +297,9 @@ class UnitsContainer(dict):
 
     def __setitem__(self, key, value):
         if not isinstance(key, string_types):
-            raise TypeError("key must be a str, not {}".format(type(key)))
+            raise TypeError(f"key must be a str, not {type(key)}")
         if not isinstance(value, NUMERIC_TYPES):
-            raise TypeError("value must be a NUMERIC_TYPES, not {}".format(type(value)))
+            raise TypeError(f"value must be a NUMERIC_TYPES, not {type(value)}")
         dict.__setitem__(self, key, float(value))
 
     def add(self, key, value):
@@ -366,9 +361,9 @@ class UnitsContainer(dict):
 
     def __repr__(self):
         tmp = "{%s}" % ", ".join(
-            ["'{}': {}".format(key, value) for key, value in sorted(self.items())]
+            [f"'{key}': {value}" for key, value in sorted(self.items())]
         )
-        return "<UnitsContainer({})>".format(tmp)
+        return f"<UnitsContainer({tmp})>"
 
     def __format__(self, spec):
         if spec == "!s" or spec == "":
@@ -385,8 +380,7 @@ class UnitsContainer(dict):
                 return r"\frac{%s}" % tmp.replace(" / ", "}{")
         elif spec == "!p":
             pretty = (
-                "{}".format(self)
-                .replace(" ** ", "")
+                f"{self}".replace(" ** ", "")
                 .replace(" * ", PRETTY[10])
                 .replace("-", PRETTY[11])
                 .replace(" / ", "/")
@@ -395,7 +389,7 @@ class UnitsContainer(dict):
                 pretty = pretty.replace(str(n), PRETTY[n])
             return pretty
         else:
-            raise ValueError("{} is not a valid format for UnitsContainer".format(spec))
+            raise ValueError(f"{spec} is not a valid format for UnitsContainer")
 
     def __copy__(self):
         ret = self.__class__()
@@ -404,7 +398,7 @@ class UnitsContainer(dict):
 
     def __imul__(self, other):
         if not isinstance(other, self.__class__):
-            raise TypeError("Cannot multiply UnitsContainer by {}".format(type(other)))
+            raise TypeError(f"Cannot multiply UnitsContainer by {type(other)}")
         for key, value in other.items():
             self[key] += value
         keys = [key for key, value in self.items() if value == 0]
@@ -415,7 +409,7 @@ class UnitsContainer(dict):
 
     def __mul__(self, other):
         if not isinstance(other, self.__class__):
-            raise TypeError("Cannot multiply UnitsContainer by {}".format(type(other)))
+            raise TypeError(f"Cannot multiply UnitsContainer by {type(other)}")
         ret = copy.copy(self)
         ret *= other
         return ret
@@ -424,21 +418,21 @@ class UnitsContainer(dict):
 
     def __ipow__(self, other):
         if not isinstance(other, NUMERIC_TYPES):
-            raise TypeError("Cannot power UnitsContainer by {}".format(type(other)))
+            raise TypeError(f"Cannot power UnitsContainer by {type(other)}")
         for key, value in self.items():
             self[key] *= other
         return self
 
     def __pow__(self, other):
         if not isinstance(other, NUMERIC_TYPES):
-            raise TypeError("Cannot power UnitsContainer by {}".format(type(other)))
+            raise TypeError(f"Cannot power UnitsContainer by {type(other)}")
         ret = copy.copy(self)
         ret **= other
         return ret
 
     def __itruediv__(self, other):
         if not isinstance(other, self.__class__):
-            raise TypeError("Cannot divide UnitsContainer by {}".format(type(other)))
+            raise TypeError(f"Cannot divide UnitsContainer by {type(other)}")
 
         for key, value in other.items():
             self[key] -= value
@@ -451,7 +445,7 @@ class UnitsContainer(dict):
 
     def __truediv__(self, other):
         if not isinstance(other, self.__class__):
-            raise TypeError("Cannot divide UnitsContainer by {}".format(type(other)))
+            raise TypeError(f"Cannot divide UnitsContainer by {type(other)}")
 
         ret = copy.copy(self)
         ret /= other
@@ -459,7 +453,7 @@ class UnitsContainer(dict):
 
     def __rtruediv__(self, other):
         if not isinstance(other, self.__class__) and other != 1:
-            raise TypeError("Cannot divide {} by UnitsContainer".format(type(other)))
+            raise TypeError(f"Cannot divide {type(other)} by UnitsContainer")
 
         ret = copy.copy(self)
         ret **= -1
@@ -486,7 +480,7 @@ def converter_from_reference(scale, offset, log_base):
     return _inner
 
 
-class UnitRegistry(object):
+class UnitRegistry:
     """The unit registry stores the definitions and relationships between
     units.
 
@@ -587,11 +581,11 @@ class UnitRegistry(object):
                 pending[name] = (value, aliases)
                 dependencies[name] = ex.unit_names
             except Exception as ex:
-                logger.error("Exception: Cannot add '{}' {}".format(name, ex))
+                logger.error(f"Exception: Cannot add '{name}' {ex}")
 
         dep2 = {}
         for unit_name, deps in dependencies.items():
-            dep2[unit_name] = set(conv[dep_name] for dep_name in deps)
+            dep2[unit_name] = {conv[dep_name] for dep_name in deps}
 
         for unit_names in _solve_dependencies(dep2):
             for unit_name in unit_names:
@@ -759,7 +753,7 @@ def _build_quantity_class(registry, force_ndarray):
     """Create a Quantity Class."""
 
     @total_ordering
-    class _Quantity(object):
+    class _Quantity:
         """Quantity object constituted by magnitude and units.
 
         :param value: value of the physical quantity to be created.
@@ -806,10 +800,10 @@ def _build_quantity_class(registry, force_ndarray):
             return self.__class__(copy.copy(self._magnitude), copy.copy(self._units))
 
         def __str__(self):
-            return "{} {}".format(self._magnitude, self._units)
+            return f"{self._magnitude} {self._units}"
 
         def __repr__(self):
-            return "<Quantity({}, '{}')>".format(self._magnitude, self._units)
+            return f"<Quantity({self._magnitude}, '{self._units}')>"
 
         def __format__(self, spec):
             if not spec:
@@ -1125,9 +1119,7 @@ def _build_quantity_class(registry, force_ndarray):
                 if self.dimensionless:
                     return operator.lt(self.magnitude, other)
                 else:
-                    raise ValueError(
-                        "Cannot compare Quantity and {}".format(type(other))
-                    )
+                    raise ValueError(f"Cannot compare Quantity and {type(other)}")
 
             if self.units == other.units:
                 return operator.lt(self._magnitude, other._magnitude)

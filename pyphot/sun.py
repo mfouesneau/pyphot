@@ -1,7 +1,5 @@
 """Handle the Sun Spectrum"""
 
-from __future__ import print_function
-
 from typing import Optional, Literal, Tuple, cast
 import numpy.typing as npt
 import pandas as pd
@@ -15,8 +13,8 @@ from .config import libsdir
 __all__ = ["Sun"]
 
 _default_sun = {
-    "observed": "{0}/sun_reference_stis_001.fits".format(libsdir),
-    "theoretical": "{0}/sun_kurucz93.fits".format(libsdir),
+    "observed": f"{libsdir}/sun_reference_stis_001.fits",
+    "theoretical": f"{libsdir}/sun_kurucz93.fits",
 }
 
 
@@ -100,7 +98,7 @@ class Sun:
             # careful that the units are not always simplified
             # .to('') to enforce simplified distance
             self.distance_conversion = float(
-                ((_default_distance / self.distance).to("") ** 2)
+                (_default_distance / self.distance).to("") ** 2
             )
         self._data = None
         self.units = None

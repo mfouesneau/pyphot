@@ -88,7 +88,7 @@ def ascii_read_header(
     if hasattr(fname, "read"):
         stream: IOBase = cast(IOBase, fname)
     else:
-        stream: IOBase = open(fname, "r")  # pyright: ignore
+        stream: IOBase = open(fname)  # pyright: ignore
 
     if commentchar is None:
         commentchar = "#"
@@ -224,7 +224,7 @@ def ascii_generate_header(
 
     # table header keys
     length = max(len(str(k)) for k in info.header.keys())
-    fmt = "{{0:s}} {{1:{0:d}s}}\t{{2:s}}".format(length)
+    fmt = f"{{0:s}} {{1:{length:d}s}}\t{{2:s}}"
     for key, value in info.header.items():
         for vk in str(value).split("\n"):
             if len(vk) > 0:
@@ -233,7 +233,7 @@ def ascii_generate_header(
     # column metadata
     hdr.append(comments)  # add empty line
     length = max(len(str(k)) for k in columns)
-    fmt = "{{0:s}}{{0:s}} {{1:{0:d}s}}\t{{2:s}}\t{{3:s}}".format(length)
+    fmt = f"{{0:s}}{{0:s}} {{1:{length:d}s}}\t{{2:s}}\t{{3:s}}"
     for colname in columns:
         unit = info.units.get(colname, "None")
         desc = info.comments.get(colname, "None")
@@ -248,9 +248,9 @@ def ascii_generate_header(
     # column names
     hdr.append(comments)  # add empty line
     if commented_header:
-        hdr.append("{0:s} {1:s}".format(comments, delimiter.join(columns)))
+        hdr.append(f"{comments:s} {delimiter.join(columns):s}")
     else:
-        hdr.append("{0:s}".format(delimiter.join(columns)))
+        hdr.append(f"{delimiter.join(columns):s}")
 
     return "\n".join(hdr) + "\n"
 

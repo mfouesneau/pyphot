@@ -158,9 +158,7 @@ def fits_generate_header(df: pd.DataFrame) -> fits.Header:
 
     # add aliases ALIAS<n=1..N> = <from>=<to> // alias of <from>
     for e, (to_, from_) in enumerate(info.alias.items()):
-        cards.append(
-            ("ALIAS{0:d}".format(e + 1), f"{to_:s}={from_:s}", f"alias of {from_:s}")
-        )
+        cards.append((f"ALIAS{e + 1:d}", f"{to_:s}={from_:s}", f"alias of {from_:s}"))
 
     # add NAME if any
     table_name = info.header.get("NAME", None)

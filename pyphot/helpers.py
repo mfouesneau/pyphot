@@ -19,11 +19,9 @@ def progress_enumerate(it, *args, **kwargs):
     """
     progress = kwargs.pop("show_progress", False)
     if progress is True:
-        for a in enumerate(Pbar(**kwargs).iterover(it), *args):
-            yield a
+        yield from enumerate(Pbar(**kwargs).iterover(it), *args)
     else:
-        for a in enumerate(it, *args):
-            yield a
+        yield from enumerate(it, *args)
 
 
 def deprecated(message):

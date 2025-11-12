@@ -5,7 +5,7 @@ on:
     paths-ignore:
           - "joss/**"
           - "paper/**"
-    branches:    
+    branches:
       - master
 
 jobs:
@@ -13,7 +13,7 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    steps:  
+    steps:
     - uses: actions/checkout@v2
       with:
         persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal access token.
@@ -28,7 +28,7 @@ jobs:
     - name: build doc tables
       working-directory: ./doc
       run: |
-        python pyphot_table.py 
+        python pyphot_table.py
         python licks_table.py
     - name: sphinx-action@master
       working-directory: ./doc

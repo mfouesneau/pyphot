@@ -75,7 +75,7 @@ class UncertainFilter(Filter):
             Filter(
                 wavelength,
                 transmit_k,
-                name=name + "_{0:d}".format(num),
+                name=name + f"_{num:d}",
                 dtype=dtype,
                 unit=unit,
                 vega=vega,

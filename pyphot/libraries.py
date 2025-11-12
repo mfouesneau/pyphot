@@ -12,7 +12,7 @@ from .helpers import progress_enumerate
 from .phot import Filter, QuantityType
 
 
-class Library(object):
+class Library:
     """Common grounds for filter libraries"""
 
     source: Optional[str]
@@ -60,7 +60,7 @@ class Library(object):
             if f.wavelength_unit in (None, ""):
                 f.wavelength_unit = "AA"
             f.write_to(
-                "{0:s}/{1:s}.csv".format(directory, f.name).lower(),
+                f"{directory:s}/{f.name:s}.csv".lower(),
                 fmt="%.6f",
                 **kwargs,
             )
@@ -93,8 +93,8 @@ class Library(object):
             if f.wavelength_unit in (None, ""):
                 f.wavelength_unit = "AA"
             f.write_to(
-                "{0:s}".format(fname),
-                tablename="/filters/{0}".format(f.name),
+                f"{fname:s}",
+                tablename=f"/filters/{f.name}",
                 createparents=True,
                 append=True,
                 silent=True,
@@ -233,10 +233,10 @@ class Ascii_Library(Library):
             if len(r) > 1:
                 raise ValueError(
                     "Auto correction found multiple choices."
-                    "Refine name to one of {0}".format(r)
+                    "Refine name to one of {}".format(r)
                 )
             elif len(r) <= 0:
-                raise ValueError("Cannot find filter {0}".format(fname))
+                raise ValueError(f"Cannot find filter {fname}")
             else:
                 fil = Filter.from_ascii(r[0], *args, **kwargs)
         if (interp is True) and (lamb is not None):
@@ -349,7 +349,7 @@ class Ascii_Library(Library):
         if filter_object.wavelength_unit is None:
             msg = "Filter wavelength must have units for storage."
             raise AttributeError(msg)
-        fname = "{0:s}/{1:s}.csv".format(self.source, filter_object.name)
+        fname = f"{self.source:s}/{filter_object.name:s}.csv"
         filter_object.write_to(fname.lower(), fmt=fmt, **kwargs)
 
 
@@ -548,8 +548,8 @@ class HDF_Library(Library):
         append = kwargs.pop("append", True)
 
         f.write_to(
-            "{0:s}".format(self.source),
-            tablename="/filters/{0}".format(f.name),
+            f"{self.source:s}",
+            tablename=f"/filters/{f.name}",
             createparents=True,
             append=append,
             **kwargs,
