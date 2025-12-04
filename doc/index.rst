@@ -32,25 +32,13 @@ for integration in larger projects.
    Support for python 3.14 is currently blocked by `pytables` not supporting it yet.
 
 
-The inputs are response functions for the desired photometric passbands, and
-stellar spectra.
+The inputs are response functions for the desired photometric passbands and stellar spectra.
 
-Filters are represented individually by a `Filter` object. Collections of
-filters are handled with a `Library`. We provide an internal library that
-contains a signitificant amount of common filters. Note that we use the word
-"filter" in a generic sense: in many cases it corresponds in fact to a total
-throughput, that includes the actual filter transmission, the transmission of
-the optics, the wavelength-dependent efficiency of the detector, and (for
-ground-based photometric systems) the transmission of the atmosphere.
+Filters are represented individually by a `Filter` object. Collections of filters are handled with a `Library`. We provide an internal library that contains a significant number of common filters. Note that we use the word "filter" in a generic sense: in many cases, it corresponds in fact to a total throughput, which includes the actual filter transmission, the transmission of the optics, the wavelength-dependent efficiency of the detector, and (for ground-based photometric systems) the transmission of the atmosphere.
 
-Each filter is minimally defined by a `wavelength`, a `throughput`, and a
-detector type that may be either `energy` or `photon` (default). Many properties
-such as central or pivot wavelengths are computed internally.
+Each filter is minimally defined by a `wavelength`, a `throughput`, and a detector type, which may be either `energy` or `photon` (default). Many properties, such as central or pivot wavelengths, are computed internally.
 
-Units are provided for the wavelengths of the filters, zero points in multiple
-units are also accessible (AB, Vega magnitude, Jy, erg/s/cm2/AA). The default
-detector is assumed to be a photon-counting device, but energy-sensitive
-detectors are also handled for the computations.
+Units are provided for the wavelengths of the filters, zero points in multiple units are also accessible (AB, Vega magnitude, Jy, erg/s/cm2/AA). The default detector is assumed to be a photon-counting device, but energy-sensitive detectors are also handled for the computations.
 
 .. note::
 
@@ -111,23 +99,40 @@ Installation
 ~~~~~~~~~~~~
 Pyphot is available on `PyPI <https://pypi.org/project/pyphot/>`_ and can be installed using any common package manager.
 
-* Using pip: (Use the `--user` option if you don't have permissions to install libraries)
+Installation
+------------
+Before installation, make sure you have HDF5 version 1.8.4 or later (required for pytables; see details at https://github.com/PyTables/PyTables). We will remove this dependency in a future release.
 
-.. image:: https://img.shields.io/pypi/v/pyphot.svg
-    :target: https://pypi.org/project/pyphot/
+For OSX:
 
-.. code-block:: none
+.. code::
 
-        pip install git+https://github.com/mfouesneau/pyphot
+  brew install hdf5
 
-* Manually from latest source on GitHub:
+For Debian-based distributions:
 
-.. code-block:: none
+.. code::
 
-        git clone https://github.com/mfouesneau/pyphot
-        cd pyphot
-        python setup.py intall
+  sudo apt-get install libhdf5-serial-dev
 
+
+* Installation from PyPI
+
+.. code::
+
+  pip install pyphot
+
+  pip install git+https://github.com/mfouesneau/pyphot   # if you want the unreleased version
+
+* Manual installation
+
+Download the repository and run the setup
+
+.. code::
+    
+  git clone https://github.com/mfouesneau/pyphot
+  cd pyphot
+  pip install .
 
 Internal Vega reference
 ~~~~~~~~~~~~~~~~~~~~~~~
