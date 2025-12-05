@@ -1,48 +1,28 @@
-Details on the internal Vega reference spectra
-==============================================
+Internal Vega reference spectra
+===============================
 
-Vega (aka :math:`\alpha` Lyrae, HD 172167) serves as the fundamental calibration
-standard for stellar photometry due to its exceptional brightness, and favorable
-observational characteristics.  It is the fifth brightest star in the sky, after
-Sirius, Canopus, Alpha Centauri and Arcturus and the second brightest star in
-the northern celestial hemisphere.
-As a nearby A0V star located approximately 25 light-years from Earth, Vega was
-historically chosen as the primary standard because of its position near the
-north celestial pole, making it easily accessible to northern hemisphere
-observatories year-round (`Johnson & Morgan 1953
-<https://ui.adsabs.harvard.edu/abs/1953ApJ...117..313J>`_).
+Summary
+-------
 
-Vega is a Delta Scuti variable star (dwarf Cepheids), one whose variations in
-luminosity result from both radial and non-radial pulsations of its surface.
-Some parts of its surface contract while others simultaneously expand
-(non-radial pulsations), and the star also contracts and expands by changing its
-radius to maintain its spherical shape (radial pulsations).
+Often in photometry, a spectrum of reference for Vega is necessary.
 
-Delta Scuti variables are commonly used as standard candles to establish
-distances because of their relatively flat spectral energy distribution across
-optical wavelengths and "stability" over decades make it an ideal
-reference for establishing magnitude zero-points across multiple filter systems
-(`Oke & Gunn 1983 <https://ui.adsabs.harvard.edu/abs/1983ApJ...266..713O>`_).
+By default, we use the synthetic spectrum `alpha_lyr_stis_003` provided by `Bohlin 2007 <https://ui.adsabs.harvard.edu/abs/2007ASPC..364..315B/abstract>`_, a common reference
+througout many photometric suites.
 
-However, the fact that Vega is actually a variable star with small but
-measurable brightness variations has led the astronomical community to adopt
-more stable references. The International Astronomical Union (IAU) and major
-observatories now commonly use synthetic standards based on theoretical stellar
-atmosphere models or carefully selected ensembles of stable stars. These
-synthetic standards provide consistent, reproducible reference points that are
-not subject to the intrinsic variability observed in individual stars like Vega,
-ensuring long-term stability in photometric calibrations across different
-observatories and epochs.
+The interface to the Vega template is given through the :class:`pyphot.vega.Vega` class.
 
-Modern space-based observations have refined Vega's spectral energy distribution
-to unprecedented precision, with the CALSPEC database providing the definitive
-reference spectrum used by HST and other major observatories (`Bohlin et al.
-2014 <https://ui.adsabs.harvard.edu/abs/2014PASP..126..711B>`_). Despite the
-discovery of Vega's infrared excess due to a circumstellar debris disk and minor
-photometric variability, it remains the cornerstone of photometric systems, with
-the AB magnitude system providing an alternative that maintains compatibility
-while addressing some of Vega's limitations (`Fukugita et al. 1996
-<https://ui.adsabs.harvard.edu/abs/1996AJ....111.1748F>`_).
+To use a specific Vega flavor for the photometric calculations in Pyphot, you can set the `vega` keyword parameter  when creating a passband or use the `set_vega_flavor` method to update it.
+
+Details
+-------
+
+Vega (aka :math:`\alpha` Lyrae, HD 172167) serves as the fundamental calibration standard for stellar photometry due to its exceptional brightness, and favorable observational characteristics.  It is the fifth brightest star in the sky, after Sirius, Canopus, Alpha Centauri and Arcturus and the second brightest star in the northern celestial hemisphere. As a nearby A0V star located approximately 25 light-years from Earth, Vega was historically chosen as the primary standard because of its position near the north celestial pole, making it easily accessible to northern hemisphere observatories year-round (`Johnson & Morgan 1953 <https://ui.adsabs.harvard.edu/abs/1953ApJ...117..313J>`_).
+
+Vega is a Delta Scuti variable star (dwarf Cepheids), one whose variations in luminosity result from both radial and non-radial pulsations of its surface. Some parts of its surface contract while others simultaneously expand (non-radial pulsations), and the star also contracts and expands by changing its radius to maintain its spherical shape (radial pulsations). Delta Scuti variables are commonly used as standard candles to establish distances because of their relatively flat spectral energy distribution across optical wavelengths and "stability" over decades make it an ideal reference for establishing magnitude zero-points across multiple filter systems (`Oke & Gunn 1983 <https://ui.adsabs.harvard.edu/abs/1983ApJ...266..713O>`_).
+
+However, the fact that Vega is actually a variable star with small but measurable brightness variations has led the astronomical community to adopt more stable references. The International Astronomical Union (IAU) and major observatories now commonly use synthetic standards based on theoretical stellar atmosphere models or carefully selected ensembles of stable stars. These synthetic standards provide consistent, reproducible reference points that are not subject to the intrinsic variability observed in individual stars like Vega, ensuring long-term stability in photometric calibrations across different observatories and epochs.
+
+Modern space-based observations have refined Vega's spectral energy distribution to unprecedented precision, with the CALSPEC database providing the definitive reference spectrum used by HST and other major observatories (`Bohlin et al. 2014 <https://ui.adsabs.harvard.edu/abs/2014PASP..126..711B>`_). Despite the discovery of Vega's infrared excess due to a circumstellar debris disk and minor photometric variability, it remains the cornerstone of photometric systems, with the AB magnitude system providing an alternative that maintains compatibility while addressing some of Vega's limitations (`Fukugita et al. 1996 <https://ui.adsabs.harvard.edu/abs/1996AJ....111.1748F>`_).
 
 Vega Flavors
 ------------
@@ -215,10 +195,11 @@ For example, to use the `alpha_stis_011` flavor when creating a passband filter,
 
 .. code-block:: python
 
-    from pyphot.astropy import UnitFilter, Unit as u
+    from pyphot import Filter
+    import astropy.units as u
 
     # Create a passband using the Vega flavor
-    pb = UnitFilter(
+    pb = Filter(
         [4000, 5000, 6000] * u.AA,
         [0.1, 0.8, 0.1],
         name="Example Passband",

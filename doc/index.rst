@@ -92,6 +92,8 @@ Documentation Contents
    libcontent
    licks
    vega
+   sun
+   contributing
    modules
 
 
@@ -117,6 +119,8 @@ For Debian-based distributions:
 
 
 * Installation from PyPI
+.. image:: https://img.shields.io/pypi/v/pyphot.svg
+    :target: https://pypi.org/project/pyphot/
 
 .. code::
 
@@ -129,82 +133,10 @@ For Debian-based distributions:
 Download the repository and run the setup
 
 .. code::
-    
+
   git clone https://github.com/mfouesneau/pyphot
   cd pyphot
   pip install .
-
-Internal Vega reference
-~~~~~~~~~~~~~~~~~~~~~~~
-
-As mentioned in the above, sometimes a spectrum of reference of Vega is necessary.
-
-By default, we use the synthetic spectrum `alpha_lyr_stis_003` provided by `Bohlin 2007 <https://ui.adsabs.harvard.edu/abs/2007ASPC..364..315B/abstract>`_, a common reference
-througout many photometric suites.
-
-The interface to the Vega template is given through the :class:`pyphot.vega.Vega` class.
-
-Since v.1.7.0, additional flavors and description of the internal Vega reference can be found on the :doc:`vega` page.
-
-To use a specific Vega flavor for the photometric calculations in Pyphot, you can set the `vega` keyword parameter  when creating a passband or use the `set_vega_flavor` method to update it.
-For example, to use the `alpha_lyr_stis_011` flavor when creating a passband filter, you can do the following:
-
-.. code-block:: python
-
-    from pyphot.astropy import UnitFilter, Unit as u
-
-    # Create a passband using the Vega flavor
-    pb = UnitFilter(
-        [4000, 5000, 6000] * u.AA,
-        [0.1, 0.8, 0.1],
-        name="Example Passband",
-        dtype="photon"
-        vega="stis_011"  # Specify the Vega flavor,
-    )
-
-Or alternatively, you can set/reset the Vega flavor after:
-
-.. code-block:: python
-
-    from pyphot import svo
-
-    pb = svo.get_pyphot_filter("GALEX/GALEX.FUV")
-    # Set the Vega flavor to use
-    pb.set_vega_flavor("stis_011")
-
-
-Internal Sun reference
-~~~~~~~~~~~~~~~~~~~~~~~
-
-We also provide observed and theoretical references for the solar spectrum following
-`Colina, Bohlin, & Castelli 1996 <https://ui.adsabs.harvard.edu/abs/1996AJ....112..307C/abstract>`_.
-
-The observed solar spectrum comes from CALSPEC
-`sun_reference_stis_001.fits <ftp://ftp.stsci.edu/cdbs/current_calspec/sun_reference_stis_001.fits>`_
-which provides the ultraviolet to near-infrared absolute flux distribution of
-the Sun covering the 0.12-2.5 μm wavelength range. The solar reference spectrum
-combines absolute flux measurements from satellites and from the ground with a
-model spectrum for the near-infrared.
-
-The theoretical spectrum comes from the Kurucz'93 atlas:
-`<sun_kurucz93.fits ftp://ftp.stsci.edu/cdbs/grid/k93models/standards/sun_kurucz93.fits>`_
-The theoretical spectrum is scaled to match the observed spectrum from 1.5 - 2.5 microns, and then it is used where the observed spectrum ends.
-The theoretical model of the Sun uses the following parameters when the Sun is at 1 au:
-
-
-.. list-table:: Solar Parameters
-        :header-rows: 1
-
-        * - log_Z
-          - T_eff
-          - log_g
-          - V_{Johnson}
-        * - +0.0
-          - 5777
-          - +4.44
-          - -26.75
-
-The interface to the Sun templates is given through the :class:`pyphot.sun.Sun` class.
 
 Contributors
 ~~~~~~~~~~~~
@@ -216,15 +148,7 @@ Direct contributions to the code base:
 * Ariane Lançon (`@lancon <https://github.com/lancon>`_)
 * Tim Morton (`@timothydmorton <https://github.com/timothydmorton>`_)
 
-How to contribute
-~~~~~~~~~~~~~~~~~
-
-This project is open source and new contributions and contributors are very welcome!
-
-Please open a new issue or new pull request for bugs, feedback, or new features you would like to see. If there is an issue you would like to work on, please leave a comment, and we will be happy to assist.
-
-Please have a look at our `code of conduct <https://github.com/mfouesneau/pyphot/blob/main/CODE_OF_CONDUCT.md>`_.
-
+If you want to contribute, please look at our :doc:`contributing guide <contributing>`.
 
 Related projects
 ~~~~~~~~~~~~~~~~

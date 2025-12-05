@@ -1,6 +1,6 @@
 [project]
 name = "pyphot"
-version = "2.0.dev"
+version = "2.0.0"
 description = "A tool for computing photometry from spectra"
 readme = "README.rst"
 requires-python = ">=3.9"
@@ -56,7 +56,8 @@ testing = [
 ci = [
   "toml",
   "ruff",
-  "isort"]
+  "isort",
+  "prek"]
 
 docs = [
   "sphinx>=5.3",
@@ -92,3 +93,49 @@ ruff = { cmd = "ruff check --fix --show-fixes --output-format=github pyphot -o r
 unittests = { cmd = "python3 -m unittest unittests/test_quick.py && rm -f table.csv licks_table.csv", description = "CI unittests in current python version" }
 joss = { cmd = "docker run --rm --volume $PWD/paper:/data --user $(id -u):$(id -g) --env JOURNAL=joss openjournals/inara && echo 'check paper/paper.pdf'", description = "Compile Joss paper" }
 docs = { cmd = "cd doc && make apidoc && make html", description = "Build the documentation" }
+
+[tool.ruff]
+# Enumerate all fixed violations.
+show-fixes = true
+# Always generate Python 3.10-compatible code.
+target-version = "py310"
+# PEP-8 line length
+line-length = 79
+# Exclude a variety of commonly ignored directories.
+exclude = [
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".ipynb_checkpoints",
+    ".mypy_cache",
+    ".nox",
+    ".pyenv",
+    ".pytest_cache",
+    ".ruff_cache",
+    ".tox",
+    ".venv",
+    ".vscode",
+    "__pypackages__",
+    ".DS_Store",
+    "_build",
+    "build",
+    "dist",
+    "site-packages",
+    "venv",
+    ".pre-commit-config.yaml",
+]
+
+[tool.ruff.format]
+# Enable reformatting of code snippets in docstrings.
+docstring-code-format = true
+# use double quotes for strings.
+quote-style = "double"
+
+[tool.ruff.lint]
+# Allow fix for all enabled rules (when `--fix`) is provided.
+fixable = ["ALL"]
+unfixable = []
+
+
+[tool.ruff.lint.pydocstyle]
+convention = "numpy"

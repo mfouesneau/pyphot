@@ -1,5 +1,5 @@
 Version History
-==============
+===============
 
 This page lists the recent changes in versions of PyPhot.
 
