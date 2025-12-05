@@ -1,0 +1,1089 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>pyphot Quickstart &#8212; pyphot  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=984d411d"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'QuickStart';</script>
+    <link rel="canonical" href="https://mfouesneau.github.io/pyphot/QuickStart.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="More examples with Pyphot" href="examples.html" />
+    <link rel="prev" title="Version History" href="whats_new.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">pyphot  documentation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="whats_new.html">What's New</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">pyphot Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">More examples with Pyphot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="photometry.html">Details on predicting photometry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="libcontent.html">Provided Filter library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="licks.html">Extention to Lick indices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vega.html">Internal Vega reference spectra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sun.html">Internal Sun reference spectra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="modules.html">API</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="pyphot.html">pyphot package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyphot.io.html">pyphot.io package</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="pyphot.unit_adapters.html">pyphot.unit_adapters package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.unit_adapters.ezunits.html">pyphot.unit_adapters.ezunits package</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/mfouesneau/pyphot/master?urlpath=lab/tree/doc/QuickStart.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/mfouesneau/pyphot/blob/master/doc/QuickStart.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/mfouesneau/pyphot" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/mfouesneau/pyphot/blob/master/doc/QuickStart.ipynb?plain=1" target="_blank"
+   class="btn btn-sm btn-source-file-button dropdown-item"
+   title="Show source"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="btn__text-container">Show source</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/mfouesneau/pyphot/issues/new?title=Issue%20on%20page%20%2FQuickStart.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/QuickStart.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>pyphot Quickstart</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#photometry-computations">Photometry Computations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vega-spectra">Vega spectra</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sun">Sun</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extention-to-lick-indices">Extention to Lick indices</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interface-with-svo-filter-profile-service">Interface with SVO filter profile service</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="pyphot-quickstart">
+<h1>pyphot Quickstart<a class="headerlink" href="#pyphot-quickstart" title="Link to this heading">#</a></h1>
+<p>This notebook provides a quick introduction to the <code class="docutils literal notranslate"><span class="pre">pyphot</span></code> package.</p>
+<p>Full documentation available at <a class="reference external" href="https://mfouesneau.github.io/pyphot/">https://mfouesneau.github.io/pyphot/</a></p>
+<div class="alert alert-block alert-info">
+<p>ℹ️ This notebook is based on <strong>Pyphot version 2.0.0.</strong></p>
+</div><div class="alert alert-block alert-success"> 
+💡 The online documentation contains also additional examples.
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Handle import for pyphot and path</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">pyphot</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;../&quot;</span><span class="p">)</span>
+    <span class="kn">import</span> <span class="nn">pyphot</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="photometry-computations">
+<h2>Photometry Computations<a class="headerlink" href="#photometry-computations" title="Link to this heading">#</a></h2>
+<p>Quick start example to access the library and it’s content:</p>
+<ul class="simple">
+<li><p>this example uses the internal (HDF) filter library.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f</span> <span class="pre">=</span> <span class="pre">lib.find('irac')</span></code> finds all filter names that relates to IRAC (i.e. the four bands).</p></li>
+<li><p>prints information about the first IRAC passband, including zeropoints in various systems.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyphot</span>
+
+<span class="c1"># get the internal default library of passbands filters</span>
+<span class="n">lib</span> <span class="o">=</span> <span class="n">pyphot</span><span class="o">.</span><span class="n">get_library</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Library contains: &quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">lib</span><span class="p">),</span> <span class="s2">&quot; filters&quot;</span><span class="p">)</span>
+<span class="c1"># find all filter names that relates to IRAC</span>
+<span class="c1"># and print some info</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;irac&quot;</span><span class="p">)</span>
+<span class="n">passbands</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">load_filters</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>  <span class="c1"># or lib[f]</span>
+<span class="n">passbands</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">show_zeropoints</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Library contains:  271  filters
+Filter object information:
+    name:                 SPITZER_IRAC_36
+    detector type:        photon
+    wavelength units:     AA
+    central wavelength:   35634.293911 Angstrom
+    pivot wavelength:     35569.270678 Angstrom
+    effective wavelength: 35134.320010 Angstrom
+    photon wavelength:    35263.773954 Angstrom
+    minimum wavelength:   31310.000000 Angstrom
+    maximum wavelength:   39740.000000 Angstrom
+    norm:                 3181.966405
+    effective width:      6848.829972 Angstrom
+    fullwidth half-max:   7430.000000 Angstrom
+    definition contains 505 points
+    Zeropoints
+        Vega: 27.948397 mag,
+              6.616697169302651e-12 erg / (Angstrom s cm2),
+              279.2354008243633 Jy
+              5.5117355961901255 ph / (Angstrom s cm2)
+          AB: 25.163323 mag,
+              8.603413213872212e-11 erg / (Angstrom s cm2),
+              3630.7805477009956 Jy
+          ST: 21.100000 mag,
+              3.6307805477010028e-09 erg / (Angstrom s cm2),
+              153224.8545764173 Jy
+        
+</pre></div>
+</div>
+</div>
+</div>
+<p>Suppose one has a calibrated spectrum and wants to compute the vega magnitude through the HST WFC3 F110W and F160W passband,</p>
+<ul class="simple">
+<li><p>we use the internal Vega spectrum as example</p></li>
+<li><p>we load the WFC3 F110W passband from the internal filter library</p></li>
+<li><p>we compute the magnitude using the <code class="docutils literal notranslate"><span class="pre">get_flux</span></code> method of the passband</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># We&#39;ll use Vega spectrum as example</span>
+<span class="kn">from</span> <span class="nn">pyphot.vega</span> <span class="kn">import</span> <span class="n">Vega</span>
+
+<span class="n">vega</span> <span class="o">=</span> <span class="n">Vega</span><span class="p">()</span>
+<span class="n">passbands</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">load_filters</span><span class="p">([</span><span class="s2">&quot;HST_WFC3_F110W&quot;</span><span class="p">,</span> <span class="s2">&quot;HST_WFC3_F160W&quot;</span><span class="p">])</span>
+<span class="c1"># compute the integrated flux through the filter f</span>
+<span class="c1"># note that it work on many spectra at once</span>
+<span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">passbands</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Passband: </span><span class="si">{</span><span class="n">f</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">fluxes</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">get_flux</span><span class="p">(</span><span class="n">vega</span><span class="o">.</span><span class="n">wavelength</span><span class="p">,</span> <span class="n">vega</span><span class="o">.</span><span class="n">flux</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="c1"># convert to vega magnitudes</span>
+    <span class="n">mags</span> <span class="o">=</span> <span class="o">-</span><span class="mf">2.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">fluxes</span><span class="o">.</span><span class="n">value</span><span class="p">)</span> <span class="o">-</span> <span class="n">f</span><span class="o">.</span><span class="n">Vega_zero_mag</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;- Vega magnitude of Vega in </span><span class="si">{0:s}</span><span class="s2"> is : </span><span class="si">{1:0.3f}</span><span class="s2"> mag&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">mags</span><span class="p">))</span>
+    <span class="n">mags</span> <span class="o">=</span> <span class="o">-</span><span class="mf">2.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">fluxes</span><span class="o">.</span><span class="n">value</span><span class="p">)</span> <span class="o">-</span> <span class="n">f</span><span class="o">.</span><span class="n">AB_zero_mag</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-   AB magnitude of Vega in </span><span class="si">{0:s}</span><span class="s2"> is : </span><span class="si">{1:0.3f}</span><span class="s2"> mag&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">mags</span><span class="p">))</span>
+    <span class="n">mags</span> <span class="o">=</span> <span class="o">-</span><span class="mf">2.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">fluxes</span><span class="o">.</span><span class="n">value</span><span class="p">)</span> <span class="o">-</span> <span class="n">f</span><span class="o">.</span><span class="n">ST_zero_mag</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-   ST magnitude of Vega in </span><span class="si">{0:s}</span><span class="s2"> is : </span><span class="si">{1:0.3f}</span><span class="s2"> mag&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">mags</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Passband: HST_WFC3_F110W
+/spectrum._v_attrs (AttributeSet), 16 attributes
+- Vega magnitude of Vega in HST_WFC3_F110W is : 0.000 mag
+-   AB magnitude of Vega in HST_WFC3_F110W is : 0.752 mag
+-   ST magnitude of Vega in HST_WFC3_F110W is : 2.373 mag
+Passband: HST_WFC3_F160W
+- Vega magnitude of Vega in HST_WFC3_F160W is : 0.000 mag
+-   AB magnitude of Vega in HST_WFC3_F160W is : 1.256 mag
+-   ST magnitude of Vega in HST_WFC3_F160W is : 3.502 mag
+</pre></div>
+</div>
+</div>
+</div>
+<div class="alert alert-warning">
+<p>⚠️ <strong>Important</strong> <code class="docutils literal notranslate"><span class="pre">UnitTypeError:</span> <span class="pre">Can</span> <span class="pre">only</span> <span class="pre">apply</span> <span class="pre">'log10'</span> <span class="pre">function</span> <span class="pre">to</span> <span class="pre">dimensionless</span> <span class="pre">quantities</span></code></p>
+<p>You may encounter a <code class="docutils literal notranslate"><span class="pre">UnitTypeError</span></code> error if you try to compute <code class="docutils literal notranslate"><span class="pre">log10</span></code> (and other non trivial transformations) directly from quantities with units
+In this example, it is unclear what Python needs to do with logarithm of flux in flam (erg/s/cm2/Angstrom). You need to either convert the flux to a dimensionless quantity first, e.g. by dividing by a reference flux (e.g., <code class="docutils literal notranslate"><span class="pre">f.Vega_zero_flux,</span> <span class="pre">f.AB_zero_flux,</span> <span class="pre">f.ST_zero_flux</span></code>), or take <code class="docutils literal notranslate"><span class="pre">.value</span></code> to work with the float.</p>
+</div><p>The following code illustrate how to quickly plot passbands based on the ones we queried above.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">passbands</span><span class="p">:</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">wavelength</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s2">&quot;micron&quot;</span><span class="p">),</span> <span class="n">f</span><span class="o">.</span><span class="n">transmit</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">f</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+<span class="n">xlim</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">()</span>
+<span class="n">vega_w</span> <span class="o">=</span> <span class="n">vega</span><span class="o">.</span><span class="n">wavelength</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s2">&quot;micron&quot;</span><span class="p">)</span>
+<span class="n">ind</span> <span class="o">=</span> <span class="p">(</span><span class="n">vega_w</span><span class="o">.</span><span class="n">value</span> <span class="o">&gt;=</span> <span class="n">xlim</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">vega_w</span><span class="o">.</span><span class="n">value</span> <span class="o">&lt;=</span> <span class="n">xlim</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">vega_f</span> <span class="o">=</span> <span class="n">vega</span><span class="o">.</span><span class="n">flux</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s2">&quot;flam&quot;</span><span class="p">)[</span><span class="n">ind</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">vega_w</span><span class="p">[</span><span class="n">ind</span><span class="p">],</span> <span class="n">vega_f</span> <span class="o">/</span> <span class="n">vega_f</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Vega (normalized)&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;-&quot;</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="n">xlim</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;best&quot;</span><span class="p">,</span> <span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.05</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Wavelength [micron]&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Transmission&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Some HST WFC3 IR Passbands&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/8a17dd76ecf9fe7d937b827d6213b8742a605e534a212bb773e7e40649b16973.png" src="_images/8a17dd76ecf9fe7d937b827d6213b8742a605e534a212bb773e7e40649b16973.png" />
+</div>
+</div>
+<div class="alert alert-block alert-info">
+<p>ℹ️ See <a class="reference external" href="https://mfouesneau.github.io/pyphot/libcontent.html">online documentation</a> for more details about the internal library content.</p>
+</div></section>
+<section id="vega-spectra">
+<h2>Vega spectra<a class="headerlink" href="#vega-spectra" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">pyphot</span></code> provides convenient interfaces to a spectral representation of Vega (aka Lyrae, HD 172167) serves as the fundamental calibration standard for stellar photometry due to its exceptional brightness, and favorable observational characteristics.).
+Since version 1.7.0, Pyphot includes a set of Vega flavors one can use transparently as photometric standards. The <a class="reference external" href="https://mfouesneau.github.io/pyphot/vega.html">online documentation</a> provides more details about the differences between the various Vega spectra available in <code class="docutils literal notranslate"><span class="pre">pyphot</span></code>.</p>
+<div class="alert alert-block alert-info">
+<p>ℹ️ <code class="docutils literal notranslate"><span class="pre">stis_003</span></code> (aliased also to legacy) is the default Vega flavor (and the only one before version 1.7.0). This flavor is also the reference for the values provided in the documentation.</p>
+</div><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyphot.config</span>
+<span class="kn">from</span> <span class="nn">pyphot</span> <span class="kn">import</span> <span class="n">Filter</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">units</span> <span class="o">=</span> <span class="n">pyphot</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">units</span>
+<span class="c1"># Create a passband using the Vega flavor</span>
+<span class="n">pb</span> <span class="o">=</span> <span class="n">Filter</span><span class="p">(</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">4000</span><span class="p">,</span> <span class="mi">5000</span><span class="p">,</span> <span class="mi">6000</span><span class="p">])</span> <span class="o">*</span> <span class="n">units</span><span class="o">.</span><span class="n">U</span><span class="p">(</span><span class="s2">&quot;AA&quot;</span><span class="p">),</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">]),</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Example Passband&quot;</span><span class="p">,</span>
+    <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;photon&quot;</span><span class="p">,</span>
+    <span class="n">vega</span><span class="o">=</span><span class="s2">&quot;stis_011&quot;</span><span class="p">,</span>  <span class="c1"># Specify the Vega flavor,</span>
+<span class="p">)</span>
+<span class="n">pb</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Filter object information:
+    name:                 Example Passband
+    detector type:        photon
+    wavelength units:     Angstrom
+    central wavelength:   5000.000000 Angstrom
+    pivot wavelength:     4988.465959 Angstrom
+    effective wavelength: 4889.062473 Angstrom
+    photon wavelength:    4930.109597 Angstrom
+    minimum wavelength:   4000.000000 Angstrom
+    maximum wavelength:   6000.000000 Angstrom
+    norm:                 900.000000
+    effective width:      1125.000000 Angstrom
+    fullwidth half-max:   1000.000000 Angstrom
+    definition contains 3 points
+    Zeropoints
+        Vega: 20.816392 mag,
+              4.71458070138158e-09 erg / (Angstrom s cm2),
+              3913.419432181145 Jy
+              948.5551661217513 ph / (Angstrom s cm2)
+          AB: 20.897783 mag,
+              4.374079548023883e-09 erg / (Angstrom s cm2),
+              3630.7805477010006 Jy
+          ST: 21.100000 mag,
+              3.6307805477010028e-09 erg / (Angstrom s cm2),
+              3013.7923283813147 Jy
+        
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">v11</span> <span class="o">=</span> <span class="n">Vega</span><span class="p">(</span><span class="n">flavor</span><span class="o">=</span><span class="s2">&quot;stis_011&quot;</span><span class="p">)</span>
+<span class="n">v03</span> <span class="o">=</span> <span class="n">Vega</span><span class="p">(</span><span class="n">flavor</span><span class="o">=</span><span class="s2">&quot;stis_003&quot;</span><span class="p">)</span>
+
+<span class="c1"># let&#39;s make the plot in W/m2/nm vs nm</span>
+<span class="n">flux_in</span> <span class="o">=</span> <span class="s2">&quot;W * m**-2 * nm**-1&quot;</span>
+<span class="n">wave_in</span> <span class="o">=</span> <span class="s2">&quot;nm&quot;</span>
+
+<span class="n">_</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span>
+    <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">gridspec_kw</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;hspace&quot;</span><span class="p">:</span> <span class="mf">0.02</span><span class="p">,</span> <span class="s2">&quot;wspace&quot;</span><span class="p">:</span> <span class="mf">0.02</span><span class="p">}</span>
+<span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">v11</span><span class="o">.</span><span class="n">wavelength</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">wave_in</span><span class="p">),</span> <span class="n">v11</span><span class="o">.</span><span class="n">flux</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">flux_in</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Vega stis_011&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">v03</span><span class="o">.</span><span class="n">wavelength</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">wave_in</span><span class="p">),</span> <span class="n">v03</span><span class="o">.</span><span class="n">flux</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">flux_in</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Vega stis_003&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Flux [W/m$^2$/nm]&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mf">1e-14</span><span class="p">,</span> <span class="mf">1e-10</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;best&quot;</span><span class="p">,</span> <span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">v03_flux_interp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">v11</span><span class="o">.</span><span class="n">wavelength</span><span class="p">,</span> <span class="n">v03</span><span class="o">.</span><span class="n">wavelength</span><span class="p">,</span> <span class="n">v03</span><span class="o">.</span><span class="n">flux</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span>
+    <span class="n">v11</span><span class="o">.</span><span class="n">wavelength</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">wave_in</span><span class="p">),</span> <span class="p">(</span><span class="n">v11</span><span class="o">.</span><span class="n">flux</span> <span class="o">/</span> <span class="n">v03_flux_interp</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.8</span>
+<span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Flux ratio stis_011 / stis_003&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Wavelength [nm]&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mf">0.95</span><span class="p">,</span> <span class="mf">1.05</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">80</span><span class="p">,</span> <span class="mf">5e3</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Comparison of Vega flavors STIS 011 (NLTE) &amp; 003 (LTE)&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/a8f512b8b43aac3c235bb7841a2f3c99ee55a8f525269022266d95f1bd099d69.png" src="_images/a8f512b8b43aac3c235bb7841a2f3c99ee55a8f525269022266d95f1bd099d69.png" />
+</div>
+</div>
+</section>
+<section id="sun">
+<h2>Sun<a class="headerlink" href="#sun" title="Link to this heading">#</a></h2>
+<p>The internal reference to the Solar spectrum comes in two flavors: an observed one and a theoretical one.
+By default, the interface is set to theoretical. The theoretical spectrum is based on the Kurucz 1993 model of the Solar atmosphere, while the observed spectrum is a composite one built from various sources. It has the advantage of having a better wavelength coverage, especially in the UV and IR.  No solar spectrum is not a reference in photometric system definitions.</p>
+<p>The theoretical spectrum is scaled to match the observed spectrum from 1.5 - 2.5 microns, and then it is used where the observed spectrum ends. The theoretical model of the Sun from Kurucz‘93 atlas using the following parameters when the Sun is at 1 au.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>log_Z</p></th>
+<th class="head"><p>T_eff</p></th>
+<th class="head"><p>log_g</p></th>
+<th class="head"><p>V<span class="math notranslate nohighlight">\(_{Johnson}\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>+0.0</p></td>
+<td><p>5777</p></td>
+<td><p>+4.44</p></td>
+<td><p>-26.76</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The Sun is also know to have a Johnson V (vega-)magnitude of -26.76 mag (+4.81 mag if at 10 pc; absolute magnitude).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyphot</span> <span class="kn">import</span> <span class="n">Sun</span>
+
+<span class="n">sun_obs</span> <span class="o">=</span> <span class="n">Sun</span><span class="p">(</span><span class="n">flavor</span><span class="o">=</span><span class="s2">&quot;observed&quot;</span><span class="p">)</span>
+<span class="n">sun_th</span> <span class="o">=</span> <span class="n">Sun</span><span class="p">()</span>
+
+<span class="c1"># let&#39;s make the plot in W/m2/nm vs nm</span>
+<span class="n">flux_in</span> <span class="o">=</span> <span class="s2">&quot;W * m**-2 * nm**-1&quot;</span>
+<span class="n">wave_in</span> <span class="o">=</span> <span class="s2">&quot;nm&quot;</span>
+
+<span class="n">_</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span>
+    <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">gridspec_kw</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;hspace&quot;</span><span class="p">:</span> <span class="mf">0.02</span><span class="p">,</span> <span class="s2">&quot;wspace&quot;</span><span class="p">:</span> <span class="mf">0.02</span><span class="p">}</span>
+<span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span>
+    <span class="n">sun_th</span><span class="o">.</span><span class="n">wavelength</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">wave_in</span><span class="p">),</span> <span class="n">sun_th</span><span class="o">.</span><span class="n">flux</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">flux_in</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Sun theoretical&quot;</span>
+<span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span>
+    <span class="n">sun_obs</span><span class="o">.</span><span class="n">wavelength</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">wave_in</span><span class="p">),</span> <span class="n">sun_obs</span><span class="o">.</span><span class="n">flux</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">flux_in</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Sun observed&quot;</span>
+<span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Flux [W/m$^2$/nm]&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mf">1e-2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;best&quot;</span><span class="p">,</span> <span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">v03_flux_interp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">sun_obs</span><span class="o">.</span><span class="n">wavelength</span><span class="p">,</span> <span class="n">sun_th</span><span class="o">.</span><span class="n">wavelength</span><span class="p">,</span> <span class="n">sun_th</span><span class="o">.</span><span class="n">flux</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span>
+    <span class="n">sun_obs</span><span class="o">.</span><span class="n">wavelength</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">wave_in</span><span class="p">),</span> <span class="p">(</span><span class="n">sun_obs</span><span class="o">.</span><span class="n">flux</span> <span class="o">/</span> <span class="n">v03_flux_interp</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.8</span>
+<span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Flux ratio observed / theoretical&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Wavelength [nm]&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mf">0.95</span><span class="p">,</span> <span class="mf">1.05</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mf">4e3</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Comparison of Sun flavors observed &amp; theoretical&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/c5c544885f6084c6d005d88cd229b7fc16c8ec62ad56f55a59ccc7d460306003.png" src="_images/c5c544885f6084c6d005d88cd229b7fc16c8ec62ad56f55a59ccc7d460306003.png" />
+</div>
+</div>
+<p>Let’s also compute the Johnson V magnitude of the Sun using both the observed and theoretical spectra, as well as the theoretical spectrum placed at 10 pc to check the expected values.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sun_th_10pc</span> <span class="o">=</span> <span class="n">Sun</span><span class="p">(</span><span class="n">flavor</span><span class="o">=</span><span class="s2">&quot;theoretical&quot;</span><span class="p">,</span> <span class="n">distance</span><span class="o">=</span><span class="mi">10</span> <span class="o">*</span> <span class="n">units</span><span class="o">.</span><span class="n">U</span><span class="p">(</span><span class="s2">&quot;pc&quot;</span><span class="p">))</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">lib</span><span class="p">[</span><span class="s2">&quot;GROUND_JOHNSON_V&quot;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;| </span><span class="si">{</span><span class="s1">&#39;Which&#39;</span><span class="si">:</span><span class="s2">12s</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="s1">&#39;Flux (flam)&#39;</span><span class="si">:</span><span class="s2">&lt;10s</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="s1">&#39;M(V) mag&#39;</span><span class="si">:</span><span class="s2">&lt;10s</span><span class="si">}</span><span class="s2">|&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;+--------------+-------------+-----------+&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">sun</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span>
+    <span class="p">(</span><span class="s2">&quot;observed&quot;</span><span class="p">,</span> <span class="s2">&quot;theoretical&quot;</span><span class="p">,</span> <span class="s2">&quot;th. 10pc&quot;</span><span class="p">),</span> <span class="p">(</span><span class="n">sun_obs</span><span class="p">,</span> <span class="n">sun_th</span><span class="p">,</span> <span class="n">sun_th_10pc</span><span class="p">)</span>
+<span class="p">):</span>
+    <span class="n">flux</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">get_flux</span><span class="p">(</span><span class="n">sun</span><span class="o">.</span><span class="n">wavelength</span><span class="p">,</span> <span class="n">sun</span><span class="o">.</span><span class="n">flux</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span>
+        <span class="s2">&quot;| </span><span class="si">{0:12s}</span><span class="s2"> | </span><span class="si">{1:0.5e}</span><span class="s2"> | </span><span class="si">{2:+9.2f}</span><span class="s2"> |&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="n">name</span><span class="p">,</span> <span class="n">flux</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s2">&quot;flam&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">flux</span> <span class="o">/</span> <span class="n">f</span><span class="o">.</span><span class="n">Vega_zero_flux</span><span class="p">)</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>| Which        | Flux (flam) | M(V) mag  |
++--------------+-------------+-----------+
+| observed     | 1.84614e+02 |    -26.76 |
+| theoretical  | 1.84436e+02 |    -26.76 |
+| th. 10pc     | 4.33507e-11 |     +4.81 |
+</pre></div>
+</div>
+</div>
+</div>
+<p>Finally, we can also look at the colors and other passbands. We’ll use the Sun at 10 pc for that.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filter_names</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;GROUND_JOHNSON_B&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;GROUND_JOHNSON_V&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;GROUND_BESSELL_J&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;GROUND_BESSELL_K&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+<span class="n">filter_names</span> <span class="o">+=</span> <span class="n">lib</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;GaiaDR2&quot;</span><span class="p">)</span>
+
+<span class="n">filters</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">load_filters</span><span class="p">(</span><span class="n">filter_names</span><span class="p">,</span> <span class="n">lamb</span><span class="o">=</span><span class="n">sun_th</span><span class="o">.</span><span class="n">wavelength</span><span class="p">)</span>
+
+<span class="n">mags</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">fn</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">filter_names</span><span class="p">,</span> <span class="n">filters</span><span class="p">):</span>
+    <span class="n">flux</span> <span class="o">=</span> <span class="n">fn</span><span class="o">.</span><span class="n">get_flux</span><span class="p">(</span><span class="n">sun_th_10pc</span><span class="o">.</span><span class="n">wavelength</span><span class="p">,</span> <span class="n">sun_th_10pc</span><span class="o">.</span><span class="n">flux</span><span class="p">)</span>
+    <span class="n">vegamag</span> <span class="o">=</span> <span class="n">fn</span><span class="o">.</span><span class="n">Vega_zero_mag</span>
+    <span class="n">mag</span> <span class="o">=</span> <span class="o">-</span><span class="mf">2.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">flux</span><span class="o">.</span><span class="n">value</span><span class="p">)</span> <span class="o">-</span> <span class="n">vegamag</span>
+    <span class="n">mags</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">mag</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{0:&gt;25s}</span><span class="s2"> </span><span class="si">{1:+3.4f}</span><span class="s2"> mag&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">mag</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>         GROUND_JOHNSON_B +5.5012 mag
+         GROUND_JOHNSON_V +4.8084 mag
+         GROUND_BESSELL_J +3.6751 mag
+         GROUND_BESSELL_K +3.3015 mag
+               GaiaDR2_BP +4.9888 mag
+                GaiaDR2_G +4.6551 mag
+               GaiaDR2_RP +4.1700 mag
+  GaiaDR2_weiler_BPbright +4.9887 mag
+   GaiaDR2_weiler_BPfaint +5.0161 mag
+         GaiaDR2_weiler_G +4.6607 mag
+        GaiaDR2_weiler_RP +4.1667 mag
+             GaiaDR2v2_BP +4.9854 mag
+              GaiaDR2v2_G +4.6620 mag
+             GaiaDR2v2_RP +4.1751 mag
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">colors</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="p">(</span><span class="s2">&quot;GROUND_JOHNSON_B&quot;</span><span class="p">,</span> <span class="s2">&quot;GROUND_JOHNSON_V&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;GROUND_JOHNSON_V&quot;</span><span class="p">,</span> <span class="s2">&quot;GROUND_BESSELL_K&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;GROUND_BESSELL_J&quot;</span><span class="p">,</span> <span class="s2">&quot;GROUND_BESSELL_K&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;GaiaDR2_BP&quot;</span><span class="p">,</span> <span class="s2">&quot;GaiaDR2_RP&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;GaiaDR2_BP&quot;</span><span class="p">,</span> <span class="s2">&quot;GaiaDR2_G&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;GaiaDR2_G&quot;</span><span class="p">,</span> <span class="s2">&quot;GaiaDR2_RP&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;GaiaDR2v2_BP&quot;</span><span class="p">,</span> <span class="s2">&quot;GaiaDR2v2_RP&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;GaiaDR2v2_BP&quot;</span><span class="p">,</span> <span class="s2">&quot;GaiaDR2v2_G&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;GaiaDR2v2_G&quot;</span><span class="p">,</span> <span class="s2">&quot;GaiaDR2v2_RP&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;GaiaDR2_weiler_BPbright&quot;</span><span class="p">,</span> <span class="s2">&quot;GaiaDR2_weiler_RP&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;GaiaDR2_weiler_BPfaint&quot;</span><span class="p">,</span> <span class="s2">&quot;GaiaDR2_weiler_RP&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;GaiaDR2_weiler_BPbright&quot;</span><span class="p">,</span> <span class="s2">&quot;GaiaDR2_weiler_G&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;GaiaDR2_weiler_BPfaint&quot;</span><span class="p">,</span> <span class="s2">&quot;GaiaDR2_weiler_G&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;GaiaDR2_weiler_G&quot;</span><span class="p">,</span> <span class="s2">&quot;GaiaDR2_weiler_RP&quot;</span><span class="p">),</span>
+<span class="p">)</span>
+
+<span class="n">color_values</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="k">for</span> <span class="n">color</span> <span class="ow">in</span> <span class="n">colors</span><span class="p">:</span>
+    <span class="n">color_values</span><span class="p">[</span><span class="n">color</span><span class="p">]</span> <span class="o">=</span> <span class="n">mags</span><span class="p">[</span><span class="n">color</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">-</span> <span class="n">mags</span><span class="p">[</span><span class="n">color</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span>
+    <span class="nb">print</span><span class="p">(</span>
+        <span class="s2">&quot;</span><span class="si">{0:&gt;25s}</span><span class="s2"> - </span><span class="si">{1:&lt;25s}</span><span class="s2"> = </span><span class="si">{2:3.4f}</span><span class="s2"> mag&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="n">color</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">mags</span><span class="p">[</span><span class="n">color</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">-</span> <span class="n">mags</span><span class="p">[</span><span class="n">color</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>         GROUND_JOHNSON_B - GROUND_JOHNSON_V          = 0.6928 mag
+         GROUND_JOHNSON_V - GROUND_BESSELL_K          = 1.5069 mag
+         GROUND_BESSELL_J - GROUND_BESSELL_K          = 0.3736 mag
+               GaiaDR2_BP - GaiaDR2_RP                = 0.8188 mag
+               GaiaDR2_BP - GaiaDR2_G                 = 0.3337 mag
+                GaiaDR2_G - GaiaDR2_RP                = 0.4851 mag
+             GaiaDR2v2_BP - GaiaDR2v2_RP              = 0.8103 mag
+             GaiaDR2v2_BP - GaiaDR2v2_G               = 0.3233 mag
+              GaiaDR2v2_G - GaiaDR2v2_RP              = 0.4870 mag
+  GaiaDR2_weiler_BPbright - GaiaDR2_weiler_RP         = 0.8220 mag
+   GaiaDR2_weiler_BPfaint - GaiaDR2_weiler_RP         = 0.8495 mag
+  GaiaDR2_weiler_BPbright - GaiaDR2_weiler_G          = 0.3280 mag
+   GaiaDR2_weiler_BPfaint - GaiaDR2_weiler_G          = 0.3555 mag
+         GaiaDR2_weiler_G - GaiaDR2_weiler_RP         = 0.4940 mag
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="extention-to-lick-indices">
+<h2>Extention to Lick indices<a class="headerlink" href="#extention-to-lick-indices" title="Link to this heading">#</a></h2>
+<p>We also include functions to compute lick indices and provide a series of commonly use ones.</p>
+<p>The Lick system of spectral line indices is one of the most commonly used methods of determining ages and metallicities of unresolved (integrated light) stellar populations.</p>
+<div class="alert alert-block alert-info">
+<p>ℹ️ See <a class="reference external" href="https://mfouesneau.github.io/pyphot/licks.html">online documentation</a> for more details about the lick indices and the internal library content.</p>
+</div><p>The indices are computed either in equivalent width (Angstrom) or magnitudes (for molecular bands). The following example illustrates how to compute lick indices for the Vega spectrum for both types of units.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># convert to magnitudes</span>
+<span class="kn">from</span> <span class="nn">pyphot</span> <span class="kn">import</span> <span class="n">LickLibrary</span>
+<span class="kn">from</span> <span class="nn">pyphot</span> <span class="kn">import</span> <span class="n">Vega</span>
+
+<span class="n">vega</span> <span class="o">=</span> <span class="n">Vega</span><span class="p">()</span>
+<span class="c1"># using the internal collection of indices</span>
+<span class="n">lib</span> <span class="o">=</span> <span class="n">LickLibrary</span><span class="p">()</span>
+<span class="c1"># work on many spectra at once</span>
+<span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">lib</span><span class="p">[[</span><span class="s2">&quot;CN_1&quot;</span><span class="p">,</span> <span class="s2">&quot;Hbeta0&quot;</span><span class="p">]]:</span>
+    <span class="n">index</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">vega</span><span class="o">.</span><span class="n">wavelength</span><span class="p">,</span> <span class="n">vega</span><span class="o">.</span><span class="n">flux</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span>
+        <span class="s2">&quot;The index of Vega in </span><span class="si">{0:&gt;6s}</span><span class="s2"> is </span><span class="si">{1:&gt;5.3f}</span><span class="s2"> </span><span class="si">{2:s}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">index_unit</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/spectrum._v_attrs (AttributeSet), 16 attributes
+The index of Vega in   CN_1 is -0.282 mag
+The index of Vega in Hbeta0 is 10.783 ew
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="interface-with-svo-filter-profile-service">
+<h2>Interface with SVO filter profile service<a class="headerlink" href="#interface-with-svo-filter-profile-service" title="Link to this heading">#</a></h2>
+<p><a class="reference external" href="http://svo2.cab.inta-csic.es/theory/fps/">SVO Filter Profile Service</a> provides access to a large collection of filter transmission curves. <code class="docutils literal notranslate"><span class="pre">pyphot</span></code> provides an interface to query and download filters from the SVO FPS service.</p>
+<div class="alert alert-block alert-info">
+<p>ℹ️ If your research benefits from the use of the SVO Filter Profile Service, include the following acknowledgement in your publication:</p>
+<blockquote>
+<div><p>This research has made use of the SVO Filter Profile Service
+(http://svo2.cab.inta-csic.es/theory/fps/) supported from the Spanish MINECO
+through grant AYA2017-84089.</p>
+</div></blockquote>
+<p>and please include the following references in your publication:</p>
+<ul class="simple">
+<li><p>The SVO Filter Profile Service. Rodrigo, C., Solano, E., Bayo, A., 2012; https://ui.adsabs.harvard.edu/abs/2012ivoa.rept.1015R/abstract</p></li>
+<li><p>The SVO Filter Profile Service. Rodrigo, C., Solano, E., 2020; https://ui.adsabs.harvard.edu/abs/2020sea..confE.182R/abstract</p></li>
+</ul>
+</div>
+<p>Some examples are provided in this notebook</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyphot.svo</span> <span class="kn">import</span> <span class="n">get_pyphot_filter</span>
+
+<span class="n">lst</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;2MASS/2MASS.J&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;2MASS/2MASS.H&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;2MASS/2MASS.Ks&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;HST/ACS_WFC.F475W&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;HST/ACS_WFC.F814W&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+<span class="n">filters</span> <span class="o">=</span> <span class="p">[</span><span class="n">get_pyphot_filter</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">lst</span><span class="p">]</span>
+<span class="n">filters</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Filter: 2MASS_2MASS.J, &lt;pyphot.phot.Filter object at 0x12f010800&gt;,
+ Filter: 2MASS_2MASS.H, &lt;pyphot.phot.Filter object at 0x12f0ca6c0&gt;,
+ Filter: 2MASS_2MASS.Ks, &lt;pyphot.phot.Filter object at 0x12f16dd60&gt;,
+ Filter: HST_ACS_WFC.F475W, &lt;pyphot.phot.Filter object at 0x12f310650&gt;,
+ Filter: HST_ACS_WFC.F814W, &lt;pyphot.phot.Filter object at 0x12eff4620&gt;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>After this step, the passbands Filter objects are the same as before.</p>
+<div class="alert alert-warning">
+<p>⚠️ <strong>Important</strong> Differences between SVO filters, internal filters and other libraries</p>
+<p>You may find that the SVO filters are sometime different from other references (e.g. internal, synphot). Sometimes this is due to the definition of the filter (e.g., inclusion of detector QE, optics throughput, atmosphere transmission, etc). Other times they also refer to the different detector types (photon-counting vs energy-integrating), which for pyphot should result in the same outputs (internally adjusting).</p>
+</div></section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="whats_new.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Version History</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="examples.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">More examples with Pyphot</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#photometry-computations">Photometry Computations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vega-spectra">Vega spectra</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sun">Sun</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extention-to-lick-indices">Extention to Lick indices</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interface-with-svo-filter-profile-service">Interface with SVO filter profile service</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By M. Fouesneau
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2016, M. Fouesneau.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
