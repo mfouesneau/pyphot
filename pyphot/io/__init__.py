@@ -1,6 +1,6 @@
 """
 IO module
-~~~~~~~~~
+=========
 This module provides functions for reading and writing data in various formats.
 
 It is Adapted from SimpleTable (v2.0; https://github.com/mfouesneau/simpletable) with minimal depedencies.
@@ -16,15 +16,12 @@ The data are given as `pd.DataFrame` objects and the header as a :class:`HeaderI
 
 """
 
-from typing import Optional
-import pandas as pd
 import warnings
+from typing import Optional
 
-from . import fits
-from . import ascii
-from . import hdf
-from . import votable
+import pandas as pd
 
+from . import ascii, fits, hdf, votable
 from .header import HeaderInfo
 
 __all__ = ["fits", "ascii", "hdf", "votable", "HeaderInfo", "from_file"]

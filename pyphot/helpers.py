@@ -1,6 +1,11 @@
+"""Internal helpers module of pyphot
+
+This module provides internal shortcuts for pyphot code.
+"""
+
+import warnings
 from functools import wraps
 from math import pi
-import warnings
 
 from .pbar import Pbar
 

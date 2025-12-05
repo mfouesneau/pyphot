@@ -1,8 +1,9 @@
-"""Collections of Filters"""
+"""Library defintions as Collections of Filters"""
 
-from typing import Optional, List, Sequence, Union, Literal
 import os
 import pathlib
+from typing import List, Literal, Optional, Sequence, Union
+
 import numpy as np
 import numpy.typing as npt
 import tables
@@ -114,6 +115,7 @@ class Library:
 
     @classmethod
     def from_hd5(cls, filename, **kwargs) -> "HDF_Library":
+        """Read in an HDF5 library"""
         return HDF_Library(filename, **kwargs)
 
     @classmethod
@@ -190,7 +192,7 @@ class Library:
 class Ascii_Library(Library):
     """Interface one or multiple directory or many files as a filter :class:`Library`
 
-    >>> lib = Ascii_Library(['ground', 'hst', 'myfilter.csv'])
+    >>> lib = Ascii_Library(["ground", "hst", "myfilter.csv"])
     """
 
     def _load_filter(
@@ -325,7 +327,8 @@ class Ascii_Library(Library):
             list of filter objects
         """
         filters = [
-            self._load_filter(fname, interp=interp, lamb=lamb) for fname in names
+            self._load_filter(fname, interp=interp, lamb=lamb)
+            for fname in names
         ]
         return filters
 
@@ -525,7 +528,8 @@ class HDF_Library(Library):
         """
         with self as s:
             filters = [
-                s._load_filter(fname, interp=interp, lamb=lamb) for fname in names
+                s._load_filter(fname, interp=interp, lamb=lamb)
+                for fname in names
             ]
         return filters
 
@@ -560,7 +564,9 @@ def get_library(fname: Optional[str] = None, **kwargs):
     """Finds the appropriate class to load the library"""
     fname = fname or str(config.__default_passband_lib__)
     library_path = pathlib.Path(fname)
-    if (library_path.suffix in (".hdf5", ".hd5", ".h5")) and (library_path.is_file()):
+    if (library_path.suffix in (".hdf5", ".hd5", ".h5")) and (
+        library_path.is_file()
+    ):
         return HDF_Library(fname, **kwargs)
     else:
         return Ascii_Library(fname, **kwargs)

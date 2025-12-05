@@ -1,7 +1,14 @@
-import os
+"""Configuration module of pyphot
+
+Primarily sets up the default units backend and vega flavor.
+"""
+
 import inspect
+import os
 from importlib import resources
-from .unit_adapters import find_default_units_backend, get_adapter as get_units_adapter
+
+from .unit_adapters import find_default_units_backend
+from .unit_adapters import get_adapter as get_units_adapter
 
 __all__ = [
     "__ROOT__",
