@@ -5,118 +5,115 @@
 
 """
 
-from typing import Any, Tuple, Union, Optional
-from astropy.io import fits
-from astropy.io.fits import Header
-from astropy.io.fits import TableHDU, BinTableHDU
+from typing import Any, Optional, Tuple, Union
+
 import numpy.typing as npt
 import pandas as pd
+from astropy.io import fits
+from astropy.io.fits import BinTableHDU, Header, TableHDU
+
 from .header import HeaderInfo
 
 
-try:
-    from astropy.io import fits
+def fix_endian_issue(arr: Union[npt.NDArray, Any]) -> npt.NDArray:
+    """Fix endian issue in array which happens often when reading FITS files"""
+    return arr.astype(arr.dtype.newbyteorder())
 
-    def fix_endian_issue(arr: Union[npt.NDArray, Any]) -> npt.NDArray:
-        """Fix endian issue in array which happens often when reading FITS files"""
-        return arr.astype(arr.dtype.newbyteorder())
 
-    def fits_read_header(hdr: Header) -> HeaderInfo:
-        """
-        Convert pyfits header into dictionary with relevant values
+def fits_read_header(hdr: Header) -> HeaderInfo:
+    """
+    Convert pyfits header into dictionary with relevant values
 
-        Parameters
-        ----------
+    Parameters
+    ----------
 
-        hdr: pyftis.Header
-            fits unit
+    hdr: pyftis.Header
+        fits unit
 
-        Returns
-        -------
-        headerinfo: HeaderInfo
-            extracted information from header
-        """
-        header = {}
-        alias = {}
-        units = {}
-        comments = {}
+    Returns
+    -------
+    headerinfo: HeaderInfo
+        extracted information from header
+    """
+    header = {}
+    alias = {}
+    units = {}
+    comments = {}
 
-        # generic cards
-        genTerms = [
-            "XTENSION",
-            "BITPIX",
-            "NAXIS",
-            "NAXIS1",
-            "NAXIS2",
-            "PCOUNT",
-            "GCOUNT",
-            "TFIELDS",
-            "EXTNAME",
-        ]
-        fieldTerms = ["TTYPE", "TFORM", "TUNIT", "ALIAS"]
+    # generic cards
+    genTerms = [
+        "XTENSION",
+        "BITPIX",
+        "NAXIS",
+        "NAXIS1",
+        "NAXIS2",
+        "PCOUNT",
+        "GCOUNT",
+        "TFIELDS",
+        "EXTNAME",
+    ]
+    fieldTerms = ["TTYPE", "TFORM", "TUNIT", "ALIAS"]
 
-        for card in hdr.cards["TTYPE*"]:
-            name = card.value
-            comments[name] = card.comment
-            u = hdr.get(card.keyword.replace("TYPE", "UNIT"), None)
-            if u is not None:
-                units[name] = u
+    for card in hdr.cards["TTYPE*"]:
+        name = card.value
+        comments[name] = card.comment
+        u = hdr.get(card.keyword.replace("TYPE", "UNIT"), None)
+        if u is not None:
+            units[name] = u
 
-        # for k, val, _ in hdr.ascard['ALIAS*']:
-        for card in hdr.cards["ALIAS*"]:
-            k = card.keyword
-            val = card.value
-            al, orig = val.split("=")
-            alias[al] = orig
+    # for k, val, _ in hdr.ascard['ALIAS*']:
+    for card in hdr.cards["ALIAS*"]:
+        k = card.keyword
+        val = card.value
+        al, orig = val.split("=")
+        alias[al] = orig
 
-        # other specific keywords: COMMENT, HISTORY
-        header_comments = []
-        header_history = []
-        for k, v in hdr.items():
-            if (k not in genTerms) and (k[:5] not in fieldTerms):
-                if k == "COMMENT":
-                    header_comments.append(v)
-                elif k == "HISTORY":
-                    header_history.append(v)
-                else:
-                    header[k] = v
+    # other specific keywords: COMMENT, HISTORY
+    header_comments = []
+    header_history = []
+    for k, v in hdr.items():
+        if (k not in genTerms) and (k[:5] not in fieldTerms):
+            if k == "COMMENT":
+                header_comments.append(v)
+            elif k == "HISTORY":
+                header_history.append(v)
+            else:
+                header[k] = v
 
-        # COMMENT, HISTORY polish
-        if len(header_comments) > 0:
-            header["COMMENT"] = "\n".join(header_comments)
-        if len(header_history) > 0:
-            header["HISTORY"] = "\n".join(header_history)
+    # COMMENT, HISTORY polish
+    if len(header_comments) > 0:
+        header["COMMENT"] = "\n".join(header_comments)
+    if len(header_history) > 0:
+        header["HISTORY"] = "\n".join(header_history)
 
-        if "EXTNAME" in hdr:
-            header["NAME"] = hdr["EXTNAME"]
+    if "EXTNAME" in hdr:
+        header["NAME"] = hdr["EXTNAME"]
 
-        return HeaderInfo(header, alias, units, comments)
+    return HeaderInfo(header, alias, units, comments)
 
-    def from_fits(
-        filename: str, extension_number: int = 1
-    ) -> Tuple[npt.NDArray, HeaderInfo]:
-        """Load a DataFrame from a FITS file.
 
-        Parameters
-        ----------
-        filename : str
-            The path to the FITS file.
-        extension_number : int, optional
-            The extension number to load, by default 1.
+def from_fits(
+    filename: str, extension_number: int = 1
+) -> Tuple[npt.NDArray, HeaderInfo]:
+    """Load a DataFrame from a FITS file.
 
-        Returns
-        -------
-        Tuple[npt.NDArray, HeaderInfo]
-            The loaded DataFrame and its header information.
-        """
-        with fits.open(filename) as hdu:
-            extension: Union[TableHDU, BinTableHDU] = hdu[extension_number]  # pyright: ignore[reportAssignmentType]
-            hdr_info = fits_read_header(extension.header)
-            data = fix_endian_issue(extension.data)
-        return data, hdr_info
+    Parameters
+    ----------
+    filename : str
+        The path to the FITS file.
+    extension_number : int, optional
+        The extension number to load, by default 1.
 
-except ImportError:
-    from_fits = None  # pyright: ignore[reportAssignmentType]
+    Returns
+    -------
+    Tuple[npt.NDArray, HeaderInfo]
+        The loaded DataFrame and its header information.
+    """
+    with fits.open(filename) as hdu:
+        extension: Union[TableHDU, BinTableHDU] = hdu[extension_number]  # pyright: ignore[reportAssignmentType]
+        hdr_info = fits_read_header(extension.header)
+        data = fix_endian_issue(extension.data)
+    return data, hdr_info
 
 
 def fits_generate_header(df: pd.DataFrame) -> fits.Header:
@@ -150,7 +147,9 @@ def fits_generate_header(df: pd.DataFrame) -> fits.Header:
 
     for e, colname in enumerate(columns):
         # TTYPE<n=1..N> = <colname> // comment or ""
-        cards.append((f"TTYPE{e + 1:d}", colname, info.comments.get(colname, "")))
+        cards.append(
+            (f"TTYPE{e + 1:d}", colname, info.comments.get(colname, ""))
+        )
         # TUNIT<n=1..N> = <colunit> // unit of <colname>
         colunit = info.units.get(colname, "")
         if colunit not in ("", "None", None):
@@ -158,7 +157,9 @@ def fits_generate_header(df: pd.DataFrame) -> fits.Header:
 
     # add aliases ALIAS<n=1..N> = <from>=<to> // alias of <from>
     for e, (to_, from_) in enumerate(info.alias.items()):
-        cards.append((f"ALIAS{e + 1:d}", f"{to_:s}={from_:s}", f"alias of {from_:s}"))
+        cards.append(
+            (f"ALIAS{e + 1:d}", f"{to_:s}={from_:s}", f"alias of {from_:s}")
+        )
 
     # add NAME if any
     table_name = info.header.get("NAME", None)
@@ -256,8 +257,8 @@ def to_fits(
     """
     hdu = fits_generate_hdu(df, index=index)
 
-    name, closed, noexist_or_empty = fits.convenience._stat_filename_or_fileobj(
-        filename
+    name, closed, noexist_or_empty = (
+        fits.convenience._stat_filename_or_fileobj(filename)
     )
 
     if not append or noexist_or_empty:
