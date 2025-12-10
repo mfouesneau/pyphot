@@ -194,6 +194,24 @@ class Ascii_Library(Library):
 
     >>> lib = Ascii_Library(["ground", "hst", "myfilter.csv"])
     """
+    def __init__(
+        self,
+        source: Optional[str] = None,
+        glob_pattern: str = "*"
+        *args,
+        **kwargs,
+    ):
+        """Construct the library
+
+        Parameters
+        ----------
+        source: Optional[str]
+            directory source of the library
+        glob_pattern: str
+            glob filter to apply in that directory, default "*"
+        """
+        super().__init__(source, *args, **kwargs)
+        self._glob_pattern
 
     def _load_filter(
         self,
@@ -267,7 +285,7 @@ class Ascii_Library(Library):
             newlst = []
             for entry in lst:
                 if os.path.isdir(entry):
-                    newlst.extend(glob(entry + "/*"))
+                    newlst.extend(glob(os.path.join(entry, self._glob_pattern)))
                     dircheck = True
                 else:
                     newlst.append(entry)
