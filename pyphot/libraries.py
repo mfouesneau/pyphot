@@ -197,7 +197,7 @@ class Ascii_Library(Library):
     def __init__(
         self,
         source: Optional[str] = None,
-        glob_pattern: str = "*"
+        glob_pattern: str = "*",
         *args,
         **kwargs,
     ):
