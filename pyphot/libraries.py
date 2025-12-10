@@ -274,7 +274,7 @@ class Ascii_Library(Library):
         # Assume source is either a directory or a pattern or a single file
         try:
             os.path.isdir(self.source)
-            lst = glob(self.source + "/*")
+            lst = glob(os.path.join(self.source, self._glob_pattern))
         except TypeError:
             lst = [self.source]
 
