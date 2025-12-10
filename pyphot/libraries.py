@@ -211,7 +211,7 @@ class Ascii_Library(Library):
             glob filter to apply in that directory, default "*"
         """
         super().__init__(source, *args, **kwargs)
-        self._glob_pattern
+        self._glob_pattern = glob_pattern
 
     def _load_filter(
         self,
