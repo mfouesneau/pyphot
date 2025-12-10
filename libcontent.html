@@ -1,0 +1,4953 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Provided Filter library &#8212; pyphot  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=984d411d"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'libcontent';</script>
+    <link rel="canonical" href="https://mfouesneau.github.io/pyphot/libcontent.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Extention to Lick indices" href="licks.html" />
+    <link rel="prev" title="Details on predicting photometry" href="photometry.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">pyphot  documentation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="whats_new.html">What's New</a></li>
+<li class="toctree-l1"><a class="reference internal" href="QuickStart.html">pyphot Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">More examples with Pyphot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="photometry.html">Details on predicting photometry</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Provided Filter library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="licks.html">Extention to Lick indices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vega.html">Internal Vega reference spectra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sun.html">Internal Sun reference spectra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="modules.html">API</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="pyphot.html">pyphot package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyphot.io.html">pyphot.io package</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="pyphot.unit_adapters.html">pyphot.unit_adapters package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.unit_adapters.ezunits.html">pyphot.unit_adapters.ezunits package</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/mfouesneau/pyphot" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/mfouesneau/pyphot/blob/master/doc/libcontent.rst?plain=1" target="_blank"
+   class="btn btn-sm btn-source-file-button dropdown-item"
+   title="Show source"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="btn__text-container">Show source</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/mfouesneau/pyphot/issues/new?title=Issue%20on%20page%20%2Flibcontent.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/libcontent.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Provided Filter library</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#table-description">Table description</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="provided-filter-library">
+<h1>Provided Filter library<a class="headerlink" href="#provided-filter-library" title="Link to this heading">#</a></h1>
+<p>This page shows the content of the provided library with respective properties
+of the passband filters. The code to generate the table is also provided below.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>The internal library is not exhaustive and is meant to be a starting point for
+users to build their own library or contribute to this one.</p>
+<p>This library is a compilation of</p>
+<ul class="simple">
+<li><p>user-defined filters</p></li>
+<li><p>some from <a class="reference external" href="https://www.stsci.edu/hst/instrumentation/reference-data-for-calibration-and-tools/astronomical-catalogs/calspec">CALSPEC</a>,</p></li>
+<li><p>IRAF’s <a class="reference external" href="https://www.stsci.edu/files/live/sites/www/files/home/hst/documentation/_documents/SynphotManual.pdf">STSDAS.SYNPHOT (2005)</a></p></li>
+<li><p>From mission documentations such as <a class="reference external" href="https://www.cosmos.esa.int/web/herschel">Herschel</a>, <a class="reference external" href="https://www.cosmos.esa.int/web/gaia">Gaia</a>.</p></li>
+</ul>
+<p><a class="reference internal" href="pyphot.html#module-pyphot.svo" title="pyphot.svo"><code class="xref py py-class docutils literal notranslate"><span class="pre">svo</span></code></a> provides an interface to the <a class="reference external" href="http://svo2.cab.inta-csic.es/theory/fps/">SVO Filter Profile Service</a> which provides a more exhaustive list of passbands.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyphot</span> <span class="kn">import</span> <span class="n">svo</span>
+<span class="n">lst</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;2MASS/2MASS.J&quot;</span><span class="p">,</span> <span class="s2">&quot;2MASS/2MASS.H&quot;</span><span class="p">)</span>
+<span class="n">pbands</span> <span class="o">=</span> <span class="p">[</span><span class="n">svo</span><span class="o">.</span><span class="n">get_pyphot_filter</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">lst</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">cast</span>
+
+<span class="kn">import</span> <span class="nn">pyphot</span>
+<span class="kn">from</span> <span class="nn">pyphot</span> <span class="kn">import</span> <span class="n">Filter</span>
+
+<span class="c1"># define header and table format (as csv)</span>
+<span class="n">hdr</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;detector type&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;wavelength units&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;central wavelength&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;pivot wavelength&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;effective wavelength&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Vega mag&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Vega flux&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Vega Jy&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AB mag&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AB flux&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AB Jy&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ST mag&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ST flux&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ST Jy&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">fmt</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{0:s}</span><span class="s2">,</span><span class="si">{1:s}</span><span class="s2">,</span><span class="si">{2:s}</span><span class="s2">,</span><span class="si">{3:.3f}</span><span class="s2">,</span><span class="si">{4:.3f}</span><span class="s2">,</span><span class="si">{5:.3f}</span><span class="s2">,</span><span class="si">{6:.5f}</span><span class="s2">,</span><span class="si">{7:.5g}</span><span class="s2">,</span><span class="si">{8:.5g}</span><span class="s2">,</span><span class="si">{9:.5f}</span><span class="s2">,</span><span class="si">{10:.5g}</span><span class="s2">,</span><span class="si">{11:.5g}</span><span class="s2">,</span><span class="si">{12:.5f}</span><span class="s2">,</span><span class="si">{13:.5g}</span><span class="s2">,</span><span class="si">{14:.5g}</span><span class="se">\n</span><span class="s2">&quot;</span>
+
+<span class="n">lib</span> <span class="o">=</span> <span class="n">pyphot</span><span class="o">.</span><span class="n">get_library</span><span class="p">()</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;table.csv&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">output</span><span class="p">:</span>
+    <span class="n">output</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">hdr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">lib</span><span class="o">.</span><span class="n">content</span><span class="p">):</span>
+        <span class="n">fk</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Filter</span><span class="p">,</span> <span class="n">lib</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>
+        <span class="n">rec</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">fk</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+            <span class="n">fk</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span>
+            <span class="n">fk</span><span class="o">.</span><span class="n">wavelength_unit</span><span class="p">,</span>
+            <span class="n">fk</span><span class="o">.</span><span class="n">cl</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+            <span class="n">fk</span><span class="o">.</span><span class="n">lpivot</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+            <span class="n">fk</span><span class="o">.</span><span class="n">leff</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+            <span class="n">fk</span><span class="o">.</span><span class="n">Vega_zero_mag</span><span class="p">,</span>
+            <span class="n">fk</span><span class="o">.</span><span class="n">Vega_zero_flux</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+            <span class="n">fk</span><span class="o">.</span><span class="n">Vega_zero_Jy</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+            <span class="n">fk</span><span class="o">.</span><span class="n">AB_zero_mag</span><span class="p">,</span>
+            <span class="n">fk</span><span class="o">.</span><span class="n">AB_zero_flux</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+            <span class="n">fk</span><span class="o">.</span><span class="n">AB_zero_Jy</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+            <span class="n">fk</span><span class="o">.</span><span class="n">ST_zero_mag</span><span class="p">,</span>
+            <span class="n">fk</span><span class="o">.</span><span class="n">ST_zero_flux</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+            <span class="n">fk</span><span class="o">.</span><span class="n">ST_zero_Jy</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">output</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">fmt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">*</span><span class="n">rec</span><span class="p">))</span>
+</pre></div>
+</div>
+<section id="table-description">
+<h2>Table description<a class="headerlink" href="#table-description" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><cite>name</cite>:  the identification name of the filter in the library.</p></li>
+<li><p><cite>detector type</cite>: energy or photon counter.</p></li>
+<li><p><cite>wavelength units</cite>:  filter defined with these units and all wavelength
+properties: <cite>central wavelength</cite>, <cite>pivot wavelength</cite>, and <cite>effective wavelength</cite>.</p></li>
+<li><p><cite>&lt;X&gt; mag</cite>: magnitude in Vega, AB or ST system (w.r.t. the detector type)</p></li>
+<li><p><cite>&lt;X&gt; flux</cite>: flux in <span class="math notranslate nohighlight">\(erg/s/cm^2/\unicode{x212B}\)</span> in the <cite>X</cite> system</p></li>
+<li><p><cite>&lt;X&gt; Jy</cite>: flux in <span class="math notranslate nohighlight">\(Jy\)</span> (Jansky) in the <cite>X</cite> system</p></li>
+</ul>
+<div class="pst-scrollable-table-container"><table class="table" id="id1">
+<caption><span class="caption-text">Current internal library</span><a class="headerlink" href="#id1" title="Link to this table">#</a></caption>
+<tbody>
+<tr class="row-odd"><td><p>name</p></td>
+<td><p>detector type</p></td>
+<td><p>wavelength units</p></td>
+<td><p>central wavelength</p></td>
+<td><p>pivot wavelength</p></td>
+<td><p>effective wavelength</p></td>
+<td><p>Vega mag</p></td>
+<td><p>Vega flux</p></td>
+<td><p>Vega Jy</p></td>
+<td><p>AB mag</p></td>
+<td><p>AB flux</p></td>
+<td><p>AB Jy</p></td>
+<td><p>ST mag</p></td>
+<td><p>ST flux</p></td>
+<td><p>ST Jy</p></td>
+</tr>
+<tr class="row-even"><td><p>2MASS_H</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>16513.665</p></td>
+<td><p>16494.947</p></td>
+<td><p>16386.026</p></td>
+<td><p>24.86218</p></td>
+<td><p>1.1353e-10</p></td>
+<td><p>1030.4</p></td>
+<td><p>23.49470</p></td>
+<td><p>4.0005e-10</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>32952</p></td>
+</tr>
+<tr class="row-odd"><td><p>2MASS_J</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>12408.376</p></td>
+<td><p>12390.788</p></td>
+<td><p>12282.551</p></td>
+<td><p>23.76733</p></td>
+<td><p>3.1122e-10</p></td>
+<td><p>1593.8</p></td>
+<td><p>22.87344</p></td>
+<td><p>7.0896e-10</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>18594</p></td>
+</tr>
+<tr class="row-even"><td><p>2MASS_Ks</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>21655.864</p></td>
+<td><p>21638.169</p></td>
+<td><p>21521.411</p></td>
+<td><p>25.92165</p></td>
+<td><p>4.279e-11</p></td>
+<td><p>668.28</p></td>
+<td><p>24.08405</p></td>
+<td><p>2.3248e-10</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>56705</p></td>
+</tr>
+<tr class="row-odd"><td><p>CFHT_CFH12K_CFH7406</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>4888.664</p></td>
+<td><p>4888.514</p></td>
+<td><p>4891.329</p></td>
+<td><p>20.91452</p></td>
+<td><p>4.3072e-09</p></td>
+<td><p>3433.4</p></td>
+<td><p>20.85383</p></td>
+<td><p>4.5548e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>2894.2</p></td>
+</tr>
+<tr class="row-even"><td><p>CFHT_CFH12K_CFH7504</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>5037.756</p></td>
+<td><p>5037.593</p></td>
+<td><p>5036.966</p></td>
+<td><p>20.83347</p></td>
+<td><p>4.641e-09</p></td>
+<td><p>3928.6</p></td>
+<td><p>20.91906</p></td>
+<td><p>4.2892e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>3073.4</p></td>
+</tr>
+<tr class="row-odd"><td><p>CFHT_MEGAPRIME_CFH7605</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>6584.131</p></td>
+<td><p>6584.080</p></td>
+<td><p>6586.220</p></td>
+<td><p>21.87242</p></td>
+<td><p>1.7825e-09</p></td>
+<td><p>2577.5</p></td>
+<td><p>21.50042</p></td>
+<td><p>2.5109e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>5250.1</p></td>
+</tr>
+<tr class="row-even"><td><p>CFHT_MEGAPRIME_CFH7701</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>7777.761</p></td>
+<td><p>7777.546</p></td>
+<td><p>7776.431</p></td>
+<td><p>22.26960</p></td>
+<td><p>1.2364e-09</p></td>
+<td><p>2494.7</p></td>
+<td><p>21.86216</p></td>
+<td><p>1.7994e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>7326</p></td>
+</tr>
+<tr class="row-odd"><td><p>CFHT_MEGAPRIME_CFH7803</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>8120.543</p></td>
+<td><p>8120.356</p></td>
+<td><p>8119.333</p></td>
+<td><p>22.41563</p></td>
+<td><p>1.0808e-09</p></td>
+<td><p>2377.3</p></td>
+<td><p>21.95582</p></td>
+<td><p>1.6507e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>7986</p></td>
+</tr>
+<tr class="row-even"><td><p>CFHT_MEGAPRIME_CFH9301</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>3751.495</p></td>
+<td><p>3743.534</p></td>
+<td><p>3832.257</p></td>
+<td><p>20.74720</p></td>
+<td><p>5.0248e-09</p></td>
+<td><p>2348.9</p></td>
+<td><p>20.27436</p></td>
+<td><p>7.7671e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>1697.2</p></td>
+</tr>
+<tr class="row-odd"><td><p>CFHT_MEGAPRIME_CFH9401</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>4857.163</p></td>
+<td><p>4837.610</p></td>
+<td><p>4758.859</p></td>
+<td><p>20.73576</p></td>
+<td><p>5.078e-09</p></td>
+<td><p>3964</p></td>
+<td><p>20.83110</p></td>
+<td><p>4.6511e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>2834.3</p></td>
+</tr>
+<tr class="row-even"><td><p>CFHT_MEGAPRIME_CFH9601</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>6273.303</p></td>
+<td><p>6262.157</p></td>
+<td><p>6203.983</p></td>
+<td><p>21.54954</p></td>
+<td><p>2.3998e-09</p></td>
+<td><p>3139.1</p></td>
+<td><p>21.39157</p></td>
+<td><p>2.7757e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>4749.3</p></td>
+</tr>
+<tr class="row-odd"><td><p>CFHT_MEGAPRIME_CFH9701</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>7761.463</p></td>
+<td><p>7748.532</p></td>
+<td><p>7680.130</p></td>
+<td><p>22.25068</p></td>
+<td><p>1.2581e-09</p></td>
+<td><p>2519.7</p></td>
+<td><p>21.85405</p></td>
+<td><p>1.8129e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>7271.4</p></td>
+</tr>
+<tr class="row-even"><td><p>CFHT_MEGAPRIME_CFH9702</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>7552.456</p></td>
+<td><p>7538.442</p></td>
+<td><p>7467.314</p></td>
+<td><p>22.15632</p></td>
+<td><p>1.3724e-09</p></td>
+<td><p>2601.4</p></td>
+<td><p>21.79436</p></td>
+<td><p>1.9154e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>6882.4</p></td>
+</tr>
+<tr class="row-odd"><td><p>CFHT_MEGAPRIME_CFH9801</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>10140.025</p></td>
+<td><p>10081.085</p></td>
+<td><p>9806.089</p></td>
+<td><p>23.03238</p></td>
+<td><p>6.1242e-10</p></td>
+<td><p>2076.1</p></td>
+<td><p>22.42548</p></td>
+<td><p>1.071e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>12308</p></td>
+</tr>
+<tr class="row-even"><td><p>CFHT_WIRCAM_CFH8002</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>10258.798</p></td>
+<td><p>10253.033</p></td>
+<td><p>10221.172</p></td>
+<td><p>23.06775</p></td>
+<td><p>5.9279e-10</p></td>
+<td><p>2078.7</p></td>
+<td><p>22.46221</p></td>
+<td><p>1.0354e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>12732</p></td>
+</tr>
+<tr class="row-odd"><td><p>CFHT_WIRCAM_CFH8101</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>12544.575</p></td>
+<td><p>12535.955</p></td>
+<td><p>12481.454</p></td>
+<td><p>23.81821</p></td>
+<td><p>2.9697e-10</p></td>
+<td><p>1556.7</p></td>
+<td><p>22.89874</p></td>
+<td><p>6.9264e-10</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>19032</p></td>
+</tr>
+<tr class="row-even"><td><p>CFHT_WIRCAM_CFH8102</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>11892.280</p></td>
+<td><p>11892.215</p></td>
+<td><p>11891.838</p></td>
+<td><p>23.61306</p></td>
+<td><p>3.5874e-10</p></td>
+<td><p>1692.3</p></td>
+<td><p>22.78426</p></td>
+<td><p>7.6965e-10</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>17128</p></td>
+</tr>
+<tr class="row-odd"><td><p>CFHT_WIRCAM_CFH8103</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>12539.775</p></td>
+<td><p>12531.357</p></td>
+<td><p>12477.935</p></td>
+<td><p>23.81703</p></td>
+<td><p>2.973e-10</p></td>
+<td><p>1557.3</p></td>
+<td><p>22.89794</p></td>
+<td><p>6.9315e-10</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>19018</p></td>
+</tr>
+<tr class="row-even"><td><p>CFHT_WIRCAM_CFH8104</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>10628.755</p></td>
+<td><p>10628.696</p></td>
+<td><p>10628.397</p></td>
+<td><p>23.18809</p></td>
+<td><p>5.3059e-10</p></td>
+<td><p>1999.4</p></td>
+<td><p>22.54035</p></td>
+<td><p>9.6352e-10</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>13682</p></td>
+</tr>
+<tr class="row-odd"><td><p>CFHT_WIRCAM_CFH8201</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>16309.536</p></td>
+<td><p>16287.360</p></td>
+<td><p>16157.567</p></td>
+<td><p>24.81283</p></td>
+<td><p>1.1881e-10</p></td>
+<td><p>1051.4</p></td>
+<td><p>23.46720</p></td>
+<td><p>4.1032e-10</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>32128</p></td>
+</tr>
+<tr class="row-even"><td><p>CFHT_WIRCAM_CFH8202</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>16368.727</p></td>
+<td><p>16346.781</p></td>
+<td><p>16218.683</p></td>
+<td><p>24.82653</p></td>
+<td><p>1.1732e-10</p></td>
+<td><p>1045.8</p></td>
+<td><p>23.47511</p></td>
+<td><p>4.0734e-10</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>32363</p></td>
+</tr>
+<tr class="row-odd"><td><p>CFHT_WIRCAM_CFH8203</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>16918.976</p></td>
+<td><p>16915.866</p></td>
+<td><p>16896.584</p></td>
+<td><p>24.96218</p></td>
+<td><p>1.0354e-10</p></td>
+<td><p>988.32</p></td>
+<td><p>23.54942</p></td>
+<td><p>3.8039e-10</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>34655</p></td>
+</tr>
+<tr class="row-even"><td><p>CFHT_WIRCAM_CFH8204</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>15892.062</p></td>
+<td><p>15889.209</p></td>
+<td><p>15872.816</p></td>
+<td><p>24.73287</p></td>
+<td><p>1.279e-10</p></td>
+<td><p>1077.1</p></td>
+<td><p>23.41346</p></td>
+<td><p>4.3114e-10</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>30576</p></td>
+</tr>
+<tr class="row-odd"><td><p>CFHT_WIRCAM_CFH8301</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>21518.558</p></td>
+<td><p>21497.169</p></td>
+<td><p>21357.648</p></td>
+<td><p>25.89306</p></td>
+<td><p>4.3931e-11</p></td>
+<td><p>677.2</p></td>
+<td><p>24.06985</p></td>
+<td><p>2.3554e-10</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>55968</p></td>
+</tr>
+<tr class="row-even"><td><p>CFHT_WIRCAM_CFH8302</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>21497.446</p></td>
+<td><p>21476.278</p></td>
+<td><p>21337.705</p></td>
+<td><p>25.88913</p></td>
+<td><p>4.4091e-11</p></td>
+<td><p>678.34</p></td>
+<td><p>24.06774</p></td>
+<td><p>2.3599e-10</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>55860</p></td>
+</tr>
+<tr class="row-odd"><td><p>CFHT_WIRCAM_CFH8303</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>22245.679</p></td>
+<td><p>22245.409</p></td>
+<td><p>22243.617</p></td>
+<td><p>26.03514</p></td>
+<td><p>3.8543e-11</p></td>
+<td><p>636.22</p></td>
+<td><p>24.14415</p></td>
+<td><p>2.1996e-10</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>59932</p></td>
+</tr>
+<tr class="row-even"><td><p>CFHT_WIRCAM_CFH8304</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>21300.219</p></td>
+<td><p>21299.968</p></td>
+<td><p>21296.060</p></td>
+<td><p>25.85920</p></td>
+<td><p>4.5323e-11</p></td>
+<td><p>685.9</p></td>
+<td><p>24.04984</p></td>
+<td><p>2.3992e-10</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>54946</p></td>
+</tr>
+<tr class="row-odd"><td><p>CFHT_WIRCAM_CFH8305</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>21719.874</p></td>
+<td><p>21719.612</p></td>
+<td><p>21719.882</p></td>
+<td><p>25.98140</p></td>
+<td><p>4.0499e-11</p></td>
+<td><p>637.27</p></td>
+<td><p>24.09221</p></td>
+<td><p>2.3074e-10</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>57133</p></td>
+</tr>
+<tr class="row-even"><td><p>GALEX_FUV</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>1539.858</p></td>
+<td><p>1536.405</p></td>
+<td><p>1543.876</p></td>
+<td><p>20.46601</p></td>
+<td><p>6.5102e-09</p></td>
+<td><p>512.61</p></td>
+<td><p>18.34048</p></td>
+<td><p>4.6112e-08</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>285.88</p></td>
+</tr>
+<tr class="row-odd"><td><p>GALEX_NUV</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>2313.892</p></td>
+<td><p>2299.245</p></td>
+<td><p>2272.612</p></td>
+<td><p>20.87808</p></td>
+<td><p>4.4542e-09</p></td>
+<td><p>785.45</p></td>
+<td><p>19.21587</p></td>
+<td><p>2.059e-08</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>640.25</p></td>
+</tr>
+<tr class="row-even"><td><p>GROUND_BESSELL_H</p></td>
+<td><p>energy</p></td>
+<td><p>AA</p></td>
+<td><p>16470.918</p></td>
+<td><p>16402.823</p></td>
+<td><p>16314.950</p></td>
+<td><p>24.83923</p></td>
+<td><p>1.1596e-10</p></td>
+<td><p>1040.7</p></td>
+<td><p>23.48254</p></td>
+<td><p>4.0456e-10</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>32585</p></td>
+</tr>
+<tr class="row-odd"><td><p>GROUND_BESSELL_J</p></td>
+<td><p>energy</p></td>
+<td><p>AA</p></td>
+<td><p>12369.874</p></td>
+<td><p>12303.169</p></td>
+<td><p>12211.948</p></td>
+<td><p>23.74161</p></td>
+<td><p>3.1868e-10</p></td>
+<td><p>1609.1</p></td>
+<td><p>22.85803</p></td>
+<td><p>7.191e-10</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>18332</p></td>
+</tr>
+<tr class="row-even"><td><p>GROUND_BESSELL_K</p></td>
+<td><p>energy</p></td>
+<td><p>AA</p></td>
+<td><p>22122.139</p></td>
+<td><p>22027.455</p></td>
+<td><p>21887.303</p></td>
+<td><p>25.98930</p></td>
+<td><p>4.0205e-11</p></td>
+<td><p>650.71</p></td>
+<td><p>24.12277</p></td>
+<td><p>2.2433e-10</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>58764</p></td>
+</tr>
+<tr class="row-odd"><td><p>GROUND_COUSINS_I</p></td>
+<td><p>energy</p></td>
+<td><p>AA</p></td>
+<td><p>7900.363</p></td>
+<td><p>7872.624</p></td>
+<td><p>7841.777</p></td>
+<td><p>22.30672</p></td>
+<td><p>1.1948e-09</p></td>
+<td><p>2470.2</p></td>
+<td><p>21.88855</p></td>
+<td><p>1.7562e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>7506.2</p></td>
+</tr>
+<tr class="row-even"><td><p>GROUND_COUSINS_R</p></td>
+<td><p>energy</p></td>
+<td><p>AA</p></td>
+<td><p>6555.370</p></td>
+<td><p>6471.152</p></td>
+<td><p>6389.949</p></td>
+<td><p>21.64642</p></td>
+<td><p>2.195e-09</p></td>
+<td><p>3066</p></td>
+<td><p>21.46286</p></td>
+<td><p>2.5993e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>5071.6</p></td>
+</tr>
+<tr class="row-odd"><td><p>GROUND_JOHNSON_B</p></td>
+<td><p>energy</p></td>
+<td><p>AA</p></td>
+<td><p>4347.526</p></td>
+<td><p>4296.702</p></td>
+<td><p>4316.313</p></td>
+<td><p>20.51217</p></td>
+<td><p>6.2393e-09</p></td>
+<td><p>3842.2</p></td>
+<td><p>20.57362</p></td>
+<td><p>5.8959e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>2235.9</p></td>
+</tr>
+<tr class="row-even"><td><p>GROUND_JOHNSON_U</p></td>
+<td><p>energy</p></td>
+<td><p>AA</p></td>
+<td><p>3651.963</p></td>
+<td><p>3634.688</p></td>
+<td><p>3709.279</p></td>
+<td><p>20.94618</p></td>
+<td><p>4.1834e-09</p></td>
+<td><p>1843.5</p></td>
+<td><p>20.21028</p></td>
+<td><p>8.2392e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>1600</p></td>
+</tr>
+<tr class="row-odd"><td><p>GROUND_JOHNSON_V</p></td>
+<td><p>energy</p></td>
+<td><p>AA</p></td>
+<td><p>5504.666</p></td>
+<td><p>5469.853</p></td>
+<td><p>5438.690</p></td>
+<td><p>21.09910</p></td>
+<td><p>3.6338e-09</p></td>
+<td><p>3626.5</p></td>
+<td><p>21.09783</p></td>
+<td><p>3.6381e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>3623.5</p></td>
+</tr>
+<tr class="row-even"><td><p>GaiaDR2_BP</p></td>
+<td><p>photon</p></td>
+<td><p>nm</p></td>
+<td><p>513.111</p></td>
+<td><p>505.152</p></td>
+<td><p>489.209</p></td>
+<td><p>20.98173</p></td>
+<td><p>4.0486e-09</p></td>
+<td><p>3446.1</p></td>
+<td><p>20.92506</p></td>
+<td><p>4.2656e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>3090.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>GaiaDR2_G</p></td>
+<td><p>photon</p></td>
+<td><p>nm</p></td>
+<td><p>640.621</p></td>
+<td><p>623.159</p></td>
+<td><p>555.818</p></td>
+<td><p>21.51011</p></td>
+<td><p>2.4886e-09</p></td>
+<td><p>3223.5</p></td>
+<td><p>21.38094</p></td>
+<td><p>2.803e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>4703</p></td>
+</tr>
+<tr class="row-even"><td><p>GaiaDR2_RP</p></td>
+<td><p>photon</p></td>
+<td><p>nm</p></td>
+<td><p>777.732</p></td>
+<td><p>772.597</p></td>
+<td><p>749.982</p></td>
+<td><p>22.21978</p></td>
+<td><p>1.2945e-09</p></td>
+<td><p>2577.4</p></td>
+<td><p>21.84771</p></td>
+<td><p>1.8235e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>7229.1</p></td>
+</tr>
+<tr class="row-odd"><td><p>GaiaDR2_weiler_BPbright</p></td>
+<td><p>photon</p></td>
+<td><p>nm</p></td>
+<td><p>516.469</p></td>
+<td><p>509.180</p></td>
+<td><p>491.288</p></td>
+<td><p>20.97403</p></td>
+<td><p>4.0775e-09</p></td>
+<td><p>3526.2</p></td>
+<td><p>20.94230</p></td>
+<td><p>4.1983e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>3139.9</p></td>
+</tr>
+<tr class="row-even"><td><p>GaiaDR2_weiler_BPfaint</p></td>
+<td><p>photon</p></td>
+<td><p>nm</p></td>
+<td><p>511.777</p></td>
+<td><p>503.849</p></td>
+<td><p>485.197</p></td>
+<td><p>20.96004</p></td>
+<td><p>4.1303e-09</p></td>
+<td><p>3497.6</p></td>
+<td><p>20.91945</p></td>
+<td><p>4.2876e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>3074.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>GaiaDR2_weiler_G</p></td>
+<td><p>photon</p></td>
+<td><p>nm</p></td>
+<td><p>639.736</p></td>
+<td><p>622.878</p></td>
+<td><p>555.060</p></td>
+<td><p>21.49910</p></td>
+<td><p>2.514e-09</p></td>
+<td><p>3253.5</p></td>
+<td><p>21.37996</p></td>
+<td><p>2.8055e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>4698.8</p></td>
+</tr>
+<tr class="row-even"><td><p>GaiaDR2_weiler_RP</p></td>
+<td><p>photon</p></td>
+<td><p>nm</p></td>
+<td><p>783.046</p></td>
+<td><p>777.495</p></td>
+<td><p>752.320</p></td>
+<td><p>22.23660</p></td>
+<td><p>1.2746e-09</p></td>
+<td><p>2570</p></td>
+<td><p>21.86144</p></td>
+<td><p>1.8006e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>7321.1</p></td>
+</tr>
+<tr class="row-odd"><td><p>GaiaDR2v2_BP</p></td>
+<td><p>photon</p></td>
+<td><p>nm</p></td>
+<td><p>512.897</p></td>
+<td><p>504.862</p></td>
+<td><p>489.534</p></td>
+<td><p>20.98536</p></td>
+<td><p>4.0351e-09</p></td>
+<td><p>3430.7</p></td>
+<td><p>20.92381</p></td>
+<td><p>4.2705e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>3086.9</p></td>
+</tr>
+<tr class="row-even"><td><p>GaiaDR2v2_G</p></td>
+<td><p>photon</p></td>
+<td><p>nm</p></td>
+<td><p>642.493</p></td>
+<td><p>624.676</p></td>
+<td><p>554.565</p></td>
+<td><p>21.50742</p></td>
+<td><p>2.4948e-09</p></td>
+<td><p>3247.3</p></td>
+<td><p>21.38622</p></td>
+<td><p>2.7894e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>4726</p></td>
+</tr>
+<tr class="row-odd"><td><p>GaiaDR2v2_RP</p></td>
+<td><p>photon</p></td>
+<td><p>nm</p></td>
+<td><p>779.919</p></td>
+<td><p>774.087</p></td>
+<td><p>748.140</p></td>
+<td><p>22.22051</p></td>
+<td><p>1.2936e-09</p></td>
+<td><p>2585.6</p></td>
+<td><p>21.85190</p></td>
+<td><p>1.8165e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>7257</p></td>
+</tr>
+<tr class="row-even"><td><p>Gaia_BP</p></td>
+<td><p>photon</p></td>
+<td><p>nm</p></td>
+<td><p>520.126</p></td>
+<td><p>513.385</p></td>
+<td><p>493.855</p></td>
+<td><p>20.97231</p></td>
+<td><p>4.0839e-09</p></td>
+<td><p>3590.4</p></td>
+<td><p>20.96016</p></td>
+<td><p>4.1299e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>3192</p></td>
+</tr>
+<tr class="row-odd"><td><p>Gaia_G</p></td>
+<td><p>photon</p></td>
+<td><p>nm</p></td>
+<td><p>641.860</p></td>
+<td><p>625.621</p></td>
+<td><p>559.216</p></td>
+<td><p>21.50762</p></td>
+<td><p>2.4943e-09</p></td>
+<td><p>3256.5</p></td>
+<td><p>21.38950</p></td>
+<td><p>2.781e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>4740.3</p></td>
+</tr>
+<tr class="row-even"><td><p>Gaia_MAW_BP_bright</p></td>
+<td><p>photon</p></td>
+<td><p>nanometer</p></td>
+<td><p>518.864</p></td>
+<td><p>511.715</p></td>
+<td><p>492.384</p></td>
+<td><p>20.97522</p></td>
+<td><p>4.073e-09</p></td>
+<td><p>3557.5</p></td>
+<td><p>20.95309</p></td>
+<td><p>4.1568e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>3171.3</p></td>
+</tr>
+<tr class="row-odd"><td><p>Gaia_MAW_BP_faint</p></td>
+<td><p>photon</p></td>
+<td><p>nanometer</p></td>
+<td><p>511.655</p></td>
+<td><p>503.740</p></td>
+<td><p>485.596</p></td>
+<td><p>20.96267</p></td>
+<td><p>4.1203e-09</p></td>
+<td><p>3487.6</p></td>
+<td><p>20.91898</p></td>
+<td><p>4.2895e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>3073.2</p></td>
+</tr>
+<tr class="row-even"><td><p>Gaia_MAW_G</p></td>
+<td><p>photon</p></td>
+<td><p>nanometer</p></td>
+<td><p>639.774</p></td>
+<td><p>622.936</p></td>
+<td><p>556.322</p></td>
+<td><p>21.50539</p></td>
+<td><p>2.4994e-09</p></td>
+<td><p>3235.3</p></td>
+<td><p>21.38017</p></td>
+<td><p>2.805e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>4699.7</p></td>
+</tr>
+<tr class="row-odd"><td><p>Gaia_MAW_RP</p></td>
+<td><p>photon</p></td>
+<td><p>nanometer</p></td>
+<td><p>781.130</p></td>
+<td><p>775.207</p></td>
+<td><p>748.923</p></td>
+<td><p>22.22439</p></td>
+<td><p>1.289e-09</p></td>
+<td><p>2583.8</p></td>
+<td><p>21.85504</p></td>
+<td><p>1.8113e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>7278</p></td>
+</tr>
+<tr class="row-even"><td><p>Gaia_RP</p></td>
+<td><p>photon</p></td>
+<td><p>nm</p></td>
+<td><p>788.915</p></td>
+<td><p>783.598</p></td>
+<td><p>760.126</p></td>
+<td><p>22.26331</p></td>
+<td><p>1.2436e-09</p></td>
+<td><p>2547.1</p></td>
+<td><p>21.87841</p></td>
+<td><p>1.7727e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>7436.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>Gaia_rvs</p></td>
+<td><p>photon</p></td>
+<td><p>nm</p></td>
+<td><p>860.375</p></td>
+<td><p>860.334</p></td>
+<td><p>859.988</p></td>
+<td><p>22.62277</p></td>
+<td><p>8.9308e-10</p></td>
+<td><p>2205</p></td>
+<td><p>22.08128</p></td>
+<td><p>1.4706e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>8964.2</p></td>
+</tr>
+<tr class="row-even"><td><p>HERSCHEL_PACS_BLUE</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>719334.161</p></td>
+<td><p>715414.931</p></td>
+<td><p>689247.165</p></td>
+<td><p>40.82295</p></td>
+<td><p>4.6862e-17</p></td>
+<td><p>0.80005</p></td>
+<td><p>31.68074</p></td>
+<td><p>2.1267e-13</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>6.1986e+07</p></td>
+</tr>
+<tr class="row-odd"><td><p>HERSCHEL_PACS_GREEN</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>1026174.164</p></td>
+<td><p>1020073.134</p></td>
+<td><p>979035.183</p></td>
+<td><p>42.36815</p></td>
+<td><p>1.1291e-17</p></td>
+<td><p>0.3919</p></td>
+<td><p>32.45110</p></td>
+<td><p>1.0461e-13</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>1.2602e+08</p></td>
+</tr>
+<tr class="row-even"><td><p>HERSCHEL_PACS_RED</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>1671354.805</p></td>
+<td><p>1653561.821</p></td>
+<td><p>1539440.214</p></td>
+<td><p>44.44140</p></td>
+<td><p>1.6728e-18</p></td>
+<td><p>0.15257</p></td>
+<td><p>33.50005</p></td>
+<td><p>3.9809e-14</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>3.3115e+08</p></td>
+</tr>
+<tr class="row-odd"><td><p>HERSCHEL_SPIRE_PLW</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>5116044.871</p></td>
+<td><p>5078435.227</p></td>
+<td><p>nan</p></td>
+<td><p>nan</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>35.93660</p></td>
+<td><p>4.2205e-15</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>3.1235e+09</p></td>
+</tr>
+<tr class="row-even"><td><p>HERSCHEL_SPIRE_PLW_EXT</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>5266019.933</p></td>
+<td><p>5228537.901</p></td>
+<td><p>nan</p></td>
+<td><p>nan</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>35.99985</p></td>
+<td><p>3.9816e-15</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>3.3109e+09</p></td>
+</tr>
+<tr class="row-odd"><td><p>HERSCHEL_SPIRE_PMW</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>3528320.433</p></td>
+<td><p>3513680.785</p></td>
+<td><p>2945575.999</p></td>
+<td><p>47.06958</p></td>
+<td><p>1.4865e-19</p></td>
+<td><p>0.061217</p></td>
+<td><p>35.13676</p></td>
+<td><p>8.8165e-15</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>1.4952e+09</p></td>
+</tr>
+<tr class="row-even"><td><p>HERSCHEL_SPIRE_PSW</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>2515000.130</p></td>
+<td><p>2504291.502</p></td>
+<td><p>2428024.383</p></td>
+<td><p>46.31313</p></td>
+<td><p>2.9837e-19</p></td>
+<td><p>0.062416</p></td>
+<td><p>34.40137</p></td>
+<td><p>1.7356e-14</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>7.5954e+08</p></td>
+</tr>
+<tr class="row-odd"><td><p>HERSCHEL_SPIRE_PSW_EXT</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>2556459.010</p></td>
+<td><p>2546211.106</p></td>
+<td><p>2470949.625</p></td>
+<td><p>46.38731</p></td>
+<td><p>2.7866e-19</p></td>
+<td><p>0.060262</p></td>
+<td><p>34.43742</p></td>
+<td><p>1.6789e-14</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>7.8518e+08</p></td>
+</tr>
+<tr class="row-even"><td><p>HST_ACS_HRC_F220W</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>2264.293</p></td>
+<td><p>2255.303</p></td>
+<td><p>2238.980</p></td>
+<td><p>20.85275</p></td>
+<td><p>4.5593e-09</p></td>
+<td><p>773.55</p></td>
+<td><p>19.17397</p></td>
+<td><p>2.14e-08</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>616.01</p></td>
+</tr>
+<tr class="row-odd"><td><p>HST_ACS_HRC_F250W</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>2727.105</p></td>
+<td><p>2715.822</p></td>
+<td><p>2715.985</p></td>
+<td><p>21.06891</p></td>
+<td><p>3.7362e-09</p></td>
+<td><p>919.21</p></td>
+<td><p>19.57745</p></td>
+<td><p>1.4758e-08</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>893.27</p></td>
+</tr>
+<tr class="row-even"><td><p>HST_ACS_HRC_F330W</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>3367.188</p></td>
+<td><p>3362.711</p></td>
+<td><p>3359.148</p></td>
+<td><p>21.21854</p></td>
+<td><p>3.2552e-09</p></td>
+<td><p>1227.8</p></td>
+<td><p>20.04140</p></td>
+<td><p>9.6259e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>1369.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>HST_ACS_HRC_F344N</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>3433.651</p></td>
+<td><p>3433.574</p></td>
+<td><p>3433.526</p></td>
+<td><p>21.23272</p></td>
+<td><p>3.213e-09</p></td>
+<td><p>1263.5</p></td>
+<td><p>20.08668</p></td>
+<td><p>9.2327e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>1427.8</p></td>
+</tr>
+<tr class="row-even"><td><p>HST_ACS_HRC_F435W</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>4321.986</p></td>
+<td><p>4311.005</p></td>
+<td><p>4312.154</p></td>
+<td><p>20.48731</p></td>
+<td><p>6.3837e-09</p></td>
+<td><p>3957.4</p></td>
+<td><p>20.58084</p></td>
+<td><p>5.8568e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>2250.8</p></td>
+</tr>
+<tr class="row-odd"><td><p>HST_ACS_HRC_F475W</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>4794.011</p></td>
+<td><p>4775.753</p></td>
+<td><p>4702.804</p></td>
+<td><p>20.70377</p></td>
+<td><p>5.2299e-09</p></td>
+<td><p>3978.8</p></td>
+<td><p>20.80316</p></td>
+<td><p>4.7724e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>2762.3</p></td>
+</tr>
+<tr class="row-even"><td><p>HST_ACS_HRC_F502N</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>5022.976</p></td>
+<td><p>5022.864</p></td>
+<td><p>5022.651</p></td>
+<td><p>20.82361</p></td>
+<td><p>4.6833e-09</p></td>
+<td><p>3941.3</p></td>
+<td><p>20.91271</p></td>
+<td><p>4.3144e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>3055.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>HST_ACS_HRC_F550M</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>5582.307</p></td>
+<td><p>5579.838</p></td>
+<td><p>5568.383</p></td>
+<td><p>21.16513</p></td>
+<td><p>3.4194e-09</p></td>
+<td><p>3551.1</p></td>
+<td><p>21.14106</p></td>
+<td><p>3.496e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>3770.7</p></td>
+</tr>
+<tr class="row-even"><td><p>HST_ACS_HRC_F555W</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>5368.001</p></td>
+<td><p>5355.962</p></td>
+<td><p>5303.722</p></td>
+<td><p>21.04222</p></td>
+<td><p>3.8292e-09</p></td>
+<td><p>3664.1</p></td>
+<td><p>21.05214</p></td>
+<td><p>3.7944e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>3474.2</p></td>
+</tr>
+<tr class="row-odd"><td><p>HST_ACS_HRC_F606W</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>5926.128</p></td>
+<td><p>5887.961</p></td>
+<td><p>5704.956</p></td>
+<td><p>21.33702</p></td>
+<td><p>2.9187e-09</p></td>
+<td><p>3375.2</p></td>
+<td><p>21.25777</p></td>
+<td><p>3.1397e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>4198.6</p></td>
+</tr>
+<tr class="row-even"><td><p>HST_ACS_HRC_F625W</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>6309.239</p></td>
+<td><p>6295.532</p></td>
+<td><p>6223.068</p></td>
+<td><p>21.56326</p></td>
+<td><p>2.3697e-09</p></td>
+<td><p>3132.8</p></td>
+<td><p>21.40311</p></td>
+<td><p>2.7463e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>4800</p></td>
+</tr>
+<tr class="row-odd"><td><p>HST_ACS_HRC_F658N</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>6583.779</p></td>
+<td><p>6583.561</p></td>
+<td><p>6585.366</p></td>
+<td><p>21.87677</p></td>
+<td><p>1.7754e-09</p></td>
+<td><p>2566.8</p></td>
+<td><p>21.50025</p></td>
+<td><p>2.5113e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>5249.3</p></td>
+</tr>
+<tr class="row-even"><td><p>HST_ACS_HRC_F660N</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>6599.248</p></td>
+<td><p>6599.052</p></td>
+<td><p>6599.546</p></td>
+<td><p>21.78419</p></td>
+<td><p>1.9334e-09</p></td>
+<td><p>2808.5</p></td>
+<td><p>21.50536</p></td>
+<td><p>2.4995e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>5274</p></td>
+</tr>
+<tr class="row-odd"><td><p>HST_ACS_HRC_F775W</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>7677.472</p></td>
+<td><p>7665.099</p></td>
+<td><p>7600.812</p></td>
+<td><p>22.21392</p></td>
+<td><p>1.3015e-09</p></td>
+<td><p>2550.6</p></td>
+<td><p>21.83054</p></td>
+<td><p>1.8526e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>7115.7</p></td>
+</tr>
+<tr class="row-even"><td><p>HST_ACS_HRC_F814W</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>8146.933</p></td>
+<td><p>8115.329</p></td>
+<td><p>7974.258</p></td>
+<td><p>22.37992</p></td>
+<td><p>1.1169e-09</p></td>
+<td><p>2453.7</p></td>
+<td><p>21.95448</p></td>
+<td><p>1.6528e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>7976.1</p></td>
+</tr>
+<tr class="row-odd"><td><p>HST_ACS_HRC_F850LP</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>9161.579</p></td>
+<td><p>9145.236</p></td>
+<td><p>9087.761</p></td>
+<td><p>22.73539</p></td>
+<td><p>8.0509e-10</p></td>
+<td><p>2246</p></td>
+<td><p>22.21392</p></td>
+<td><p>1.3015e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>10129</p></td>
+</tr>
+<tr class="row-even"><td><p>HST_ACS_HRC_F892N</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>8916.652</p></td>
+<td><p>8916.510</p></td>
+<td><p>8918.337</p></td>
+<td><p>22.64639</p></td>
+<td><p>8.7387e-10</p></td>
+<td><p>2317.5</p></td>
+<td><p>22.15892</p></td>
+<td><p>1.3691e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>9628.7</p></td>
+</tr>
+<tr class="row-odd"><td><p>HST_ACS_WFC_F435W</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>4327.293</p></td>
+<td><p>4317.414</p></td>
+<td><p>4313.631</p></td>
+<td><p>20.47537</p></td>
+<td><p>6.4543e-09</p></td>
+<td><p>4013.1</p></td>
+<td><p>20.58407</p></td>
+<td><p>5.8395e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>2257.5</p></td>
+</tr>
+<tr class="row-even"><td><p>HST_ACS_WFC_F475W</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>4763.044</p></td>
+<td><p>4744.364</p></td>
+<td><p>4670.598</p></td>
+<td><p>20.68526</p></td>
+<td><p>5.3198e-09</p></td>
+<td><p>3994.2</p></td>
+<td><p>20.78884</p></td>
+<td><p>4.8358e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>2726.1</p></td>
+</tr>
+<tr class="row-odd"><td><p>HST_ACS_WFC_F502N</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>5023.049</p></td>
+<td><p>5022.970</p></td>
+<td><p>5022.704</p></td>
+<td><p>20.82357</p></td>
+<td><p>4.6835e-09</p></td>
+<td><p>3941.6</p></td>
+<td><p>20.91275</p></td>
+<td><p>4.3142e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>3055.6</p></td>
+</tr>
+<tr class="row-even"><td><p>HST_ACS_WFC_F550M</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>5583.655</p></td>
+<td><p>5581.236</p></td>
+<td><p>5569.805</p></td>
+<td><p>21.16588</p></td>
+<td><p>3.417e-09</p></td>
+<td><p>3550.5</p></td>
+<td><p>21.14160</p></td>
+<td><p>3.4943e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>3772.6</p></td>
+</tr>
+<tr class="row-odd"><td><p>HST_ACS_WFC_F555W</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>5371.780</p></td>
+<td><p>5359.569</p></td>
+<td><p>5306.472</p></td>
+<td><p>21.04432</p></td>
+<td><p>3.8218e-09</p></td>
+<td><p>3661.9</p></td>
+<td><p>21.05360</p></td>
+<td><p>3.7893e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>3478.9</p></td>
+</tr>
+<tr class="row-even"><td><p>HST_ACS_WFC_F606W</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>5956.272</p></td>
+<td><p>5917.682</p></td>
+<td><p>5731.021</p></td>
+<td><p>21.35321</p></td>
+<td><p>2.8755e-09</p></td>
+<td><p>3358.9</p></td>
+<td><p>21.26871</p></td>
+<td><p>3.1083e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>4241.1</p></td>
+</tr>
+<tr class="row-odd"><td><p>HST_ACS_WFC_F625W</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>6324.125</p></td>
+<td><p>6310.463</p></td>
+<td><p>6238.035</p></td>
+<td><p>21.57133</p></td>
+<td><p>2.3522e-09</p></td>
+<td><p>3124.4</p></td>
+<td><p>21.40825</p></td>
+<td><p>2.7334e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>4822.8</p></td>
+</tr>
+<tr class="row-even"><td><p>HST_ACS_WFC_F658N</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>6584.003</p></td>
+<td><p>6583.910</p></td>
+<td><p>6585.829</p></td>
+<td><p>21.87668</p></td>
+<td><p>1.7755e-09</p></td>
+<td><p>2567.3</p></td>
+<td><p>21.50037</p></td>
+<td><p>2.511e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>5249.9</p></td>
+</tr>
+<tr class="row-odd"><td><p>HST_ACS_WFC_F660N</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>6599.449</p></td>
+<td><p>6599.401</p></td>
+<td><p>6599.731</p></td>
+<td><p>21.78412</p></td>
+<td><p>1.9335e-09</p></td>
+<td><p>2808.9</p></td>
+<td><p>21.50547</p></td>
+<td><p>2.4993e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>5274.6</p></td>
+</tr>
+<tr class="row-even"><td><p>HST_ACS_WFC_F775W</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>7705.440</p></td>
+<td><p>7693.026</p></td>
+<td><p>7628.121</p></td>
+<td><p>22.22629</p></td>
+<td><p>1.2867e-09</p></td>
+<td><p>2540.1</p></td>
+<td><p>21.83843</p></td>
+<td><p>1.8392e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>7167.6</p></td>
+</tr>
+<tr class="row-odd"><td><p>HST_ACS_WFC_F814W</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>8087.369</p></td>
+<td><p>8059.772</p></td>
+<td><p>7934.713</p></td>
+<td><p>22.36316</p></td>
+<td><p>1.1343e-09</p></td>
+<td><p>2457.9</p></td>
+<td><p>21.93956</p></td>
+<td><p>1.6756e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>7867.3</p></td>
+</tr>
+<tr class="row-even"><td><p>HST_ACS_WFC_F850LP</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>9071.565</p></td>
+<td><p>9054.795</p></td>
+<td><p>8997.074</p></td>
+<td><p>22.71289</p></td>
+<td><p>8.2195e-10</p></td>
+<td><p>2247.9</p></td>
+<td><p>22.19234</p></td>
+<td><p>1.3276e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>9929.7</p></td>
+</tr>
+<tr class="row-odd"><td><p>HST_ACS_WFC_F892N</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>8915.093</p></td>
+<td><p>8914.870</p></td>
+<td><p>8915.858</p></td>
+<td><p>22.64740</p></td>
+<td><p>8.7306e-10</p></td>
+<td><p>2314.5</p></td>
+<td><p>22.15852</p></td>
+<td><p>1.3696e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>9625.2</p></td>
+</tr>
+<tr class="row-even"><td><p>HST_NIC2_F110W</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>11387.896</p></td>
+<td><p>11263.781</p></td>
+<td><p>10598.260</p></td>
+<td><p>23.39800</p></td>
+<td><p>4.3732e-10</p></td>
+<td><p>1850.7</p></td>
+<td><p>22.66637</p></td>
+<td><p>8.5793e-10</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>15366</p></td>
+</tr>
+<tr class="row-odd"><td><p>HST_NIC2_F160W</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>16120.211</p></td>
+<td><p>16077.597</p></td>
+<td><p>15821.981</p></td>
+<td><p>24.75345</p></td>
+<td><p>1.2549e-10</p></td>
+<td><p>1082</p></td>
+<td><p>23.43905</p></td>
+<td><p>4.2109e-10</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>31306</p></td>
+</tr>
+<tr class="row-even"><td><p>HST_NIC2_F205W</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>20404.117</p></td>
+<td><p>20323.591</p></td>
+<td><p>19824.745</p></td>
+<td><p>25.65355</p></td>
+<td><p>5.4775e-11</p></td>
+<td><p>754.67</p></td>
+<td><p>23.94795</p></td>
+<td><p>2.6352e-10</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>50024</p></td>
+</tr>
+<tr class="row-odd"><td><p>HST_NIC3_F108N</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>10799.558</p></td>
+<td><p>10799.444</p></td>
+<td><p>10798.331</p></td>
+<td><p>23.25217</p></td>
+<td><p>5.0019e-10</p></td>
+<td><p>1945.9</p></td>
+<td><p>22.57496</p></td>
+<td><p>9.3329e-10</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>14125</p></td>
+</tr>
+<tr class="row-even"><td><p>HST_NIC3_F110W</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>11031.924</p></td>
+<td><p>10898.356</p></td>
+<td><p>10230.571</p></td>
+<td><p>23.28501</p></td>
+<td><p>4.8528e-10</p></td>
+<td><p>1922.6</p></td>
+<td><p>22.59475</p></td>
+<td><p>9.1643e-10</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>14385</p></td>
+</tr>
+<tr class="row-odd"><td><p>HST_NIC3_F113N</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>11283.723</p></td>
+<td><p>11283.626</p></td>
+<td><p>11283.005</p></td>
+<td><p>23.41712</p></td>
+<td><p>4.2969e-10</p></td>
+<td><p>1824.9</p></td>
+<td><p>22.67019</p></td>
+<td><p>8.5492e-10</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>15420</p></td>
+</tr>
+<tr class="row-even"><td><p>HST_NIC3_F150W</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>15066.644</p></td>
+<td><p>14884.411</p></td>
+<td><p>13818.077</p></td>
+<td><p>24.40446</p></td>
+<td><p>1.7307e-10</p></td>
+<td><p>1279</p></td>
+<td><p>23.27161</p></td>
+<td><p>4.9131e-10</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>26831</p></td>
+</tr>
+<tr class="row-odd"><td><p>HST_NIC3_F160W</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>15947.108</p></td>
+<td><p>15904.514</p></td>
+<td><p>15652.855</p></td>
+<td><p>24.71269</p></td>
+<td><p>1.3029e-10</p></td>
+<td><p>1099.4</p></td>
+<td><p>23.41555</p></td>
+<td><p>4.3031e-10</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>30635</p></td>
+</tr>
+<tr class="row-even"><td><p>HST_NIC3_F164N</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>16459.892</p></td>
+<td><p>16459.777</p></td>
+<td><p>16461.670</p></td>
+<td><p>24.88754</p></td>
+<td><p>1.1091e-10</p></td>
+<td><p>1002.3</p></td>
+<td><p>23.49007</p></td>
+<td><p>4.0177e-10</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>32812</p></td>
+</tr>
+<tr class="row-odd"><td><p>HST_NIC3_F166N</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>16582.343</p></td>
+<td><p>16582.237</p></td>
+<td><p>16581.816</p></td>
+<td><p>24.85416</p></td>
+<td><p>1.1438e-10</p></td>
+<td><p>1049.1</p></td>
+<td><p>23.50616</p></td>
+<td><p>3.9585e-10</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>33302</p></td>
+</tr>
+<tr class="row-even"><td><p>HST_NIC3_F175W</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>17507.431</p></td>
+<td><p>17213.964</p></td>
+<td><p>15528.577</p></td>
+<td><p>24.93579</p></td>
+<td><p>1.0609e-10</p></td>
+<td><p>1048.6</p></td>
+<td><p>23.58735</p></td>
+<td><p>3.6733e-10</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>35887</p></td>
+</tr>
+<tr class="row-odd"><td><p>HST_NIC3_F187N</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>18748.058</p></td>
+<td><p>18747.933</p></td>
+<td><p>18746.605</p></td>
+<td><p>25.41003</p></td>
+<td><p>6.8547e-11</p></td>
+<td><p>803.66</p></td>
+<td><p>23.77272</p></td>
+<td><p>3.0968e-10</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>42568</p></td>
+</tr>
+<tr class="row-even"><td><p>HST_NIC3_F190N</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>19003.434</p></td>
+<td><p>19003.329</p></td>
+<td><p>19002.477</p></td>
+<td><p>25.39700</p></td>
+<td><p>6.9375e-11</p></td>
+<td><p>835.68</p></td>
+<td><p>23.80210</p></td>
+<td><p>3.0141e-10</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>43736</p></td>
+</tr>
+<tr class="row-odd"><td><p>HST_NIC3_F196N</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>19638.566</p></td>
+<td><p>19638.412</p></td>
+<td><p>19638.571</p></td>
+<td><p>25.53411</p></td>
+<td><p>6.1144e-11</p></td>
+<td><p>786.59</p></td>
+<td><p>23.87348</p></td>
+<td><p>2.8223e-10</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>46708</p></td>
+</tr>
+<tr class="row-even"><td><p>HST_NIC3_F200N</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>19973.909</p></td>
+<td><p>19973.726</p></td>
+<td><p>19973.053</p></td>
+<td><p>25.59617</p></td>
+<td><p>5.7747e-11</p></td>
+<td><p>768.47</p></td>
+<td><p>23.91024</p></td>
+<td><p>2.7284e-10</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>48317</p></td>
+</tr>
+<tr class="row-odd"><td><p>HST_NIC3_F205M</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>20484.358</p></td>
+<td><p>20430.689</p></td>
+<td><p>20099.897</p></td>
+<td><p>25.68427</p></td>
+<td><p>5.3247e-11</p></td>
+<td><p>741.38</p></td>
+<td><p>23.95936</p></td>
+<td><p>2.6077e-10</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>50553</p></td>
+</tr>
+<tr class="row-even"><td><p>HST_NIC3_F212N</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>21213.225</p></td>
+<td><p>21213.026</p></td>
+<td><p>21212.793</p></td>
+<td><p>25.84266</p></td>
+<td><p>4.6019e-11</p></td>
+<td><p>690.75</p></td>
+<td><p>24.04096</p></td>
+<td><p>2.4189e-10</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>54498</p></td>
+</tr>
+<tr class="row-odd"><td><p>HST_NIC3_F215N</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>21487.025</p></td>
+<td><p>21486.865</p></td>
+<td><p>21485.306</p></td>
+<td><p>25.90231</p></td>
+<td><p>4.3559e-11</p></td>
+<td><p>670.81</p></td>
+<td><p>24.06881</p></td>
+<td><p>2.3576e-10</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>55915</p></td>
+</tr>
+<tr class="row-even"><td><p>HST_NIC3_F222M</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>22164.144</p></td>
+<td><p>22158.276</p></td>
+<td><p>22124.341</p></td>
+<td><p>26.02730</p></td>
+<td><p>3.8822e-11</p></td>
+<td><p>635.81</p></td>
+<td><p>24.13563</p></td>
+<td><p>2.2169e-10</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>59464</p></td>
+</tr>
+<tr class="row-odd"><td><p>HST_NIC3_F240M</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>23976.743</p></td>
+<td><p>23969.074</p></td>
+<td><p>23918.959</p></td>
+<td><p>26.33671</p></td>
+<td><p>2.9195e-11</p></td>
+<td><p>559.5</p></td>
+<td><p>24.30620</p></td>
+<td><p>1.8946e-10</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>69580</p></td>
+</tr>
+<tr class="row-even"><td><p>HST_WFC3_F098M</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>9848.310</p></td>
+<td><p>9835.126</p></td>
+<td><p>9772.440</p></td>
+<td><p>22.93028</p></td>
+<td><p>6.728e-10</p></td>
+<td><p>2170.8</p></td>
+<td><p>22.37185</p></td>
+<td><p>1.1253e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>11715</p></td>
+</tr>
+<tr class="row-odd"><td><p>HST_WFC3_F105W</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>10932.107</p></td>
+<td><p>10804.376</p></td>
+<td><p>10350.336</p></td>
+<td><p>23.22868</p></td>
+<td><p>5.1112e-10</p></td>
+<td><p>1990.2</p></td>
+<td><p>22.57595</p></td>
+<td><p>9.3244e-10</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>14138</p></td>
+</tr>
+<tr class="row-even"><td><p>HST_WFC3_F110W</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>11672.359</p></td>
+<td><p>11549.685</p></td>
+<td><p>10937.076</p></td>
+<td><p>23.47274</p></td>
+<td><p>4.0823e-10</p></td>
+<td><p>1816.4</p></td>
+<td><p>22.72080</p></td>
+<td><p>8.1598e-10</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>16155</p></td>
+</tr>
+<tr class="row-odd"><td><p>HST_WFC3_F125W</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>12492.676</p></td>
+<td><p>12462.069</p></td>
+<td><p>12279.219</p></td>
+<td><p>23.78350</p></td>
+<td><p>3.0662e-10</p></td>
+<td><p>1588.4</p></td>
+<td><p>22.88590</p></td>
+<td><p>7.0087e-10</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>18809</p></td>
+</tr>
+<tr class="row-even"><td><p>HST_WFC3_F126N</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>17480.118</p></td>
+<td><p>17123.233</p></td>
+<td><p>14666.073</p></td>
+<td><p>24.87418</p></td>
+<td><p>1.1229e-10</p></td>
+<td><p>1098.2</p></td>
+<td><p>23.57588</p></td>
+<td><p>3.7124e-10</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>35510</p></td>
+</tr>
+<tr class="row-odd"><td><p>HST_WFC3_F127M</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>15862.689</p></td>
+<td><p>15519.376</p></td>
+<td><p>13788.489</p></td>
+<td><p>24.52516</p></td>
+<td><p>1.5486e-10</p></td>
+<td><p>1244.1</p></td>
+<td><p>23.36232</p></td>
+<td><p>4.5193e-10</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>29169</p></td>
+</tr>
+<tr class="row-even"><td><p>HST_WFC3_F128N</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>17470.378</p></td>
+<td><p>17142.169</p></td>
+<td><p>14974.185</p></td>
+<td><p>24.93291</p></td>
+<td><p>1.0637e-10</p></td>
+<td><p>1042.7</p></td>
+<td><p>23.57828</p></td>
+<td><p>3.7042e-10</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>35589</p></td>
+</tr>
+<tr class="row-odd"><td><p>HST_WFC3_F130N</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>17102.509</p></td>
+<td><p>16761.080</p></td>
+<td><p>14772.333</p></td>
+<td><p>24.80308</p></td>
+<td><p>1.1989e-10</p></td>
+<td><p>1123.4</p></td>
+<td><p>23.52946</p></td>
+<td><p>3.8745e-10</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>34024</p></td>
+</tr>
+<tr class="row-even"><td><p>HST_WFC3_F132N</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>16494.387</p></td>
+<td><p>16170.160</p></td>
+<td><p>14457.532</p></td>
+<td><p>24.67238</p></td>
+<td><p>1.3522e-10</p></td>
+<td><p>1179.4</p></td>
+<td><p>23.45152</p></td>
+<td><p>4.1629e-10</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>31667</p></td>
+</tr>
+<tr class="row-odd"><td><p>HST_WFC3_F139M</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>13969.601</p></td>
+<td><p>13935.204</p></td>
+<td><p>13721.639</p></td>
+<td><p>24.20885</p></td>
+<td><p>2.0723e-10</p></td>
+<td><p>1342.4</p></td>
+<td><p>23.12851</p></td>
+<td><p>5.6052e-10</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>23518</p></td>
+</tr>
+<tr class="row-even"><td><p>HST_WFC3_F140W</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>13971.167</p></td>
+<td><p>13923.744</p></td>
+<td><p>13638.428</p></td>
+<td><p>24.20277</p></td>
+<td><p>2.084e-10</p></td>
+<td><p>1347.7</p></td>
+<td><p>23.12673</p></td>
+<td><p>5.6145e-10</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>23480</p></td>
+</tr>
+<tr class="row-odd"><td><p>HST_WFC3_F153M</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>16124.386</p></td>
+<td><p>16011.334</p></td>
+<td><p>15152.336</p></td>
+<td><p>24.72041</p></td>
+<td><p>1.2937e-10</p></td>
+<td><p>1106.3</p></td>
+<td><p>23.43009</p></td>
+<td><p>4.2459e-10</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>31048</p></td>
+</tr>
+<tr class="row-even"><td><p>HST_WFC3_F160W</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>15432.738</p></td>
+<td><p>15409.292</p></td>
+<td><p>15259.791</p></td>
+<td><p>24.60238</p></td>
+<td><p>1.4423e-10</p></td>
+<td><p>1142.3</p></td>
+<td><p>23.34686</p></td>
+<td><p>4.5841e-10</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>28757</p></td>
+</tr>
+<tr class="row-odd"><td><p>HST_WFC3_F164N</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>17278.477</p></td>
+<td><p>17181.331</p></td>
+<td><p>16287.110</p></td>
+<td><p>25.00584</p></td>
+<td><p>9.9464e-11</p></td>
+<td><p>979.4</p></td>
+<td><p>23.58323</p></td>
+<td><p>3.6873e-10</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>35751</p></td>
+</tr>
+<tr class="row-even"><td><p>HST_WFC3_F167N</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>16896.495</p></td>
+<td><p>16840.453</p></td>
+<td><p>16186.015</p></td>
+<td><p>24.89313</p></td>
+<td><p>1.1034e-10</p></td>
+<td><p>1043.8</p></td>
+<td><p>23.53972</p></td>
+<td><p>3.8381e-10</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>34347</p></td>
+</tr>
+<tr class="row-odd"><td><p>HST_WFC3_F200LP</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>6343.249</p></td>
+<td><p>5680.797</p></td>
+<td><p>4792.181</p></td>
+<td><p>21.70645</p></td>
+<td><p>2.0769e-09</p></td>
+<td><p>2235.7</p></td>
+<td><p>21.17999</p></td>
+<td><p>3.3729e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>3908.4</p></td>
+</tr>
+<tr class="row-even"><td><p>HST_WFC3_F218W</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>2189.287</p></td>
+<td><p>2184.605</p></td>
+<td><p>2175.986</p></td>
+<td><p>20.79587</p></td>
+<td><p>4.8045e-09</p></td>
+<td><p>764.85</p></td>
+<td><p>19.10481</p></td>
+<td><p>2.2807e-08</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>578</p></td>
+</tr>
+<tr class="row-odd"><td><p>HST_WFC3_F225W</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>2350.342</p></td>
+<td><p>2341.720</p></td>
+<td><p>2326.867</p></td>
+<td><p>20.91549</p></td>
+<td><p>4.3033e-09</p></td>
+<td><p>787.14</p></td>
+<td><p>19.25562</p></td>
+<td><p>1.985e-08</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>664.12</p></td>
+</tr>
+<tr class="row-even"><td><p>HST_WFC3_F275W</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>2722.057</p></td>
+<td><p>2716.876</p></td>
+<td><p>2717.333</p></td>
+<td><p>21.06908</p></td>
+<td><p>3.7356e-09</p></td>
+<td><p>919.78</p></td>
+<td><p>19.57830</p></td>
+<td><p>1.4746e-08</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>893.96</p></td>
+</tr>
+<tr class="row-odd"><td><p>HST_WFC3_F280N</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>2855.002</p></td>
+<td><p>2838.493</p></td>
+<td><p>2868.178</p></td>
+<td><p>21.11137</p></td>
+<td><p>3.593e-09</p></td>
+<td><p>965.62</p></td>
+<td><p>19.67339</p></td>
+<td><p>1.351e-08</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>975.79</p></td>
+</tr>
+<tr class="row-even"><td><p>HST_WFC3_F300X</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>2851.038</p></td>
+<td><p>2830.991</p></td>
+<td><p>2843.402</p></td>
+<td><p>21.07896</p></td>
+<td><p>3.7018e-09</p></td>
+<td><p>989.63</p></td>
+<td><p>19.66764</p></td>
+<td><p>1.3581e-08</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>970.64</p></td>
+</tr>
+<tr class="row-odd"><td><p>HST_WFC3_F336W</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>3366.004</p></td>
+<td><p>3362.128</p></td>
+<td><p>3359.214</p></td>
+<td><p>21.21896</p></td>
+<td><p>3.254e-09</p></td>
+<td><p>1226.9</p></td>
+<td><p>20.04102</p></td>
+<td><p>9.6292e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>1369</p></td>
+</tr>
+<tr class="row-even"><td><p>HST_WFC3_F343N</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>3440.265</p></td>
+<td><p>3439.093</p></td>
+<td><p>3438.236</p></td>
+<td><p>21.23927</p></td>
+<td><p>3.1937e-09</p></td>
+<td><p>1260</p></td>
+<td><p>20.09017</p></td>
+<td><p>9.2031e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>1432.4</p></td>
+</tr>
+<tr class="row-odd"><td><p>HST_WFC3_F350LP</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>7187.199</p></td>
+<td><p>6814.098</p></td>
+<td><p>5616.015</p></td>
+<td><p>21.81709</p></td>
+<td><p>1.8757e-09</p></td>
+<td><p>2905.1</p></td>
+<td><p>21.57499</p></td>
+<td><p>2.3443e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>5623.4</p></td>
+</tr>
+<tr class="row-even"><td><p>HST_WFC3_F373N</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>3730.153</p></td>
+<td><p>3730.102</p></td>
+<td><p>3731.284</p></td>
+<td><p>21.15882</p></td>
+<td><p>3.4393e-09</p></td>
+<td><p>1596.2</p></td>
+<td><p>20.26655</p></td>
+<td><p>7.8231e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>1685.1</p></td>
+</tr>
+<tr class="row-odd"><td><p>HST_WFC3_F390M</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>3895.486</p></td>
+<td><p>3894.920</p></td>
+<td><p>3901.944</p></td>
+<td><p>20.45500</p></td>
+<td><p>6.5766e-09</p></td>
+<td><p>3328</p></td>
+<td><p>20.36044</p></td>
+<td><p>7.175e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>1837.3</p></td>
+</tr>
+<tr class="row-even"><td><p>HST_WFC3_F390W</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>3916.293</p></td>
+<td><p>3905.756</p></td>
+<td><p>3991.523</p></td>
+<td><p>20.60486</p></td>
+<td><p>5.7287e-09</p></td>
+<td><p>2915.1</p></td>
+<td><p>20.36647</p></td>
+<td><p>7.1353e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>1847.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>HST_WFC3_F395N</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>3954.910</p></td>
+<td><p>3954.823</p></td>
+<td><p>3952.091</p></td>
+<td><p>20.36072</p></td>
+<td><p>7.1732e-09</p></td>
+<td><p>3742.3</p></td>
+<td><p>20.39358</p></td>
+<td><p>6.9593e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>1894.2</p></td>
+</tr>
+<tr class="row-even"><td><p>HST_WFC3_F410M</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>4112.384</p></td>
+<td><p>4110.849</p></td>
+<td><p>4107.527</p></td>
+<td><p>20.31303</p></td>
+<td><p>7.4953e-09</p></td>
+<td><p>4225</p></td>
+<td><p>20.47761</p></td>
+<td><p>6.4411e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>2046.6</p></td>
+</tr>
+<tr class="row-odd"><td><p>HST_WFC3_F438W</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>4324.442</p></td>
+<td><p>4319.918</p></td>
+<td><p>4308.497</p></td>
+<td><p>20.42697</p></td>
+<td><p>6.7486e-09</p></td>
+<td><p>4200.9</p></td>
+<td><p>20.58533</p></td>
+<td><p>5.8327e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>2260.1</p></td>
+</tr>
+<tr class="row-even"><td><p>HST_WFC3_F467M</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>4683.832</p></td>
+<td><p>4683.052</p></td>
+<td><p>4679.988</p></td>
+<td><p>20.60058</p></td>
+<td><p>5.7513e-09</p></td>
+<td><p>4207.3</p></td>
+<td><p>20.76059</p></td>
+<td><p>4.9632e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>2656.1</p></td>
+</tr>
+<tr class="row-odd"><td><p>HST_WFC3_F469N</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>4688.123</p></td>
+<td><p>4688.080</p></td>
+<td><p>4687.978</p></td>
+<td><p>20.60038</p></td>
+<td><p>5.7524e-09</p></td>
+<td><p>4217.1</p></td>
+<td><p>20.76292</p></td>
+<td><p>4.9526e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>2661.8</p></td>
+</tr>
+<tr class="row-even"><td><p>HST_WFC3_F475W</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>4780.956</p></td>
+<td><p>4761.979</p></td>
+<td><p>4684.431</p></td>
+<td><p>20.69300</p></td>
+<td><p>5.282e-09</p></td>
+<td><p>3995.3</p></td>
+<td><p>20.79689</p></td>
+<td><p>4.8001e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>2746.3</p></td>
+</tr>
+<tr class="row-odd"><td><p>HST_WFC3_F475X</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>4966.170</p></td>
+<td><p>4918.554</p></td>
+<td><p>4751.248</p></td>
+<td><p>20.81384</p></td>
+<td><p>4.7257e-09</p></td>
+<td><p>3813.5</p></td>
+<td><p>20.86714</p></td>
+<td><p>4.4993e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>2929.9</p></td>
+</tr>
+<tr class="row-even"><td><p>HST_WFC3_F487N</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>4871.399</p></td>
+<td><p>4871.355</p></td>
+<td><p>4873.185</p></td>
+<td><p>21.02182</p></td>
+<td><p>3.9019e-09</p></td>
+<td><p>3088.5</p></td>
+<td><p>20.84620</p></td>
+<td><p>4.5869e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>2873.9</p></td>
+</tr>
+<tr class="row-odd"><td><p>HST_WFC3_F502N</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>5009.692</p></td>
+<td><p>5009.624</p></td>
+<td><p>5009.418</p></td>
+<td><p>20.81454</p></td>
+<td><p>4.7226e-09</p></td>
+<td><p>3953.4</p></td>
+<td><p>20.90697</p></td>
+<td><p>4.3372e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>3039.4</p></td>
+</tr>
+<tr class="row-even"><td><p>HST_WFC3_F547M</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>5452.513</p></td>
+<td><p>5448.569</p></td>
+<td><p>5429.306</p></td>
+<td><p>21.08732</p></td>
+<td><p>3.6734e-09</p></td>
+<td><p>3637.6</p></td>
+<td><p>21.08936</p></td>
+<td><p>3.6665e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>3595.4</p></td>
+</tr>
+<tr class="row-odd"><td><p>HST_WFC3_F555W</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>5338.238</p></td>
+<td><p>5311.384</p></td>
+<td><p>5188.817</p></td>
+<td><p>21.00668</p></td>
+<td><p>3.9567e-09</p></td>
+<td><p>3723.3</p></td>
+<td><p>21.03399</p></td>
+<td><p>3.8584e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>3416.6</p></td>
+</tr>
+<tr class="row-even"><td><p>HST_WFC3_F600LP</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>8548.800</p></td>
+<td><p>8427.403</p></td>
+<td><p>7878.308</p></td>
+<td><p>22.45540</p></td>
+<td><p>1.0419e-09</p></td>
+<td><p>2468.4</p></td>
+<td><p>22.03642</p></td>
+<td><p>1.5326e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>8601.4</p></td>
+</tr>
+<tr class="row-odd"><td><p>HST_WFC3_F606W</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>5946.743</p></td>
+<td><p>5908.665</p></td>
+<td><p>5728.066</p></td>
+<td><p>21.35009</p></td>
+<td><p>2.8838e-09</p></td>
+<td><p>3358.3</p></td>
+<td><p>21.26540</p></td>
+<td><p>3.1178e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>4228.2</p></td>
+</tr>
+<tr class="row-even"><td><p>HST_WFC3_F621M</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>6221.568</p></td>
+<td><p>6218.725</p></td>
+<td><p>6203.222</p></td>
+<td><p>21.52258</p></td>
+<td><p>2.4602e-09</p></td>
+<td><p>3173.6</p></td>
+<td><p>21.37646</p></td>
+<td><p>2.8146e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>4683.6</p></td>
+</tr>
+<tr class="row-odd"><td><p>HST_WFC3_F625W</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>6272.481</p></td>
+<td><p>6255.730</p></td>
+<td><p>6168.593</p></td>
+<td><p>21.53978</p></td>
+<td><p>2.4215e-09</p></td>
+<td><p>3161</p></td>
+<td><p>21.38934</p></td>
+<td><p>2.7814e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>4739.5</p></td>
+</tr>
+<tr class="row-even"><td><p>HST_WFC3_F631N</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>6304.859</p></td>
+<td><p>6304.692</p></td>
+<td><p>6304.193</p></td>
+<td><p>21.56403</p></td>
+<td><p>2.368e-09</p></td>
+<td><p>3139.7</p></td>
+<td><p>21.40627</p></td>
+<td><p>2.7384e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>4814</p></td>
+</tr>
+<tr class="row-odd"><td><p>HST_WFC3_F645N</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>6454.063</p></td>
+<td><p>6453.914</p></td>
+<td><p>6453.263</p></td>
+<td><p>21.64660</p></td>
+<td><p>2.1946e-09</p></td>
+<td><p>3049.2</p></td>
+<td><p>21.45706</p></td>
+<td><p>2.6132e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>5044.6</p></td>
+</tr>
+<tr class="row-even"><td><p>HST_WFC3_F656N</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>6561.556</p></td>
+<td><p>6561.481</p></td>
+<td><p>6560.052</p></td>
+<td><p>22.11303</p></td>
+<td><p>1.4282e-09</p></td>
+<td><p>2051</p></td>
+<td><p>21.49296</p></td>
+<td><p>2.5282e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>5214.1</p></td>
+</tr>
+<tr class="row-odd"><td><p>HST_WFC3_F657N</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>6567.079</p></td>
+<td><p>6566.955</p></td>
+<td><p>6566.566</p></td>
+<td><p>21.82022</p></td>
+<td><p>1.8703e-09</p></td>
+<td><p>2690.4</p></td>
+<td><p>21.49477</p></td>
+<td><p>2.524e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>5222.8</p></td>
+</tr>
+<tr class="row-even"><td><p>HST_WFC3_F658N</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>6587.009</p></td>
+<td><p>6585.691</p></td>
+<td><p>6584.227</p></td>
+<td><p>21.86293</p></td>
+<td><p>1.7982e-09</p></td>
+<td><p>2601.4</p></td>
+<td><p>21.50095</p></td>
+<td><p>2.5097e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>5252.7</p></td>
+</tr>
+<tr class="row-odd"><td><p>HST_WFC3_F665N</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>6656.383</p></td>
+<td><p>6656.256</p></td>
+<td><p>6656.489</p></td>
+<td><p>21.76052</p></td>
+<td><p>1.976e-09</p></td>
+<td><p>2920.3</p></td>
+<td><p>21.52410</p></td>
+<td><p>2.4567e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>5365.9</p></td>
+</tr>
+<tr class="row-even"><td><p>HST_WFC3_F673N</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>6766.402</p></td>
+<td><p>6766.289</p></td>
+<td><p>6765.731</p></td>
+<td><p>21.79857</p></td>
+<td><p>1.908e-09</p></td>
+<td><p>2913.7</p></td>
+<td><p>21.55970</p></td>
+<td><p>2.3775e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>5544.7</p></td>
+</tr>
+<tr class="row-odd"><td><p>HST_WFC3_F680N</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>6881.439</p></td>
+<td><p>6880.530</p></td>
+<td><p>6875.895</p></td>
+<td><p>21.85383</p></td>
+<td><p>1.8133e-09</p></td>
+<td><p>2863.5</p></td>
+<td><p>21.59606</p></td>
+<td><p>2.2992e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>5733.5</p></td>
+</tr>
+<tr class="row-even"><td><p>HST_WFC3_F689M</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>6891.077</p></td>
+<td><p>6887.923</p></td>
+<td><p>6877.325</p></td>
+<td><p>21.87567</p></td>
+<td><p>1.7772e-09</p></td>
+<td><p>2812.5</p></td>
+<td><p>21.59839</p></td>
+<td><p>2.2943e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>5745.9</p></td>
+</tr>
+<tr class="row-odd"><td><p>HST_WFC3_F763M</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>7641.915</p></td>
+<td><p>7638.412</p></td>
+<td><p>7619.905</p></td>
+<td><p>22.20575</p></td>
+<td><p>1.3113e-09</p></td>
+<td><p>2552</p></td>
+<td><p>21.82296</p></td>
+<td><p>1.8656e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>7066.2</p></td>
+</tr>
+<tr class="row-even"><td><p>HST_WFC3_F775W</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>7747.186</p></td>
+<td><p>7735.114</p></td>
+<td><p>7671.518</p></td>
+<td><p>22.24473</p></td>
+<td><p>1.265e-09</p></td>
+<td><p>2524.8</p></td>
+<td><p>21.85028</p></td>
+<td><p>1.8192e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>7246.2</p></td>
+</tr>
+<tr class="row-odd"><td><p>HST_WFC3_F814W</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>8339.737</p></td>
+<td><p>8306.966</p></td>
+<td><p>8160.697</p></td>
+<td><p>22.45014</p></td>
+<td><p>1.047e-09</p></td>
+<td><p>2409.9</p></td>
+<td><p>22.00516</p></td>
+<td><p>1.5774e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>8357.3</p></td>
+</tr>
+<tr class="row-even"><td><p>HST_WFC3_F845M</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>8475.251</p></td>
+<td><p>8471.207</p></td>
+<td><p>8453.158</p></td>
+<td><p>22.55109</p></td>
+<td><p>9.5404e-10</p></td>
+<td><p>2283.7</p></td>
+<td><p>22.04767</p></td>
+<td><p>1.5168e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>8691</p></td>
+</tr>
+<tr class="row-odd"><td><p>HST_WFC3_F850LP</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>9785.556</p></td>
+<td><p>9759.340</p></td>
+<td><p>9641.099</p></td>
+<td><p>22.92406</p></td>
+<td><p>6.7667e-10</p></td>
+<td><p>2149.8</p></td>
+<td><p>22.35505</p></td>
+<td><p>1.1428e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>11535</p></td>
+</tr>
+<tr class="row-even"><td><p>HST_WFC3_F953N</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>9532.926</p></td>
+<td><p>9532.870</p></td>
+<td><p>9530.795</p></td>
+<td><p>22.92040</p></td>
+<td><p>6.7895e-10</p></td>
+<td><p>2058.1</p></td>
+<td><p>22.30407</p></td>
+<td><p>1.1978e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>11006</p></td>
+</tr>
+<tr class="row-odd"><td><p>HST_WFC3_FQ232N</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>2522.677</p></td>
+<td><p>2469.052</p></td>
+<td><p>2440.727</p></td>
+<td><p>20.99433</p></td>
+<td><p>4.0019e-09</p></td>
+<td><p>813.78</p></td>
+<td><p>19.37060</p></td>
+<td><p>1.7855e-08</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>738.31</p></td>
+</tr>
+<tr class="row-even"><td><p>HST_WFC3_FQ243N</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>2531.807</p></td>
+<td><p>2502.415</p></td>
+<td><p>2494.878</p></td>
+<td><p>21.04009</p></td>
+<td><p>3.8367e-09</p></td>
+<td><p>801.42</p></td>
+<td><p>19.39975</p></td>
+<td><p>1.7382e-08</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>758.4</p></td>
+</tr>
+<tr class="row-odd"><td><p>HST_WFC3_FQ378N</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>3792.163</p></td>
+<td><p>3792.024</p></td>
+<td><p>3796.448</p></td>
+<td><p>20.78020</p></td>
+<td><p>4.8744e-09</p></td>
+<td><p>2338</p></td>
+<td><p>20.30230</p></td>
+<td><p>7.5697e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>1741.5</p></td>
+</tr>
+<tr class="row-even"><td><p>HST_WFC3_FQ387N</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>3873.579</p></td>
+<td><p>3873.554</p></td>
+<td><p>3871.278</p></td>
+<td><p>20.42112</p></td>
+<td><p>6.785e-09</p></td>
+<td><p>3395.9</p></td>
+<td><p>20.34850</p></td>
+<td><p>7.2544e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>1817.2</p></td>
+</tr>
+<tr class="row-odd"><td><p>HST_WFC3_FQ422M</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>4219.105</p></td>
+<td><p>4218.933</p></td>
+<td><p>4218.131</p></td>
+<td><p>20.28622</p></td>
+<td><p>7.6827e-09</p></td>
+<td><p>4561.4</p></td>
+<td><p>20.53396</p></td>
+<td><p>6.1153e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>2155.7</p></td>
+</tr>
+<tr class="row-even"><td><p>HST_WFC3_FQ436N</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>4367.173</p></td>
+<td><p>4367.113</p></td>
+<td><p>4369.131</p></td>
+<td><p>20.56654</p></td>
+<td><p>5.9345e-09</p></td>
+<td><p>3775.3</p></td>
+<td><p>20.60892</p></td>
+<td><p>5.7073e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>2309.8</p></td>
+</tr>
+<tr class="row-odd"><td><p>HST_WFC3_FQ437N</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>4371.176</p></td>
+<td><p>4371.083</p></td>
+<td><p>4371.595</p></td>
+<td><p>20.48851</p></td>
+<td><p>6.3767e-09</p></td>
+<td><p>4064</p></td>
+<td><p>20.61089</p></td>
+<td><p>5.697e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>2314</p></td>
+</tr>
+<tr class="row-even"><td><p>HST_WFC3_FQ492N</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>4933.521</p></td>
+<td><p>4933.398</p></td>
+<td><p>4934.297</p></td>
+<td><p>20.80210</p></td>
+<td><p>4.777e-09</p></td>
+<td><p>3878.2</p></td>
+<td><p>20.87368</p></td>
+<td><p>4.4723e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>2947.6</p></td>
+</tr>
+<tr class="row-odd"><td><p>HST_WFC3_FQ508N</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>5091.245</p></td>
+<td><p>5091.070</p></td>
+<td><p>5090.332</p></td>
+<td><p>20.86503</p></td>
+<td><p>4.508e-09</p></td>
+<td><p>3897.5</p></td>
+<td><p>20.94199</p></td>
+<td><p>4.1995e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>3139</p></td>
+</tr>
+<tr class="row-even"><td><p>HST_WFC3_FQ575N</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>5758.798</p></td>
+<td><p>5758.472</p></td>
+<td><p>5757.491</p></td>
+<td><p>21.26659</p></td>
+<td><p>3.1143e-09</p></td>
+<td><p>3444.8</p></td>
+<td><p>21.20948</p></td>
+<td><p>3.2825e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>4016</p></td>
+</tr>
+<tr class="row-odd"><td><p>HST_WFC3_FQ619N</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>6199.053</p></td>
+<td><p>6198.885</p></td>
+<td><p>6198.282</p></td>
+<td><p>21.50813</p></td>
+<td><p>2.4931e-09</p></td>
+<td><p>3195.6</p></td>
+<td><p>21.36952</p></td>
+<td><p>2.8327e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>4653.8</p></td>
+</tr>
+<tr class="row-even"><td><p>HST_WFC3_FQ634N</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>6349.625</p></td>
+<td><p>6349.462</p></td>
+<td><p>6348.863</p></td>
+<td><p>21.59021</p></td>
+<td><p>2.3116e-09</p></td>
+<td><p>3108.6</p></td>
+<td><p>21.42163</p></td>
+<td><p>2.6999e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>4882.6</p></td>
+</tr>
+<tr class="row-odd"><td><p>HST_WFC3_FQ672N</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>6716.968</p></td>
+<td><p>6716.682</p></td>
+<td><p>6715.975</p></td>
+<td><p>21.77521</p></td>
+<td><p>1.9495e-09</p></td>
+<td><p>2933.6</p></td>
+<td><p>21.54372</p></td>
+<td><p>2.4127e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>5463.7</p></td>
+</tr>
+<tr class="row-even"><td><p>HST_WFC3_FQ674N</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>6731.471</p></td>
+<td><p>6731.361</p></td>
+<td><p>6731.384</p></td>
+<td><p>21.78238</p></td>
+<td><p>1.9366e-09</p></td>
+<td><p>2927.1</p></td>
+<td><p>21.54846</p></td>
+<td><p>2.4022e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>5487.6</p></td>
+</tr>
+<tr class="row-odd"><td><p>HST_WFC3_FQ727N</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>7275.712</p></td>
+<td><p>7275.551</p></td>
+<td><p>7274.679</p></td>
+<td><p>22.04158</p></td>
+<td><p>1.5253e-09</p></td>
+<td><p>2693.3</p></td>
+<td><p>21.71728</p></td>
+<td><p>2.0563e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>6410.8</p></td>
+</tr>
+<tr class="row-even"><td><p>HST_WFC3_FQ750N</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>7502.933</p></td>
+<td><p>7502.874</p></td>
+<td><p>7502.623</p></td>
+<td><p>22.14670</p></td>
+<td><p>1.3846e-09</p></td>
+<td><p>2599.9</p></td>
+<td><p>21.78409</p></td>
+<td><p>1.9336e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>6817.6</p></td>
+</tr>
+<tr class="row-odd"><td><p>HST_WFC3_FQ889N</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>8894.018</p></td>
+<td><p>8893.954</p></td>
+<td><p>8895.399</p></td>
+<td><p>22.66725</p></td>
+<td><p>8.5723e-10</p></td>
+<td><p>2261.9</p></td>
+<td><p>22.15342</p></td>
+<td><p>1.376e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>9580.1</p></td>
+</tr>
+<tr class="row-even"><td><p>HST_WFC3_FQ906N</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>9059.637</p></td>
+<td><p>9059.574</p></td>
+<td><p>9061.062</p></td>
+<td><p>22.70042</p></td>
+<td><p>8.3144e-10</p></td>
+<td><p>2276.3</p></td>
+<td><p>22.19349</p></td>
+<td><p>1.3262e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>9940.2</p></td>
+</tr>
+<tr class="row-odd"><td><p>HST_WFC3_FQ924N</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>9248.846</p></td>
+<td><p>9248.789</p></td>
+<td><p>9250.352</p></td>
+<td><p>22.82737</p></td>
+<td><p>7.3969e-10</p></td>
+<td><p>2110.6</p></td>
+<td><p>22.23837</p></td>
+<td><p>1.2725e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>10360</p></td>
+</tr>
+<tr class="row-even"><td><p>HST_WFC3_FQ937N</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>9374.085</p></td>
+<td><p>9374.016</p></td>
+<td><p>9373.847</p></td>
+<td><p>22.72645</p></td>
+<td><p>8.1174e-10</p></td>
+<td><p>2379.3</p></td>
+<td><p>22.26758</p></td>
+<td><p>1.2387e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>10642</p></td>
+</tr>
+<tr class="row-odd"><td><p>HST_WFPC2_F170W</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>1733.233</p></td>
+<td><p>1717.134</p></td>
+<td><p>1714.740</p></td>
+<td><p>20.52644</p></td>
+<td><p>6.1578e-09</p></td>
+<td><p>605.64</p></td>
+<td><p>18.58197</p></td>
+<td><p>3.6916e-08</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>357.1</p></td>
+</tr>
+<tr class="row-even"><td><p>HST_WFPC2_F218W</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>2211.998</p></td>
+<td><p>2205.051</p></td>
+<td><p>2189.970</p></td>
+<td><p>20.81659</p></td>
+<td><p>4.7137e-09</p></td>
+<td><p>764.51</p></td>
+<td><p>19.12504</p></td>
+<td><p>2.2386e-08</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>588.87</p></td>
+</tr>
+<tr class="row-odd"><td><p>HST_WFPC2_F255W</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>2606.405</p></td>
+<td><p>2600.674</p></td>
+<td><p>2600.029</p></td>
+<td><p>21.04537</p></td>
+<td><p>3.8181e-09</p></td>
+<td><p>861.4</p></td>
+<td><p>19.48338</p></td>
+<td><p>1.6093e-08</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>819.13</p></td>
+</tr>
+<tr class="row-even"><td><p>HST_WFPC2_F300W</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>3015.108</p></td>
+<td><p>2994.314</p></td>
+<td><p>2996.958</p></td>
+<td><p>21.12162</p></td>
+<td><p>3.5592e-09</p></td>
+<td><p>1064.5</p></td>
+<td><p>19.78944</p></td>
+<td><p>1.214e-08</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>1085.9</p></td>
+</tr>
+<tr class="row-odd"><td><p>HST_WFPC2_F336W</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>3368.275</p></td>
+<td><p>3359.110</p></td>
+<td><p>3351.909</p></td>
+<td><p>21.21750</p></td>
+<td><p>3.2584e-09</p></td>
+<td><p>1226.4</p></td>
+<td><p>20.03907</p></td>
+<td><p>9.6466e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>1366.6</p></td>
+</tr>
+<tr class="row-even"><td><p>HST_WFPC2_F439W</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>4316.422</p></td>
+<td><p>4311.636</p></td>
+<td><p>4300.760</p></td>
+<td><p>20.42867</p></td>
+<td><p>6.738e-09</p></td>
+<td><p>4178.3</p></td>
+<td><p>20.58116</p></td>
+<td><p>5.8551e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>2251.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>HST_WFPC2_F450W</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>4573.223</p></td>
+<td><p>4555.568</p></td>
+<td><p>4513.199</p></td>
+<td><p>20.60922</p></td>
+<td><p>5.7058e-09</p></td>
+<td><p>3949.8</p></td>
+<td><p>20.70066</p></td>
+<td><p>5.2449e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>2513.4</p></td>
+</tr>
+<tr class="row-even"><td><p>HST_WFPC2_F555W</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>5464.642</p></td>
+<td><p>5439.047</p></td>
+<td><p>5318.843</p></td>
+<td><p>21.08144</p></td>
+<td><p>3.6934e-09</p></td>
+<td><p>3644.6</p></td>
+<td><p>21.08556</p></td>
+<td><p>3.6794e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>3582.8</p></td>
+</tr>
+<tr class="row-odd"><td><p>HST_WFPC2_F606W</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>6030.849</p></td>
+<td><p>5996.826</p></td>
+<td><p>5828.511</p></td>
+<td><p>21.39645</p></td>
+<td><p>2.7632e-09</p></td>
+<td><p>3314.7</p></td>
+<td><p>21.29756</p></td>
+<td><p>3.0268e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>4355.3</p></td>
+</tr>
+<tr class="row-even"><td><p>HST_WFPC2_F622W</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>6198.633</p></td>
+<td><p>6186.305</p></td>
+<td><p>6120.375</p></td>
+<td><p>21.50640</p></td>
+<td><p>2.4971e-09</p></td>
+<td><p>3187.7</p></td>
+<td><p>21.36510</p></td>
+<td><p>2.8442e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>4634.9</p></td>
+</tr>
+<tr class="row-odd"><td><p>HST_WFPC2_F675W</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>6727.579</p></td>
+<td><p>6717.389</p></td>
+<td><p>6667.050</p></td>
+<td><p>21.78357</p></td>
+<td><p>1.9345e-09</p></td>
+<td><p>2911.7</p></td>
+<td><p>21.54395</p></td>
+<td><p>2.4122e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>5464.9</p></td>
+</tr>
+<tr class="row-even"><td><p>HST_WFPC2_F791W</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>7898.441</p></td>
+<td><p>7880.592</p></td>
+<td><p>7793.408</p></td>
+<td><p>22.30142</p></td>
+<td><p>1.2007e-09</p></td>
+<td><p>2487.3</p></td>
+<td><p>21.89074</p></td>
+<td><p>1.7527e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>7521.4</p></td>
+</tr>
+<tr class="row-odd"><td><p>HST_WFPC2_F814W</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>8040.303</p></td>
+<td><p>8012.225</p></td>
+<td><p>7887.247</p></td>
+<td><p>22.34347</p></td>
+<td><p>1.1551e-09</p></td>
+<td><p>2473.4</p></td>
+<td><p>21.92671</p></td>
+<td><p>1.6956e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>7774.7</p></td>
+</tr>
+<tr class="row-even"><td><p>HST_WFPC2_F850LP</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>9139.792</p></td>
+<td><p>9128.788</p></td>
+<td><p>9092.561</p></td>
+<td><p>22.72868</p></td>
+<td><p>8.1008e-10</p></td>
+<td><p>2251.8</p></td>
+<td><p>22.21001</p></td>
+<td><p>1.3062e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>10093</p></td>
+</tr>
+<tr class="row-odd"><td><p>JWST_NIRCAM_F070W</p></td>
+<td><p>photon</p></td>
+<td><p>um</p></td>
+<td><p>0.706</p></td>
+<td><p>0.704</p></td>
+<td><p>0.696</p></td>
+<td><p>21.93391</p></td>
+<td><p>1.6844e-09</p></td>
+<td><p>2787.1</p></td>
+<td><p>21.64680</p></td>
+<td><p>2.1942e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>6007.9</p></td>
+</tr>
+<tr class="row-even"><td><p>JWST_NIRCAM_F090W</p></td>
+<td><p>photon</p></td>
+<td><p>um</p></td>
+<td><p>0.904</p></td>
+<td><p>0.902</p></td>
+<td><p>0.895</p></td>
+<td><p>22.69608</p></td>
+<td><p>8.3477e-10</p></td>
+<td><p>2267</p></td>
+<td><p>22.18472</p></td>
+<td><p>1.3369e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>9860.3</p></td>
+</tr>
+<tr class="row-odd"><td><p>JWST_NIRCAM_F115W</p></td>
+<td><p>photon</p></td>
+<td><p>um</p></td>
+<td><p>1.157</p></td>
+<td><p>1.154</p></td>
+<td><p>1.138</p></td>
+<td><p>23.49677</p></td>
+<td><p>3.993e-10</p></td>
+<td><p>1774.7</p></td>
+<td><p>22.71955</p></td>
+<td><p>8.1692e-10</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>16137</p></td>
+</tr>
+<tr class="row-even"><td><p>JWST_NIRCAM_F140M</p></td>
+<td><p>photon</p></td>
+<td><p>um</p></td>
+<td><p>1.406</p></td>
+<td><p>1.405</p></td>
+<td><p>1.401</p></td>
+<td><p>24.24994</p></td>
+<td><p>1.9954e-10</p></td>
+<td><p>1314.5</p></td>
+<td><p>23.14688</p></td>
+<td><p>5.5112e-10</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>23919</p></td>
+</tr>
+<tr class="row-odd"><td><p>JWST_NIRCAM_F150W</p></td>
+<td><p>photon</p></td>
+<td><p>um</p></td>
+<td><p>1.504</p></td>
+<td><p>1.501</p></td>
+<td><p>1.481</p></td>
+<td><p>24.49485</p></td>
+<td><p>1.5924e-10</p></td>
+<td><p>1196.4</p></td>
+<td><p>23.28950</p></td>
+<td><p>4.8328e-10</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>27277</p></td>
+</tr>
+<tr class="row-even"><td><p>JWST_NIRCAM_F150W2</p></td>
+<td><p>photon</p></td>
+<td><p>um</p></td>
+<td><p>1.704</p></td>
+<td><p>1.659</p></td>
+<td><p>1.399</p></td>
+<td><p>24.73338</p></td>
+<td><p>1.2783e-10</p></td>
+<td><p>1173.3</p></td>
+<td><p>23.50694</p></td>
+<td><p>3.9557e-10</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>33326</p></td>
+</tr>
+<tr class="row-odd"><td><p>JWST_NIRCAM_F162M</p></td>
+<td><p>photon</p></td>
+<td><p>um</p></td>
+<td><p>1.628</p></td>
+<td><p>1.627</p></td>
+<td><p>1.623</p></td>
+<td><p>24.81694</p></td>
+<td><p>1.1837e-10</p></td>
+<td><p>1045.5</p></td>
+<td><p>23.46523</p></td>
+<td><p>4.1106e-10</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>32069</p></td>
+</tr>
+<tr class="row-even"><td><p>JWST_NIRCAM_F164N</p></td>
+<td><p>photon</p></td>
+<td><p>um</p></td>
+<td><p>1.645</p></td>
+<td><p>1.645</p></td>
+<td><p>1.645</p></td>
+<td><p>24.88010</p></td>
+<td><p>1.1168e-10</p></td>
+<td><p>1007.5</p></td>
+<td><p>23.48824</p></td>
+<td><p>4.0244e-10</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>32756</p></td>
+</tr>
+<tr class="row-odd"><td><p>JWST_NIRCAM_F182M</p></td>
+<td><p>photon</p></td>
+<td><p>um</p></td>
+<td><p>1.847</p></td>
+<td><p>1.845</p></td>
+<td><p>1.836</p></td>
+<td><p>25.29601</p></td>
+<td><p>7.6137e-11</p></td>
+<td><p>864.66</p></td>
+<td><p>23.73813</p></td>
+<td><p>3.197e-10</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>41234</p></td>
+</tr>
+<tr class="row-even"><td><p>JWST_NIRCAM_F187N</p></td>
+<td><p>photon</p></td>
+<td><p>um</p></td>
+<td><p>1.874</p></td>
+<td><p>1.874</p></td>
+<td><p>1.874</p></td>
+<td><p>25.39575</p></td>
+<td><p>6.9455e-11</p></td>
+<td><p>813.52</p></td>
+<td><p>23.77167</p></td>
+<td><p>3.0998e-10</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>42527</p></td>
+</tr>
+<tr class="row-odd"><td><p>JWST_NIRCAM_F200W</p></td>
+<td><p>photon</p></td>
+<td><p>um</p></td>
+<td><p>1.993</p></td>
+<td><p>1.989</p></td>
+<td><p>1.959</p></td>
+<td><p>25.57670</p></td>
+<td><p>5.8792e-11</p></td>
+<td><p>775.55</p></td>
+<td><p>23.90073</p></td>
+<td><p>2.7524e-10</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>47895</p></td>
+</tr>
+<tr class="row-even"><td><p>JWST_NIRCAM_F210M</p></td>
+<td><p>photon</p></td>
+<td><p>um</p></td>
+<td><p>2.096</p></td>
+<td><p>2.095</p></td>
+<td><p>2.089</p></td>
+<td><p>25.79468</p></td>
+<td><p>4.8098e-11</p></td>
+<td><p>704.47</p></td>
+<td><p>24.01433</p></td>
+<td><p>2.4789e-10</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>53178</p></td>
+</tr>
+<tr class="row-odd"><td><p>JWST_NIRCAM_F212N</p></td>
+<td><p>photon</p></td>
+<td><p>um</p></td>
+<td><p>2.121</p></td>
+<td><p>2.121</p></td>
+<td><p>2.120</p></td>
+<td><p>25.84193</p></td>
+<td><p>4.605e-11</p></td>
+<td><p>691.14</p></td>
+<td><p>24.04085</p></td>
+<td><p>2.4191e-10</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>54493</p></td>
+</tr>
+<tr class="row-even"><td><p>JWST_NIRCAM_F250M</p></td>
+<td><p>photon</p></td>
+<td><p>um</p></td>
+<td><p>2.504</p></td>
+<td><p>2.503</p></td>
+<td><p>2.500</p></td>
+<td><p>26.51716</p></td>
+<td><p>2.4725e-11</p></td>
+<td><p>516.9</p></td>
+<td><p>24.40067</p></td>
+<td><p>1.7367e-10</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>75905</p></td>
+</tr>
+<tr class="row-odd"><td><p>JWST_NIRCAM_F277W</p></td>
+<td><p>photon</p></td>
+<td><p>um</p></td>
+<td><p>2.769</p></td>
+<td><p>2.762</p></td>
+<td><p>2.713</p></td>
+<td><p>26.90314</p></td>
+<td><p>1.7328e-11</p></td>
+<td><p>440.89</p></td>
+<td><p>24.61397</p></td>
+<td><p>1.427e-10</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>92382</p></td>
+</tr>
+<tr class="row-even"><td><p>JWST_NIRCAM_F300M</p></td>
+<td><p>photon</p></td>
+<td><p>um</p></td>
+<td><p>2.991</p></td>
+<td><p>2.989</p></td>
+<td><p>2.979</p></td>
+<td><p>27.23895</p></td>
+<td><p>1.2718e-11</p></td>
+<td><p>379.08</p></td>
+<td><p>24.78576</p></td>
+<td><p>1.2181e-10</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>1.0822e+05</p></td>
+</tr>
+<tr class="row-odd"><td><p>JWST_NIRCAM_F322W2</p></td>
+<td><p>photon</p></td>
+<td><p>um</p></td>
+<td><p>3.267</p></td>
+<td><p>3.232</p></td>
+<td><p>3.007</p></td>
+<td><p>27.48832</p></td>
+<td><p>1.0108e-11</p></td>
+<td><p>352.21</p></td>
+<td><p>24.95531</p></td>
+<td><p>1.042e-10</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>1.2651e+05</p></td>
+</tr>
+<tr class="row-even"><td><p>JWST_NIRCAM_F323N</p></td>
+<td><p>photon</p></td>
+<td><p>um</p></td>
+<td><p>3.237</p></td>
+<td><p>3.237</p></td>
+<td><p>3.237</p></td>
+<td><p>27.56484</p></td>
+<td><p>9.4203e-12</p></td>
+<td><p>329.24</p></td>
+<td><p>24.95861</p></td>
+<td><p>1.0389e-10</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>1.2689e+05</p></td>
+</tr>
+<tr class="row-odd"><td><p>JWST_NIRCAM_F335M</p></td>
+<td><p>photon</p></td>
+<td><p>um</p></td>
+<td><p>3.364</p></td>
+<td><p>3.362</p></td>
+<td><p>3.350</p></td>
+<td><p>27.72286</p></td>
+<td><p>8.1444e-12</p></td>
+<td><p>307.1</p></td>
+<td><p>25.04105</p></td>
+<td><p>9.629e-11</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>1.3691e+05</p></td>
+</tr>
+<tr class="row-even"><td><p>JWST_NIRCAM_F356W</p></td>
+<td><p>photon</p></td>
+<td><p>um</p></td>
+<td><p>3.577</p></td>
+<td><p>3.568</p></td>
+<td><p>3.512</p></td>
+<td><p>27.95716</p></td>
+<td><p>6.5635e-12</p></td>
+<td><p>278.78</p></td>
+<td><p>25.17030</p></td>
+<td><p>8.5483e-11</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>1.5421e+05</p></td>
+</tr>
+<tr class="row-odd"><td><p>JWST_NIRCAM_F360M</p></td>
+<td><p>photon</p></td>
+<td><p>um</p></td>
+<td><p>3.626</p></td>
+<td><p>3.624</p></td>
+<td><p>3.611</p></td>
+<td><p>28.03569</p></td>
+<td><p>6.1056e-12</p></td>
+<td><p>267.51</p></td>
+<td><p>25.20403</p></td>
+<td><p>8.2869e-11</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>1.5908e+05</p></td>
+</tr>
+<tr class="row-even"><td><p>JWST_NIRCAM_F405N</p></td>
+<td><p>photon</p></td>
+<td><p>um</p></td>
+<td><p>4.052</p></td>
+<td><p>4.052</p></td>
+<td><p>4.052</p></td>
+<td><p>28.52767</p></td>
+<td><p>3.8809e-12</p></td>
+<td><p>212.52</p></td>
+<td><p>25.44615</p></td>
+<td><p>6.6304e-11</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>1.9882e+05</p></td>
+</tr>
+<tr class="row-odd"><td><p>JWST_NIRCAM_F410M</p></td>
+<td><p>photon</p></td>
+<td><p>um</p></td>
+<td><p>4.084</p></td>
+<td><p>4.082</p></td>
+<td><p>4.068</p></td>
+<td><p>28.53481</p></td>
+<td><p>3.8555e-12</p></td>
+<td><p>214.31</p></td>
+<td><p>25.46244</p></td>
+<td><p>6.5317e-11</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>2.0183e+05</p></td>
+</tr>
+<tr class="row-even"><td><p>JWST_NIRCAM_F430M</p></td>
+<td><p>photon</p></td>
+<td><p>um</p></td>
+<td><p>4.282</p></td>
+<td><p>4.281</p></td>
+<td><p>4.277</p></td>
+<td><p>28.73640</p></td>
+<td><p>3.2021e-12</p></td>
+<td><p>195.77</p></td>
+<td><p>25.56577</p></td>
+<td><p>5.9387e-11</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>2.2198e+05</p></td>
+</tr>
+<tr class="row-odd"><td><p>JWST_NIRCAM_F444W</p></td>
+<td><p>photon</p></td>
+<td><p>um</p></td>
+<td><p>4.416</p></td>
+<td><p>4.404</p></td>
+<td><p>4.327</p></td>
+<td><p>28.83584</p></td>
+<td><p>2.9219e-12</p></td>
+<td><p>189.05</p></td>
+<td><p>25.62726</p></td>
+<td><p>5.6117e-11</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>2.3491e+05</p></td>
+</tr>
+<tr class="row-even"><td><p>JWST_NIRCAM_F460M</p></td>
+<td><p>photon</p></td>
+<td><p>um</p></td>
+<td><p>4.630</p></td>
+<td><p>4.630</p></td>
+<td><p>4.624</p></td>
+<td><p>29.06880</p></td>
+<td><p>2.3577e-12</p></td>
+<td><p>168.56</p></td>
+<td><p>25.73568</p></td>
+<td><p>5.0784e-11</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>2.5958e+05</p></td>
+</tr>
+<tr class="row-odd"><td><p>JWST_NIRCAM_F466N</p></td>
+<td><p>photon</p></td>
+<td><p>um</p></td>
+<td><p>4.654</p></td>
+<td><p>4.654</p></td>
+<td><p>4.654</p></td>
+<td><p>29.12328</p></td>
+<td><p>2.2423e-12</p></td>
+<td><p>162.03</p></td>
+<td><p>25.74727</p></td>
+<td><p>5.0245e-11</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>2.6237e+05</p></td>
+</tr>
+<tr class="row-even"><td><p>JWST_NIRCAM_F470N</p></td>
+<td><p>photon</p></td>
+<td><p>um</p></td>
+<td><p>4.708</p></td>
+<td><p>4.708</p></td>
+<td><p>4.708</p></td>
+<td><p>29.13628</p></td>
+<td><p>2.2156e-12</p></td>
+<td><p>163.79</p></td>
+<td><p>25.77201</p></td>
+<td><p>4.9113e-11</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>2.6841e+05</p></td>
+</tr>
+<tr class="row-odd"><td><p>JWST_NIRCAM_F480M</p></td>
+<td><p>photon</p></td>
+<td><p>um</p></td>
+<td><p>4.819</p></td>
+<td><p>4.818</p></td>
+<td><p>4.809</p></td>
+<td><p>29.22973</p></td>
+<td><p>2.0329e-12</p></td>
+<td><p>157.39</p></td>
+<td><p>25.82220</p></td>
+<td><p>4.6894e-11</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>2.8111e+05</p></td>
+</tr>
+<tr class="row-even"><td><p>KEPLER_Kp</p></td>
+<td><p>energy</p></td>
+<td><p>angstrom</p></td>
+<td><p>6416.836</p></td>
+<td><p>6082.071</p></td>
+<td><p>5781.206</p></td>
+<td><p>21.41330</p></td>
+<td><p>2.7207e-09</p></td>
+<td><p>3357.1</p></td>
+<td><p>21.32821</p></td>
+<td><p>2.9425e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>4480</p></td>
+</tr>
+<tr class="row-odd"><td><p>NGTS_I</p></td>
+<td><p>energy</p></td>
+<td><p>nanometer</p></td>
+<td><p>703.021</p></td>
+<td><p>680.125</p></td>
+<td><p>656.946</p></td>
+<td><p>21.78673</p></td>
+<td><p>1.9289e-09</p></td>
+<td><p>2976.2</p></td>
+<td><p>21.57089</p></td>
+<td><p>2.3531e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>5602.2</p></td>
+</tr>
+<tr class="row-even"><td><p>PS1_g</p></td>
+<td><p>photon</p></td>
+<td><p>angstrom</p></td>
+<td><p>4866.459</p></td>
+<td><p>4849.117</p></td>
+<td><p>4775.618</p></td>
+<td><p>20.74336</p></td>
+<td><p>5.0426e-09</p></td>
+<td><p>3955.1</p></td>
+<td><p>20.83626</p></td>
+<td><p>4.6291e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>2847.8</p></td>
+</tr>
+<tr class="row-odd"><td><p>PS1_i</p></td>
+<td><p>photon</p></td>
+<td><p>angstrom</p></td>
+<td><p>7544.570</p></td>
+<td><p>7534.956</p></td>
+<td><p>7484.579</p></td>
+<td><p>22.15651</p></td>
+<td><p>1.3721e-09</p></td>
+<td><p>2598.6</p></td>
+<td><p>21.79335</p></td>
+<td><p>1.9172e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>6876.1</p></td>
+</tr>
+<tr class="row-even"><td><p>PS1_r</p></td>
+<td><p>photon</p></td>
+<td><p>angstrom</p></td>
+<td><p>6214.623</p></td>
+<td><p>6201.186</p></td>
+<td><p>6129.505</p></td>
+<td><p>21.51377</p></td>
+<td><p>2.4802e-09</p></td>
+<td><p>3181.4</p></td>
+<td><p>21.37032</p></td>
+<td><p>2.8306e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>4657.2</p></td>
+</tr>
+<tr class="row-odd"><td><p>PS1_w</p></td>
+<td><p>photon</p></td>
+<td><p>angstrom</p></td>
+<td><p>6389.352</p></td>
+<td><p>6285.962</p></td>
+<td><p>5775.141</p></td>
+<td><p>21.52368</p></td>
+<td><p>2.4577e-09</p></td>
+<td><p>3239.3</p></td>
+<td><p>21.39981</p></td>
+<td><p>2.7547e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>4785.4</p></td>
+</tr>
+<tr class="row-even"><td><p>PS1_y</p></td>
+<td><p>photon</p></td>
+<td><p>angstrom</p></td>
+<td><p>9633.257</p></td>
+<td><p>9627.741</p></td>
+<td><p>9603.037</p></td>
+<td><p>22.86447</p></td>
+<td><p>7.1484e-10</p></td>
+<td><p>2210.2</p></td>
+<td><p>22.32557</p></td>
+<td><p>1.1743e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>11226</p></td>
+</tr>
+<tr class="row-odd"><td><p>PS1_z</p></td>
+<td><p>photon</p></td>
+<td><p>angstrom</p></td>
+<td><p>8679.478</p></td>
+<td><p>8674.179</p></td>
+<td><p>8657.802</p></td>
+<td><p>22.60614</p></td>
+<td><p>9.0687e-10</p></td>
+<td><p>2276</p></td>
+<td><p>22.09909</p></td>
+<td><p>1.4467e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>9112.5</p></td>
+</tr>
+<tr class="row-even"><td><p>SDSS_g</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>4718.872</p></td>
+<td><p>4702.495</p></td>
+<td><p>4640.422</p></td>
+<td><p>20.66307</p></td>
+<td><p>5.4297e-09</p></td>
+<td><p>4005.1</p></td>
+<td><p>20.76959</p></td>
+<td><p>4.9223e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>2678.2</p></td>
+</tr>
+<tr class="row-odd"><td><p>SDSS_i</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>7499.704</p></td>
+<td><p>7489.977</p></td>
+<td><p>7439.503</p></td>
+<td><p>22.13614</p></td>
+<td><p>1.3981e-09</p></td>
+<td><p>2616.3</p></td>
+<td><p>21.78035</p></td>
+<td><p>1.9403e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>6794.2</p></td>
+</tr>
+<tr class="row-even"><td><p>SDSS_r</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>6185.194</p></td>
+<td><p>6175.579</p></td>
+<td><p>6122.329</p></td>
+<td><p>21.50373</p></td>
+<td><p>2.5033e-09</p></td>
+<td><p>3184.5</p></td>
+<td><p>21.36134</p></td>
+<td><p>2.8541e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>4618.9</p></td>
+</tr>
+<tr class="row-odd"><td><p>SDSS_u</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>3561.789</p></td>
+<td><p>3556.524</p></td>
+<td><p>3594.930</p></td>
+<td><p>21.08761</p></td>
+<td><p>3.6725e-09</p></td>
+<td><p>1549.5</p></td>
+<td><p>20.16308</p></td>
+<td><p>8.6054e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>1531.9</p></td>
+</tr>
+<tr class="row-even"><td><p>SDSS_z</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>8961.488</p></td>
+<td><p>8946.710</p></td>
+<td><p>8897.064</p></td>
+<td><p>22.68414</p></td>
+<td><p>8.44e-10</p></td>
+<td><p>2253.5</p></td>
+<td><p>22.16626</p></td>
+<td><p>1.3599e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>9694.1</p></td>
+</tr>
+<tr class="row-odd"><td><p>SPITZER_IRAC_36</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>35634.294</p></td>
+<td><p>35569.271</p></td>
+<td><p>35134.320</p></td>
+<td><p>27.94840</p></td>
+<td><p>6.6167e-12</p></td>
+<td><p>279.24</p></td>
+<td><p>25.16332</p></td>
+<td><p>8.6034e-11</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>1.5322e+05</p></td>
+</tr>
+<tr class="row-even"><td><p>SPITZER_IRAC_45</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>45110.142</p></td>
+<td><p>45020.220</p></td>
+<td><p>44425.741</p></td>
+<td><p>28.93308</p></td>
+<td><p>2.6716e-12</p></td>
+<td><p>180.62</p></td>
+<td><p>25.67499</p></td>
+<td><p>5.3704e-11</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>2.4547e+05</p></td>
+</tr>
+<tr class="row-odd"><td><p>SPITZER_IRAC_58</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>57593.368</p></td>
+<td><p>57450.414</p></td>
+<td><p>56473.379</p></td>
+<td><p>29.95506</p></td>
+<td><p>1.0423e-12</p></td>
+<td><p>114.75</p></td>
+<td><p>26.20441</p></td>
+<td><p>3.2979e-11</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>3.9973e+05</p></td>
+</tr>
+<tr class="row-even"><td><p>SPITZER_IRAC_80</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>79594.931</p></td>
+<td><p>79157.671</p></td>
+<td><p>76171.453</p></td>
+<td><p>31.29195</p></td>
+<td><p>3.0424e-13</p></td>
+<td><p>63.59</p></td>
+<td><p>26.90041</p></td>
+<td><p>1.7371e-11</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>7.5887e+05</p></td>
+</tr>
+<tr class="row-odd"><td><p>STROMGREN_b</p></td>
+<td><p>energy</p></td>
+<td><p>angstrom</p></td>
+<td><p>4669.008</p></td>
+<td><p>4666.246</p></td>
+<td><p>4663.261</p></td>
+<td><p>20.59817</p></td>
+<td><p>5.7641e-09</p></td>
+<td><p>4186.5</p></td>
+<td><p>20.75279</p></td>
+<td><p>4.999e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>2637</p></td>
+</tr>
+<tr class="row-even"><td><p>STROMGREN_u</p></td>
+<td><p>energy</p></td>
+<td><p>angstrom</p></td>
+<td><p>3450.559</p></td>
+<td><p>3443.598</p></td>
+<td><p>3447.508</p></td>
+<td><p>21.23785</p></td>
+<td><p>3.1979e-09</p></td>
+<td><p>1264.9</p></td>
+<td><p>20.09301</p></td>
+<td><p>9.179e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>1436.2</p></td>
+</tr>
+<tr class="row-odd"><td><p>STROMGREN_v</p></td>
+<td><p>energy</p></td>
+<td><p>angstrom</p></td>
+<td><p>4109.396</p></td>
+<td><p>4105.462</p></td>
+<td><p>4110.367</p></td>
+<td><p>20.34075</p></td>
+<td><p>7.3063e-09</p></td>
+<td><p>4107.7</p></td>
+<td><p>20.47476</p></td>
+<td><p>6.458e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>2041.3</p></td>
+</tr>
+<tr class="row-even"><td><p>STROMGREN_y</p></td>
+<td><p>energy</p></td>
+<td><p>angstrom</p></td>
+<td><p>5478.026</p></td>
+<td><p>5475.171</p></td>
+<td><p>5472.420</p></td>
+<td><p>21.10526</p></td>
+<td><p>3.6132e-09</p></td>
+<td><p>3613</p></td>
+<td><p>21.09994</p></td>
+<td><p>3.631e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>3630.6</p></td>
+</tr>
+<tr class="row-odd"><td><p>SkyMapper_g</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>5099.437</p></td>
+<td><p>5075.194</p></td>
+<td><p>4968.459</p></td>
+<td><p>20.87295</p></td>
+<td><p>4.4753e-09</p></td>
+<td><p>3845.1</p></td>
+<td><p>20.93521</p></td>
+<td><p>4.2259e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>3119.5</p></td>
+</tr>
+<tr class="row-even"><td><p>SkyMapper_i</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>7778.375</p></td>
+<td><p>7767.976</p></td>
+<td><p>7712.938</p></td>
+<td><p>22.26025</p></td>
+<td><p>1.2471e-09</p></td>
+<td><p>2510.1</p></td>
+<td><p>21.85949</p></td>
+<td><p>1.8039e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>7307.9</p></td>
+</tr>
+<tr class="row-odd"><td><p>SkyMapper_r</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>6157.284</p></td>
+<td><p>6138.440</p></td>
+<td><p>6040.059</p></td>
+<td><p>21.47589</p></td>
+<td><p>2.5683e-09</p></td>
+<td><p>3228</p></td>
+<td><p>21.34824</p></td>
+<td><p>2.8887e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>4563.5</p></td>
+</tr>
+<tr class="row-even"><td><p>SkyMapper_u</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>3496.616</p></td>
+<td><p>3493.359</p></td>
+<td><p>3498.153</p></td>
+<td><p>21.22515</p></td>
+<td><p>3.2355e-09</p></td>
+<td><p>1317.1</p></td>
+<td><p>20.12416</p></td>
+<td><p>8.9194e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>1478</p></td>
+</tr>
+<tr class="row-odd"><td><p>SkyMapper_v</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>3837.712</p></td>
+<td><p>3835.928</p></td>
+<td><p>3870.928</p></td>
+<td><p>20.63074</p></td>
+<td><p>5.5937e-09</p></td>
+<td><p>2745.5</p></td>
+<td><p>20.32730</p></td>
+<td><p>7.3974e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>1782.1</p></td>
+</tr>
+<tr class="row-even"><td><p>SkyMapper_z</p></td>
+<td><p>photon</p></td>
+<td><p>AA</p></td>
+<td><p>9161.712</p></td>
+<td><p>9145.993</p></td>
+<td><p>9091.502</p></td>
+<td><p>22.73990</p></td>
+<td><p>8.0175e-10</p></td>
+<td><p>2237.1</p></td>
+<td><p>22.21410</p></td>
+<td><p>1.3012e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>10131</p></td>
+</tr>
+<tr class="row-odd"><td><p>TESS</p></td>
+<td><p>energy</p></td>
+<td><p>angstrom</p></td>
+<td><p>7972.361</p></td>
+<td><p>7697.603</p></td>
+<td><p>7455.640</p></td>
+<td><p>22.18148</p></td>
+<td><p>1.3409e-09</p></td>
+<td><p>2650.3</p></td>
+<td><p>21.83973</p></td>
+<td><p>1.837e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>7176.1</p></td>
+</tr>
+<tr class="row-even"><td><p>TYCHO_B_MvB</p></td>
+<td><p>energy</p></td>
+<td><p>angstrom</p></td>
+<td><p>4220.390</p></td>
+<td><p>4194.961</p></td>
+<td><p>4219.757</p></td>
+<td><p>20.45302</p></td>
+<td><p>6.5886e-09</p></td>
+<td><p>3867.5</p></td>
+<td><p>20.52159</p></td>
+<td><p>6.1854e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>2131.3</p></td>
+</tr>
+<tr class="row-odd"><td><p>TYCHO_V_MvB</p></td>
+<td><p>energy</p></td>
+<td><p>angstrom</p></td>
+<td><p>5352.167</p></td>
+<td><p>5300.185</p></td>
+<td><p>5258.010</p></td>
+<td><p>21.00968</p></td>
+<td><p>3.9458e-09</p></td>
+<td><p>3697.4</p></td>
+<td><p>21.02940</p></td>
+<td><p>3.8747e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>3402.2</p></td>
+</tr>
+<tr class="row-even"><td><p>WISE_RSR_W1</p></td>
+<td><p>photon</p></td>
+<td><p>um</p></td>
+<td><p>3.379</p></td>
+<td><p>3.368</p></td>
+<td><p>3.292</p></td>
+<td><p>27.71042</p></td>
+<td><p>8.2382e-12</p></td>
+<td><p>311.75</p></td>
+<td><p>25.04495</p></td>
+<td><p>9.5944e-11</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>1.374e+05</p></td>
+</tr>
+<tr class="row-odd"><td><p>WISE_RSR_W2</p></td>
+<td><p>photon</p></td>
+<td><p>um</p></td>
+<td><p>4.629</p></td>
+<td><p>4.618</p></td>
+<td><p>4.542</p></td>
+<td><p>29.03535</p></td>
+<td><p>2.4314e-12</p></td>
+<td><p>172.95</p></td>
+<td><p>25.73018</p></td>
+<td><p>5.1042e-11</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>2.5827e+05</p></td>
+</tr>
+<tr class="row-even"><td><p>WISE_RSR_W3</p></td>
+<td><p>photon</p></td>
+<td><p>um</p></td>
+<td><p>12.334</p></td>
+<td><p>12.073</p></td>
+<td><p>10.302</p></td>
+<td><p>32.95638</p></td>
+<td><p>6.5682e-14</p></td>
+<td><p>31.934</p></td>
+<td><p>27.81703</p></td>
+<td><p>7.4677e-12</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>1.7653e+06</p></td>
+</tr>
+<tr class="row-odd"><td><p>WISE_RSR_W4</p></td>
+<td><p>photon</p></td>
+<td><p>um</p></td>
+<td><p>22.253</p></td>
+<td><p>22.194</p></td>
+<td><p>21.810</p></td>
+<td><p>35.75375</p></td>
+<td><p>4.9946e-15</p></td>
+<td><p>8.2066</p></td>
+<td><p>29.13916</p></td>
+<td><p>2.2097e-12</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>5.9657e+06</p></td>
+</tr>
+<tr class="row-even"><td><p>ZTF_g</p></td>
+<td><p>photon</p></td>
+<td><p>nanometer</p></td>
+<td><p>480.482</p></td>
+<td><p>478.945</p></td>
+<td><p>472.281</p></td>
+<td><p>20.70230</p></td>
+<td><p>5.237e-09</p></td>
+<td><p>4007.1</p></td>
+<td><p>20.80937</p></td>
+<td><p>4.7452e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>2778.1</p></td>
+</tr>
+<tr class="row-odd"><td><p>ZTF_i</p></td>
+<td><p>photon</p></td>
+<td><p>nanometer</p></td>
+<td><p>796.822</p></td>
+<td><p>795.493</p></td>
+<td><p>788.608</p></td>
+<td><p>22.34125</p></td>
+<td><p>1.1574e-09</p></td>
+<td><p>2443.2</p></td>
+<td><p>21.91113</p></td>
+<td><p>1.7201e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>7663.9</p></td>
+</tr>
+<tr class="row-even"><td><p>ZTF_r</p></td>
+<td><p>photon</p></td>
+<td><p>nanometer</p></td>
+<td><p>643.692</p></td>
+<td><p>642.117</p></td>
+<td><p>633.959</p></td>
+<td><p>21.62698</p></td>
+<td><p>2.2346e-09</p></td>
+<td><p>3073.4</p></td>
+<td><p>21.44602</p></td>
+<td><p>2.6399e-09</p></td>
+<td><p>3630.8</p></td>
+<td><p>21.10000</p></td>
+<td><p>3.6308e-09</p></td>
+<td><p>4993.5</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="photometry.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Details on predicting photometry</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="licks.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Extention to Lick indices</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#table-description">Table description</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By M. Fouesneau
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2016, M. Fouesneau.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

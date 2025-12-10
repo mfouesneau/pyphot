@@ -1,0 +1,1132 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>pyphot.licks &#8212; pyphot  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=984d411d"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/pyphot/licks';</script>
+    <link rel="canonical" href="https://mfouesneau.github.io/pyphot/_modules/pyphot/licks.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">pyphot  documentation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../whats_new.html">What's New</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../QuickStart.html">pyphot Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples.html">More examples with Pyphot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../photometry.html">Details on predicting photometry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../libcontent.html">Provided Filter library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../licks.html">Extention to Lick indices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../vega.html">Internal Vega reference spectra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sun.html">Internal Sun reference spectra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing.html">Contributing</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../modules.html">API</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../pyphot.html">pyphot package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../pyphot.io.html">pyphot.io package</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../pyphot.unit_adapters.html">pyphot.unit_adapters package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../pyphot.unit_adapters.ezunits.html">pyphot.unit_adapters.ezunits package</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/mfouesneau/pyphot" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/mfouesneau/pyphot/issues/new?title=Issue%20on%20page%20%2F_modules/pyphot/licks.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for pyphot.licks</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;This module provides function to compute spectral indices</span>
+
+<span class="sd">The Lick system of spectral line indices is one of the most commonly used methods of determining ages and metallicities of unresolved (integrated light) stellar populations.</span>
+
+<span class="sd">The calibration of the Lick / IDS system is complicated because the original Lick spectra were not flux calibrated, so there are usually systematic effects due to differences in continuum shape.  Proper calibration involves observing many of the original Lick/IDS standard stars and deriving offsets to the standard system.</span>
+
+<span class="sd">In `Vazdekis et al. (2010) &lt;https://ui.adsabs.harvard.edu/abs/2010MNRAS.404.1639V&gt;`_, they propose a new Line Index System, hereafter</span>
+<span class="sd">LIS, with three new spectral resolutions at which to measure the Lick indices. Note that this new system should not be restricted to the Lick set of indices in a flux calibrated system. In fact, LIS can be used for any index in the literature (e.g., for the `Rose (1984) indices &lt;https://ui.adsabs.harvard.edu/abs/1985AJ.....90.1927R&gt;`_), including newly defined indices (e.g., `Cervantes &amp; Vazdekis 2009 &lt;https://ui.adsabs.harvard.edu/abs/2009MNRAS.392..691C&gt;`_).</span>
+
+<span class="sd">Indices are defined through :class:`~pyphot.licks.LickIndex`</span>
+
+
+<span class="sd">The LIS system is defined for 3 different spectral resolutions which are best suited for the following astrophysical cases:</span>
+
+<span class="sd">* LIS-5.0AA: globular clusters</span>
+<span class="sd">* LIS-8.4AA: low and intermediate-mass galaxies</span>
+<span class="sd">* LIS-14.0AA: massive galaxies</span>
+
+<span class="sd">:func:`~pyphot.licks.reduce_resolution` adapts the resolution of the spectra to match the lick definitions.</span>
+
+<span class="sd">Conversions to transform the data from the Lick/IDS system to LIS can be found in `Johansson, Thomas &amp; Maraston (2010) &lt;https://ui.adsabs.harvard.edu/abs/2010MNRAS.404.1639V&gt;`_, which provides a discussion of indices</span>
+<span class="sd">and the information content of them.</span>
+
+<span class="sd">A collection of many common indices is available in the internal library :data:`pyphot.config.__default_lick_lib__`</span>
+<span class="sd">`licks.dat` and accessible through :class:`~pyphot.licks.LickLibrary`.</span>
+
+
+
+<span class="sd">.. seealso::</span>
+<span class="sd">    :doc:`licks` contains a lot more information and literature references about the Lick/IDS system.</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Literal</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">numpy.typing</span> <span class="k">as</span> <span class="nn">npt</span>
+
+<span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">trapezoid</span>
+<span class="kn">from</span> <span class="nn">scipy.interpolate</span> <span class="kn">import</span> <span class="n">InterpolatedUnivariateSpline</span>
+
+<span class="kn">from</span> <span class="nn">.unit_adapters</span> <span class="kn">import</span> <span class="n">QuantityType</span><span class="p">,</span> <span class="n">enforce_default_units</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">config</span>
+
+
+<span class="k">def</span> <span class="nf">_reduce_resolution</span><span class="p">(</span>
+    <span class="n">wi_AA</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">],</span>
+    <span class="n">fi_flam</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">],</span>
+    <span class="n">fwhm0_AA</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.55</span><span class="p">,</span>
+    <span class="n">sigma_floor_AA</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Adapt the resolution of the spectra to match the lick definitions</span>
+
+<span class="sd">    Lick definitions have different resolution elements as function</span>
+<span class="sd">    of wavelength. These definition are hard-coded in this function</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    wi_AA: ndarray (n, )</span>
+<span class="sd">        wavelength definition in Angstroms</span>
+<span class="sd">    fi_flam: ndarray (nspec, n) or (n, )</span>
+<span class="sd">        spectra to convert in flam</span>
+<span class="sd">    fwhm0_AA: float</span>
+<span class="sd">        initial broadening in the spectra `fi` in Angstroms</span>
+<span class="sd">    sigma_floor_AA: float</span>
+<span class="sd">        minimal dispersion to consider in Angstroms</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    flux_red: ndarray (nspec, n) or (n, )</span>
+<span class="sd">        reduced spectra in flam</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># all in AA</span>
+    <span class="n">w_lick_res</span> <span class="o">=</span> <span class="p">(</span><span class="mf">4000.0</span><span class="p">,</span> <span class="mf">4400.0</span><span class="p">,</span> <span class="mf">4900.0</span><span class="p">,</span> <span class="mf">5400.0</span><span class="p">,</span> <span class="mf">6000.0</span><span class="p">)</span>
+    <span class="n">lick_res</span> <span class="o">=</span> <span class="p">(</span><span class="mf">11.5</span><span class="p">,</span> <span class="mf">9.2</span><span class="p">,</span> <span class="mf">8.4</span><span class="p">,</span> <span class="mf">8.4</span><span class="p">,</span> <span class="mf">9.8</span><span class="p">)</span>  <span class="c1"># FWHM in AA</span>
+
+    <span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">wi_AA</span><span class="p">)</span>
+    <span class="n">flux</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_2d</span><span class="p">(</span><span class="n">fi_flam</span><span class="p">)</span>
+
+    <span class="c1"># Linear interpolation of lick_res over w</span>
+    <span class="c1"># numpy interp does constant instead of extrapolation</span>
+    <span class="c1"># res = np.interp(w, w_lick_res, lick_res)</span>
+
+    <span class="c1"># spline order: 1 linear, 2 quadratic, 3 cubic ...</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">InterpolatedUnivariateSpline</span><span class="p">(</span><span class="n">w_lick_res</span><span class="p">,</span> <span class="n">lick_res</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">)(</span><span class="n">w</span><span class="p">)</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+
+    <span class="c1"># Compute width from fwhm</span>
+    <span class="n">const</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">2.0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>  <span class="c1"># conversion fwhm --&gt; sigma</span>
+    <span class="n">lick_sigma</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">res</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="n">fwhm0_AA</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="n">const</span>
+
+    <span class="c1"># Convolution by g=1/sqrt(2*pi*sigma^2) * exp(-r^2/(2*sigma^2))</span>
+    <span class="n">flux_red</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">flux</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">flux</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">sigma</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">lick_sigma</span><span class="p">):</span>
+        <span class="n">maxsigma</span> <span class="o">=</span> <span class="mf">3.0</span> <span class="o">*</span> <span class="n">sigma</span>
+        <span class="c1"># sampling floor</span>
+        <span class="n">delta</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">sigma_floor_AA</span><span class="p">,</span> <span class="n">sigma</span> <span class="o">*</span> <span class="mf">0.1</span><span class="p">)</span>
+        <span class="n">delta_wj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="n">maxsigma</span><span class="p">,</span> <span class="o">+</span><span class="n">maxsigma</span><span class="p">,</span> <span class="n">delta</span><span class="p">)</span>
+        <span class="n">wj</span> <span class="o">=</span> <span class="n">delta_wj</span> <span class="o">+</span> <span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">fk</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">flux</span><span class="p">):</span>
+            <span class="n">fluxj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">wj</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">fk</span><span class="p">,</span> <span class="n">left</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
+            <span class="n">flux_red</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span>
+                <span class="n">fluxj</span> <span class="o">*</span> <span class="n">delta</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">delta_wj</span> <span class="o">/</span> <span class="n">sigma</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+            <span class="p">)</span>
+
+    <span class="n">flux_red</span> <span class="o">/=</span> <span class="n">lick_sigma</span> <span class="o">*</span> <span class="n">const</span>
+
+    <span class="k">return</span> <span class="n">flux_red</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">fi_flam</span><span class="p">))</span>
+
+
+<div class="viewcode-block" id="reduce_resolution">
+<a class="viewcode-back" href="../../pyphot.html#pyphot.licks.reduce_resolution">[docs]</a>
+<span class="k">def</span> <span class="nf">reduce_resolution</span><span class="p">(</span>
+    <span class="n">wi</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">],</span> <span class="n">QuantityType</span><span class="p">],</span>
+    <span class="n">fi</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">],</span> <span class="n">QuantityType</span><span class="p">],</span>
+    <span class="n">fwhm0</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">QuantityType</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.55</span><span class="p">,</span>
+    <span class="n">sigma_floor</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">QuantityType</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">,</span>
+    <span class="n">warn</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">QuantityType</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Adapt the resolution of the spectra to match the lick definitions</span>
+
+<span class="sd">    Lick definitions have different resolution elements as function</span>
+<span class="sd">    of wavelength. These definition are hard-coded in this function</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    wi: ndarray (n, ) with or without units</span>
+<span class="sd">        wavelength definition</span>
+<span class="sd">    fi: ndarray (nspec, n) or (n, ) with or without units</span>
+<span class="sd">        spectra to convert</span>
+<span class="sd">    fwhm0: float or QuantityType</span>
+<span class="sd">        initial broadening in the spectra `fi`</span>
+<span class="sd">    sigma_floor: float or QuantityType</span>
+<span class="sd">        minimal dispersion to consider</span>
+<span class="sd">    warn: bool</span>
+<span class="sd">        Warn for unit assumptions</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    flux_red: ndarray (nspec, n) or (n, )</span>
+<span class="sd">        reduced spectra</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">wi_AA</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">units</span><span class="o">.</span><span class="n">val_in_unit</span><span class="p">(</span><span class="s2">&quot;wi&quot;</span><span class="p">,</span> <span class="n">wi</span><span class="p">,</span> <span class="s2">&quot;AA&quot;</span><span class="p">,</span> <span class="n">warn</span><span class="o">=</span><span class="n">warn</span><span class="p">)</span>
+    <span class="n">fi_flam</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">units</span><span class="o">.</span><span class="n">val_in_unit</span><span class="p">(</span><span class="s2">&quot;fi&quot;</span><span class="p">,</span> <span class="n">fi</span><span class="p">,</span> <span class="s2">&quot;flam&quot;</span><span class="p">,</span> <span class="n">warn</span><span class="o">=</span><span class="n">warn</span><span class="p">)</span>
+    <span class="n">fwhm0_AA</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">units</span><span class="o">.</span><span class="n">val_in_unit</span><span class="p">(</span><span class="s2">&quot;fwhm0&quot;</span><span class="p">,</span> <span class="n">fwhm0</span><span class="p">,</span> <span class="s2">&quot;AA&quot;</span><span class="p">,</span> <span class="n">warn</span><span class="o">=</span><span class="n">warn</span><span class="p">)</span>
+    <span class="n">sigma_floor_AA</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">units</span><span class="o">.</span><span class="n">val_in_unit</span><span class="p">(</span><span class="s2">&quot;sigma&quot;</span><span class="p">,</span> <span class="n">sigma_floor</span><span class="p">,</span> <span class="s2">&quot;AA&quot;</span><span class="p">,</span> <span class="n">warn</span><span class="o">=</span><span class="n">warn</span><span class="p">)</span>
+    <span class="n">flux_red</span> <span class="o">=</span> <span class="n">_reduce_resolution</span><span class="p">(</span>
+        <span class="n">wi_AA</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+        <span class="n">fi_flam</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+        <span class="n">fwhm0_AA</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+        <span class="n">sigma_floor_AA</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">flux_red</span> <span class="o">*</span> <span class="n">config</span><span class="o">.</span><span class="n">units</span><span class="o">.</span><span class="n">U</span><span class="p">(</span><span class="s2">&quot;flam&quot;</span><span class="p">)</span></div>
+
+
+
+<span class="k">def</span> <span class="nf">_split_value_unit</span><span class="p">(</span><span class="n">q</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">QuantityType</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="kc">None</span><span class="p">]]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Split a quantity into value and unit&quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">q</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">q</span><span class="o">.</span><span class="n">unit</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">q</span><span class="p">,</span> <span class="kc">None</span>
+
+
+<div class="viewcode-block" id="LickDefinition">
+<a class="viewcode-back" href="../../pyphot.html#pyphot.licks.LickDefinition">[docs]</a>
+<span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">LickDefinition</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Definition of a Lick Index</span>
+
+<span class="sd">    expecting &#39;blue&#39;, &#39;red&#39;, &#39;band&#39;, and &#39;unit&#39; definitions</span>
+<span class="sd">    - `blue` and `red` are used to continuum normalize the spectra</span>
+<span class="sd">    - `band` covers the index itself.</span>
+<span class="sd">    - `index_unit` gives the index measurement type as either magnitude (mag) or equivalent width (ew)</span>
+
+<span class="sd">    Consistency is checked such that all fields are set with consistent units (priority to band field)</span>
+<span class="sd">    wavelength_unit is also associated</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">blue</span><span class="p">:</span> <span class="n">QuantityType</span>
+    <span class="n">red</span><span class="p">:</span> <span class="n">QuantityType</span>
+    <span class="n">band</span><span class="p">:</span> <span class="n">QuantityType</span>
+    <span class="n">index_unit</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;mag&quot;</span><span class="p">,</span> <span class="s2">&quot;ew&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;mag&quot;</span>
+    <span class="n">wavelength_unit</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_ensure_consistency</span><span class="p">(</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">band</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">QuantityType</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]],</span>
+        <span class="n">blue</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">QuantityType</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]],</span>
+        <span class="n">red</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">QuantityType</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]],</span>
+        <span class="n">index_unit</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;mag&quot;</span><span class="p">,</span> <span class="s2">&quot;ew&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;mag&quot;</span><span class="p">,</span>
+        <span class="n">wavelength_unit</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">_skip</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Check the definition is consistent</span>
+
+<span class="sd">        All fields are set with consistent units (priority to band field)</span>
+<span class="sd">        wavelength_unit is also associated</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">_skip</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">{}</span>
+
+        <span class="n">u</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">units</span>
+
+        <span class="k">if</span> <span class="n">u</span><span class="o">.</span><span class="n">has_unit</span><span class="p">(</span><span class="n">band</span><span class="p">):</span>
+            <span class="n">_</span><span class="p">,</span> <span class="n">band_unit</span> <span class="o">=</span> <span class="n">_split_value_unit</span><span class="p">(</span><span class="n">band</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">u</span><span class="o">.</span><span class="n">has_unit</span><span class="p">(</span><span class="n">blue</span><span class="p">):</span>
+            <span class="n">_</span><span class="p">,</span> <span class="n">band_unit</span> <span class="o">=</span> <span class="n">_split_value_unit</span><span class="p">(</span><span class="n">blue</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">u</span><span class="o">.</span><span class="n">has_unit</span><span class="p">(</span><span class="n">red</span><span class="p">):</span>
+            <span class="n">_</span><span class="p">,</span> <span class="n">band_unit</span> <span class="o">=</span> <span class="n">_split_value_unit</span><span class="p">(</span><span class="n">red</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">wavelength_unit</span><span class="p">:</span>
+            <span class="n">band_unit</span> <span class="o">=</span> <span class="n">wavelength_unit</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;Could not determine the units of wavelength from the index definition&quot;</span>
+                <span class="s2">&quot;blue/red/band need units or wavelength_unit must be provided&quot;</span>
+            <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">index_unit</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;mag&quot;</span><span class="p">,</span> <span class="s2">&quot;ew&quot;</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Invalid index unit: </span><span class="si">{</span><span class="n">index_unit</span><span class="si">}</span><span class="s2">. Expected &#39;mag&#39; or &#39;ew&#39;&quot;</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span>
+            <span class="n">band</span><span class="o">=</span><span class="n">u</span><span class="o">.</span><span class="n">val_in_unit</span><span class="p">(</span><span class="s2">&quot;band&quot;</span><span class="p">,</span> <span class="n">band</span><span class="p">,</span> <span class="n">band_unit</span><span class="p">,</span> <span class="n">warn</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
+            <span class="n">blue</span><span class="o">=</span><span class="n">u</span><span class="o">.</span><span class="n">val_in_unit</span><span class="p">(</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="n">blue</span><span class="p">,</span> <span class="n">band_unit</span><span class="p">,</span> <span class="n">warn</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
+            <span class="n">red</span><span class="o">=</span><span class="n">u</span><span class="o">.</span><span class="n">val_in_unit</span><span class="p">(</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="n">red</span><span class="p">,</span> <span class="n">band_unit</span><span class="p">,</span> <span class="n">warn</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
+            <span class="n">wavelength_unit</span><span class="o">=</span><span class="n">band_unit</span><span class="p">,</span>
+            <span class="n">index_unit</span><span class="o">=</span><span class="n">index_unit</span><span class="p">,</span>
+        <span class="p">)</span>
+
+<div class="viewcode-block" id="LickDefinition.__init__">
+<a class="viewcode-back" href="../../pyphot.html#pyphot.licks.LickDefinition.__init__">[docs]</a>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">band</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">QuantityType</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]],</span>
+        <span class="n">blue</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">QuantityType</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]],</span>
+        <span class="n">red</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">QuantityType</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]],</span>
+        <span class="n">index_unit</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;mag&quot;</span><span class="p">,</span> <span class="s2">&quot;ew&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;mag&quot;</span><span class="p">,</span>
+        <span class="n">wavelength_unit</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Build a LickDefinition from values</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        band : QuantityType or tuple of float</span>
+<span class="sd">            Bandpass of the lick</span>
+<span class="sd">        blue : QuantityType or tuple of float</span>
+<span class="sd">            Blue limit of the lick</span>
+<span class="sd">        red : QuantityType or tuple of float</span>
+<span class="sd">            Red limit of the lick</span>
+<span class="sd">        index_unit : Literal[&quot;mag&quot;, &quot;ew&quot;], optional</span>
+<span class="sd">            Unit of the index, by default &quot;mag&quot;</span>
+<span class="sd">        wavelength_unit : Optional[str], optional</span>
+<span class="sd">            Unit of the wavelength, by default None</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        LickDefinition</span>
+<span class="sd">            The LickDefinition object</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">sure</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ensure_consistency</span><span class="p">(</span>
+            <span class="n">band</span><span class="o">=</span><span class="n">band</span><span class="p">,</span>
+            <span class="n">blue</span><span class="o">=</span><span class="n">blue</span><span class="p">,</span>
+            <span class="n">red</span><span class="o">=</span><span class="n">red</span><span class="p">,</span>
+            <span class="n">wavelength_unit</span><span class="o">=</span><span class="n">wavelength_unit</span><span class="p">,</span>
+            <span class="n">index_unit</span><span class="o">=</span><span class="n">index_unit</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">sure</span><span class="p">)</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="LickIndex">
+<a class="viewcode-back" href="../../pyphot.html#pyphot.licks.LickIndex">[docs]</a>
+<span class="k">class</span> <span class="nc">LickIndex</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Define a Lick Index similarily to a Filter object&quot;&quot;&quot;</span>
+
+    <span class="n">_lick</span><span class="p">:</span> <span class="n">LickDefinition</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;LickDefinition object&quot;&quot;&quot;</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Name of the index&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="LickIndex.__init__">
+<a class="viewcode-back" href="../../pyphot.html#pyphot.licks.LickIndex.__init__">[docs]</a>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">lick</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">dict</span><span class="p">,</span> <span class="n">LickDefinition</span><span class="p">],</span>
+        <span class="n">unit</span><span class="o">=</span><span class="s2">&quot;AA&quot;</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Constructor</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        name: str</span>
+<span class="sd">            name of the index</span>
+<span class="sd">        lick: dict or LickDefinition</span>
+<span class="sd">            expecting &#39;blue&#39;, &#39;red&#39;, &#39;band&#39;, and &#39;unit&#39; definitions</span>
+<span class="sd">            `blue` and `red` are used to continuum normalize the spectra</span>
+<span class="sd">            `band` covers the index itself. `unit` gives the index measurement</span>
+<span class="sd">            units, either magnitudes (mag) or equivalent width (ew)</span>
+<span class="sd">        unit: str</span>
+<span class="sd">            wavelength unit of the intervals if not provided in the lick definition</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="c1"># lick integrity definition done by the LickDefinition class</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">lick</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+            <span class="c1"># make sure wavelength_unit is set</span>
+            <span class="n">lick</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s2">&quot;wavelength_unit&quot;</span><span class="p">,</span> <span class="n">unit</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_lick</span> <span class="o">=</span> <span class="n">LickDefinition</span><span class="p">(</span><span class="o">**</span><span class="n">lick</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">lick</span><span class="p">,</span> <span class="n">LickDefinition</span><span class="p">):</span>
+            <span class="c1"># make sure wavelength_unit is set</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_lick</span> <span class="o">=</span> <span class="n">lick</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;lick must be a dictionary or LickDefinition&quot;</span><span class="p">)</span></div>
+
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">wavelength_unit</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Wavelength unit of the intervals&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lick</span><span class="o">.</span><span class="n">wavelength_unit</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;wavelength_unit is not defined&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lick</span><span class="o">.</span><span class="n">wavelength_unit</span>
+
+<div class="viewcode-block" id="LickIndex.to_dict">
+<a class="viewcode-back" href="../../pyphot.html#pyphot.licks.LickIndex.to_dict">[docs]</a>
+    <span class="k">def</span> <span class="nf">to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;return a dictionary of the current index&quot;&quot;&quot;</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;blue&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lick</span><span class="o">.</span><span class="n">blue</span><span class="p">,</span>
+            <span class="s2">&quot;red&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lick</span><span class="o">.</span><span class="n">red</span><span class="p">,</span>
+            <span class="s2">&quot;band&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lick</span><span class="o">.</span><span class="n">band</span><span class="p">,</span>
+            <span class="s2">&quot;unit&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lick</span><span class="o">.</span><span class="n">index_unit</span><span class="p">,</span>
+            <span class="s2">&quot;wavelength_unit&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lick</span><span class="o">.</span><span class="n">wavelength_unit</span><span class="p">,</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="n">d</span></div>
+
+
+    <span class="k">def</span> <span class="nf">_get_wavelength_attrs_with_units</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">attrname</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">units</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">QuantityType</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;return the unitwise definition corresponding to attrname&quot;&quot;&quot;</span>
+        <span class="n">attr</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_lick</span><span class="p">,</span> <span class="n">attrname</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">units</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">attr</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">units</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">attr</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">band</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">QuantityType</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Unitwise band definition&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_wavelength_attrs_with_units</span><span class="p">(</span><span class="s2">&quot;band&quot;</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">blue</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">QuantityType</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Unitwise band definition&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_wavelength_attrs_with_units</span><span class="p">(</span><span class="s2">&quot;blue&quot;</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">red</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">QuantityType</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Unitwise band definition&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_wavelength_attrs_with_units</span><span class="p">(</span><span class="s2">&quot;red&quot;</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">index_unit</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;mag&quot;</span><span class="p">,</span> <span class="s2">&quot;ew&quot;</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Index definition type&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lick</span><span class="o">.</span><span class="n">index_unit</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="n">txt</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;LickIndex (</span><span class="si">{0}</span><span class="s2">), </span><span class="si">{1}</span><span class="s2">&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">txt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="nb">object</span><span class="o">.</span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>
+
+<div class="viewcode-block" id="LickIndex.info">
+<a class="viewcode-back" href="../../pyphot.html#pyphot.licks.LickIndex.info">[docs]</a>
+    <span class="k">def</span> <span class="nf">info</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;display information about the current Index&quot;&quot;&quot;</span>
+        <span class="n">txt</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;Lick Index </span><span class="si">{s.name}</span>
+<span class="s2">    wavelength units:     </span><span class="si">{s.wavelength_unit}</span>
+<span class="s2">    Index Band:           </span><span class="si">{s.band}</span>
+<span class="s2">    Blue continuum band:  </span><span class="si">{s.blue}</span>
+<span class="s2">    Red continuum band:   </span><span class="si">{s.red}</span>
+<span class="s2">    Measurement unit:     </span><span class="si">{s.index_unit}</span><span class="s2">&quot;&quot;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">s</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">txt</span><span class="p">)</span></div>
+
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;compute spectral index after continuum subtraction</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        w: ndarray (nw, )</span>
+<span class="sd">            array of wavelengths in AA</span>
+<span class="sd">        flux: ndarray (N, nw)</span>
+<span class="sd">            array of flux values for different spectra in the series</span>
+<span class="sd">        degree: int (default 1)</span>
+<span class="sd">            degree of the polynomial fit to the continuum</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        ew: ndarray (N,)</span>
+<span class="sd">            equivalent width or magnitude array</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">_get_indice</span><span class="p">(</span>
+        <span class="bp">cls</span><span class="p">,</span>
+        <span class="n">w</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">],</span>
+        <span class="n">flux</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">],</span>
+        <span class="n">blue</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span>
+        <span class="n">red</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span>
+        <span class="n">band</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">unit</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;ew&quot;</span><span class="p">,</span>
+        <span class="n">degree</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;compute spectral index after continuum subtraction</span>
+
+<span class="sd">        .. warning::</span>
+<span class="sd">            This function is for internal use and not checking units.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        w: ndarray (nw, )</span>
+<span class="sd">            array of wavelengths in AA</span>
+<span class="sd">        flux: ndarray (N, nw)</span>
+<span class="sd">            array of flux values for different spectra in the series</span>
+<span class="sd">        blue: tuple(2)</span>
+<span class="sd">            selection for blue continuum estimate</span>
+<span class="sd">        red: tuple(2)</span>
+<span class="sd">            selection for red continuum estimate</span>
+<span class="sd">        band: tuple(2), optional</span>
+<span class="sd">            select region in this band only.</span>
+<span class="sd">            default is band = (min(blue), max(red))</span>
+<span class="sd">        unit: str</span>
+<span class="sd">            `ew` or `mag` wether equivalent width or magnitude</span>
+<span class="sd">        degree: int (default 1)</span>
+<span class="sd">            degree of the polynomial fit to the continuum</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        ew: ndarray (N,)</span>
+<span class="sd">            equivalent width array</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">wi</span><span class="p">,</span> <span class="n">fi</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">continuum_normalized_region_around_line</span><span class="p">(</span>
+            <span class="n">w</span><span class="p">,</span> <span class="n">flux</span><span class="p">,</span> <span class="n">blue</span><span class="p">,</span> <span class="n">red</span><span class="p">,</span> <span class="n">band</span><span class="o">=</span><span class="n">band</span><span class="p">,</span> <span class="n">degree</span><span class="o">=</span><span class="n">degree</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">unit</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;ew&quot;</span><span class="p">,</span> <span class="s2">&quot;EW&quot;</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">trapezoid</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">fi</span><span class="p">,</span> <span class="n">wi</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">m</span> <span class="o">=</span> <span class="n">trapezoid</span><span class="p">(</span><span class="n">fi</span><span class="p">,</span> <span class="n">wi</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">m</span> <span class="o">=</span> <span class="o">-</span><span class="mf">2.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">m</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">ptp</span><span class="p">(</span><span class="n">wi</span><span class="p">))</span>
+            <span class="k">return</span> <span class="n">m</span>
+
+<div class="viewcode-block" id="LickIndex.continuum_normalized_region_around_line">
+<a class="viewcode-back" href="../../pyphot.html#pyphot.licks.LickIndex.continuum_normalized_region_around_line">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">continuum_normalized_region_around_line</span><span class="p">(</span>
+        <span class="bp">cls</span><span class="p">,</span> <span class="n">wi</span><span class="p">,</span> <span class="n">fi</span><span class="p">,</span> <span class="n">blue</span><span class="p">,</span> <span class="n">red</span><span class="p">,</span> <span class="n">band</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">degree</span><span class="o">=</span><span class="mi">1</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        cut out and normalize flux around a line</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        wi: ndarray (nw, )</span>
+<span class="sd">            array of wavelengths in AA</span>
+<span class="sd">        fi: ndarray (N, nw)</span>
+<span class="sd">            array of flux values for different spectra in the series</span>
+<span class="sd">        blue: tuple(2)</span>
+<span class="sd">            selection for blue continuum estimate</span>
+<span class="sd">        red: tuple(2)</span>
+<span class="sd">            selection for red continuum estimate</span>
+<span class="sd">        band: tuple(2), optional</span>
+<span class="sd">            select region in this band only.</span>
+<span class="sd">            default is band = (min(blue), max(red))</span>
+<span class="sd">        degree: int</span>
+<span class="sd">            degree of the polynomial fit to the continuum</span>
+
+<span class="sd">        returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        wnew: ndarray (nw1, )</span>
+<span class="sd">            wavelength of the selection in AA</span>
+<span class="sd">        f: ndarray (N, len(wnew))</span>
+<span class="sd">            normalized flux in the selection region</span>
+
+<span class="sd">        Example</span>
+<span class="sd">        -------</span>
+
+<span class="sd">        .. code-block:: python</span>
+
+<span class="sd">            # indice of CaII</span>
+<span class="sd">            # wavelength are always supposed in AA</span>
+<span class="sd">            w, f = region_around_line(</span>
+<span class="sd">                wavelength, flux, [3925, 3930],[3938, 3945]]</span>
+<span class="sd">                )</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">wi</span><span class="p">)</span>
+        <span class="n">flux</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_2d</span><span class="p">(</span><span class="n">fi</span><span class="p">)</span>
+        <span class="c1"># index is true in the region where we fit the polynomial</span>
+        <span class="n">indcont</span> <span class="o">=</span> <span class="p">((</span><span class="n">w</span> <span class="o">&gt;=</span> <span class="n">blue</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">w</span> <span class="o">&lt;=</span> <span class="n">blue</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span> <span class="o">|</span> <span class="p">((</span><span class="n">w</span> <span class="o">&gt;=</span> <span class="n">red</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">w</span> <span class="o">&lt;=</span> <span class="n">red</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+        <span class="c1"># index of the region we want to return</span>
+        <span class="k">if</span> <span class="n">band</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">band</span> <span class="o">=</span> <span class="n">blue</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">red</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+        <span class="n">indrange</span> <span class="o">=</span> <span class="p">(</span><span class="n">w</span> <span class="o">&gt;</span> <span class="n">band</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">w</span> <span class="o">&lt;</span> <span class="n">band</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">wnew</span> <span class="o">=</span> <span class="n">w</span><span class="p">[</span><span class="n">indrange</span><span class="p">]</span>
+        <span class="n">wcont</span> <span class="o">=</span> <span class="n">w</span><span class="p">[</span><span class="n">indcont</span><span class="p">]</span>
+
+        <span class="c1"># make a flux array of shape</span>
+        <span class="c1"># (number of spectra, number of points in indrange)</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">flux</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">indrange</span><span class="o">.</span><span class="n">sum</span><span class="p">()))</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">flux</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+            <span class="c1"># fit polynomial of second order to the continuum region</span>
+            <span class="n">linecoeff</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">wcont</span><span class="p">,</span> <span class="n">flux</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">indcont</span><span class="p">],</span> <span class="n">degree</span><span class="p">)</span>
+            <span class="c1"># divide the flux by the polynomial and put the result in our new</span>
+            <span class="c1"># flux array</span>
+            <span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">flux</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">indrange</span><span class="p">]</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">polyval</span><span class="p">(</span><span class="n">linecoeff</span><span class="p">,</span> <span class="n">wnew</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">wnew</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">f</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="LickIndex.get">
+<a class="viewcode-back" href="../../pyphot.html#pyphot.licks.LickIndex.get">[docs]</a>
+    <span class="nd">@enforce_default_units</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;AA&quot;</span><span class="p">,</span> <span class="s2">&quot;flam&quot;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">wave</span><span class="p">:</span> <span class="n">QuantityType</span><span class="p">,</span> <span class="n">flux</span><span class="p">:</span> <span class="n">QuantityType</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;compute spectral index after continuum subtraction</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        w: ndarray (nw, )</span>
+<span class="sd">            array of wavelengths in AA</span>
+<span class="sd">        flux: ndarray (N, nw)</span>
+<span class="sd">            array of flux values for different spectra in the series</span>
+<span class="sd">        degree: int (default 1)</span>
+<span class="sd">            degree of the polynomial fit to the continuum</span>
+<span class="sd">        nocheck: bool</span>
+<span class="sd">            set to silently pass on spectral domain mismatch.</span>
+<span class="sd">            otherwise raises an error when index is not covered</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        ew: ndarray (N,)</span>
+<span class="sd">            equivalent width or magnitude array</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        ValueError: when the spectral coverage wave does not cover the index range</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># let&#39;s make sure we work in AA and flam</span>
+        <span class="n">_w</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">units</span><span class="o">.</span><span class="n">val_in_unit</span><span class="p">(</span><span class="s2">&quot;wave&quot;</span><span class="p">,</span> <span class="n">wave</span><span class="p">,</span> <span class="s2">&quot;AA&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
+        <span class="n">_f</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">units</span><span class="o">.</span><span class="n">val_in_unit</span><span class="p">(</span><span class="s2">&quot;flux&quot;</span><span class="p">,</span> <span class="n">flux</span><span class="p">,</span> <span class="s2">&quot;flam&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
+
+        <span class="n">blue</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_wavelength_attrs_with_units</span><span class="p">(</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="s2">&quot;AA&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
+        <span class="n">red</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_wavelength_attrs_with_units</span><span class="p">(</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="s2">&quot;AA&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
+        <span class="n">band</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_wavelength_attrs_with_units</span><span class="p">(</span><span class="s2">&quot;band&quot;</span><span class="p">,</span> <span class="s2">&quot;AA&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
+
+        <span class="n">nocheck</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;nocheck&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+        <span class="n">not_covered</span> <span class="o">=</span> <span class="p">(</span><span class="n">blue</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">_w</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">|</span> <span class="p">(</span><span class="n">red</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">_w</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">not_covered</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">nocheck</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Spectrum does not cover this index.&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">_f</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">*</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&quot;nan&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_indice</span><span class="p">(</span><span class="n">_w</span><span class="p">,</span> <span class="n">_f</span><span class="p">,</span> <span class="n">blue</span><span class="p">,</span> <span class="n">red</span><span class="p">,</span> <span class="n">band</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">index_unit</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="LickLibrary">
+<a class="viewcode-back" href="../../pyphot.html#pyphot.licks.LickLibrary">[docs]</a>
+<span class="k">class</span> <span class="nc">LickLibrary</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Collection of Lick indices</span>
+
+<span class="sd">    .. seealso::</span>
+<span class="sd">        This library behaves like the photometric one :class:`pyphot.libraries.Library`</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">source</span><span class="p">:</span> <span class="nb">str</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Source of the library&quot;&quot;&quot;</span>
+    <span class="n">_content</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">LickDefinition</span><span class="p">]</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Content of the library&quot;&quot;&quot;</span>
+    <span class="n">_hdr</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Header of the library&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="LickLibrary.__init__">
+<a class="viewcode-back" href="../../pyphot.html#pyphot.licks.LickLibrary.__init__">[docs]</a>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fname</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">comment</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;#&quot;</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initialize the LickLibrary object.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        fname: str, optional</span>
+<span class="sd">            ascii file containing the indices&#39; definitions</span>
+<span class="sd">        comment: str, optional</span>
+<span class="sd">            character indicating comment in the file</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">source</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">fname</span> <span class="ow">or</span> <span class="nb">str</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">__default_lick_lib__</span><span class="p">)</span>
+        <span class="n">data</span><span class="p">,</span> <span class="n">hdr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_read_lick_list</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="n">comment</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_content</span> <span class="o">=</span> <span class="n">data</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_hdr</span> <span class="o">=</span> <span class="n">hdr</span></div>
+
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">description</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;any comment in the input file&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hdr</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">_read_lick_list</span><span class="p">(</span>
+        <span class="bp">cls</span><span class="p">,</span>
+        <span class="n">fname</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">comment</span><span class="o">=</span><span class="s2">&quot;#&quot;</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">LickDefinition</span><span class="p">],</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;read the list of lick indices</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        fname: str</span>
+<span class="sd">            file containing the indices&#39; definitions</span>
+<span class="sd">        comment: str</span>
+<span class="sd">            character indicating comment in the file</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        data: dict</span>
+<span class="sd">            dictionary of indices</span>
+<span class="sd">            name: (band, blue, red, unit)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">fname</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">fname</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">__default_lick_lib__</span><span class="p">)</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="n">hdr</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">line</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="n">comment</span><span class="p">:</span>
+                    <span class="n">_line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+                    <span class="n">attr</span> <span class="o">=</span> <span class="n">LickDefinition</span><span class="p">(</span>
+                        <span class="n">band</span><span class="o">=</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">_line</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="nb">float</span><span class="p">(</span><span class="n">_line</span><span class="p">[</span><span class="mi">2</span><span class="p">])),</span>
+                        <span class="n">blue</span><span class="o">=</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">_line</span><span class="p">[</span><span class="mi">3</span><span class="p">]),</span> <span class="nb">float</span><span class="p">(</span><span class="n">_line</span><span class="p">[</span><span class="mi">4</span><span class="p">])),</span>
+                        <span class="n">red</span><span class="o">=</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">_line</span><span class="p">[</span><span class="mi">5</span><span class="p">]),</span> <span class="nb">float</span><span class="p">(</span><span class="n">_line</span><span class="p">[</span><span class="mi">6</span><span class="p">])),</span>
+                        <span class="n">index_unit</span><span class="o">=</span><span class="s2">&quot;mag&quot;</span> <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">_line</span><span class="p">[</span><span class="mi">7</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="s2">&quot;ew&quot;</span><span class="p">,</span>
+                        <span class="n">wavelength_unit</span><span class="o">=</span><span class="s2">&quot;AA&quot;</span><span class="p">,</span>
+                    <span class="p">)</span>
+                    <span class="n">name</span> <span class="o">=</span> <span class="n">_line</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span>
+                    <span class="n">data</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">attr</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">hdr</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+        <span class="k">return</span> <span class="n">data</span><span class="p">,</span> <span class="n">hdr</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;Lick Index Library: </span><span class="si">{}</span><span class="se">\n</span><span class="si">{:s}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">source</span><span class="p">,</span> <span class="nb">object</span><span class="o">.</span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="fm">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Enter context&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span>
+
+    <span class="k">def</span> <span class="fm">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">exc_info</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;end context&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Size of the library&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+
+<div class="viewcode-block" id="LickLibrary.get_library_content">
+<a class="viewcode-back" href="../../pyphot.html#pyphot.licks.LickLibrary.get_library_content">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_library_content</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_content</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span></div>
+
+
+    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">LickIndex</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">LickIndex</span><span class="p">]]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Make this object like a dictionary and load one or multiple filters&quot;&quot;&quot;</span>
+        <span class="k">with</span> <span class="bp">self</span> <span class="k">as</span> <span class="n">s</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">f</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">_load_filter</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+                <span class="n">f</span> <span class="o">=</span> <span class="p">[</span><span class="n">s</span><span class="o">.</span><span class="n">_load_filter</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">name</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">f</span>
+
+    <span class="k">def</span> <span class="nf">_load_filter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fname</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">LickIndex</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Load a given filter from the library&quot;&quot;&quot;</span>
+        <span class="k">with</span> <span class="bp">self</span> <span class="k">as</span> <span class="n">current_lib</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">LickIndex</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="n">current_lib</span><span class="o">.</span><span class="n">_content</span><span class="p">[</span><span class="n">fname</span><span class="p">])</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">content</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the content of the library&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_library_content</span><span class="p">()</span>
+
+<div class="viewcode-block" id="LickLibrary.find">
+<a class="viewcode-back" href="../../pyphot.html#pyphot.licks.LickLibrary.find">[docs]</a>
+    <span class="k">def</span> <span class="nf">find</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">case_sensitive</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Find indices in the library</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        name : str</span>
+<span class="sd">            Name of the filter to find</span>
+<span class="sd">        case_sensitive : bool, optional</span>
+<span class="sd">            Whether to perform a case-sensitive search, by default True</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        List[str]</span>
+<span class="sd">            List of indices that match the given name</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">case_sensitive</span><span class="p">:</span>
+            <span class="n">_n</span> <span class="o">=</span> <span class="n">name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_library_content</span><span class="p">():</span>
+                <span class="k">if</span> <span class="n">_n</span> <span class="ow">in</span> <span class="n">k</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
+                    <span class="n">r</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">content</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">k</span><span class="p">:</span>
+                    <span class="n">r</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">r</span></div>
+</div>
+
+</pre></div>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By M. Fouesneau
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2016, M. Fouesneau.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
