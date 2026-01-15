@@ -5,13 +5,15 @@
 
 """
 
-from typing import Optional, Literal, Union
-import pandas as pd
 from os import PathLike
+from os.path import basename
+from typing import Literal, Optional, Union
+
+import h5py
+import numpy as np
+import pandas as pd
 
 from .header import HeaderInfo
-
-import tables
 
 
 def _decode_string_ifneeded(s: str) -> str:
@@ -27,7 +29,7 @@ def from_hdf5(
     *,
     silent: bool = True,
     **kwargs,
-):
+) -> tuple[pd.DataFrame, HeaderInfo]:
     """Generate the corresponding ascii Header that contains all necessary info
 
     Parameters
@@ -46,13 +48,22 @@ def from_hdf5(
     hdr: str
         string that will be be written at the beginning of the file
     """
-    with tables.open_file(filename, **kwargs) as source:
+    with h5py.File(filename, **kwargs) as source:
         tablename = tablename or "/"
         if not tablename.startswith("/"):
             tablename = "/" + tablename
 
-        node = source.get_node(tablename)
-        attrs = node._v_attrs
+        node = source[tablename]
+        if not node:
+            raise ValueError(
+                f"Table '{tablename}' not found in file '{filename}'"
+            )
+        if not isinstance(node, h5py.Dataset):
+            raise TypeError(
+                f"Node '{tablename}' is not a dataset (found {type(node)})"
+            )
+
+        attrs = node.attrs
         if not silent:
             print(f"\tLoading table: {tablename}")
 
@@ -61,35 +72,36 @@ def from_hdf5(
 
         # read header
         exclude = ["NROWS", "VERSION", "CLASS", "EXTNAME", "TITLE"]
-        for k in attrs._v_attrnames:
+        for k, v in attrs.items():
             if k not in exclude:
                 if not k.startswith("FIELD") and not k.startswith("ALIAS"):
-                    header[k] = _decode_string_ifneeded(attrs[k])
+                    header[k] = _decode_string_ifneeded(v)
                 elif k.startswith("ALIAS"):
-                    c0, c1 = _decode_string_ifneeded(attrs[k]).split("=")
+                    c0, c1 = _decode_string_ifneeded(v).split("=")
                     aliases[c0] = c1
 
-        if attrs["TITLE"] not in ["", "None", "Noname", None]:
-            header["NAME"] = attrs["TITLE"]
+        title = attrs.get("TITLE", "")
+        if title not in ["", "None", "Noname", None]:
+            header["NAME"] = _decode_string_ifneeded(title)
         else:
-            header["NAME"] = f"{filename:s}/{node._v_name:s}"
+            header["NAME"] = f"{filename:s}/{node.name:s}"
 
         # read column meta
         units = {}
         desc = {}
 
-        colnames = node.colnames  # type: ignore / it does exist
+        colnames = node.dtype.names
         for k, colname in enumerate(colnames):
-            _u = getattr(attrs, f"FIELD_{k:d}_UNIT", None)
-            _u = getattr(attrs, f"{colname:s}_UNIT", _u)
-            _d = getattr(attrs, f"FIELD_{k:d}_DESC", None)
-            _d = getattr(attrs, f"{colname:s}_DESC", _d)
+            _u = attrs.get(f"FIELD_{k:d}_UNIT", None)
+            _u = attrs.get(f"{colname:s}_UNIT", _u)
+            _d = attrs.get(f"FIELD_{k:d}_DESC", None)
+            _d = attrs.get(f"{colname:s}_DESC", _d)
             if _u is not None:
                 units[colname] = _decode_string_ifneeded(_u)
             if _d is not None:
                 desc[colname] = _decode_string_ifneeded(_d)
 
-        data = node[:]  # type: ignore / it is defined.
+        data = node[:]
 
         hdr = HeaderInfo(
             header=header,
@@ -99,16 +111,18 @@ def from_hdf5(
         )
 
         return pd.DataFrame(data), hdr
-    raise ValueError("Something went wrong without much information from pytables")
+    raise ValueError(
+        "Something went wrong without much information from pytables"
+    )
 
 
 def to_hdf5(
     df: pd.DataFrame,
-    filename: Union[str, tables.File, PathLike],
+    filename: Union[str, h5py.File, PathLike],
     *,
     tablename: Optional[str] = None,
     header_info: Optional[HeaderInfo] = None,
-    mode: Literal["r", "w", "a", "r+"] = "w",
+    mode: "Literal['r', 'w', 'a', 'r+', 'w-', 'x']" = "w",
     append: bool = False,
     **kwargs,
 ) -> None:
@@ -130,7 +144,7 @@ def to_hdf5(
     append : bool, default False
         Whether to append data to an existing file.
     **kwargs
-        Additional keyword arguments to pass to tables.open_file.
+        Additional keyword arguments to pass to h5py.File.
 
     Raises
     ------
@@ -148,12 +162,14 @@ def to_hdf5(
     mode = "a" if append is True else mode
 
     # open output file, or if provided tables.File, check it's in the correct mode
-    if isinstance(filename, tables.File):
+    if isinstance(filename, h5py.File):
         if (filename.mode != mode) & (mode != "r"):
-            raise tables.FileModeError("The file is already opened in a different mode")
+            raise RuntimeError(
+                f"The file {basename(filename.filename)} is already opened in a different mode (mode {filename.mode})"
+            )
         hd5 = filename
     else:
-        hd5 = tables.open_file(str(filename), mode=mode)
+        hd5 = h5py.File(str(filename), mode=mode)
 
     if header_info is None:
         # attempt to get it from the dataframe attributes
@@ -182,16 +198,34 @@ def to_hdf5(
 
     if append:
         try:
-            tab = hd5.get_node(tablename_path)
-            if not isinstance(tab, tables.Table):
-                raise TypeError("Node is not a table")
-            if tab.description is None:
-                raise ValueError("Table description is missing")
-            dtypes = tab.description._v_dtype  # pyright: ignore / it is there
+            tab = hd5[tablename_path]
+            if not isinstance(tab, h5py.Dataset):
+                raise TypeError(f"Node is not a table (got {type(tab)})")
+            if tab.dtype is None:
+                raise ValueError("Table dtype description is missing")
+
+            dtypes = tab.dtype  # pyright: ignore / it is there
             data = df.to_records(index=False, column_dtypes=dtypes)
-            tab.append(data)
+            data_length = data.shape[0]
+
+            # try resize the table first
+            # this requires the table to be resizable
+            try:
+                tab.resize(tab.shape[0] + data_length, axis=0)
+                # write the data to the table
+                tab[-data_length:] = data
+            except TypeError:
+                # Only chunked datasets can be resized
+                # We need to make a new data array with all data and replace the node
+                attrs = {k: v for k, v in tab.attrs.items()}
+                new_data = np.hstack([tab[:], data])
+                del hd5[tablename_path]
+                tab = hd5.create_dataset(
+                    tablename_path, data=new_data, dtype=dtypes
+                )
+                tab.attrs.update(attrs)
             tab.flush()
-        except tables.NoSuchNodeError:
+        except KeyError:
             print(
                 f"Warning: Table {tablename_path} does not exist. A new table will be created."
             )
@@ -210,14 +244,11 @@ def to_hdf5(
             where = "/"
 
         data = df.to_records(index=False)
-        tab = hd5.create_table(where, tablename, data, **kwargs)
+        tab = hd5.create_dataset(f"{where}/{tablename}", data=data, **kwargs)
 
         # update hdr attrs with header_info.header
         for k, v in header_info.header.items():
-            if (k == "FILTERS") & (float(tab.attrs["VERSION"]) >= 2.0):
-                tab.attrs[str(k).lower()] = v
-            else:
-                tab.attrs[k] = v
+            tab.attrs[k] = v
         if "TITLE" not in header_info.header:
             tab.attrs["TITLE"] = tablename
 
@@ -236,6 +267,6 @@ def to_hdf5(
 
         tab.flush()
 
-    if not isinstance(filename, tables.File):
+    if not isinstance(filename, h5py.File):
         hd5.flush()
         hd5.close()
