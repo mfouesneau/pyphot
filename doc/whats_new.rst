@@ -3,6 +3,17 @@ Version History
 
 This page lists the recent changes in versions of PyPhot.
 
+v2.1.0
+------
+[January 15, 2026]
+
+Non-breaking changes
+~~~~~~~~~~~~~~~~~~~~
+
+- switched from `PyTables <https://www.pytables.org/>`_ to `h5py <https://docs.h5py.org/en/stable/>`_ to enable python 3.14 support
+- Added support for Python 3.14
+
+
 v2.0.0
 ------
 [November 11, 2025]
