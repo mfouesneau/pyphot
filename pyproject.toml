@@ -8,8 +8,8 @@ dependencies = [
     "numpy>1.6",
     "scipy>0.9",
     "astropy>5.0",
-    "tables>3.0",
     "pandas>=2.3.3",
+    "h5py>=3.14.0",
 ]
 authors = [{name="Morgan Fouesneau"}]
 classifiers=[
@@ -20,6 +20,7 @@ classifiers=[
       'Programming Language :: Python :: 3.11',
       'Programming Language :: Python :: 3.12',
       'Programming Language :: Python :: 3.13',
+      'Programming Language :: Python :: 3.14',
       'License :: OSI Approved :: MIT License',
       'Topic :: Scientific/Engineering :: Astronomy'
       ]
