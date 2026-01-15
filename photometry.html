@@ -1,0 +1,699 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Details on predicting photometry &#8212; pyphot  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=984d411d"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'photometry';</script>
+    <link rel="canonical" href="https://mfouesneau.github.io/pyphot/photometry.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Provided Filter library" href="libcontent.html" />
+    <link rel="prev" title="More examples with Pyphot" href="examples.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">pyphot  documentation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="whats_new.html">What's New</a></li>
+<li class="toctree-l1"><a class="reference internal" href="QuickStart.html">pyphot Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">More examples with Pyphot</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Details on predicting photometry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="libcontent.html">Provided Filter library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="licks.html">Extention to Lick indices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vega.html">Internal Vega reference spectra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sun.html">Internal Sun reference spectra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="modules.html">API</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="pyphot.html">pyphot package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyphot.io.html">pyphot.io package</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="pyphot.unit_adapters.html">pyphot.unit_adapters package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.unit_adapters.ezunits.html">pyphot.unit_adapters.ezunits package</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/mfouesneau/pyphot" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/mfouesneau/pyphot/blob/master/doc/photometry.rst?plain=1" target="_blank"
+   class="btn btn-sm btn-source-file-button dropdown-item"
+   title="Show source"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="btn__text-container">Show source</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/mfouesneau/pyphot/issues/new?title=Issue%20on%20page%20%2Fphotometry.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/photometry.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Details on predicting photometry</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vega-magnitude-system">Vega magnitude system</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#johnson-system">Johnson system</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ab-magnitude-system">AB magnitude system</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#st-magnitude-system">ST magnitude system</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jansky-definition">Jansky definition</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="details-on-predicting-photometry">
+<h1>Details on predicting photometry<a class="headerlink" href="#details-on-predicting-photometry" title="Link to this heading">#</a></h1>
+<p>It is sometimes not obvious that there are important differences between photometric systems. But even less known is the difference between detector count types (energy or photons) which requires also special care.</p>
+<p>In this section, we review the important details for computing the luminosity and the magnitude of a star through a photometric passband. We do not discuss calibration, which in principle is covered by instrument documentations.</p>
+<p>Synthetic photometry uses transmission curves that typically include a variety of wavelength-dependent components (a filter transmission, the response of the optical elements of the telescope and instrument, the detector sensitivity, sometimes a telluric absorption component, …). Transmission curves are usually named after the associated filter, and it is up to the user to verify that the other components are also included. In this documentation, we use the terms filter throughput, transmission curve, response function, or simply filter, interchangeably, to refer to a transmission curve, generally leaving the verification of the nature of these transmission curves to the user.</p>
+<p>Most modern detectors count photons, rather than cumulating the energies of these photons.  If we consider a filter throughput (a.k.a, transmission curve, or response function) defined in wavelength by the dimensionless function <span class="math notranslate nohighlight">\(T(\lambda)\)</span>, this function tells you what fraction of the arriving photons at wavelength <span class="math notranslate nohighlight">\(\lambda\)</span> actually get detected (on average).  Therefore, the total number of photons, per unit time per unit collecting area, expected to be detected in this filter is</p>
+<div class="math notranslate nohighlight">
+\[\begin{equation}
+N_{tot} = \frac{1}{hc} \int_\lambda f_\lambda\,\lambda\,T(\lambda)\,d\lambda,
+\end{equation}\]</div>
+<p>where <span class="math notranslate nohighlight">\(f_\lambda\)</span> is the wavelength dependent flux density of an object given in energy per unit time, per unit collecting area, and per unit wavelength.</p>
+<p>Consequently, interpreting <span class="math notranslate nohighlight">\(\lambda T(\lambda)\)</span> as a distribution leads to the statistical mean of the flux density, <span class="math notranslate nohighlight">\(\overline{f_\lambda}\)</span></p>
+<div class="math notranslate nohighlight">
+\[\begin{equation}
+\overline{f_\lambda}(T) = \frac{\int_\lambda \lambda f_\lambda T(\lambda) d\lambda}{\int_\lambda \lambda T(\lambda) d\lambda}.
+\end{equation}\]</div>
+<p>Note that although this is formally a weighted mean of a flux density, with weights proportional to <span class="math notranslate nohighlight">\(\lambda T(\lambda)\)</span> (the denominator ensuring that the sum of the weights is 1), it actually measures the mean photon rate density in this filter. The result is commonly expressed in the same units as <span class="math notranslate nohighlight">\(f_\lambda\)</span>, i.e. <span class="math notranslate nohighlight">\(erg/s/cm^2/\unicode{x212B}\)</span> or <span class="math notranslate nohighlight">\(W/m^2/\unicode{x212B}\)</span>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># computing the mean flux of a spectrum</span>
+<span class="c1"># single_spectrum: np.array of shape (n_lambda,)</span>
+<span class="n">flux</span> <span class="o">=</span> <span class="n">lib</span><span class="p">[</span><span class="s1">&#39;hst_wfc3_f110w&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">get_flux</span><span class="p">(</span><span class="n">λ</span><span class="p">,</span> <span class="n">single_spectrum</span><span class="p">)</span>
+<span class="c1"># λ may have units, otherwise assuming consistent definitions.</span>
+
+<span class="c1"># computing the mean flux of many spectra</span>
+<span class="c1"># spectra: np.array of shape (n_spectra, n_lambda)</span>
+<span class="n">fluxes</span> <span class="o">=</span> <span class="n">lib</span><span class="p">[</span><span class="s1">&#39;hst_wfc3_f110w&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">get_flux</span><span class="p">(</span><span class="n">λ</span><span class="p">,</span> <span class="n">spectra</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Finally, at least for instruments using CCD or CCD-like cameras, i.e., counting photons, we obtain the usual definition of magnitude</p>
+<div class="math notranslate nohighlight">
+\[\begin{equation}
+mag_\lambda(T) = -2.5\,\log_{10}\left(\overline{f_\lambda}\right) - ZP\left(\overline{f_\lambda}\right),
+\end{equation}\]</div>
+<p>where <span class="math notranslate nohighlight">\(ZP(\overline{f_\lambda})\)</span> gives the passband reference value (zeropoint) for a given photometric/magnitude system.</p>
+<p>However, the zeropoints themselves depend on the photometric system adopted to report the measurements. They may vary fundamentally from one to another.  Below we briefly describe the main systems used in large surveys.</p>
+<section id="vega-magnitude-system">
+<h2>Vega magnitude system<a class="headerlink" href="#vega-magnitude-system" title="Link to this heading">#</a></h2>
+<p>This system is defined such that the star Alpha Lyr (Vega) has magnitude 0 in any pass-band filter. In other words, the zeropoints are set by the magnitude of vega, <span class="math notranslate nohighlight">\(-2.5 \log_{10} \overline{f_\lambda}(Vega)\)</span>, or</p>
+<div class="math notranslate nohighlight">
+\[\begin{equation}
+mag_{Vega}(T) = -2.5\,\log_{10}\left(\overline{f_\lambda} / \overline{f_\lambda}(Vega)\right).
+\end{equation}\]</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># convert to magnitudes</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">lib</span><span class="p">[</span><span class="s1">&#39;hst_wfc3_f110w&#39;</span><span class="p">]</span>
+<span class="n">fluxes</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">get_flux</span><span class="p">(</span><span class="n">lamb</span><span class="p">,</span> <span class="n">spectra</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="c1"># careful taking the log of non-dimensionless Quantity! -&gt; use .value</span>
+<span class="n">mags</span> <span class="o">=</span> <span class="o">-</span><span class="mf">2.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">fluxes</span><span class="o">.</span><span class="n">value</span><span class="p">)</span> <span class="o">-</span> <span class="n">f</span><span class="o">.</span><span class="n">Vega_zero_mag</span>
+<span class="c1"># or similarly</span>
+<span class="n">mags</span> <span class="o">=</span> <span class="o">-</span><span class="mf">2.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">fluxes</span> <span class="o">/</span> <span class="n">f</span><span class="o">.</span><span class="n">Vega_zero_flux</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We use the synthetic spectrum <cite>alpha_stis_003</cite> provided by <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2007ASPC..364..315B/abstract">Bohlin 2007</a>, a common reference througout many photometric suites. Additional flavors and description of the internal Vega reference can be found on the <a class="reference internal" href="vega.html"><span class="doc">Internal Vega reference spectra</span></a> page.</p>
+</section>
+<section id="johnson-system">
+<h2>Johnson system<a class="headerlink" href="#johnson-system" title="Link to this heading">#</a></h2>
+<p>The Johnson system is defined such that the star Alpha Lyr (Vega) has <span class="math notranslate nohighlight">\(V=0.03\)</span> mag and all colors equal to zero. It is very similar to the Vega magnitude system, but using mean flux definition (instead of photon counts), as appropriate for historical <strong>energy counter</strong> detectors</p>
+<div class="math notranslate nohighlight">
+\[\begin{equation}
+\widetilde{f_\lambda}(T) = \frac{\int_\lambda f_\lambda T(\lambda) d\lambda}{\int_\lambda T(\lambda) d\lambda},
+\label{eq:Johnsonmag}
+\end{equation}\]</div>
+<p>(this is the mean flux weighted simply by the normalized throughout.)</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Table A2 of <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/1998A%26A...333..231B">Bessell et al. (1998)</a> gives zero points for the UBVRIJHKL(+Kp and L’) filters in the Counsins-Glass-Johnson system.</p>
+</div>
+<p>If one defines the <strong>effective wavelength</strong> <span class="math notranslate nohighlight">\(\lambda_{\rm eff}\)</span> as the photon weighted mean wavelength:</p>
+<div class="math notranslate nohighlight">
+\[\lambda_{\rm eff} = \frac{\int \lambda f_\lambda T(\lambda) d\lambda}{\int f_\lambda T(\lambda) d\lambda},\]</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># the effective wavelength for vega is given by</span>
+<span class="n">lib</span><span class="p">[</span><span class="s1">&#39;ground_johnson_u&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">leff</span>
+</pre></div>
+</div>
+<p>then the difference between the Johnson and Vega systems within the same filter is given by</p>
+<div class="math notranslate nohighlight">
+\[\begin{equation}
+\widetilde{mag}_\lambda - \overline{mag}_\lambda = 0.03 - 2.5 \log_{10} \frac{\lambda_{\rm eff}(Vega)}{\lambda_{\rm eff}(star)},
+\end{equation}\]</div>
+<p>where we explicit which equation was used to compute magnitudes.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># The switch between the energy and the photon count equation is done</span>
+<span class="c1"># through the `Filter.set_dtype` method, and becomes transparent for any</span>
+<span class="c1"># use. So if you define you own filter either use the constructor or the</span>
+<span class="c1"># method</span>
+
+<span class="kn">from</span> <span class="nn">pyphot</span> <span class="kn">import</span> <span class="n">Filter</span>
+<span class="kn">from</span> <span class="nn">pyphot.config</span> <span class="kn">import</span> <span class="n">units</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="c1"># define a constant filter in energy count from 100 to 110 AA</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">Filter</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">110</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;energy&#39;</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;AA&#39;</span><span class="p">)</span>
+<span class="c1"># or equivalently</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">Filter</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">110</span><span class="p">)</span> <span class="o">*</span> <span class="n">units</span><span class="o">.</span><span class="n">U</span><span class="p">(</span><span class="s2">&quot;AA&quot;</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;energy&#39;</span><span class="p">)</span>
+<span class="c1"># manually set the detector type</span>
+<span class="n">f</span><span class="o">.</span><span class="n">set_dtype</span><span class="p">(</span><span class="s1">&#39;photon&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="ab-magnitude-system">
+<h2>AB magnitude system<a class="headerlink" href="#ab-magnitude-system" title="Link to this heading">#</a></h2>
+<p>This system is defined such that, when monochromatic flux <span class="math notranslate nohighlight">\(f_\nu\)</span> is measured in <span class="math notranslate nohighlight">\(erg\,s^{-1}\,cm^{-2} Hz^{-1}\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[mag_{AB}(T) = -2.5\, \log_{10}(\overline{f_\nu}) - 48.60\]</div>
+<p>where the value of the constant is selected to define <span class="math notranslate nohighlight">\(m_{AB}=V\)</span> for a flat-spectrum source. In this system, an object with constant flux per unit frequency interval has zero color.</p>
+<p><a class="reference external" href="https://ui.adsabs.harvard.edu/abs/1986HiA.....7..833K">Koornneef et al. (1986)</a> gives the respective definition of <span class="math notranslate nohighlight">\(\overline{f_\nu}(T)\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{equation}
+\overline{f_\nu}(T) = \frac{\int_\nu f_\nu T(\nu) d\nu / \nu}{\int_\nu T(\nu) d\nu / \nu}
+ = \frac{\int_\lambda f_\nu T(\lambda) d\lambda / \lambda}{\int_\lambda T(\lambda) d\lambda / \lambda}
+\end{equation}\]</div>
+<p>To go back to wavelength units, we have <span class="math notranslate nohighlight">\(d\nu = (c/\lambda^2) d\lambda\)</span>.</p>
+<p>If one defines the <strong>pivot wavelength</strong> <span class="math notranslate nohighlight">\(\lambda_p\)</span> to convert between <span class="math notranslate nohighlight">\(\overline{f_\nu}\)</span> and <span class="math notranslate nohighlight">\(\overline{f_\lambda}\)</span> as</p>
+<div class="math notranslate nohighlight">
+\[\begin{equation}
+\overline{f_\nu} = \frac{\lambda_p^2}{c} \overline{f_\lambda},
+\end{equation}\]</div>
+<p>one can show that</p>
+<div class="math notranslate nohighlight">
+\[\begin{equation}
+\lambda_p^2 = \frac{\int_\lambda T(\lambda)\,\lambda\,d\lambda}{\int_\lambda T(\lambda)\,d\lambda /\lambda}.
+\end{equation}\]</div>
+<p>Therefore for filters with AB magnitudes, one can compute</p>
+<div class="math notranslate nohighlight">
+\[\begin{equation}
+mag_{AB}(T) = -2.5\, \log_{10}(\overline{f_\lambda}) - 2.5\log_{10}\left(\lambda_p^2/c\right) - 48.6,
+\end{equation}\]</div>
+<p>where care must be taken to use the speed of light <span class="math notranslate nohighlight">\(c\)</span> and <span class="math notranslate nohighlight">\(\lambda_p\)</span> in matching units.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># convert to magnitudes</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">lib</span><span class="p">[</span><span class="s1">&#39;hst_wfc3_f110w&#39;</span><span class="p">]</span>
+<span class="n">fluxes</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">get_flux</span><span class="p">(</span><span class="n">lamb</span><span class="p">,</span> <span class="n">spectra</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">mags</span> <span class="o">=</span> <span class="o">-</span><span class="mf">2.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">fluxes</span><span class="p">)</span> <span class="o">-</span> <span class="n">f</span><span class="o">.</span><span class="n">AB_zero_mag</span>
+<span class="c1"># or similarly</span>
+<span class="n">mags</span> <span class="o">=</span> <span class="o">-</span><span class="mf">2.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">fluxes</span> <span class="o">/</span> <span class="n">f</span><span class="o">.</span><span class="n">AB_zero_flux</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="st-magnitude-system">
+<h2>ST magnitude system<a class="headerlink" href="#st-magnitude-system" title="Link to this heading">#</a></h2>
+<p>This system is defined such as a source with flat <span class="math notranslate nohighlight">\(f_\lambda\)</span> will have
+the same magnitude in every filter.</p>
+<p><a class="reference external" href="https://ui.adsabs.harvard.edu/abs/1986HiA.....7..833K">Koornneef et al. (1986; same as above)</a> defines</p>
+<div class="math notranslate nohighlight">
+\[\begin{equation}
+mag_{ST}(T) = -2.5\, \log_{10}(\overline{f_\lambda}) - 21.1,
+\end{equation}\]</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># convert to magnitudes</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">lib</span><span class="p">[</span><span class="s1">&#39;hst_wfc3_f110w&#39;</span><span class="p">]</span>
+<span class="n">fluxes</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">get_flux</span><span class="p">(</span><span class="n">lamb</span><span class="p">,</span> <span class="n">spectra</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="c1"># careful taking the log of non-dimensionless Quantity! -&gt; use .value</span>
+<span class="n">mags</span> <span class="o">=</span> <span class="o">-</span><span class="mf">2.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">fluxes</span><span class="o">.</span><span class="n">value</span><span class="p">)</span> <span class="o">-</span> <span class="n">f</span><span class="o">.</span><span class="n">ST_zero_mag</span>
+<span class="c1"># or similarly</span>
+<span class="n">mags</span> <span class="o">=</span> <span class="o">-</span><span class="mf">2.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">fluxes</span> <span class="o">/</span> <span class="n">f</span><span class="o">.</span><span class="n">ST_zero_flux</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="jansky-definition">
+<h2>Jansky definition<a class="headerlink" href="#jansky-definition" title="Link to this heading">#</a></h2>
+<p>The jansky (symbol Jy) is a non-SI unit of spectral flux density, it is equivalent to <span class="math notranslate nohighlight">\(10^{−26} W.m^{-2}.Hz^{-1}\)</span> or <span class="math notranslate nohighlight">\(10^{-23} erg/s/cm^2/Hz\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\begin{equation}
+{f_{Jy}} = \frac{10^5}{10^{-8}c} {\lambda_p^2} {f_\lambda},
+\end{equation}\]</div>
+<p>where <span class="math notranslate nohighlight">\(c\)</span> is the speed of light in <span class="math notranslate nohighlight">\(m/s\)</span>,  <span class="math notranslate nohighlight">\(\lambda_p\)</span> is the pivot wavelength in <span class="math notranslate nohighlight">\(Å\)</span>, and <span class="math notranslate nohighlight">\({f_\lambda}\)</span> the flux (Vega, AB, or ST) in flam (<span class="math notranslate nohighlight">\(erg.s^{-1}.cm^{-2}.Å^{-1}\)</span>).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="n">lib</span><span class="p">[</span><span class="s1">&#39;hst_wfc3_f110w&#39;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">AB_zero_Jy</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">Vega_zero_Jy</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">ST_zero_Jy</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Bessell, M. S. 1983, PASP, 95, 480, “VRI photometry : an addendum.” <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/1983PASP...95..480B">1983PASP…95..480B</a>;</p></li>
+<li><p>Bessell, M. S. 1990, PASP, 102, 1181, “UBVRI passbands” <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/1990PASP..102.1181B">1990PASP..102.1181B</a>;</p></li>
+<li><p>Bessell, M. S., Castelli, F., &amp; Plez, B. 1998, A&amp;A, 333, 231, “Model atmospheres broad-band colors, bolometric corrections and temperature calibrations for O - M stars.” <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/1998A%26A...333..231B/abstract">1998A&amp;A…333..231B</a>;</p></li>
+<li><p>Hayes, D. S., &amp; Latham, D. W. 1975, ApJ, 197, 593, “A rediscussion of the atmospheric extinction and the absolute spectral-energy distribution of Vega.” <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/1975ApJ...197..593H">1975ApJ…197..593H</a>;</p></li>
+<li><p>Johnson, H. L. &amp; Morgan, W. W. 1953, ApJ, 117, 313, “Fundamental stellar photometry for standards of spectral type on the Revised System of the Yerkes Spectral Atlas.” <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/1953ApJ...117..313J">1953ApJ…117..313J</a>;</p></li>
+<li><p>Koornneef, Bohlin, Buser, Horne, Turnshek : Synthetic photometry and the calibration of HST. <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/1986HiA.....7..833K">1986HiA…..7..833K</a></p></li>
+<li><p>Oke, J.B. 1974, ApJS, 27, 21, “Absolute Spectral Energy Distributions for White Dwarfs” <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/1974ApJS...27...21O">1974ApJS…27…21O</a>;</p></li>
+</ul>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="examples.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">More examples with Pyphot</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="libcontent.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Provided Filter library</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vega-magnitude-system">Vega magnitude system</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#johnson-system">Johnson system</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ab-magnitude-system">AB magnitude system</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#st-magnitude-system">ST magnitude system</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jansky-definition">Jansky definition</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By M. Fouesneau
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2016, M. Fouesneau.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

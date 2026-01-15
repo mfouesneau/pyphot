@@ -1,110 +1,681 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+
+<html lang="en" data-content_root="./" >
+
   <head>
     <meta charset="utf-8" />
-    <title>Welcome to No Errors Test Project’s documentation! &#8212; No Errors Test Project  documentation</title>
-    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/language_data.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>PYPHOT – A tool for computing photometry from spectra &#8212; pyphot  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/tabs.css?v=a5c4661c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=984d411d"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script src="_static/tabs.js?v=3030b3cb"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'index';</script>
+    <link rel="canonical" href="https://mfouesneau.github.io/pyphot/index.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-   
-  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="next" title="Version History" href="whats_new.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
   
   
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-  </head><body>
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
   
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
 
-          <div class="body" role="main">
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="#">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">pyphot  documentation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="whats_new.html">What's New</a></li>
+<li class="toctree-l1"><a class="reference internal" href="QuickStart.html">pyphot Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">More examples with Pyphot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="photometry.html">Details on predicting photometry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="libcontent.html">Provided Filter library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="licks.html">Extention to Lick indices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vega.html">Internal Vega reference spectra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sun.html">Internal Sun reference spectra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="modules.html">API</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="pyphot.html">pyphot package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyphot.io.html">pyphot.io package</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="pyphot.unit_adapters.html">pyphot.unit_adapters package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.unit_adapters.ezunits.html">pyphot.unit_adapters.ezunits package</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/mfouesneau/pyphot" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/mfouesneau/pyphot/blob/master/doc/index.rst?plain=1" target="_blank"
+   class="btn btn-sm btn-source-file-button dropdown-item"
+   title="Show source"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="btn__text-container">Show source</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/mfouesneau/pyphot/issues/new?title=Issue%20on%20page%20%2Findex.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/index.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>PYPHOT – A tool for computing photometry from spectra</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
             
-  <div class="section" id="welcome-to-no-errors-test-project-s-documentation">
-<h1>Welcome to No Errors Test Project’s documentation!<a class="headerlink" href="#welcome-to-no-errors-test-project-s-documentation" title="Permalink to this headline">¶</a></h1>
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#package-main-content">Package main content</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#documentation-contents">Documentation Contents</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Installation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contributors">Contributors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#related-projects">Related projects</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#citation">Citation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#indices-and-tables">Indices and tables</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="pyphot-a-tool-for-computing-photometry-from-spectra">
+<h1>PYPHOT – A tool for computing photometry from spectra<a class="headerlink" href="#pyphot-a-tool-for-computing-photometry-from-spectra" title="Link to this heading">#</a></h1>
+<a class="reference external image-reference" href="https://pypi.org/project/pyphot/"><img alt="https://img.shields.io/pypi/v/pyphot.svg" src="https://img.shields.io/pypi/v/pyphot.svg" />
+</a>
+<a class="reference external image-reference" href="https://zenodo.org/badge/latestdoi/70060728"><img alt="https://zenodo.org/badge/70060728.svg" src="https://zenodo.org/badge/70060728.svg" />
+</a>
+<a class="reference external image-reference" href="https://pepy.tech/project/pyphot"><img alt="https://static.pepy.tech/badge/pyphot" src="https://static.pepy.tech/badge/pyphot" />
+</a>
+<a class="reference external image-reference" href="https://pepy.tech/project/pyphot"><img alt="https://static.pepy.tech/badge/pyphot/month" src="https://static.pepy.tech/badge/pyphot/month" />
+</a>
+<img alt="https://img.shields.io/badge/python-3.9,_3.10,_3.11,_3.12,_3.13-blue.svg" src="https://img.shields.io/badge/python-3.9,_3.10,_3.11,_3.12,_3.13-blue.svg" />
+<p>This is a set of tools to compute synthetic photometry in a simple way, suitable
+for integration in larger projects.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>New major release (v2.0.0) which introduces new features and <strong>breaking changes</strong>.</p>
+<p>See <a class="reference internal" href="whats_new.html"><span class="doc">What’s new</span></a>.</p>
+</div>
+<p>The inputs are response functions for the desired photometric passbands and stellar spectra.</p>
+<p>Filters are represented individually by a <cite>Filter</cite> object. Collections of filters are handled with a <cite>Library</cite>. We provide an internal library that contains a significant number of common filters. Note that we use the word “filter” in a generic sense: in many cases, it corresponds in fact to a total throughput, which includes the actual filter transmission, the transmission of the optics, the wavelength-dependent efficiency of the detector, and (for ground-based photometric systems) the transmission of the atmosphere.</p>
+<p>Each filter is minimally defined by a <cite>wavelength</cite>, a <cite>throughput</cite>, and a detector type, which may be either <cite>energy</cite> or <cite>photon</cite> (default). Many properties, such as central or pivot wavelengths, are computed internally.</p>
+<p>Units are provided for the wavelengths of the filters, zero points in multiple units are also accessible (AB, Vega magnitude, Jy, erg/s/cm2/AA). The default detector is assumed to be a photon-counting device, but energy-sensitive detectors are also handled for the computations.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Pyphot handles units from <a class="reference external" href="https://docs.astropy.org/en/stable/units/index.html">Astropy Units</a> (as default), <a class="reference external" href="https://pint.readthedocs.io/en/stable/">Pint</a>, and <cite>EzUnits</cite> (<a class="reference internal" href="pyphot.unit_adapters.ezunits.html#module-pyphot.unit_adapters.ezunits" title="pyphot.unit_adapters.ezunits"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ezunits</span></code></a>).
+You can switch between them using the <a class="reference internal" href="pyphot.html#pyphot.config.set_units_backend" title="pyphot.config.set_units_backend"><code class="xref py py-func docutils literal notranslate"><span class="pre">pyphot.config.set_units_backend()</span></code></a> function.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyphot.config</span>
+<span class="n">pyphot</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">set_units_backend</span><span class="p">(</span><span class="s1">&#39;astropy&#39;</span><span class="p">)</span>
+<span class="n">pyphot</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">set_units_backend</span><span class="p">(</span><span class="s1">&#39;pint&#39;</span><span class="p">)</span>
+<span class="n">pyphot</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">set_units_backend</span><span class="p">(</span><span class="s1">&#39;ezunits&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<section id="package-main-content">
+<h2>Package main content<a class="headerlink" href="#package-main-content" title="Link to this heading">#</a></h2>
+<p>This package is mostly organized around 2 main classes:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="pyphot.html#pyphot.phot.Filter" title="pyphot.phot.Filter"><code class="xref py py-class docutils literal notranslate"><span class="pre">Filter</span></code></a> that handles filter definitions and manipulations.</p></li>
+<li><p><a class="reference internal" href="pyphot.html#pyphot.libraries.Library" title="pyphot.libraries.Library"><code class="xref py py-class docutils literal notranslate"><span class="pre">Library</span></code></a> that handles a collection of filters in a few formats.</p></li>
+</ul>
+<p>Additionally, and for convenience</p>
+<ul class="simple">
+<li><p>the library class is derived into an ascii file reader
+<a class="reference internal" href="pyphot.html#pyphot.libraries.Ascii_Library" title="pyphot.libraries.Ascii_Library"><code class="xref py py-class docutils literal notranslate"><span class="pre">Ascii_Library</span></code></a>, and a single hdf file reader
+<a class="reference internal" href="pyphot.html#pyphot.libraries.HDF_Library" title="pyphot.libraries.HDF_Library"><code class="xref py py-class docutils literal notranslate"><span class="pre">HDF_Library</span></code></a>.</p></li>
+<li><p><a class="reference internal" href="pyphot.html#pyphot.vega.Vega" title="pyphot.vega.Vega"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vega</span></code></a> provides an interface to a synthetic reference of Vega.</p></li>
+<li><p><a class="reference internal" href="pyphot.html#pyphot.sun.Sun" title="pyphot.sun.Sun"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sun</span></code></a> provides an interface to a synthetic and empirical reference of the Sun spectrum.</p></li>
+<li><p><a class="reference internal" href="pyphot.html#module-pyphot.licks" title="pyphot.licks"><code class="xref py py-class docutils literal notranslate"><span class="pre">licks</span></code></a> provides an extension to computing lick indices (<a class="reference internal" href="pyphot.html#pyphot.licks.LickIndex" title="pyphot.licks.LickIndex"><code class="xref py py-class docutils literal notranslate"><span class="pre">LickIndex</span></code></a>, <a class="reference internal" href="pyphot.html#pyphot.licks.LickLibrary" title="pyphot.licks.LickLibrary"><code class="xref py py-class docutils literal notranslate"><span class="pre">LickLibrary</span></code></a>).</p></li>
+<li><p><a class="reference internal" href="pyphot.html#pyphot.svo.get_pyphot_filter" title="pyphot.svo.get_pyphot_filter"><code class="xref py py-func docutils literal notranslate"><span class="pre">pyphot.svo.get_pyphot_filter()</span></code></a> provides an interface to the <a class="reference external" href="http://svo2.cab.inta-csic.es/theory/fps/">SVO Filter Profile Service</a> to download filters directly from the SVO database.</p></li>
+</ul>
+<section id="documentation-contents">
+<h3>Documentation Contents<a class="headerlink" href="#documentation-contents" title="Link to this heading">#</a></h3>
 <div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="whats_new.html">What's New</a></li>
+<li class="toctree-l1"><a class="reference internal" href="QuickStart.html">pyphot Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">More examples with Pyphot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="photometry.html">Details on predicting photometry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="libcontent.html">Provided Filter library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="licks.html">Extention to Lick indices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vega.html">Internal Vega reference spectra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sun.html">Internal Sun reference spectra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">API</a></li>
+</ul>
 </div>
+</section>
+</section>
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Link to this heading">#</a></h2>
+<p>Pyphot is available on <a class="reference external" href="https://pypi.org/project/pyphot/">PyPI</a> and can be installed using any common package manager.</p>
+<section id="id1">
+<h3>Installation<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<p>Before installation, make sure you have HDF5 version 1.8.4 or later (required for pytables; see details at <a class="github reference external" href="https://github.com/PyTables/PyTables">PyTables/PyTables</a>). We will remove this dependency in a future release.</p>
+<p>For OSX:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">brew</span> <span class="n">install</span> <span class="n">hdf5</span>
+</pre></div>
 </div>
-<div class="section" id="indices-and-tables">
-<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<p>For Debian-based distributions:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">libhdf5</span><span class="o">-</span><span class="n">serial</span><span class="o">-</span><span class="n">dev</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Installation from PyPI</p></li>
+</ul>
+<a class="reference external image-reference" href="https://pypi.org/project/pyphot/"><img alt="https://img.shields.io/pypi/v/pyphot.svg" src="https://img.shields.io/pypi/v/pyphot.svg" />
+</a>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">pyphot</span>
+
+<span class="n">pip</span> <span class="n">install</span> <span class="n">git</span><span class="o">+</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">mfouesneau</span><span class="o">/</span><span class="n">pyphot</span>   <span class="c1"># if you want the unreleased version</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Manual installation</p></li>
+</ul>
+<p>Download the repository and run the setup</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">mfouesneau</span><span class="o">/</span><span class="n">pyphot</span>
+<span class="n">cd</span> <span class="n">pyphot</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="o">.</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="contributors">
+<h2>Contributors<a class="headerlink" href="#contributors" title="Link to this heading">#</a></h2>
+<p>Author: Morgan Fouesneau (<a class="reference external" href="https://github.com/mfouesneau">&#64;mfouesneau</a>)</p>
+<p>Direct contributions to the code base:</p>
+<ul class="simple">
+<li><p>Ariane Lançon (<a class="reference external" href="https://github.com/lancon">&#64;lancon</a>)</p></li>
+<li><p>Tim Morton (<a class="reference external" href="https://github.com/timothydmorton">&#64;timothydmorton</a>)</p></li>
+</ul>
+<p>If you want to contribute, please look at our <a class="reference internal" href="contributing.html"><span class="doc">contributing guide</span></a>.</p>
+</section>
+<section id="related-projects">
+<h2>Related projects<a class="headerlink" href="#related-projects" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/mfouesneau/cphot">cphot</a> is a spin-off project that provides a C++ version of pyphot</p></li>
+</ul>
+</section>
+<section id="citation">
+<h2>Citation<a class="headerlink" href="#citation" title="Link to this heading">#</a></h2>
+<p>If you use this software in your work, please cite it using the following:</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-0-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-0-0-0" name="0-0" role="tab" tabindex="0">bibtex</button><button aria-controls="panel-0-0-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-1" name="0-1" role="tab" tabindex="-1">citation cff</button></div><div aria-labelledby="tab-0-0-0" class="sphinx-tabs-panel" id="panel-0-0-0" name="0-0" role="tabpanel" tabindex="0"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@software</span><span class="p">{</span><span class="n">fouesneau2025pyphot</span><span class="p">,</span>
+<span class="n">author</span>       <span class="o">=</span> <span class="p">{</span><span class="n">Fouesneau</span><span class="p">,</span> <span class="n">Morgan</span><span class="p">},</span>
+<span class="n">title</span>        <span class="o">=</span> <span class="p">{</span><span class="n">pyphot</span><span class="p">},</span>
+<span class="n">month</span>        <span class="o">=</span> <span class="n">jan</span><span class="p">,</span>
+<span class="n">year</span>         <span class="o">=</span> <span class="mi">2025</span><span class="p">,</span>
+<span class="n">publisher</span>    <span class="o">=</span> <span class="p">{</span><span class="n">Zenodo</span><span class="p">},</span>
+<span class="n">version</span>      <span class="o">=</span> <span class="p">{</span><span class="n">pyphot</span>\<span class="n">_v2</span><span class="mf">.0.0</span><span class="p">},</span>
+<span class="n">doi</span>          <span class="o">=</span> <span class="p">{</span><span class="mf">10.5281</span><span class="o">/</span><span class="n">zenodo</span><span class="mf">.14712174</span><span class="p">},</span>
+<span class="n">url</span>          <span class="o">=</span> <span class="p">{</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">doi</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="mf">10.5281</span><span class="o">/</span><span class="n">zenodo</span><span class="mf">.14712174</span><span class="p">},</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-0-0-1" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-1" name="0-1" role="tabpanel" tabindex="0"><p><a class="reference external" href="https://citation-file-format.github.io/">Learn more about CITATION files.</a></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cff</span><span class="o">-</span><span class="n">version</span><span class="p">:</span> <span class="mf">1.2.0</span>
+<span class="n">message</span><span class="p">:</span> <span class="s2">&quot;If you use this software, please cite it as below.&quot;</span>
+<span class="n">authors</span><span class="p">:</span>
+<span class="o">-</span> <span class="n">family</span><span class="o">-</span><span class="n">names</span><span class="p">:</span> <span class="s2">&quot;Fouesneau&quot;</span>
+  <span class="n">given</span><span class="o">-</span><span class="n">names</span><span class="p">:</span> <span class="s2">&quot;Morgan&quot;</span>
+  <span class="n">orcid</span><span class="p">:</span> <span class="s2">&quot;https://orcid.org/0000-0001-9256-5516&quot;</span>
+<span class="n">title</span><span class="p">:</span> <span class="s2">&quot;pyphot&quot;</span>
+<span class="n">version</span><span class="p">:</span> <span class="mf">2.1.0</span>
+<span class="n">date</span><span class="o">-</span><span class="n">released</span><span class="p">:</span> <span class="mi">2026</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">15</span>
+<span class="n">url</span><span class="p">:</span> <span class="s2">&quot;https://github.com/mfouesneau/pyphot&quot;</span>
+</pre></div>
+</div>
+</div></div>
+</section>
+<section id="indices-and-tables">
+<h2>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
 <li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
 <li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
 </ul>
-</div>
+</section>
+</section>
 
 
-          </div>
-          
-        </div>
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="right-next"
+       href="whats_new.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Version History</p>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="#">No Errors Test Project</a></h1>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
-
-
-
-
-
-
-<h3>Navigation</h3>
-
-<div class="relations">
-<h3>Related Topics</h3>
-<ul>
-  <li><a href="#">Documentation overview</a><ul>
-  </ul></li>
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#package-main-content">Package main content</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#documentation-contents">Documentation Contents</a></li>
 </ul>
-</div>
-<div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
-      <input type="submit" value="Go" />
-    </form>
-    </div>
-</div>
-<script>$('#searchbox').show(0);</script>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Installation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contributors">Contributors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#related-projects">Related projects</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#citation">Citation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#indices-and-tables">Indices and tables</a></li>
+</ul>
+  </nav></div>
 
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By M. Fouesneau
+</p>
 
-
-
-
-
-
-
-        </div>
-      </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="footer">
-      &copy;2019, sphinx-action Test Suite.
-      
-      |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.4</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
-      
-      |
-      <a href="_sources/index.rst.txt"
-          rel="nofollow">Page source</a>
-    </div>
-
+  </div>
+  
+  <div class="footer-item">
     
 
+  <p class="copyright">
     
+      © Copyright 2016, M. Fouesneau.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

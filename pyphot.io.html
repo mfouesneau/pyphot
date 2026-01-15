@@ -1,0 +1,1242 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>pyphot.io package &#8212; pyphot  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=984d411d"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'pyphot.io';</script>
+    <link rel="canonical" href="https://mfouesneau.github.io/pyphot/pyphot.io.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="pyphot.unit_adapters package" href="pyphot.unit_adapters.html" />
+    <link rel="prev" title="pyphot package" href="pyphot.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">pyphot  documentation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="whats_new.html">What's New</a></li>
+<li class="toctree-l1"><a class="reference internal" href="QuickStart.html">pyphot Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">More examples with Pyphot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="photometry.html">Details on predicting photometry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="libcontent.html">Provided Filter library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="licks.html">Extention to Lick indices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vega.html">Internal Vega reference spectra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sun.html">Internal Sun reference spectra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="modules.html">API</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="pyphot.html">pyphot package</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">pyphot.io package</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="pyphot.unit_adapters.html">pyphot.unit_adapters package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.unit_adapters.ezunits.html">pyphot.unit_adapters.ezunits package</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/mfouesneau/pyphot" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/mfouesneau/pyphot/blob/master/doc/pyphot.io.rst?plain=1" target="_blank"
+   class="btn btn-sm btn-source-file-button dropdown-item"
+   title="Show source"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="btn__text-container">Show source</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/mfouesneau/pyphot/issues/new?title=Issue%20on%20page%20%2Fpyphot.io.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/pyphot.io.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>pyphot.io package</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#io-module">IO module</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.io.from_file"><code class="docutils literal notranslate"><span class="pre">from_file()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#submodules">Submodules</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-pyphot.io.ascii">pyphot.io.ascii module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.io.ascii.ascii_generate_header"><code class="docutils literal notranslate"><span class="pre">ascii_generate_header()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.io.ascii.ascii_read_header"><code class="docutils literal notranslate"><span class="pre">ascii_read_header()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.io.ascii.from_ascii"><code class="docutils literal notranslate"><span class="pre">from_ascii()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.io.ascii.from_csv"><code class="docutils literal notranslate"><span class="pre">from_csv()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.io.ascii.to_ascii"><code class="docutils literal notranslate"><span class="pre">to_ascii()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.io.ascii.to_csv"><code class="docutils literal notranslate"><span class="pre">to_csv()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-pyphot.io.fits">pyphot.io.fits module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.io.fits.fits_generate_hdu"><code class="docutils literal notranslate"><span class="pre">fits_generate_hdu()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.io.fits.fits_generate_header"><code class="docutils literal notranslate"><span class="pre">fits_generate_header()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.io.fits.fits_read_header"><code class="docutils literal notranslate"><span class="pre">fits_read_header()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.io.fits.fix_endian_issue"><code class="docutils literal notranslate"><span class="pre">fix_endian_issue()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.io.fits.from_fits"><code class="docutils literal notranslate"><span class="pre">from_fits()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.io.fits.to_fits"><code class="docutils literal notranslate"><span class="pre">to_fits()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-pyphot.io.hdf_h5py">pyphot.io.hdf_h5py module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.io.hdf_h5py.from_hdf5"><code class="docutils literal notranslate"><span class="pre">from_hdf5()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.io.hdf_h5py.to_hdf5"><code class="docutils literal notranslate"><span class="pre">to_hdf5()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot-io-hdf-pytables-module">pyphot.io.hdf_pytables module</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-pyphot.io.header">pyphot.io.header module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.io.header.HeaderInfo"><code class="docutils literal notranslate"><span class="pre">HeaderInfo</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.io.header.HeaderInfo.__init__"><code class="docutils literal notranslate"><span class="pre">HeaderInfo.__init__()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.io.header.HeaderInfo.alias"><code class="docutils literal notranslate"><span class="pre">HeaderInfo.alias</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.io.header.HeaderInfo.comments"><code class="docutils literal notranslate"><span class="pre">HeaderInfo.comments</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.io.header.HeaderInfo.header"><code class="docutils literal notranslate"><span class="pre">HeaderInfo.header</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.io.header.HeaderInfo.units"><code class="docutils literal notranslate"><span class="pre">HeaderInfo.units</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-pyphot.io.votable">pyphot.io.votable module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.io.votable.VOTableParser"><code class="docutils literal notranslate"><span class="pre">VOTableParser</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.io.votable.VOTableParser.__init__"><code class="docutils literal notranslate"><span class="pre">VOTableParser.__init__()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.io.votable.VOTableParser.get_table_as_dict"><code class="docutils literal notranslate"><span class="pre">VOTableParser.get_table_as_dict()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.io.votable.VOTableParser.print_table_info"><code class="docutils literal notranslate"><span class="pre">VOTableParser.print_table_info()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.io.votable.from_votable"><code class="docutils literal notranslate"><span class="pre">from_votable()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.io.votable.to_votable"><code class="docutils literal notranslate"><span class="pre">to_votable()</span></code></a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="module-pyphot.io">
+<span id="pyphot-io-package"></span><h1>pyphot.io package<a class="headerlink" href="#module-pyphot.io" title="Link to this heading">#</a></h1>
+<section id="io-module">
+<h2>IO module<a class="headerlink" href="#io-module" title="Link to this heading">#</a></h2>
+<p>This module provides functions for reading and writing data in various formats.</p>
+<p>It is Adapted from SimpleTable (v2.0; <a class="github reference external" href="https://github.com/mfouesneau/simpletable">mfouesneau/simpletable</a>) with minimal depedencies.</p>
+<dl class="simple">
+<dt>Formats:</dt><dd><ul class="simple">
+<li><p>FITS: <a class="reference internal" href="#module-pyphot.io.fits" title="pyphot.io.fits"><code class="xref py py-mod docutils literal notranslate"><span class="pre">fits</span></code></a></p></li>
+<li><p>ASCII: <a class="reference internal" href="#module-pyphot.io.ascii" title="pyphot.io.ascii"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ascii</span></code></a></p></li>
+<li><p>HDF5: <code class="xref py py-mod docutils literal notranslate"><span class="pre">hdf</span></code></p></li>
+<li><p>VOTABLE: <a class="reference internal" href="#module-pyphot.io.votable" title="pyphot.io.votable"><code class="xref py py-mod docutils literal notranslate"><span class="pre">votable</span></code></a></p></li>
+</ul>
+</dd>
+</dl>
+<p>For all formats, reading and writing preserve metadata.
+The data are given as <cite>pd.DataFrame</cite> objects and the header as a <code class="xref py py-class docutils literal notranslate"><span class="pre">HeaderInfo</span></code> object.</p>
+</section>
+<dl class="py function">
+<dt class="sig sig-object py" id="pyphot.io.from_file">
+<span class="sig-name descname"><span class="pre">from_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyphot/io.html#from_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyphot.io.from_file" title="Link to this definition">#</a></dt>
+<dd><p>Read a file into a DataFrame and a Header</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fname</strong> (<em>str</em>) – File name to read.</p></li>
+<li><p><strong>format</strong> (<em>str</em><em>, </em><em>optional</em>) – File format to read. If not provided, the format is inferred from the file extension.</p></li>
+<li><p><strong>**kwargs</strong> – Additional keyword arguments to pass to the reader.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>df</strong> (<em>pd.DataFrame</em>) – DataFrame containing the data.</p></li>
+<li><p><strong>hdr</strong> (<em>HeaderInfo</em>) – Header information.</p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple[<em>DataFrame</em>, <a class="reference internal" href="#pyphot.io.header.HeaderInfo" title="pyphot.io.header.HeaderInfo"><em>HeaderInfo</em></a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading">#</a></h2>
+</section>
+<section id="module-pyphot.io.ascii">
+<span id="pyphot-io-ascii-module"></span><h2>pyphot.io.ascii module<a class="headerlink" href="#module-pyphot.io.ascii" title="Link to this heading">#</a></h2>
+<p>Export dataframe to ASCII format while preserving attrs</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="pyphot.io.ascii.ascii_generate_header">
+<span class="sig-name descname"><span class="pre">ascii_generate_header</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comments</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'#'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delimiter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'</span> <span class="pre">'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">commented_header</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyphot/io/ascii.html#ascii_generate_header"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyphot.io.ascii.ascii_generate_header" title="Link to this definition">#</a></dt>
+<dd><p>Generate the corresponding ascii Header that contains all necessary info</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df</strong> (<em>pd.DataFrame</em>) – table to export</p></li>
+<li><p><strong>comments</strong> (<em>str</em>) – string to prepend header lines</p></li>
+<li><p><strong>delimiter</strong> (<em>str</em><em>, </em><em>optional</em>) – The string used to separate values.  By default, this is any
+whitespace.</p></li>
+<li><p><strong>commented_header</strong> (<em>bool</em><em>, </em><em>optional</em>) – if set, the last line of the header is expected to be the column titles</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>hdr</strong> – string that will be be written at the beginning of the file</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyphot.io.ascii.ascii_read_header">
+<span class="sig-name descname"><span class="pre">ascii_read_header</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">commentchar</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'#'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delimiter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">','</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">commented_header</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyphot/io/ascii.html#ascii_read_header"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyphot.io.ascii.ascii_read_header" title="Link to this definition">#</a></dt>
+<dd><p>Read ASCII/CSV header</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fname</strong> (<em>str</em><em>, </em><em>FilePath</em><em>, </em><em>BaseBuffer</em>) – File, filename, or generator to read.
+Note that generators should return byte strings for Python &gt;=3.</p></li>
+<li><p><strong>comments</strong> (<em>str</em><em>, </em><em>optional</em>) – The character used to indicate the start of a comment;
+default: ‘#’. (”” is equivalent to None)</p></li>
+<li><p><strong>delimiter</strong> (<em>str</em><em>, </em><em>optional</em>) – The string used to separate values.  By default, this is any
+whitespace.</p></li>
+<li><p><strong>commented_header</strong> (<em>bool</em><em>, </em><em>optional</em>) – if set, the last line of the header is expected to be the column titles (with comment character)
+otherwise, the first line of the data will be the column titles</p></li>
+<li><p><strong>commentchar</strong> (<em>str</em>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>nlines</strong> (<em>int</em>) – number of lines from the header</p></li>
+<li><p><strong>info</strong> (<em>HeaderInfo</em>) – header information (header, alias, units, comments)</p></li>
+<li><p><strong>names</strong> (<em>List[str]</em>) – sequence or str, first data line after header, expected to be the
+column names.</p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><em>Tuple</em>[int, <a class="reference internal" href="#pyphot.io.header.HeaderInfo" title="pyphot.io.header.HeaderInfo"><em>HeaderInfo</em></a>, <em>List</em>[str]]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyphot.io.ascii.from_ascii">
+<span class="sig-name descname"><span class="pre">from_ascii</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filepath_or_buffer</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">commented_header</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyphot/io/ascii.html#from_ascii"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyphot.io.ascii.from_ascii" title="Link to this definition">#</a></dt>
+<dd><p>Read an ASCII file into a DataFrame.</p>
+<p>from_csv with delimiter set to “ “ by default</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filepath_or_buffer</strong> (<em>str</em><em>, </em><em>path object</em><em> or </em><em>file-like object</em>) – Any valid string path is acceptable. The string could be a URL. Valid
+URL schemes include http, ftp, s3, and file. For file URLs, a host is
+expected. A local file could be:
+<code class="docutils literal notranslate"><span class="pre">file://localhost/path/to/table.csv</span></code>.</p></li>
+<li><p><strong>commented_header</strong> (<em>bool</em><em>, </em><em>default False</em>) – Whether the header is commented or not.</p></li>
+<li><p><strong>**kwargs</strong> (<em>dict</em>) – Additional keyword arguments passed to <code class="docutils literal notranslate"><span class="pre">pd.read_csv</span></code>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>DataFrame</strong> (<em>pd.DataFrame</em>) – The parsed data as a pd.DataFrame.</p></li>
+<li><p><strong>header</strong> (<em>HeaderInfo</em>) – The header information extracted from the file.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="#pyphot.io.ascii.from_csv" title="pyphot.io.ascii.from_csv"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_csv</span></code></a></dt><dd><p>Read a CSV file into a DataFrame</p>
+</dd>
+</dl>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyphot.io.ascii.from_csv">
+<span class="sig-name descname"><span class="pre">from_csv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filepath_or_buffer</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">commented_header</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyphot/io/ascii.html#from_csv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyphot.io.ascii.from_csv" title="Link to this definition">#</a></dt>
+<dd><p>Read a CSV file into a DataFrame while preserving header information</p>
+<p>Equivalent to <cite>pd.read_csv</cite> with preserved header information.</p>
+<p>Also supports optionally iterating or breaking of the file
+into chunks.</p>
+<p>Additional help can be found in the online docs for
+<a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/user_guide/io.html">IO Tools</a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filepath_or_buffer</strong> (<em>str</em><em>, </em><em>path object</em><em> or </em><em>file-like object</em>) – Any valid string path is acceptable.</p></li>
+<li><p><strong>commented_header</strong> (<em>bool</em><em>, </em><em>default False</em>) – Whether the column definition header line starts with a comment character.</p></li>
+<li><p><strong>commentchar</strong> (<em>str</em><em>, </em><em>default '#'</em>) – Character to treat as a comment character.</p></li>
+<li><p><strong>sep</strong> (<em>str</em><em>, </em><em>default '</em><em>,</em><em>'</em>) – Character or regex pattern to treat as the delimiter. If <code class="docutils literal notranslate"><span class="pre">sep=None</span></code>, the
+C engine cannot automatically detect the separator, but the Python
+parsing engine can, meaning the latter will be used and automatically
+detect the separator from only the first valid row of the file by
+Python’s builtin sniffer tool, <code class="docutils literal notranslate"><span class="pre">csv.Sniffer</span></code>.
+In addition, separators longer than 1 character and different from
+<code class="docutils literal notranslate"><span class="pre">'\s+'</span></code> will be interpreted as regular expressions and will also force
+the use of the Python parsing engine. Note that regex delimiters are prone
+to ignoring quoted data. Regex example: <code class="docutils literal notranslate"><span class="pre">'\r\t'</span></code>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>DataFrame</strong> (<em>pd.DataFrame</em>) – The parsed data as a pd.DataFrame.</p></li>
+<li><p><strong>header</strong> (<em>HeaderInfo</em>) – The header information extracted from the file.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">pd.read_csv</span></code></dt><dd><p>Read a CSV file into a DataFrame</p>
+</dd>
+</dl>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyphot.io.ascii.to_ascii">
+<span class="sig-name descname"><span class="pre">to_ascii</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filepath_or_buffer</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">sep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'</span> <span class="pre">'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">commentchar</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'#'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyphot/io/ascii.html#to_ascii"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyphot.io.ascii.to_ascii" title="Link to this definition">#</a></dt>
+<dd><p>Write object to an ASCII values file while preserving attrs</p>
+<p>Equivalent to <cite>to_csv</cite> with default <cite>sep</cite> set to a space.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="#pyphot.io.ascii.to_csv" title="pyphot.io.ascii.to_csv"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_csv</span></code></a></dt><dd><p>Write object to a CSV file while preserving attrs</p>
+</dd>
+</dl>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>self</strong> (<em>DataFrame</em>)</p></li>
+<li><p><strong>filepath_or_buffer</strong> (<em>str</em><em> | </em><em>PathLike</em><em>[</em><em>str</em><em>] </em><em>| </em><em>BaseBuffer</em>)</p></li>
+<li><p><strong>sep</strong> (<em>str</em>)</p></li>
+<li><p><strong>commentchar</strong> (<em>str</em>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>str | None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyphot.io.ascii.to_csv">
+<span class="sig-name descname"><span class="pre">to_csv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filepath_or_buffer</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">sep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">','</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">commentchar</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'#'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">na_rep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float_format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">columns</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">header</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index_label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'w'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compression</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'infer'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quoting</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quotechar</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'&quot;'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lineterminator</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chunksize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date_format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">doublequote</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">escapechar</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">decimal</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'.'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">errors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'strict'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">storage_options</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyphot/io/ascii.html#to_csv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyphot.io.ascii.to_csv" title="Link to this definition">#</a></dt>
+<dd><p>Write object to a comma-separated values (csv) file while preserving attrs</p>
+<p>Fallsback to <cite>pd.DataFrame.to_csv</cite> if no attrs content</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path_or_buf</strong> (<em>str</em><em>, </em><em>path object</em><em>, </em><em>file-like object</em><em>, or </em><em>None</em><em>, </em><em>default None</em>) – String, path object (implementing os.PathLike[str]), or file-like
+object implementing a write() function. If None, the result is
+returned as a string. If a non-binary file object is passed, it should
+be opened with <cite>newline=’’</cite>, disabling universal newlines. If a binary
+file object is passed, <cite>mode</cite> might need to contain a <cite>‘b’</cite>.</p></li>
+<li><p><strong>sep</strong> (<em>str</em><em>, </em><em>default '</em><em>,</em><em>'</em>) – String of length 1. Field delimiter for the output file.</p></li>
+<li><p><strong>commentchar</strong> (<em>str</em><em>, </em><em>default '#'</em>) – Character starting a comment line for the output file.</p></li>
+<li><p><strong>na_rep</strong> (<em>str</em><em>, </em><em>default ''</em>) – Missing data representation.</p></li>
+<li><p><strong>float_format</strong> (<em>str</em><em>, </em><em>Callable</em><em>, </em><em>default None</em>) – Format string for floating point numbers. If a Callable is given, it takes
+precedence over other numeric formatting parameters, like decimal.</p></li>
+<li><p><strong>columns</strong> (<em>sequence</em><em>, </em><em>optional</em>) – Columns to write.</p></li>
+<li><p><strong>header</strong> (<em>bool</em><em> or </em><em>list</em><em> of </em><em>str</em><em>, </em><em>default True</em>) – Write out the column names. If a list of strings is given it is
+assumed to be aliases for the column names.</p></li>
+<li><p><strong>index</strong> (<em>bool</em><em>, </em><em>default True</em>) – Write row names (index).</p></li>
+<li><p><strong>index_label</strong> (<em>str</em><em> or </em><em>sequence</em><em>, or </em><em>False</em><em>, </em><em>default None</em>) – Column label for index column(s) if desired. If None is given, and
+<cite>header</cite> and <cite>index</cite> are True, then the index names are used. A
+sequence should be given if the object uses MultiIndex. If
+False do not print fields for index names. Use index_label=False
+for easier importing in R.</p></li>
+<li><p><strong>mode</strong> (<em>{{'w'</em><em>, </em><em>'x'</em><em>, </em><em>'a'}}</em><em>, </em><em>default 'w'</em>) – <p>Forwarded to either <cite>open(mode=)</cite> or <cite>fsspec.open(mode=)</cite> to control
+the file opening. Typical values include:</p>
+<ul>
+<li><p>’w’, truncate the file first.</p></li>
+<li><p>’x’, exclusive creation, failing if the file already exists.</p></li>
+<li><p>’a’, append to the end of file if it exists.</p></li>
+</ul>
+</p></li>
+<li><p><strong>encoding</strong> (<em>str</em><em>, </em><em>optional</em>) – A string representing the encoding to use in the output file,
+defaults to ‘utf-8’. <cite>encoding</cite> is not supported if <cite>path_or_buf</cite>
+is a non-binary file object.</p></li>
+<li><p><strong>compression</strong> (<em>str</em><em> or </em><em>dict</em><em>, </em><em>default 'infer'</em>) – <p>For on-the-fly compression of the output data. If ‘infer’ and ‘path_or_buf’ is
+path-like, then detect compression from the following extensions: ‘.gz’,
+‘.bz2’, ‘.zip’, ‘.xz’, ‘.zst’, ‘.tar’, ‘.tar.gz’, ‘.tar.xz’ or ‘.tar.bz2’
+(otherwise no compression).
+Set to <code class="docutils literal notranslate"><span class="pre">None</span></code> for no compression.
+Can also be a dict with key <code class="docutils literal notranslate"><span class="pre">'method'</span></code> set
+to one of {<code class="docutils literal notranslate"><span class="pre">'zip'</span></code>, <code class="docutils literal notranslate"><span class="pre">'gzip'</span></code>, <code class="docutils literal notranslate"><span class="pre">'bz2'</span></code>, <code class="docutils literal notranslate"><span class="pre">'zstd'</span></code>, <code class="docutils literal notranslate"><span class="pre">'xz'</span></code>, <code class="docutils literal notranslate"><span class="pre">'tar'</span></code>} and
+other key-value pairs are forwarded to
+<code class="docutils literal notranslate"><span class="pre">zipfile.ZipFile</span></code>, <code class="docutils literal notranslate"><span class="pre">gzip.GzipFile</span></code>,
+<code class="docutils literal notranslate"><span class="pre">bz2.BZ2File</span></code>, <code class="docutils literal notranslate"><span class="pre">zstandard.ZstdCompressor</span></code>, <code class="docutils literal notranslate"><span class="pre">lzma.LZMAFile</span></code> or
+<code class="docutils literal notranslate"><span class="pre">tarfile.TarFile</span></code>, respectively.
+As an example, the following could be passed for faster compression and to create
+a reproducible gzip archive:
+<code class="docutils literal notranslate"><span class="pre">compression={'method':</span> <span class="pre">'gzip',</span> <span class="pre">'compresslevel':</span> <span class="pre">1,</span> <span class="pre">'mtime':</span> <span class="pre">1}</span></code>.</p>
+<p>May be a dict with key ‘method’ as compression mode
+and other entries as additional compression options if
+compression mode is ‘zip’.</p>
+<p>Passing compression options as keys in dict is
+supported for compression modes ‘gzip’, ‘bz2’, ‘zstd’, and ‘zip’.</p>
+</p></li>
+<li><p><strong>quoting</strong> (<em>optional constant from csv module</em>) – Defaults to csv.QUOTE_MINIMAL. If you have set a <cite>float_format</cite>
+then floats are converted to strings and thus csv.QUOTE_NONNUMERIC
+will treat them as non-numeric.</p></li>
+<li><p><strong>quotechar</strong> (<em>str</em><em>, </em><em>default '&quot;'</em>) – String of length 1. Character used to quote fields.</p></li>
+<li><p><strong>lineterminator</strong> (<em>str</em><em>, </em><em>optional</em>) – The newline character or character sequence to use in the output
+file. Defaults to <cite>os.linesep</cite>, which depends on the OS in which
+this method is called (’\n’ for linux, ‘\r\n’ for Windows, i.e.).</p></li>
+<li><p><strong>chunksize</strong> (<em>int</em><em> or </em><em>None</em>) – Rows to write at a time.</p></li>
+<li><p><strong>date_format</strong> (<em>str</em><em>, </em><em>default None</em>) – Format string for datetime objects.</p></li>
+<li><p><strong>doublequote</strong> (<em>bool</em><em>, </em><em>default True</em>) – Control quoting of <cite>quotechar</cite> inside a field.</p></li>
+<li><p><strong>escapechar</strong> (<em>str</em><em>, </em><em>default None</em>) – String of length 1. Character used to escape <cite>sep</cite> and <cite>quotechar</cite>
+when appropriate.</p></li>
+<li><p><strong>decimal</strong> (<em>str</em><em>, </em><em>default '.'</em>) – Character recognized as decimal separator. E.g. use ‘,’ for
+European data.</p></li>
+<li><p><strong>errors</strong> (<em>str</em><em>, </em><em>default 'strict'</em>) – Specifies how encoding and decoding errors are to be handled.
+See the errors argument for <code class="xref py py-func docutils literal notranslate"><span class="pre">open()</span></code> for a full list
+of options.</p></li>
+<li><p><strong>storage_options</strong> (<em>dict</em><em>, </em><em>optional</em>) – Extra options that make sense for a particular storage connection, e.g.
+host, port, username, password, etc. For HTTP(S) URLs the key-value pairs
+are forwarded to <code class="docutils literal notranslate"><span class="pre">urllib.request.Request</span></code> as header options. For other
+URLs (e.g. starting with “s3://”, and “gcs://”) the key-value pairs are
+forwarded to <code class="docutils literal notranslate"><span class="pre">fsspec.open</span></code>. Please see <code class="docutils literal notranslate"><span class="pre">fsspec</span></code> and <code class="docutils literal notranslate"><span class="pre">urllib</span></code> for more
+details, and for more examples on storage options refer <a class="reference external" href="https://pandas.pydata.org/docs/user_guide/io.html?highlight=storage_options#reading-writing-remote-files">here</a>.</p></li>
+<li><p><strong>self</strong> (<em>DataFrame</em>)</p></li>
+<li><p><strong>filepath_or_buffer</strong> (<em>str</em><em> | </em><em>PathLike</em><em>[</em><em>str</em><em>] </em><em>| </em><em>BaseBuffer</em>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>If path_or_buf is None, returns the resulting csv format as a
+string. Otherwise returns None.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None or str</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-pyphot.io.fits">
+<span id="pyphot-io-fits-module"></span><h2>pyphot.io.fits module<a class="headerlink" href="#module-pyphot.io.fits" title="Link to this heading">#</a></h2>
+<p>Module for reading and writing FITS files</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>This module relies on <a class="reference external" href="https://docs.astropy.org/en/stable/io/fits/index.html">astropy.io.fits</a></p>
+</div>
+<dl class="py function">
+<dt class="sig sig-object py" id="pyphot.io.fits.fits_generate_hdu">
+<span class="sig-name descname"><span class="pre">fits_generate_hdu</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyphot/io/fits.html#fits_generate_hdu"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyphot.io.fits.fits_generate_hdu" title="Link to this definition">#</a></dt>
+<dd><p>Generate a FITS BinTableHDU from a DataFrame.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df</strong> (<em>pd.DataFrame</em>) – The DataFrame to convert.</p></li>
+<li><p><strong>index</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether to include the index in the table, by default True.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The generated HDU.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>BinTableHDU</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyphot.io.fits.fits_generate_header">
+<span class="sig-name descname"><span class="pre">fits_generate_header</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyphot/io/fits.html#fits_generate_header"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyphot.io.fits.fits_generate_header" title="Link to this definition">#</a></dt>
+<dd><p>Generate the corresponding fits Header that contains all necessary info</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>df</strong> (<em>pd.DataFrame</em>) – DataFrame or HeaderInfo instance</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>hdr</strong> – header instance</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>fits.Header</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyphot.io.fits.fits_read_header">
+<span class="sig-name descname"><span class="pre">fits_read_header</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hdr</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyphot/io/fits.html#fits_read_header"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyphot.io.fits.fits_read_header" title="Link to this definition">#</a></dt>
+<dd><p>Convert pyfits header into dictionary with relevant values</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>hdr</strong> (<em>pyftis.Header</em>) – fits unit</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>headerinfo</strong> – extracted information from header</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#pyphot.io.header.HeaderInfo" title="pyphot.io.header.HeaderInfo">HeaderInfo</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyphot.io.fits.fix_endian_issue">
+<span class="sig-name descname"><span class="pre">fix_endian_issue</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arr</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyphot/io/fits.html#fix_endian_issue"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyphot.io.fits.fix_endian_issue" title="Link to this definition">#</a></dt>
+<dd><p>Fix endian issue in array which happens often when reading FITS files</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>arr</strong> (<em>ndarray</em><em>[</em><em>tuple</em><em>[</em><em>Any</em><em>, </em><em>...</em><em>]</em><em>, </em><em>dtype</em><em>[</em><em>_ScalarT</em><em>]</em><em>] </em><em>| </em><em>Any</em>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><em>ndarray</em>[tuple[<em>Any</em>, …], <em>dtype</em>[<em>_ScalarT</em>]]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyphot.io.fits.from_fits">
+<span class="sig-name descname"><span class="pre">from_fits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extension_number</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyphot/io/fits.html#from_fits"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyphot.io.fits.from_fits" title="Link to this definition">#</a></dt>
+<dd><p>Load a DataFrame from a FITS file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> (<em>str</em>) – The path to the FITS file.</p></li>
+<li><p><strong>extension_number</strong> (<em>int</em><em>, </em><em>optional</em>) – The extension number to load, by default 1.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The loaded DataFrame and its header information.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Tuple[npt.NDArray, <a class="reference internal" href="#pyphot.io.header.HeaderInfo" title="pyphot.io.header.HeaderInfo">HeaderInfo</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyphot.io.fits.to_fits">
+<span class="sig-name descname"><span class="pre">to_fits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extension_number</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">header_info</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_verify</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'exception'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">checksum</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">overwrite</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">append</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyphot/io/fits.html#to_fits"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyphot.io.fits.to_fits" title="Link to this definition">#</a></dt>
+<dd><p>Save a DataFrame to a FITS file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df</strong> (<em>pd.DataFrame</em>) – The DataFrame to save.
+header information taken from data.attrs or header_info if provided</p></li>
+<li><p><strong>filename</strong> (<em>str</em>) – The path to the FITS file.</p></li>
+<li><p><strong>extension_number</strong> (<em>int</em><em>, </em><em>optional</em>) – The extension number to save, by default 1.</p></li>
+<li><p><strong>header_info</strong> (<em>Optional</em><em>[</em><a class="reference internal" href="#pyphot.io.header.HeaderInfo" title="pyphot.io.header.HeaderInfo"><em>HeaderInfo</em></a><em>]</em><em>, </em><em>optional</em>) – Header information to save with the FITS file
+by default None and taken from data.attrs
+override data.attrs if provided</p></li>
+<li><p><strong>output_verify</strong> (<em>str</em>) – Output verification option.  Must be one of <code class="docutils literal notranslate"><span class="pre">&quot;fix&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;silentfix&quot;</span></code>,
+<code class="docutils literal notranslate"><span class="pre">&quot;ignore&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;warn&quot;</span></code>, or <code class="docutils literal notranslate"><span class="pre">&quot;exception&quot;</span></code>.  May also be any
+combination of <code class="docutils literal notranslate"><span class="pre">&quot;fix&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;silentfix&quot;</span></code> with <code class="docutils literal notranslate"><span class="pre">&quot;+ignore&quot;</span></code>,
+<code class="docutils literal notranslate"><span class="pre">+warn</span></code>, or <code class="docutils literal notranslate"><span class="pre">+exception&quot;</span> <span class="pre">(e.g.</span> <span class="pre">``&quot;fix+warn&quot;</span></code>).</p></li>
+<li><p><strong>checksum</strong> (<em>bool</em><em>, </em><em>optional</em>) – If <cite>True</cite>, adds both <code class="docutils literal notranslate"><span class="pre">DATASUM</span></code> and <code class="docutils literal notranslate"><span class="pre">CHECKSUM</span></code> cards to the
+headers of all HDU’s written to the file</p></li>
+<li><p><strong>index</strong> (<em>bool</em><em>, </em><em>optional</em>) – If <cite>True</cite>, includes the index in the FITS file. Default is <cite>True</cite>.</p></li>
+<li><p><strong>append</strong> (<em>bool</em><em>, </em><em>optional</em>) – If <cite>True</cite>, appends the DataFrame to the FITS file. Default is <cite>False</cite>.</p></li>
+<li><p><strong>overwrite</strong> (<em>bool</em><em>, </em><em>optional</em>) – If <cite>True</cite>, overwrites the DataFrame in the FITS file. Default is <cite>False</cite>.</p></li>
+<li><p><strong>**kwargs</strong> (<em>dict</em>) – Additional keyword arguments to pass to the FITS writer.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-pyphot.io.hdf_h5py">
+<span id="pyphot-io-hdf-h5py-module"></span><h2>pyphot.io.hdf_h5py module<a class="headerlink" href="#module-pyphot.io.hdf_h5py" title="Link to this heading">#</a></h2>
+<p>Read and write HDF5 files with pytables preserving metadata (tables, <a class="reference external" href="https://www.pytables.org/">https://www.pytables.org/</a>)</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>This module relies on <a class="reference external" href="https://www.pytables.org/">pytables</a></p>
+</div>
+<dl class="py function">
+<dt class="sig sig-object py" id="pyphot.io.hdf_h5py.from_hdf5">
+<span class="sig-name descname"><span class="pre">from_hdf5</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tablename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">silent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyphot/io/hdf_h5py.html#from_hdf5"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyphot.io.hdf_h5py.from_hdf5" title="Link to this definition">#</a></dt>
+<dd><p>Generate the corresponding ascii Header that contains all necessary info</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> (<em>str</em>) – file to read from</p></li>
+<li><p><strong>tablename</strong> (<em>str</em>) – node containing the table</p></li>
+<li><p><strong>silent</strong> (<em>bool</em>) – skip verbose messages</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>hdr</strong> – string that will be be written at the beginning of the file</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyphot.io.hdf_h5py.to_hdf5">
+<span class="sig-name descname"><span class="pre">to_hdf5</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">tablename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">header_info</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'w'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">append</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyphot/io/hdf_h5py.html#to_hdf5"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyphot.io.hdf_h5py.to_hdf5" title="Link to this definition">#</a></dt>
+<dd><p>Write a pandas DataFrame to an HDF5 file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df</strong> (<em>pd.DataFrame</em>) – The DataFrame to write.</p></li>
+<li><p><strong>filename</strong> (<em>str</em><em> or </em><em>tables.File</em><em> or </em><em>PathLike</em>) – The filename or open HDF5 file to write to.</p></li>
+<li><p><strong>tablename</strong> (<em>str</em><em>, </em><em>optional</em>) – The name of the table to write to.</p></li>
+<li><p><strong>header_info</strong> (<a class="reference internal" href="#pyphot.io.header.HeaderInfo" title="pyphot.io.header.HeaderInfo"><em>HeaderInfo</em></a><em>, </em><em>optional</em>) – The header information to write. Default is to use from df.attrs</p></li>
+<li><p><strong>mode</strong> (<em>{'r'</em><em>, </em><em>'w'</em><em>, </em><em>'a'</em><em>, </em><em>'r+'}</em><em>, </em><em>default 'w'</em>) – The mode to open the file in.</p></li>
+<li><p><strong>append</strong> (<em>bool</em><em>, </em><em>default False</em>) – Whether to append data to an existing file.</p></li>
+<li><p><strong>**kwargs</strong> – Additional keyword arguments to pass to h5py.File.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>Exception</strong> – If the HDF backend does not implement stream.</p></li>
+<li><p><strong>tables.FileModeError</strong> – If the file is already opened in a different mode.</p></li>
+<li><p><strong>ValueError</strong> – If something went wrong without much information from pytables.</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="pyphot-io-hdf-pytables-module">
+<h2>pyphot.io.hdf_pytables module<a class="headerlink" href="#pyphot-io-hdf-pytables-module" title="Link to this heading">#</a></h2>
+</section>
+<section id="module-pyphot.io.header">
+<span id="pyphot-io-header-module"></span><h2>pyphot.io.header module<a class="headerlink" href="#module-pyphot.io.header" title="Link to this heading">#</a></h2>
+<p>Defines the HeaderInfo class that contains the metadata of a file.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="pyphot.io.header.HeaderInfo">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">HeaderInfo</span></span><a class="reference internal" href="_modules/pyphot/io/header.html#HeaderInfo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyphot.io.header.HeaderInfo" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Extracted information from FITS header</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyphot.io.header.HeaderInfo.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">header</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alias</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">units</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comments</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyphot.io.header.HeaderInfo.__init__" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>header</strong> (<em>Dict</em><em>[</em><em>Hashable</em><em>, </em><em>Any</em><em>]</em>)</p></li>
+<li><p><strong>alias</strong> (<em>Dict</em><em>[</em><em>Hashable</em><em>, </em><em>str</em><em>]</em>)</p></li>
+<li><p><strong>units</strong> (<em>Dict</em><em>[</em><em>Hashable</em><em>, </em><em>str</em><em>]</em>)</p></li>
+<li><p><strong>comments</strong> (<em>Dict</em><em>[</em><em>Hashable</em><em>, </em><em>str</em><em>]</em>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyphot.io.header.HeaderInfo.alias">
+<span class="sig-name descname"><span class="pre">alias</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">Hashable</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#pyphot.io.header.HeaderInfo.alias" title="Link to this definition">#</a></dt>
+<dd><p>Alias dictionary which contains potential mappings of data columns to aliases</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyphot.io.header.HeaderInfo.comments">
+<span class="sig-name descname"><span class="pre">comments</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">Hashable</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#pyphot.io.header.HeaderInfo.comments" title="Link to this definition">#</a></dt>
+<dd><p>Comments/description dictionary containing potential mappings of data columns to comments</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyphot.io.header.HeaderInfo.header">
+<span class="sig-name descname"><span class="pre">header</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">Hashable</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#pyphot.io.header.HeaderInfo.header" title="Link to this definition">#</a></dt>
+<dd><p>Header dictionary containing any metadata from a file input</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyphot.io.header.HeaderInfo.units">
+<span class="sig-name descname"><span class="pre">units</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">Hashable</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#pyphot.io.header.HeaderInfo.units" title="Link to this definition">#</a></dt>
+<dd><p>Units dictionary containing potential mappings of data columns to units</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-pyphot.io.votable">
+<span id="pyphot-io-votable-module"></span><h2>pyphot.io.votable module<a class="headerlink" href="#module-pyphot.io.votable" title="Link to this heading">#</a></h2>
+<p>VOTable parser for astronomical tabular data.</p>
+<p>VOTable is the standard XML format for astronomical tabular data.
+This module implements a custom <cite>VOTableParser</cite> that uses XML parsing and not other dependencies.
+<cite>from_votable</cite> provides the standard interface of io operations (pandas.DataFrame, HeaderInfo)</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="pyphot.io.votable.VOTableParser">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">VOTableParser</span></span><a class="reference internal" href="_modules/pyphot/io/votable.html#VOTableParser"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyphot.io.votable.VOTableParser" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A custom VOTable parser using XML parsing.</p>
+<p>VOTable is the standard XML format for astronomical tabular data.
+This example shows how to parse the structure and extract data.</p>
+<p>Initialize VOTable parser</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>source</strong> (<em>str</em><em> or </em><em>bytes</em>) – Either a file path, URL, or XML string/bytes</p></li>
+<li><p><strong>is_url</strong> (<em>bool</em>) – If True, treat source as URL to fetch</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyphot.io.votable.VOTableParser.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_url</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyphot/io/votable.html#VOTableParser.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyphot.io.votable.VOTableParser.__init__" title="Link to this definition">#</a></dt>
+<dd><p>Initialize VOTable parser</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>source</strong> (<em>str</em><em> or </em><em>bytes</em>) – Either a file path, URL, or XML string/bytes</p></li>
+<li><p><strong>is_url</strong> (<em>bool</em>) – If True, treat source as URL to fetch</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyphot.io.votable.VOTableParser.get_table_as_dict">
+<span class="sig-name descname"><span class="pre">get_table_as_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table_index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyphot/io/votable.html#VOTableParser.get_table_as_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyphot.io.votable.VOTableParser.get_table_as_dict" title="Link to this definition">#</a></dt>
+<dd><p>Convert table data to dictionary with column names as keys</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>table_index</strong> (<em>int</em>) – Index of table to convert (default: 0 for first table)</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary with column names as keys and data as lists</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyphot.io.votable.VOTableParser.print_table_info">
+<span class="sig-name descname"><span class="pre">print_table_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table_index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyphot/io/votable.html#VOTableParser.print_table_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyphot.io.votable.VOTableParser.print_table_info" title="Link to this definition">#</a></dt>
+<dd><p>Print information about a table</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>table_index</strong> (<em>int</em>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyphot.io.votable.from_votable">
+<span class="sig-name descname"><span class="pre">from_votable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">table_index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_url</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyphot/io/votable.html#from_votable"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyphot.io.votable.from_votable" title="Link to this definition">#</a></dt>
+<dd><p>Read a VOTable file and return a pandas DataFrame and header information.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fname</strong> (<em>str</em><em>, </em><em>bytes</em><em>, </em><em>IOBase</em><em>, </em><em>PathLike</em>) – The filename or file-like object to read.</p></li>
+<li><p><strong>table_index</strong> (<em>int</em><em>, </em><em>optional</em>) – The index of the table to read, by default 0.</p></li>
+<li><p><strong>is_url</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether the file is a URL, by default False.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A tuple containing the pandas DataFrame and header information.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Tuple[pd.DataFrame, <a class="reference internal" href="#pyphot.io.header.HeaderInfo" title="pyphot.io.header.HeaderInfo">HeaderInfo</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyphot.io.votable.to_votable">
+<span class="sig-name descname"><span class="pre">to_votable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyphot/io/votable.html#to_votable"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyphot.io.votable.to_votable" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="pyphot.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">pyphot package</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="pyphot.unit_adapters.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">pyphot.unit_adapters package</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#io-module">IO module</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.io.from_file"><code class="docutils literal notranslate"><span class="pre">from_file()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#submodules">Submodules</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-pyphot.io.ascii">pyphot.io.ascii module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.io.ascii.ascii_generate_header"><code class="docutils literal notranslate"><span class="pre">ascii_generate_header()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.io.ascii.ascii_read_header"><code class="docutils literal notranslate"><span class="pre">ascii_read_header()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.io.ascii.from_ascii"><code class="docutils literal notranslate"><span class="pre">from_ascii()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.io.ascii.from_csv"><code class="docutils literal notranslate"><span class="pre">from_csv()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.io.ascii.to_ascii"><code class="docutils literal notranslate"><span class="pre">to_ascii()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.io.ascii.to_csv"><code class="docutils literal notranslate"><span class="pre">to_csv()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-pyphot.io.fits">pyphot.io.fits module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.io.fits.fits_generate_hdu"><code class="docutils literal notranslate"><span class="pre">fits_generate_hdu()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.io.fits.fits_generate_header"><code class="docutils literal notranslate"><span class="pre">fits_generate_header()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.io.fits.fits_read_header"><code class="docutils literal notranslate"><span class="pre">fits_read_header()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.io.fits.fix_endian_issue"><code class="docutils literal notranslate"><span class="pre">fix_endian_issue()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.io.fits.from_fits"><code class="docutils literal notranslate"><span class="pre">from_fits()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.io.fits.to_fits"><code class="docutils literal notranslate"><span class="pre">to_fits()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-pyphot.io.hdf_h5py">pyphot.io.hdf_h5py module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.io.hdf_h5py.from_hdf5"><code class="docutils literal notranslate"><span class="pre">from_hdf5()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.io.hdf_h5py.to_hdf5"><code class="docutils literal notranslate"><span class="pre">to_hdf5()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot-io-hdf-pytables-module">pyphot.io.hdf_pytables module</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-pyphot.io.header">pyphot.io.header module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.io.header.HeaderInfo"><code class="docutils literal notranslate"><span class="pre">HeaderInfo</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.io.header.HeaderInfo.__init__"><code class="docutils literal notranslate"><span class="pre">HeaderInfo.__init__()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.io.header.HeaderInfo.alias"><code class="docutils literal notranslate"><span class="pre">HeaderInfo.alias</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.io.header.HeaderInfo.comments"><code class="docutils literal notranslate"><span class="pre">HeaderInfo.comments</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.io.header.HeaderInfo.header"><code class="docutils literal notranslate"><span class="pre">HeaderInfo.header</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.io.header.HeaderInfo.units"><code class="docutils literal notranslate"><span class="pre">HeaderInfo.units</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-pyphot.io.votable">pyphot.io.votable module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.io.votable.VOTableParser"><code class="docutils literal notranslate"><span class="pre">VOTableParser</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.io.votable.VOTableParser.__init__"><code class="docutils literal notranslate"><span class="pre">VOTableParser.__init__()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.io.votable.VOTableParser.get_table_as_dict"><code class="docutils literal notranslate"><span class="pre">VOTableParser.get_table_as_dict()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.io.votable.VOTableParser.print_table_info"><code class="docutils literal notranslate"><span class="pre">VOTableParser.print_table_info()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.io.votable.from_votable"><code class="docutils literal notranslate"><span class="pre">from_votable()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.io.votable.to_votable"><code class="docutils literal notranslate"><span class="pre">to_votable()</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By M. Fouesneau
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2016, M. Fouesneau.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

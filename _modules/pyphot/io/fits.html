@@ -1,0 +1,700 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>pyphot.io.fits &#8212; pyphot  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=984d411d"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/pyphot/io/fits';</script>
+    <link rel="canonical" href="https://mfouesneau.github.io/pyphot/_modules/pyphot/io/fits.html" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">pyphot  documentation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../whats_new.html">What's New</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../QuickStart.html">pyphot Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples.html">More examples with Pyphot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../photometry.html">Details on predicting photometry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../libcontent.html">Provided Filter library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../licks.html">Extention to Lick indices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../vega.html">Internal Vega reference spectra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sun.html">Internal Sun reference spectra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../modules.html">API</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../pyphot.html">pyphot package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../pyphot.io.html">pyphot.io package</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../pyphot.unit_adapters.html">pyphot.unit_adapters package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../pyphot.unit_adapters.ezunits.html">pyphot.unit_adapters.ezunits package</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/mfouesneau/pyphot" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/mfouesneau/pyphot/issues/new?title=Issue%20on%20page%20%2F_modules/pyphot/io/fits.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for pyphot.io.fits</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Module for reading and writing FITS files</span>
+
+<span class="sd">.. important::</span>
+<span class="sd">    This module relies on `astropy.io.fits &lt;https://docs.astropy.org/en/stable/io/fits/index.html&gt;`_</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span>
+
+<span class="kn">import</span> <span class="nn">numpy.typing</span> <span class="k">as</span> <span class="nn">npt</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">astropy.io</span> <span class="kn">import</span> <span class="n">fits</span>
+<span class="kn">from</span> <span class="nn">astropy.io.fits</span> <span class="kn">import</span> <span class="n">BinTableHDU</span><span class="p">,</span> <span class="n">Header</span><span class="p">,</span> <span class="n">TableHDU</span>
+
+<span class="kn">from</span> <span class="nn">.header</span> <span class="kn">import</span> <span class="n">HeaderInfo</span>
+
+
+<div class="viewcode-block" id="fix_endian_issue">
+<a class="viewcode-back" href="../../../pyphot.io.html#pyphot.io.fits.fix_endian_issue">[docs]</a>
+<span class="k">def</span> <span class="nf">fix_endian_issue</span><span class="p">(</span><span class="n">arr</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Fix endian issue in array which happens often when reading FITS files&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">arr</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">arr</span><span class="o">.</span><span class="n">dtype</span><span class="o">.</span><span class="n">newbyteorder</span><span class="p">())</span></div>
+
+
+
+<div class="viewcode-block" id="fits_read_header">
+<a class="viewcode-back" href="../../../pyphot.io.html#pyphot.io.fits.fits_read_header">[docs]</a>
+<span class="k">def</span> <span class="nf">fits_read_header</span><span class="p">(</span><span class="n">hdr</span><span class="p">:</span> <span class="n">Header</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">HeaderInfo</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Convert pyfits header into dictionary with relevant values</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+
+<span class="sd">    hdr: pyftis.Header</span>
+<span class="sd">        fits unit</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    headerinfo: HeaderInfo</span>
+<span class="sd">        extracted information from header</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">header</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">alias</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">units</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">comments</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="c1"># generic cards</span>
+    <span class="n">genTerms</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s2">&quot;XTENSION&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;BITPIX&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;NAXIS&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;NAXIS1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;NAXIS2&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;PCOUNT&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;GCOUNT&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;TFIELDS&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;EXTNAME&quot;</span><span class="p">,</span>
+    <span class="p">]</span>
+    <span class="n">fieldTerms</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;TTYPE&quot;</span><span class="p">,</span> <span class="s2">&quot;TFORM&quot;</span><span class="p">,</span> <span class="s2">&quot;TUNIT&quot;</span><span class="p">,</span> <span class="s2">&quot;ALIAS&quot;</span><span class="p">]</span>
+
+    <span class="k">for</span> <span class="n">card</span> <span class="ow">in</span> <span class="n">hdr</span><span class="o">.</span><span class="n">cards</span><span class="p">[</span><span class="s2">&quot;TTYPE*&quot;</span><span class="p">]:</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">card</span><span class="o">.</span><span class="n">value</span>
+        <span class="n">comments</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">card</span><span class="o">.</span><span class="n">comment</span>
+        <span class="n">u</span> <span class="o">=</span> <span class="n">hdr</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">card</span><span class="o">.</span><span class="n">keyword</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;TYPE&quot;</span><span class="p">,</span> <span class="s2">&quot;UNIT&quot;</span><span class="p">),</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">u</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">units</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">u</span>
+
+    <span class="c1"># for k, val, _ in hdr.ascard[&#39;ALIAS*&#39;]:</span>
+    <span class="k">for</span> <span class="n">card</span> <span class="ow">in</span> <span class="n">hdr</span><span class="o">.</span><span class="n">cards</span><span class="p">[</span><span class="s2">&quot;ALIAS*&quot;</span><span class="p">]:</span>
+        <span class="n">k</span> <span class="o">=</span> <span class="n">card</span><span class="o">.</span><span class="n">keyword</span>
+        <span class="n">val</span> <span class="o">=</span> <span class="n">card</span><span class="o">.</span><span class="n">value</span>
+        <span class="n">al</span><span class="p">,</span> <span class="n">orig</span> <span class="o">=</span> <span class="n">val</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="p">)</span>
+        <span class="n">alias</span><span class="p">[</span><span class="n">al</span><span class="p">]</span> <span class="o">=</span> <span class="n">orig</span>
+
+    <span class="c1"># other specific keywords: COMMENT, HISTORY</span>
+    <span class="n">header_comments</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">header_history</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">hdr</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">k</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">genTerms</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">k</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">fieldTerms</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">k</span> <span class="o">==</span> <span class="s2">&quot;COMMENT&quot;</span><span class="p">:</span>
+                <span class="n">header_comments</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">k</span> <span class="o">==</span> <span class="s2">&quot;HISTORY&quot;</span><span class="p">:</span>
+                <span class="n">header_history</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">header</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span>
+
+    <span class="c1"># COMMENT, HISTORY polish</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">header_comments</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">header</span><span class="p">[</span><span class="s2">&quot;COMMENT&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">header_comments</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">header_history</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">header</span><span class="p">[</span><span class="s2">&quot;HISTORY&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">header_history</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="s2">&quot;EXTNAME&quot;</span> <span class="ow">in</span> <span class="n">hdr</span><span class="p">:</span>
+        <span class="n">header</span><span class="p">[</span><span class="s2">&quot;NAME&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">hdr</span><span class="p">[</span><span class="s2">&quot;EXTNAME&quot;</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">HeaderInfo</span><span class="p">(</span><span class="n">header</span><span class="p">,</span> <span class="n">alias</span><span class="p">,</span> <span class="n">units</span><span class="p">,</span> <span class="n">comments</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="from_fits">
+<a class="viewcode-back" href="../../../pyphot.io.html#pyphot.io.fits.from_fits">[docs]</a>
+<span class="k">def</span> <span class="nf">from_fits</span><span class="p">(</span>
+    <span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">extension_number</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">,</span> <span class="n">HeaderInfo</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Load a DataFrame from a FITS file.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    filename : str</span>
+<span class="sd">        The path to the FITS file.</span>
+<span class="sd">    extension_number : int, optional</span>
+<span class="sd">        The extension number to load, by default 1.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    Tuple[npt.NDArray, HeaderInfo]</span>
+<span class="sd">        The loaded DataFrame and its header information.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">with</span> <span class="n">fits</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span> <span class="k">as</span> <span class="n">hdu</span><span class="p">:</span>
+        <span class="n">extension</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">TableHDU</span><span class="p">,</span> <span class="n">BinTableHDU</span><span class="p">]</span> <span class="o">=</span> <span class="n">hdu</span><span class="p">[</span><span class="n">extension_number</span><span class="p">]</span>  <span class="c1"># pyright: ignore[reportAssignmentType]</span>
+        <span class="n">hdr_info</span> <span class="o">=</span> <span class="n">fits_read_header</span><span class="p">(</span><span class="n">extension</span><span class="o">.</span><span class="n">header</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">fix_endian_issue</span><span class="p">(</span><span class="n">extension</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">data</span><span class="p">,</span> <span class="n">hdr_info</span></div>
+
+
+
+<div class="viewcode-block" id="fits_generate_header">
+<a class="viewcode-back" href="../../../pyphot.io.html#pyphot.io.fits.fits_generate_header">[docs]</a>
+<span class="k">def</span> <span class="nf">fits_generate_header</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">fits</span><span class="o">.</span><span class="n">Header</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Generate the corresponding fits Header that contains all necessary info</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    df: pd.DataFrame</span>
+<span class="sd">        DataFrame or HeaderInfo instance</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    hdr: fits.Header</span>
+<span class="sd">        header instance</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># extract necessary pieces</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;df must be a pd.DataFrame or HeaderInfo instance&quot;</span><span class="p">)</span>
+
+    <span class="n">others</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;aliases&quot;</span><span class="p">,</span> <span class="s2">&quot;units&quot;</span><span class="p">,</span> <span class="s2">&quot;comments&quot;</span><span class="p">]</span>
+    <span class="n">info</span> <span class="o">=</span> <span class="n">HeaderInfo</span><span class="p">(</span>
+        <span class="n">header</span><span class="o">=</span><span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">others</span><span class="p">},</span>
+        <span class="n">alias</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;aliases&quot;</span><span class="p">,</span> <span class="p">{}),</span>
+        <span class="n">units</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;units&quot;</span><span class="p">,</span> <span class="p">{}),</span>
+        <span class="n">comments</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;comments&quot;</span><span class="p">,</span> <span class="p">{}),</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Set column cards</span>
+    <span class="n">columns</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+    <span class="n">cards</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">e</span><span class="p">,</span> <span class="n">colname</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">columns</span><span class="p">):</span>
+        <span class="c1"># TTYPE&lt;n=1..N&gt; = &lt;colname&gt; // comment or &quot;&quot;</span>
+        <span class="n">cards</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="p">(</span><span class="sa">f</span><span class="s2">&quot;TTYPE</span><span class="si">{</span><span class="n">e</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">:</span><span class="s2">d</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">colname</span><span class="p">,</span> <span class="n">info</span><span class="o">.</span><span class="n">comments</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">colname</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">))</span>
+        <span class="p">)</span>
+        <span class="c1"># TUNIT&lt;n=1..N&gt; = &lt;colunit&gt; // unit of &lt;colname&gt;</span>
+        <span class="n">colunit</span> <span class="o">=</span> <span class="n">info</span><span class="o">.</span><span class="n">units</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">colname</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">colunit</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;None&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">):</span>
+            <span class="n">cards</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="sa">f</span><span class="s2">&quot;TUNIT</span><span class="si">{</span><span class="n">e</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">:</span><span class="s2">d</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">colunit</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;unit of </span><span class="si">{</span><span class="n">colname</span><span class="si">:</span><span class="s2">s</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">))</span>
+
+    <span class="c1"># add aliases ALIAS&lt;n=1..N&gt; = &lt;from&gt;=&lt;to&gt; // alias of &lt;from&gt;</span>
+    <span class="k">for</span> <span class="n">e</span><span class="p">,</span> <span class="p">(</span><span class="n">to_</span><span class="p">,</span> <span class="n">from_</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">info</span><span class="o">.</span><span class="n">alias</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
+        <span class="n">cards</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ALIAS</span><span class="si">{</span><span class="n">e</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">:</span><span class="s2">d</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">to_</span><span class="si">:</span><span class="s2">s</span><span class="si">}</span><span class="s2">=</span><span class="si">{</span><span class="n">from_</span><span class="si">:</span><span class="s2">s</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;alias of </span><span class="si">{</span><span class="n">from_</span><span class="si">:</span><span class="s2">s</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="p">)</span>
+
+    <span class="c1"># add NAME if any</span>
+    <span class="n">table_name</span> <span class="o">=</span> <span class="n">info</span><span class="o">.</span><span class="n">header</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;NAME&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">table_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;None&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;No Name&quot;</span><span class="p">]:</span>
+        <span class="n">cards</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="s2">&quot;EXTNAME&quot;</span><span class="p">,</span> <span class="n">table_name</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">))</span>
+
+    <span class="c1"># generate header</span>
+    <span class="n">hdr</span> <span class="o">=</span> <span class="n">fits</span><span class="o">.</span><span class="n">Header</span><span class="p">(</span><span class="n">cards</span><span class="p">)</span>
+
+    <span class="c1"># add other header information, COMMENT, and HISTORY cards</span>
+    <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">info</span><span class="o">.</span><span class="n">header</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">value</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;None&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">):</span>
+            <span class="k">continue</span>
+        <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;NAME&quot;</span><span class="p">,</span> <span class="s2">&quot;COMMENT&quot;</span><span class="p">,</span> <span class="s2">&quot;HISTORY&quot;</span><span class="p">):</span>
+            <span class="n">hdr</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">key</span><span class="p">:</span> <span class="n">value</span><span class="p">})</span>
+        <span class="k">elif</span> <span class="n">key</span> <span class="o">==</span> <span class="s2">&quot;COMMENT&quot;</span><span class="p">:</span>
+            <span class="n">txt</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">txt</span><span class="p">:</span>
+                <span class="n">hdr</span><span class="o">.</span><span class="n">add_comment</span><span class="p">(</span><span class="n">j</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">key</span> <span class="o">==</span> <span class="s2">&quot;HISTORY&quot;</span><span class="p">:</span>
+            <span class="n">txt</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">txt</span><span class="p">:</span>
+                <span class="n">hdr</span><span class="o">.</span><span class="n">add_history</span><span class="p">(</span><span class="n">j</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">hdr</span></div>
+
+
+
+<div class="viewcode-block" id="fits_generate_hdu">
+<a class="viewcode-back" href="../../../pyphot.io.html#pyphot.io.fits.fits_generate_hdu">[docs]</a>
+<span class="k">def</span> <span class="nf">fits_generate_hdu</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">index</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">BinTableHDU</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Generate a FITS BinTableHDU from a DataFrame.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    df : pd.DataFrame</span>
+<span class="sd">        The DataFrame to convert.</span>
+<span class="sd">    index : bool, optional</span>
+<span class="sd">        Whether to include the index in the table, by default True.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    BinTableHDU</span>
+<span class="sd">        The generated HDU.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">table_name</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;NAME&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="n">records</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">to_records</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">index</span><span class="p">)</span>
+    <span class="n">header</span> <span class="o">=</span> <span class="n">fits_generate_header</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+    <span class="n">hdu</span> <span class="o">=</span> <span class="n">fits</span><span class="o">.</span><span class="n">BinTableHDU</span><span class="p">(</span><span class="n">records</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="n">header</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">table_name</span><span class="p">)</span>
+    <span class="c1"># astropy bug: missing some keywords (e.g. TUNIT*) from above.</span>
+    <span class="c1"># forcing full propagation of header information</span>
+    <span class="n">hdu</span><span class="o">.</span><span class="n">header</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">header</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">hdu</span></div>
+
+
+
+<div class="viewcode-block" id="to_fits">
+<a class="viewcode-back" href="../../../pyphot.io.html#pyphot.io.fits.to_fits">[docs]</a>
+<span class="k">def</span> <span class="nf">to_fits</span><span class="p">(</span>
+    <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
+    <span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">extension_number</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="n">header_info</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">HeaderInfo</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">output_verify</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;exception&quot;</span><span class="p">,</span>
+    <span class="n">checksum</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">index</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">overwrite</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">append</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Save a DataFrame to a FITS file.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    df : pd.DataFrame</span>
+<span class="sd">        The DataFrame to save.</span>
+<span class="sd">        header information taken from data.attrs or header_info if provided</span>
+<span class="sd">    filename : str</span>
+<span class="sd">        The path to the FITS file.</span>
+<span class="sd">    extension_number : int, optional</span>
+<span class="sd">        The extension number to save, by default 1.</span>
+<span class="sd">    header_info : Optional[HeaderInfo], optional</span>
+<span class="sd">        Header information to save with the FITS file</span>
+<span class="sd">        by default None and taken from data.attrs</span>
+<span class="sd">        override data.attrs if provided</span>
+<span class="sd">    output_verify : str</span>
+<span class="sd">        Output verification option.  Must be one of ``&quot;fix&quot;``, ``&quot;silentfix&quot;``,</span>
+<span class="sd">        ``&quot;ignore&quot;``, ``&quot;warn&quot;``, or ``&quot;exception&quot;``.  May also be any</span>
+<span class="sd">        combination of ``&quot;fix&quot;`` or ``&quot;silentfix&quot;`` with ``&quot;+ignore&quot;``,</span>
+<span class="sd">        ``+warn``, or ``+exception&quot; (e.g. ``&quot;fix+warn&quot;``).</span>
+<span class="sd">    checksum : bool, optional</span>
+<span class="sd">        If `True`, adds both ``DATASUM`` and ``CHECKSUM`` cards to the</span>
+<span class="sd">        headers of all HDU&#39;s written to the file</span>
+<span class="sd">    index : bool, optional</span>
+<span class="sd">        If `True`, includes the index in the FITS file. Default is `True`.</span>
+<span class="sd">    append : bool, optional</span>
+<span class="sd">        If `True`, appends the DataFrame to the FITS file. Default is `False`.</span>
+<span class="sd">    overwrite : bool, optional</span>
+<span class="sd">        If `True`, overwrites the DataFrame in the FITS file. Default is `False`.</span>
+<span class="sd">    **kwargs: dict</span>
+<span class="sd">        Additional keyword arguments to pass to the FITS writer.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">hdu</span> <span class="o">=</span> <span class="n">fits_generate_hdu</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">index</span><span class="p">)</span>
+
+    <span class="n">name</span><span class="p">,</span> <span class="n">closed</span><span class="p">,</span> <span class="n">noexist_or_empty</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">fits</span><span class="o">.</span><span class="n">convenience</span><span class="o">.</span><span class="n">_stat_filename_or_fileobj</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+    <span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">append</span> <span class="ow">or</span> <span class="n">noexist_or_empty</span><span class="p">:</span>
+        <span class="n">hdu</span><span class="o">.</span><span class="n">writeto</span><span class="p">(</span>
+            <span class="n">filename</span><span class="p">,</span>
+            <span class="n">checksum</span><span class="o">=</span><span class="n">checksum</span><span class="p">,</span>
+            <span class="n">output_verify</span><span class="o">=</span><span class="n">output_verify</span><span class="p">,</span>
+            <span class="n">overwrite</span><span class="o">=</span><span class="n">overwrite</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">closed</span><span class="p">:</span>
+            <span class="n">fits_file</span> <span class="o">=</span> <span class="n">fits</span><span class="o">.</span><span class="n">convenience</span><span class="o">.</span><span class="n">fitsopen</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;append&quot;</span><span class="p">)</span>
+            <span class="n">fits_file</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">hdu</span><span class="p">)</span>
+            <span class="c1"># Set a flag in the HDU so that only this HDU gets a checksum when</span>
+            <span class="c1"># writing the file.</span>
+            <span class="n">hdu</span><span class="o">.</span><span class="n">_output_checksum</span> <span class="o">=</span> <span class="n">checksum</span>
+            <span class="c1"># Keep status of the file as it was</span>
+            <span class="n">fits_file</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="n">output_verify</span><span class="o">=</span><span class="n">output_verify</span><span class="p">,</span> <span class="n">closed</span><span class="o">=</span><span class="n">closed</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">fits_file</span> <span class="o">=</span> <span class="n">fits</span><span class="o">.</span><span class="n">convenience</span><span class="o">.</span><span class="n">_File</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;append&quot;</span><span class="p">)</span>
+            <span class="n">hdu</span><span class="o">.</span><span class="n">_output_checksum</span> <span class="o">=</span> <span class="n">checksum</span>
+            <span class="n">hdu</span><span class="o">.</span><span class="n">_writeto</span><span class="p">(</span><span class="n">fits_file</span><span class="p">)</span>
+            <span class="n">fits_file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+
+</pre></div>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By M. Fouesneau
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2016, M. Fouesneau.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

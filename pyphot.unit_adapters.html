@@ -1,0 +1,1757 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>pyphot.unit_adapters package &#8212; pyphot  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=984d411d"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'pyphot.unit_adapters';</script>
+    <link rel="canonical" href="https://mfouesneau.github.io/pyphot/pyphot.unit_adapters.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="pyphot.unit_adapters.ezunits package" href="pyphot.unit_adapters.ezunits.html" />
+    <link rel="prev" title="pyphot.io package" href="pyphot.io.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">pyphot  documentation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="whats_new.html">What's New</a></li>
+<li class="toctree-l1"><a class="reference internal" href="QuickStart.html">pyphot Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">More examples with Pyphot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="photometry.html">Details on predicting photometry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="libcontent.html">Provided Filter library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="licks.html">Extention to Lick indices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vega.html">Internal Vega reference spectra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sun.html">Internal Sun reference spectra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="modules.html">API</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="pyphot.html">pyphot package</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="pyphot.io.html">pyphot.io package</a></li>
+<li class="toctree-l3 current active has-children"><a class="current reference internal" href="#">pyphot.unit_adapters package</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.unit_adapters.ezunits.html">pyphot.unit_adapters.ezunits package</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/mfouesneau/pyphot" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/mfouesneau/pyphot/blob/master/doc/pyphot.unit_adapters.rst?plain=1" target="_blank"
+   class="btn btn-sm btn-source-file-button dropdown-item"
+   title="Show source"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="btn__text-container">Show source</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/mfouesneau/pyphot/issues/new?title=Issue%20on%20page%20%2Fpyphot.unit_adapters.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/pyphot.unit_adapters.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>pyphot.unit_adapters package</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#registered-adapters">Registered Adapters</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#api-overview">API Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#decorator-to-impose-units-on-arguments-and-keyword-arguments">Decorator to impose units on arguments and keyword arguments</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#typing">Typing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exceptions">Exceptions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.find_default_units_backend"><code class="docutils literal notranslate"><span class="pre">find_default_units_backend()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.get_adapter"><code class="docutils literal notranslate"><span class="pre">get_adapter()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#subpackages">Subpackages</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#submodules">Submodules</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-pyphot.unit_adapters.astropy_adapter">pyphot.unit_adapters.astropy_adapter module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_adapter.ApUnitsAdapter"><code class="docutils literal notranslate"><span class="pre">ApUnitsAdapter</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_adapter.ApUnitsAdapter.Q"><code class="docutils literal notranslate"><span class="pre">ApUnitsAdapter.Q()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_adapter.ApUnitsAdapter.U"><code class="docutils literal notranslate"><span class="pre">ApUnitsAdapter.U()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_adapter.ApUnitsAdapter.has_unit"><code class="docutils literal notranslate"><span class="pre">ApUnitsAdapter.has_unit()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_adapter.ApUnitsAdapter.typing"><code class="docutils literal notranslate"><span class="pre">ApUnitsAdapter.typing</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_adapter.ApUnitsAdapter.val_in_unit"><code class="docutils literal notranslate"><span class="pre">ApUnitsAdapter.val_in_unit()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-pyphot.unit_adapters.astropy_units">pyphot.unit_adapters.astropy_units module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.Quantity"><code class="docutils literal notranslate"><span class="pre">Quantity</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.Quantity.__new__"><code class="docutils literal notranslate"><span class="pre">Quantity.__new__()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.Quantity.all"><code class="docutils literal notranslate"><span class="pre">Quantity.all()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.Quantity.any"><code class="docutils literal notranslate"><span class="pre">Quantity.any()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.Quantity.argmax"><code class="docutils literal notranslate"><span class="pre">Quantity.argmax()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.Quantity.argmin"><code class="docutils literal notranslate"><span class="pre">Quantity.argmin()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.Quantity.argsort"><code class="docutils literal notranslate"><span class="pre">Quantity.argsort()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.Quantity.cgs"><code class="docutils literal notranslate"><span class="pre">Quantity.cgs</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.Quantity.choose"><code class="docutils literal notranslate"><span class="pre">Quantity.choose()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.Quantity.decompose"><code class="docutils literal notranslate"><span class="pre">Quantity.decompose()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.Quantity.diff"><code class="docutils literal notranslate"><span class="pre">Quantity.diff()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.Quantity.dot"><code class="docutils literal notranslate"><span class="pre">Quantity.dot()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.Quantity.dump"><code class="docutils literal notranslate"><span class="pre">Quantity.dump()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.Quantity.dumps"><code class="docutils literal notranslate"><span class="pre">Quantity.dumps()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.Quantity.ediff1d"><code class="docutils literal notranslate"><span class="pre">Quantity.ediff1d()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.Quantity.equivalencies"><code class="docutils literal notranslate"><span class="pre">Quantity.equivalencies</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.Quantity.fill"><code class="docutils literal notranslate"><span class="pre">Quantity.fill()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.Quantity.flat"><code class="docutils literal notranslate"><span class="pre">Quantity.flat</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.Quantity.info"><code class="docutils literal notranslate"><span class="pre">Quantity.info</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.Quantity.insert"><code class="docutils literal notranslate"><span class="pre">Quantity.insert()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.Quantity.isscalar"><code class="docutils literal notranslate"><span class="pre">Quantity.isscalar</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.Quantity.item"><code class="docutils literal notranslate"><span class="pre">Quantity.item()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.Quantity.mean"><code class="docutils literal notranslate"><span class="pre">Quantity.mean()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.Quantity.put"><code class="docutils literal notranslate"><span class="pre">Quantity.put()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.Quantity.round"><code class="docutils literal notranslate"><span class="pre">Quantity.round()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.Quantity.searchsorted"><code class="docutils literal notranslate"><span class="pre">Quantity.searchsorted()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.Quantity.si"><code class="docutils literal notranslate"><span class="pre">Quantity.si</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.Quantity.std"><code class="docutils literal notranslate"><span class="pre">Quantity.std()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.Quantity.take"><code class="docutils literal notranslate"><span class="pre">Quantity.take()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.Quantity.to"><code class="docutils literal notranslate"><span class="pre">Quantity.to()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.Quantity.to_string"><code class="docutils literal notranslate"><span class="pre">Quantity.to_string()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.Quantity.to_value"><code class="docutils literal notranslate"><span class="pre">Quantity.to_value()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.Quantity.tobytes"><code class="docutils literal notranslate"><span class="pre">Quantity.tobytes()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.Quantity.tofile"><code class="docutils literal notranslate"><span class="pre">Quantity.tofile()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.Quantity.tolist"><code class="docutils literal notranslate"><span class="pre">Quantity.tolist()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.Quantity.tostring"><code class="docutils literal notranslate"><span class="pre">Quantity.tostring()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.Quantity.trace"><code class="docutils literal notranslate"><span class="pre">Quantity.trace()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.Quantity.unit"><code class="docutils literal notranslate"><span class="pre">Quantity.unit</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.Quantity.value"><code class="docutils literal notranslate"><span class="pre">Quantity.value</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.Quantity.var"><code class="docutils literal notranslate"><span class="pre">Quantity.var()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.U"><code class="docutils literal notranslate"><span class="pre">U</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.Unit"><code class="docutils literal notranslate"><span class="pre">Unit</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.Unit.__init__"><code class="docutils literal notranslate"><span class="pre">Unit.__init__()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.Unit.decompose"><code class="docutils literal notranslate"><span class="pre">Unit.decompose()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.Unit.is_unity"><code class="docutils literal notranslate"><span class="pre">Unit.is_unity()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.Unit.represents"><code class="docutils literal notranslate"><span class="pre">Unit.represents</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-pyphot.unit_adapters.ezunits_adapter">pyphot.unit_adapters.ezunits_adapter module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.ezunits_adapter.EzUnitsAdapter"><code class="docutils literal notranslate"><span class="pre">EzUnitsAdapter</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.ezunits_adapter.EzUnitsAdapter.Q"><code class="docutils literal notranslate"><span class="pre">EzUnitsAdapter.Q()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.ezunits_adapter.EzUnitsAdapter.U"><code class="docutils literal notranslate"><span class="pre">EzUnitsAdapter.U()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.ezunits_adapter.EzUnitsAdapter.has_unit"><code class="docutils literal notranslate"><span class="pre">EzUnitsAdapter.has_unit()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.ezunits_adapter.EzUnitsAdapter.typing"><code class="docutils literal notranslate"><span class="pre">EzUnitsAdapter.typing</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.ezunits_adapter.EzUnitsAdapter.val_in_unit"><code class="docutils literal notranslate"><span class="pre">EzUnitsAdapter.val_in_unit()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot-unit-adapters-pint-adapter-module">pyphot.unit_adapters.pint_adapter module</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot-unit-adapters-pint-units-module">pyphot.unit_adapters.pint_units module</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-pyphot.unit_adapters.typing">pyphot.unit_adapters.typing module</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-pyphot.unit_adapters.units_adapter">pyphot.unit_adapters.units_adapter module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unitsadapter-base-class-and-decorator">UnitsAdapter base class and decorator</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.units_adapter.UnitTyping"><code class="docutils literal notranslate"><span class="pre">UnitTyping</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.units_adapter.UnitTyping.DimensionalityError"><code class="docutils literal notranslate"><span class="pre">UnitTyping.DimensionalityError</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.units_adapter.UnitTyping.Quantity"><code class="docutils literal notranslate"><span class="pre">UnitTyping.Quantity</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.units_adapter.UnitTyping.UndefinedUnitError"><code class="docutils literal notranslate"><span class="pre">UnitTyping.UndefinedUnitError</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.units_adapter.UnitTyping.__init__"><code class="docutils literal notranslate"><span class="pre">UnitTyping.__init__()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.units_adapter.UnitsAdapter"><code class="docutils literal notranslate"><span class="pre">UnitsAdapter</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.units_adapter.UnitsAdapter.Q"><code class="docutils literal notranslate"><span class="pre">UnitsAdapter.Q()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.units_adapter.UnitsAdapter.U"><code class="docutils literal notranslate"><span class="pre">UnitsAdapter.U()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.units_adapter.UnitsAdapter.decorate"><code class="docutils literal notranslate"><span class="pre">UnitsAdapter.decorate()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.units_adapter.UnitsAdapter.has_unit"><code class="docutils literal notranslate"><span class="pre">UnitsAdapter.has_unit()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.units_adapter.UnitsAdapter.typing"><code class="docutils literal notranslate"><span class="pre">UnitsAdapter.typing</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.units_adapter.UnitsAdapter.val_in_unit"><code class="docutils literal notranslate"><span class="pre">UnitsAdapter.val_in_unit()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="module-pyphot.unit_adapters">
+<span id="pyphot-unit-adapters-package"></span><h1>pyphot.unit_adapters package<a class="headerlink" href="#module-pyphot.unit_adapters" title="Link to this heading">#</a></h1>
+<p>This module provides a framework for using different unit packages such as astropy, pint, and others.
+It provides a unified interface for working with units across different packages through adapters.</p>
+<section id="registered-adapters">
+<h2>Registered Adapters<a class="headerlink" href="#registered-adapters" title="Link to this heading">#</a></h2>
+<p>We provide the following adapters:</p>
+<ul class="simple">
+<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">AstropyAdapter</span></code>: Adapter for the astropy unit system.</p></li>
+<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">PintAdapter</span></code>: Adapter for the pint unit system.</p></li>
+<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">EzUnitsAdapter</span></code>: Adapter for the legacy pyphot unit system based on pint (v0.1.0).</p></li>
+</ul>
+<p>Note: The <code class="xref py py-class docutils literal notranslate"><span class="pre">EzUnitsAdapter</span></code> is provided as a fallback for older codes and in case other unit packages are missing.</p>
+</section>
+<section id="api-overview">
+<h2>API Overview<a class="headerlink" href="#api-overview" title="Link to this heading">#</a></h2>
+<p>All adapters must implement the <a class="reference internal" href="#pyphot.unit_adapters.units_adapter.UnitsAdapter" title="pyphot.unit_adapters.units_adapter.UnitsAdapter"><code class="xref py py-class docutils literal notranslate"><span class="pre">UnitsAdapter</span></code></a> interface, which defines the following methods:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#pyphot.unit_adapters.units_adapter.UnitsAdapter.U" title="pyphot.unit_adapters.units_adapter.UnitsAdapter.U"><code class="xref py py-meth docutils literal notranslate"><span class="pre">U()</span></code></a>: queries the unit registry.</p></li>
+<li><p><a class="reference internal" href="#pyphot.unit_adapters.units_adapter.UnitsAdapter.Q" title="pyphot.unit_adapters.units_adapter.UnitsAdapter.Q"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Q()</span></code></a>: make sure the returned object is a quantity, i.e. a value with unit (e.g. astropy differs between <cite>U(“kg”)</cite> and <cite>Q(“kg”) = 1. * U(“kg”)</cite>)</p></li>
+</ul>
+<p>For source typing reasons, adapters also override a few methods:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#pyphot.unit_adapters.units_adapter.UnitsAdapter.has_unit" title="pyphot.unit_adapters.units_adapter.UnitsAdapter.has_unit"><code class="xref py py-meth docutils literal notranslate"><span class="pre">has_unit()</span></code></a>: checks if the object has a unit.</p></li>
+<li><p><a class="reference internal" href="#pyphot.unit_adapters.units_adapter.UnitsAdapter.val_in_unit" title="pyphot.unit_adapters.units_adapter.UnitsAdapter.val_in_unit"><code class="xref py py-meth docutils literal notranslate"><span class="pre">val_in_unit()</span></code></a>: returns the value of the quantity in the specified unit or forces a default unit if not specified.</p></li>
+</ul>
+</section>
+<section id="decorator-to-impose-units-on-arguments-and-keyword-arguments">
+<h2>Decorator to impose units on arguments and keyword arguments<a class="headerlink" href="#decorator-to-impose-units-on-arguments-and-keyword-arguments" title="Link to this heading">#</a></h2>
+<p>For convenience, adapters provide (by inheritance) a <cite>decorate</cite> decorator which can help defining functions with default units on arguments and keyword arguments.</p>
+<p>For a more general decorator, use <code class="xref py py-func docutils literal notranslate"><span class="pre">enforce_default_units()</span></code> which will assumes the defined global adapter, if not a specific one provided.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Both decoration methods will update the docstring of the decorated function to include information about the imposed units.</p>
+</div>
+</section>
+<section id="typing">
+<h2>Typing<a class="headerlink" href="#typing" title="Link to this heading">#</a></h2>
+<p>Hint typing information is provided at the module level: <code class="xref py py-class docutils literal notranslate"><span class="pre">UnitAdapterType</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">QuantityType</span></code>, which is a union of <a class="reference internal" href="#pyphot.unit_adapters.units_adapter.UnitsAdapter" title="pyphot.unit_adapters.units_adapter.UnitsAdapter"><code class="xref py py-class docutils literal notranslate"><span class="pre">UnitsAdapter</span></code></a> and varied <code class="xref py py-class docutils literal notranslate"><span class="pre">Quantity</span></code> definitions.
+In addition, each adapter provides specific types in their <cite>typing.Quantity</cite> attribute.</p>
+</section>
+<section id="exceptions">
+<h2>Exceptions<a class="headerlink" href="#exceptions" title="Link to this heading">#</a></h2>
+<p>For convenience adapters also provide a list of potential exception types. At the module level
+<code class="xref py py-class docutils literal notranslate"><span class="pre">UndefinedUnitError</span></code>, and <code class="xref py py-class docutils literal notranslate"><span class="pre">DimensionalityError</span></code> which applies to any backend units.</p>
+<p>When needed <code class="xref py py-class docutils literal notranslate"><span class="pre">UndefinedUnitError</span></code> and <code class="xref py py-class docutils literal notranslate"><span class="pre">DimensionalityError</span></code> can be used to catch specific errors related to unit conversion or registration by the unit package.</p>
+</section>
+<dl class="py function">
+<dt class="sig sig-object py" id="pyphot.unit_adapters.find_default_units_backend">
+<span class="sig-name descname"><span class="pre">find_default_units_backend</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyphot/unit_adapters.html#find_default_units_backend"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyphot.unit_adapters.find_default_units_backend" title="Link to this definition">#</a></dt>
+<dd><p>Set the default units adapter.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#pyphot.unit_adapters.astropy_adapter.ApUnitsAdapter" title="pyphot.unit_adapters.astropy_adapter.ApUnitsAdapter">astropy_adapter.ApUnitsAdapter</a> | pint_adapter.PintUnitsAdapter | <a class="reference internal" href="#pyphot.unit_adapters.ezunits_adapter.EzUnitsAdapter" title="pyphot.unit_adapters.ezunits_adapter.EzUnitsAdapter">ezunits_adapter.EzUnitsAdapter</a> | <a class="reference internal" href="#pyphot.unit_adapters.units_adapter.UnitsAdapter" title="pyphot.unit_adapters.units_adapter.UnitsAdapter">units_adapter.UnitsAdapter</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyphot.unit_adapters.get_adapter">
+<span class="sig-name descname"><span class="pre">get_adapter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyphot/unit_adapters.html#get_adapter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyphot.unit_adapters.get_adapter" title="Link to this definition">#</a></dt>
+<dd><p>Get the units adapter for the given name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> (<em>str</em>) – The name of the units adapter.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The units adapter for the given name.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>UnitAdapter</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If the given name is not a registered adapter.:</p>
+</dd>
+</dl>
+</dd></dl>
+
+<section id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Link to this heading">#</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pyphot.unit_adapters.ezunits.html">pyphot.unit_adapters.ezunits package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pyphot.unit_adapters.ezunits.html#pint">pint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyphot.unit_adapters.ezunits.html#pyphot.unit_adapters.ezunits.hasUnit"><code class="docutils literal notranslate"><span class="pre">hasUnit()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyphot.unit_adapters.ezunits.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyphot.unit_adapters.ezunits.html#module-pyphot.unit_adapters.ezunits.pint">pyphot.unit_adapters.ezunits.pint module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyphot.unit_adapters.ezunits.html#id1">pint</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyphot.unit_adapters.ezunits.html#pyphot.unit_adapters.ezunits.pint.AliasDict"><code class="docutils literal notranslate"><span class="pre">AliasDict</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.unit_adapters.ezunits.html#pyphot.unit_adapters.ezunits.pint.AliasDict.__init__"><code class="docutils literal notranslate"><span class="pre">AliasDict.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.unit_adapters.ezunits.html#pyphot.unit_adapters.ezunits.pint.AliasDict.add_alias"><code class="docutils literal notranslate"><span class="pre">AliasDict.add_alias()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.unit_adapters.ezunits.html#pyphot.unit_adapters.ezunits.pint.AliasDict.get_aliased"><code class="docutils literal notranslate"><span class="pre">AliasDict.get_aliased()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pyphot.unit_adapters.ezunits.html#pyphot.unit_adapters.ezunits.pint.DimensionalityError"><code class="docutils literal notranslate"><span class="pre">DimensionalityError</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.unit_adapters.ezunits.html#pyphot.unit_adapters.ezunits.pint.DimensionalityError.__init__"><code class="docutils literal notranslate"><span class="pre">DimensionalityError.__init__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pyphot.unit_adapters.ezunits.html#pyphot.unit_adapters.ezunits.pint.UndefinedUnitError"><code class="docutils literal notranslate"><span class="pre">UndefinedUnitError</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.unit_adapters.ezunits.html#pyphot.unit_adapters.ezunits.pint.UndefinedUnitError.__init__"><code class="docutils literal notranslate"><span class="pre">UndefinedUnitError.__init__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pyphot.unit_adapters.ezunits.html#pyphot.unit_adapters.ezunits.pint.UnitRegistry"><code class="docutils literal notranslate"><span class="pre">UnitRegistry</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.unit_adapters.ezunits.html#pyphot.unit_adapters.ezunits.pint.UnitRegistry.__init__"><code class="docutils literal notranslate"><span class="pre">UnitRegistry.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.unit_adapters.ezunits.html#pyphot.unit_adapters.ezunits.pint.UnitRegistry.add_from_file"><code class="docutils literal notranslate"><span class="pre">UnitRegistry.add_from_file()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.unit_adapters.ezunits.html#pyphot.unit_adapters.ezunits.pint.UnitRegistry.add_prefix"><code class="docutils literal notranslate"><span class="pre">UnitRegistry.add_prefix()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.unit_adapters.ezunits.html#pyphot.unit_adapters.ezunits.pint.UnitRegistry.add_unit"><code class="docutils literal notranslate"><span class="pre">UnitRegistry.add_unit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.unit_adapters.ezunits.html#pyphot.unit_adapters.ezunits.pint.UnitRegistry.get_alias"><code class="docutils literal notranslate"><span class="pre">UnitRegistry.get_alias()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.unit_adapters.ezunits.html#pyphot.unit_adapters.ezunits.pint.UnitRegistry.os"><code class="docutils literal notranslate"><span class="pre">UnitRegistry.os</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pyphot.unit_adapters.ezunits.html#pyphot.unit_adapters.ezunits.pint.UnitsContainer"><code class="docutils literal notranslate"><span class="pre">UnitsContainer</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.unit_adapters.ezunits.html#pyphot.unit_adapters.ezunits.pint.UnitsContainer.__init__"><code class="docutils literal notranslate"><span class="pre">UnitsContainer.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.unit_adapters.ezunits.html#pyphot.unit_adapters.ezunits.pint.UnitsContainer.add"><code class="docutils literal notranslate"><span class="pre">UnitsContainer.add()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pyphot.unit_adapters.ezunits.html#pyphot.unit_adapters.ezunits.pint.converter_from_reference"><code class="docutils literal notranslate"><span class="pre">converter_from_reference()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyphot.unit_adapters.ezunits.html#pyphot.unit_adapters.ezunits.pint.converter_to_reference"><code class="docutils literal notranslate"><span class="pre">converter_to_reference()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading">#</a></h2>
+</section>
+<section id="module-pyphot.unit_adapters.astropy_adapter">
+<span id="pyphot-unit-adapters-astropy-adapter-module"></span><h2>pyphot.unit_adapters.astropy_adapter module<a class="headerlink" href="#module-pyphot.unit_adapters.astropy_adapter" title="Link to this heading">#</a></h2>
+<p>Adapter to use transparently with the internal ezunits (frozen pint version 0.1; pyphot legacy)</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="pyphot.unit_adapters.astropy_adapter.ApUnitsAdapter">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ApUnitsAdapter</span></span><a class="reference internal" href="_modules/pyphot/unit_adapters/astropy_adapter.html#ApUnitsAdapter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyphot.unit_adapters.astropy_adapter.ApUnitsAdapter" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pyphot.unit_adapters.units_adapter.UnitsAdapter" title="pyphot.unit_adapters.units_adapter.UnitsAdapter"><code class="xref py py-class docutils literal notranslate"><span class="pre">UnitsAdapter</span></code></a></p>
+<p>Adapter for ezunits</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyphot.unit_adapters.astropy_adapter.ApUnitsAdapter.Q">
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Q</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyphot/unit_adapters/astropy_adapter.html#ApUnitsAdapter.Q"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyphot.unit_adapters.astropy_adapter.ApUnitsAdapter.Q" title="Link to this definition">#</a></dt>
+<dd><p>Force quantity from Unit Registry</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#pyphot.unit_adapters.astropy_units.Quantity" title="astropy.units.quantity.Quantity"><em>Quantity</em></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyphot.unit_adapters.astropy_adapter.ApUnitsAdapter.U">
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">U</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyphot/unit_adapters/astropy_adapter.html#ApUnitsAdapter.U"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyphot.unit_adapters.astropy_adapter.ApUnitsAdapter.U" title="Link to this definition">#</a></dt>
+<dd><p>Quantity from Unit Registry</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#pyphot.unit_adapters.astropy_units.Unit" title="astropy.units.core.Unit"><em>Unit</em></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyphot.unit_adapters.astropy_adapter.ApUnitsAdapter.has_unit">
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">has_unit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">val</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyphot/unit_adapters/astropy_adapter.html#ApUnitsAdapter.has_unit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyphot.unit_adapters.astropy_adapter.ApUnitsAdapter.has_unit" title="Link to this definition">#</a></dt>
+<dd><p>Check if val is a value with unit information</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>val</strong> (<em>Any</em><em> | </em><a class="reference internal" href="#pyphot.unit_adapters.astropy_units.Quantity" title="astropy.units.quantity.Quantity"><em>Quantity</em></a>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyphot.unit_adapters.astropy_adapter.ApUnitsAdapter.typing">
+<span class="sig-name descname"><span class="pre">typing</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#pyphot.unit_adapters.units_adapter.UnitTyping" title="pyphot.unit_adapters.units_adapter.UnitTyping"><span class="pre">UnitTyping</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">UnitTyping(DimensionalityError=&lt;class</span> <span class="pre">'astropy.units.errors.UnitConversionError'&gt;,</span> <span class="pre">UndefinedUnitError=&lt;class</span> <span class="pre">'ValueError'&gt;,</span> <span class="pre">Quantity=&lt;class</span> <span class="pre">'astropy.units.quantity.Quantity'&gt;)</span></em><a class="headerlink" href="#pyphot.unit_adapters.astropy_adapter.ApUnitsAdapter.typing" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyphot.unit_adapters.astropy_adapter.ApUnitsAdapter.val_in_unit">
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">val_in_unit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">varname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">defaultunit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">warn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyphot/unit_adapters/astropy_adapter.html#ApUnitsAdapter.val_in_unit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyphot.unit_adapters.astropy_adapter.ApUnitsAdapter.val_in_unit" title="Link to this definition">#</a></dt>
+<dd><p>check units and convert to defaultunit or create the unit information</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>varname</strong> (<em>str</em>) – name of the variable</p></li>
+<li><p><strong>value</strong> (<em>object</em>) – value of the variable, which may be unitless</p></li>
+<li><p><strong>defaultunit</strong> (<em>str</em>) – default units is unitless</p></li>
+<li><p><strong>warn</strong> (<em>bool</em>) – whether to warn if the variable does not have explicit units</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>quantity</strong> – value with units</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ez_Quantity</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">r</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">val_in_unit</span><span class="p">(</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="s1">&#39;degree&#39;</span><span class="p">))</span>
+<span class="go"># UserWarning: Variable r does not have explicit units. Assuming `degree`</span>
+<span class="go">&lt;Quantity(0.5, &#39;degree&#39;)&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">unit</span><span class="p">[</span><span class="s1">&#39;degree&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">val_in_unit</span><span class="p">(</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="s1">&#39;degree&#39;</span><span class="p">))</span>
+<span class="go">&lt;Quantity(0.5, &#39;degree&#39;)&gt;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-pyphot.unit_adapters.astropy_units">
+<span id="pyphot-unit-adapters-astropy-units-module"></span><h2>pyphot.unit_adapters.astropy_units module<a class="headerlink" href="#module-pyphot.unit_adapters.astropy_units" title="Link to this heading">#</a></h2>
+<p>Declare missing photometric and spectral units for use with astropy.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="pyphot.unit_adapters.astropy_units.Quantity">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Quantity</span></span><a class="reference internal" href="_modules/astropy/units/quantity.html#Quantity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyphot.unit_adapters.astropy_units.Quantity" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></p>
+<p>A <cite>~astropy.units.Quantity</cite> represents a number with some associated unit.</p>
+<p>See also: <a class="reference external" href="https://docs.astropy.org/en/stable/units/quantity.html">https://docs.astropy.org/en/stable/units/quantity.html</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>value</strong> (number, <cite>~numpy.ndarray</cite>, <cite>~astropy.units.Quantity</cite> (sequence), or str) – The numerical value of this quantity in the units given by unit.  If a
+<cite>Quantity</cite> or sequence of them (or any other valid object with a
+<code class="docutils literal notranslate"><span class="pre">unit</span></code> attribute), creates a new <cite>Quantity</cite> object, converting to
+<cite>unit</cite> units as needed.  If a string, it is converted to a number or
+<cite>Quantity</cite>, depending on whether a unit is present.</p></li>
+<li><p><strong>unit</strong> (<em>unit-like</em>) – An object that represents the unit associated with the input value.
+Must be an <cite>~astropy.units.UnitBase</cite> object or a string parseable by
+the <code class="xref py py-mod docutils literal notranslate"><span class="pre">units</span></code> package.</p></li>
+<li><p><strong>dtype</strong> (<em>dtype</em><em>, </em><em>optional</em>) – The dtype of the resulting Numpy array or scalar that will
+hold the value.  If not provided, it is determined from the input,
+except that any integer and (non-Quantity) object inputs are converted
+to float by default.
+If <cite>None</cite>, the normal <cite>numpy.dtype</cite> introspection is used, e.g.
+preventing upcasting of integers.</p></li>
+<li><p><strong>copy</strong> (<em>bool</em><em>, </em><em>optional</em>) – If <cite>True</cite> (default), then the value is copied.  Otherwise, a copy will
+only be made if <code class="docutils literal notranslate"><span class="pre">__array__</span></code> returns a copy, if value is a nested
+sequence, or if a copy is needed to satisfy an explicitly given
+<code class="docutils literal notranslate"><span class="pre">dtype</span></code>.  (The <cite>False</cite> option is intended mostly for internal use,
+to speed up initialization where a copy is known to have been made.
+Use with care.)</p></li>
+<li><p><strong>order</strong> (<em>{'C'</em><em>, </em><em>'F'</em><em>, </em><em>'A'}</em><em>, </em><em>optional</em>) – Specify the order of the array.  As in <cite>~numpy.array</cite>.  This parameter
+is ignored if the input is a <cite>Quantity</cite> and <code class="docutils literal notranslate"><span class="pre">copy=False</span></code>.</p></li>
+<li><p><strong>subok</strong> (<em>bool</em><em>, </em><em>optional</em>) – If <cite>False</cite> (default), the returned array will be forced to be a
+<cite>Quantity</cite>.  Otherwise, <cite>Quantity</cite> subclasses will be passed through,
+or a subclass appropriate for the unit will be used (such as
+<cite>~astropy.units.Dex</cite> for <code class="docutils literal notranslate"><span class="pre">u.dex(u.AA)</span></code>).</p></li>
+<li><p><strong>ndmin</strong> (<em>int</em><em>, </em><em>optional</em>) – Specifies the minimum number of dimensions that the resulting array
+should have.  Ones will be prepended to the shape as needed to meet
+this requirement.  This parameter is ignored if the input is a
+<cite>Quantity</cite> and <code class="docutils literal notranslate"><span class="pre">copy=False</span></code>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>TypeError</strong> – If the value provided is not a Python numeric type.</p></li>
+<li><p><strong>TypeError</strong> – If the unit provided is not either a <code class="xref py py-class docutils literal notranslate"><span class="pre">Unit</span></code>
+    object or a parseable string unit.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>Quantities can also be created by multiplying a number or array with a
+<code class="xref py py-class docutils literal notranslate"><span class="pre">Unit</span></code>. See <a class="reference external" href="https://docs.astropy.org/en/latest/units/">https://docs.astropy.org/en/latest/units/</a></p>
+<p>Unless the <code class="docutils literal notranslate"><span class="pre">dtype</span></code> argument is explicitly specified, integer
+or (non-Quantity) object inputs are converted to <cite>float</cite> by default.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyphot.unit_adapters.astropy_units.Quantity.__new__">
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">__new__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cls</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unit=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype=&lt;class</span> <span class="pre">'numpy.inexact'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">copy=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">order=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subok=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ndmin=0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/astropy/units/quantity.html#Quantity.__new__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyphot.unit_adapters.astropy_units.Quantity.__new__" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cls</strong> (<em>type</em><em>[</em><em>Self</em><em>]</em>)</p></li>
+<li><p><strong>value</strong> (<em>astropy.units.Quantity</em><em> | </em><em>ArrayLike</em>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><em>Self</em></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyphot.unit_adapters.astropy_units.Quantity.all">
+<span class="sig-name descname"><span class="pre">all</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/astropy/units/quantity.html#Quantity.all"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyphot.unit_adapters.astropy_units.Quantity.all" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyphot.unit_adapters.astropy_units.Quantity.any">
+<span class="sig-name descname"><span class="pre">any</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/astropy/units/quantity.html#Quantity.any"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyphot.unit_adapters.astropy_units.Quantity.any" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyphot.unit_adapters.astropy_units.Quantity.argmax">
+<span class="sig-name descname"><span class="pre">argmax</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">keepdims</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/astropy/units/quantity.html#Quantity.argmax"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyphot.unit_adapters.astropy_units.Quantity.argmax" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyphot.unit_adapters.astropy_units.Quantity.argmin">
+<span class="sig-name descname"><span class="pre">argmin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">keepdims</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/astropy/units/quantity.html#Quantity.argmin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyphot.unit_adapters.astropy_units.Quantity.argmin" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyphot.unit_adapters.astropy_units.Quantity.argsort">
+<span class="sig-name descname"><span class="pre">argsort</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kind</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">stable</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/astropy/units/quantity.html#Quantity.argsort"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyphot.unit_adapters.astropy_units.Quantity.argsort" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pyphot.unit_adapters.astropy_units.Quantity.cgs">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">cgs</span></span><a class="headerlink" href="#pyphot.unit_adapters.astropy_units.Quantity.cgs" title="Link to this definition">#</a></dt>
+<dd><p>Returns a copy of the current <cite>Quantity</cite> instance with CGS units. The
+value of the resulting object will be scaled.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyphot.unit_adapters.astropy_units.Quantity.choose">
+<span class="sig-name descname"><span class="pre">choose</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">choices</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'raise'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/astropy/units/quantity.html#Quantity.choose"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyphot.unit_adapters.astropy_units.Quantity.choose" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyphot.unit_adapters.astropy_units.Quantity.decompose">
+<span class="sig-name descname"><span class="pre">decompose</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bases</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/astropy/units/quantity.html#Quantity.decompose"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyphot.unit_adapters.astropy_units.Quantity.decompose" title="Link to this definition">#</a></dt>
+<dd><p>Generates a new <cite>Quantity</cite> with the units
+decomposed. Decomposed units have only irreducible units in
+them (see <cite>astropy.units.UnitBase.decompose</cite>).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>bases</strong> (sequence of <cite>~astropy.units.UnitBase</cite>, optional) – The bases to decompose into.  When not provided,
+decomposes down to any irreducible units.  When provided,
+the decomposed result will only contain the given units.
+This will raises a <cite>~astropy.units.UnitsError</cite> if it’s not possible
+to do so.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>newq</strong> – A new object equal to this quantity with units decomposed.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><cite>~astropy.units.Quantity</cite></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyphot.unit_adapters.astropy_units.Quantity.diff">
+<span class="sig-name descname"><span class="pre">diff</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/astropy/units/quantity.html#Quantity.diff"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyphot.unit_adapters.astropy_units.Quantity.diff" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyphot.unit_adapters.astropy_units.Quantity.dot">
+<span class="sig-name descname"><span class="pre">dot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/astropy/units/quantity.html#Quantity.dot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyphot.unit_adapters.astropy_units.Quantity.dot" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyphot.unit_adapters.astropy_units.Quantity.dump">
+<span class="sig-name descname"><span class="pre">dump</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/astropy/units/quantity.html#Quantity.dump"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyphot.unit_adapters.astropy_units.Quantity.dump" title="Link to this definition">#</a></dt>
+<dd><p>Not implemented, use <code class="docutils literal notranslate"><span class="pre">.value.dump()</span></code> instead.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyphot.unit_adapters.astropy_units.Quantity.dumps">
+<span class="sig-name descname"><span class="pre">dumps</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/astropy/units/quantity.html#Quantity.dumps"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyphot.unit_adapters.astropy_units.Quantity.dumps" title="Link to this definition">#</a></dt>
+<dd><p>Not implemented, use <code class="docutils literal notranslate"><span class="pre">.value.dumps()</span></code> instead.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyphot.unit_adapters.astropy_units.Quantity.ediff1d">
+<span class="sig-name descname"><span class="pre">ediff1d</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">to_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">to_begin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/astropy/units/quantity.html#Quantity.ediff1d"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyphot.unit_adapters.astropy_units.Quantity.ediff1d" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pyphot.unit_adapters.astropy_units.Quantity.equivalencies">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">equivalencies</span></span><a class="headerlink" href="#pyphot.unit_adapters.astropy_units.Quantity.equivalencies" title="Link to this definition">#</a></dt>
+<dd><p>A list of equivalencies that will be applied by default during
+unit conversions.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyphot.unit_adapters.astropy_units.Quantity.fill">
+<span class="sig-name descname"><span class="pre">fill</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/astropy/units/quantity.html#Quantity.fill"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyphot.unit_adapters.astropy_units.Quantity.fill" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pyphot.unit_adapters.astropy_units.Quantity.flat">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">flat</span></span><a class="headerlink" href="#pyphot.unit_adapters.astropy_units.Quantity.flat" title="Link to this definition">#</a></dt>
+<dd><p>A 1-D iterator over the Quantity array.</p>
+<p>This returns a <code class="docutils literal notranslate"><span class="pre">QuantityIterator</span></code> instance, which behaves the same
+as the <cite>~numpy.flatiter</cite> instance returned by <cite>~numpy.ndarray.flat</cite>,
+and is similar to, but not a subclass of, Python’s built-in iterator
+object.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyphot.unit_adapters.astropy_units.Quantity.info">
+<span class="sig-name descname"><span class="pre">info</span></span><a class="headerlink" href="#pyphot.unit_adapters.astropy_units.Quantity.info" title="Link to this definition">#</a></dt>
+<dd><p>Container for meta information like name, description, format.  This is
+required when the object is used as a mixin column within a table, but can
+be used as a general way to store meta information.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyphot.unit_adapters.astropy_units.Quantity.insert">
+<span class="sig-name descname"><span class="pre">insert</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/astropy/units/quantity.html#Quantity.insert"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyphot.unit_adapters.astropy_units.Quantity.insert" title="Link to this definition">#</a></dt>
+<dd><p>Insert values along the given axis before the given indices and return
+a new <cite>~astropy.units.Quantity</cite> object.</p>
+<p>This is a thin wrapper around the <cite>numpy.insert</cite> function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>obj</strong> (<em>int</em><em>, </em><em>slice</em><em> or </em><em>sequence</em><em> of </em><em>int</em>) – Object that defines the index or indices before which <code class="docutils literal notranslate"><span class="pre">values</span></code> is
+inserted.</p></li>
+<li><p><strong>values</strong> (<em>array-like</em>) – Values to insert.  If the type of <code class="docutils literal notranslate"><span class="pre">values</span></code> is different
+from that of quantity, <code class="docutils literal notranslate"><span class="pre">values</span></code> is converted to the matching type.
+<code class="docutils literal notranslate"><span class="pre">values</span></code> should be shaped so that it can be broadcast appropriately
+The unit of <code class="docutils literal notranslate"><span class="pre">values</span></code> must be consistent with this quantity.</p></li>
+<li><p><strong>axis</strong> (<em>int</em><em>, </em><em>optional</em>) – Axis along which to insert <code class="docutils literal notranslate"><span class="pre">values</span></code>.  If <code class="docutils literal notranslate"><span class="pre">axis</span></code> is None then
+the quantity array is flattened before insertion.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>out</strong> – A copy of quantity with <code class="docutils literal notranslate"><span class="pre">values</span></code> inserted.  Note that the
+insertion does not occur in-place: a new quantity array is returned.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><cite>~astropy.units.Quantity</cite></p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">astropy.units</span> <span class="k">as</span> <span class="nn">u</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">q</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">m</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">q</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">50</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">cm</span><span class="p">)</span>
+<span class="go">&lt;Quantity [ 0.5,  1.,  2.] m&gt;</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">q</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]]</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">m</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">q</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">]</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">m</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="go">&lt;Quantity [[  1.,  2.],</span>
+<span class="go">           [ 10., 20.],</span>
+<span class="go">           [  3.,  4.]] m&gt;</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">q</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">m</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="go">&lt;Quantity [[  1., 10.,  2.],</span>
+<span class="go">           [  3., 10.,  4.]] m&gt;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pyphot.unit_adapters.astropy_units.Quantity.isscalar">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">isscalar</span></span><a class="headerlink" href="#pyphot.unit_adapters.astropy_units.Quantity.isscalar" title="Link to this definition">#</a></dt>
+<dd><p>True if the <cite>value</cite> of this quantity is a scalar, or False if it
+is an array-like object.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is subtly different from <cite>numpy.isscalar</cite> in that
+<cite>numpy.isscalar</cite> returns False for a zero-dimensional array
+(e.g. <code class="docutils literal notranslate"><span class="pre">np.array(1)</span></code>), while this is True for quantities,
+since quantities cannot represent true numpy scalars.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyphot.unit_adapters.astropy_units.Quantity.item">
+<span class="sig-name descname"><span class="pre">item</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/astropy/units/quantity.html#Quantity.item"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyphot.unit_adapters.astropy_units.Quantity.item" title="Link to this definition">#</a></dt>
+<dd><p>Copy an element of an array to a scalar Quantity and return it.</p>
+<p>Like <code class="xref py py-meth docutils literal notranslate"><span class="pre">item()</span></code> except that it always
+returns a <cite>Quantity</cite>, not a Python scalar.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyphot.unit_adapters.astropy_units.Quantity.mean">
+<span class="sig-name descname"><span class="pre">mean</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keepdims</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">where</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/astropy/units/quantity.html#Quantity.mean"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyphot.unit_adapters.astropy_units.Quantity.mean" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyphot.unit_adapters.astropy_units.Quantity.put">
+<span class="sig-name descname"><span class="pre">put</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">indices</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'raise'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/astropy/units/quantity.html#Quantity.put"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyphot.unit_adapters.astropy_units.Quantity.put" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyphot.unit_adapters.astropy_units.Quantity.round">
+<span class="sig-name descname"><span class="pre">round</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">decimals</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/astropy/units/quantity.html#Quantity.round"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyphot.unit_adapters.astropy_units.Quantity.round" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyphot.unit_adapters.astropy_units.Quantity.searchsorted">
+<span class="sig-name descname"><span class="pre">searchsorted</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">v</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/astropy/units/quantity.html#Quantity.searchsorted"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyphot.unit_adapters.astropy_units.Quantity.searchsorted" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pyphot.unit_adapters.astropy_units.Quantity.si">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">si</span></span><a class="headerlink" href="#pyphot.unit_adapters.astropy_units.Quantity.si" title="Link to this definition">#</a></dt>
+<dd><p>Returns a copy of the current <cite>Quantity</cite> instance with SI units. The
+value of the resulting object will be scaled.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyphot.unit_adapters.astropy_units.Quantity.std">
+<span class="sig-name descname"><span class="pre">std</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ddof</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keepdims</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">where</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/astropy/units/quantity.html#Quantity.std"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyphot.unit_adapters.astropy_units.Quantity.std" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyphot.unit_adapters.astropy_units.Quantity.take">
+<span class="sig-name descname"><span class="pre">take</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">indices</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'raise'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/astropy/units/quantity.html#Quantity.take"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyphot.unit_adapters.astropy_units.Quantity.take" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyphot.unit_adapters.astropy_units.Quantity.to">
+<span class="sig-name descname"><span class="pre">to</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">unit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">equivalencies</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">copy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/astropy/units/quantity.html#Quantity.to"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyphot.unit_adapters.astropy_units.Quantity.to" title="Link to this definition">#</a></dt>
+<dd><p>Return a new <cite>~astropy.units.Quantity</cite> object with the specified unit.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>unit</strong> (<em>unit-like</em>) – An object that represents the unit to convert to. Must be
+an <cite>~astropy.units.UnitBase</cite> object or a string parseable
+by the <cite>~astropy.units</cite> package.</p></li>
+<li><p><strong>equivalencies</strong> (<em>list</em><em> of </em><em>tuple</em>) – A list of equivalence pairs to try if the units are not
+directly convertible.  See <span class="xref std std-ref">astropy:unit_equivalencies</span>.
+If not provided or <code class="docutils literal notranslate"><span class="pre">[]</span></code>, class default equivalencies will be used
+(none for <cite>~astropy.units.Quantity</cite>, but may be set for subclasses)
+If <cite>None</cite>, no equivalencies will be applied at all, not even any
+set globally or within a context.</p></li>
+<li><p><strong>copy</strong> (<em>bool</em><em>, </em><em>optional</em>) – If <cite>True</cite> (default), then the value is copied.  Otherwise, a copy
+will only be made if necessary.</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="#pyphot.unit_adapters.astropy_units.Quantity.to_value" title="pyphot.unit_adapters.astropy_units.Quantity.to_value"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_value</span></code></a></dt><dd><p>get the numerical value in a given unit.</p>
+</dd>
+</dl>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyphot.unit_adapters.astropy_units.Quantity.to_string">
+<span class="sig-name descname"><span class="pre">to_string</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">precision</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subfmt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">formatter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/astropy/units/quantity.html#Quantity.to_string"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyphot.unit_adapters.astropy_units.Quantity.to_string" title="Link to this definition">#</a></dt>
+<dd><p>Generate a string representation of the quantity and its unit.</p>
+<p>The behavior of this function can be altered via the
+<cite>numpy.set_printoptions</cite> function and its various keywords.  The
+exception to this is the <code class="docutils literal notranslate"><span class="pre">threshold</span></code> keyword, which is controlled via
+the <code class="docutils literal notranslate"><span class="pre">[units.quantity]</span></code> configuration item <code class="docutils literal notranslate"><span class="pre">latex_array_threshold</span></code>.
+This is treated separately because the numpy default of 1000 is too big
+for most browsers to handle.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>unit</strong> (<em>unit-like</em><em>, </em><em>optional</em>) – Specifies the unit.  If not provided,
+the unit used to initialize the quantity will be used.</p></li>
+<li><p><strong>precision</strong> (<em>number</em><em>, </em><em>optional</em>) – The level of decimal precision. If <cite>None</cite>, or not provided,
+it will be determined from NumPy print options.</p></li>
+<li><p><strong>format</strong> (<em>str</em><em>, </em><em>optional</em>) – <p>The format of the result. If not provided, an unadorned
+string is returned. Supported values are:</p>
+<ul>
+<li><p>’latex’: Return a LaTeX-formatted string</p></li>
+<li><p>’latex_inline’: Return a LaTeX-formatted string that uses
+negative exponents instead of fractions</p></li>
+</ul>
+</p></li>
+<li><p><strong>formatter</strong> (<em>str</em><em>, </em><em>callable</em><em>, </em><em>dict</em><em>, </em><em>optional</em>) – The formatter to use for the value. If a string, it should be a
+valid format specifier using Python’s mini-language. If a callable,
+it will be treated as the default formatter for all values and will
+overwrite default Latex formatting for exponential notation and complex
+numbers. If a dict, it should map a specific type to a callable to be
+directly passed into <cite>numpy.array2string</cite>. If not provided, the default
+formatter will be used.</p></li>
+<li><p><strong>subfmt</strong> (<em>str</em><em>, </em><em>optional</em>) – <p>Subformat of the result. For the moment, only used for
+<code class="docutils literal notranslate"><span class="pre">format='latex'</span></code> and <code class="docutils literal notranslate"><span class="pre">format='latex_inline'</span></code>. Supported
+values are:</p>
+<ul>
+<li><p>’inline’: Use <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">...</span> <span class="pre">$</span></code> as delimiters.</p></li>
+<li><p>’display’: Use <code class="docutils literal notranslate"><span class="pre">$\displaystyle</span> <span class="pre">...</span> <span class="pre">$</span></code> as delimiters.</p></li>
+</ul>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A string with the contents of this Quantity</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyphot.unit_adapters.astropy_units.Quantity.to_value">
+<span class="sig-name descname"><span class="pre">to_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">equivalencies</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/astropy/units/quantity.html#Quantity.to_value"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyphot.unit_adapters.astropy_units.Quantity.to_value" title="Link to this definition">#</a></dt>
+<dd><p>The numerical value, possibly in a different unit.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>unit</strong> (<em>unit-like</em><em>, </em><em>optional</em>) – The unit in which the value should be given. If not given or <cite>None</cite>,
+use the current unit.</p></li>
+<li><p><strong>equivalencies</strong> (<em>list</em><em> of </em><em>tuple</em><em>, </em><em>optional</em>) – A list of equivalence pairs to try if the units are not directly
+convertible (see <span class="xref std std-ref">astropy:unit_equivalencies</span>). If not provided
+or <code class="docutils literal notranslate"><span class="pre">[]</span></code>, class default equivalencies will be used (none for
+<cite>~astropy.units.Quantity</cite>, but may be set for subclasses).
+If <cite>None</cite>, no equivalencies will be applied at all, not even any
+set globally or within a context.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>value</strong> – The value in the units specified. For arrays, this will be a view
+of the data if no unit conversion was necessary.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ndarray or scalar</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="#pyphot.unit_adapters.astropy_units.Quantity.to" title="pyphot.unit_adapters.astropy_units.Quantity.to"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to</span></code></a></dt><dd><p>Get a new instance in a different unit.</p>
+</dd>
+</dl>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyphot.unit_adapters.astropy_units.Quantity.tobytes">
+<span class="sig-name descname"><span class="pre">tobytes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'C'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/astropy/units/quantity.html#Quantity.tobytes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyphot.unit_adapters.astropy_units.Quantity.tobytes" title="Link to this definition">#</a></dt>
+<dd><p>Not implemented, use <code class="docutils literal notranslate"><span class="pre">.value.tobytes()</span></code> instead.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyphot.unit_adapters.astropy_units.Quantity.tofile">
+<span class="sig-name descname"><span class="pre">tofile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'%s'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/astropy/units/quantity.html#Quantity.tofile"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyphot.unit_adapters.astropy_units.Quantity.tofile" title="Link to this definition">#</a></dt>
+<dd><p>Not implemented, use <code class="docutils literal notranslate"><span class="pre">.value.tofile()</span></code> instead.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyphot.unit_adapters.astropy_units.Quantity.tolist">
+<span class="sig-name descname"><span class="pre">tolist</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/astropy/units/quantity.html#Quantity.tolist"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyphot.unit_adapters.astropy_units.Quantity.tolist" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyphot.unit_adapters.astropy_units.Quantity.tostring">
+<span class="sig-name descname"><span class="pre">tostring</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'C'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/astropy/units/quantity.html#Quantity.tostring"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyphot.unit_adapters.astropy_units.Quantity.tostring" title="Link to this definition">#</a></dt>
+<dd><p>Not implemented, use <code class="docutils literal notranslate"><span class="pre">.value.tostring()</span></code> instead.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyphot.unit_adapters.astropy_units.Quantity.trace">
+<span class="sig-name descname"><span class="pre">trace</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/astropy/units/quantity.html#Quantity.trace"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyphot.unit_adapters.astropy_units.Quantity.trace" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pyphot.unit_adapters.astropy_units.Quantity.unit">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">unit</span></span><a class="headerlink" href="#pyphot.unit_adapters.astropy_units.Quantity.unit" title="Link to this definition">#</a></dt>
+<dd><p>A <cite>~astropy.units.UnitBase</cite> object representing the unit of this
+quantity.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pyphot.unit_adapters.astropy_units.Quantity.value">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">value</span></span><a class="headerlink" href="#pyphot.unit_adapters.astropy_units.Quantity.value" title="Link to this definition">#</a></dt>
+<dd><p>The numerical value of this instance.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="#pyphot.unit_adapters.astropy_units.Quantity.to_value" title="pyphot.unit_adapters.astropy_units.Quantity.to_value"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_value</span></code></a></dt><dd><p>Get the numerical value in a given unit.</p>
+</dd>
+</dl>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyphot.unit_adapters.astropy_units.Quantity.var">
+<span class="sig-name descname"><span class="pre">var</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ddof</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keepdims</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">where</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/astropy/units/quantity.html#Quantity.var"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyphot.unit_adapters.astropy_units.Quantity.var" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyphot.unit_adapters.astropy_units.U">
+<span class="sig-name descname"><span class="pre">U</span></span><a class="headerlink" href="#pyphot.unit_adapters.astropy_units.U" title="Link to this definition">#</a></dt>
+<dd><p>alias of <a class="reference internal" href="#pyphot.unit_adapters.astropy_units.Unit" title="astropy.units.core.Unit"><code class="xref py py-class docutils literal notranslate"><span class="pre">Unit</span></code></a></p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyphot.unit_adapters.astropy_units.Unit">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Unit</span></span><a class="reference internal" href="_modules/astropy/units/core.html#Unit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyphot.unit_adapters.astropy_units.Unit" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">NamedUnit</span></code></p>
+<p>The main unit class.</p>
+<p>There are a number of different ways to construct a Unit, but
+always returns a <cite>UnitBase</cite> instance.  If the arguments refer to
+an already-existing unit, that existing unit instance is returned,
+rather than a new one.</p>
+<ul>
+<li><p>From a string:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Unit</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">parse_strict</span><span class="o">=</span><span class="s1">&#39;silent&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Construct from a string representing a (possibly compound) unit.</p>
+<p>The optional <cite>format</cite> keyword argument specifies the format the
+string is in, by default <code class="docutils literal notranslate"><span class="pre">&quot;generic&quot;</span></code>.  For a description of
+the available formats, see <cite>astropy.units.format</cite>.</p>
+<p>The optional <code class="docutils literal notranslate"><span class="pre">parse_strict</span></code> keyword argument controls what happens
+when the string does not comply with the specified format. It may be
+one of the following:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">'raise'</span></code>: (default) raise a <cite>ValueError</cite> exception.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'warn'</span></code>: emit a <cite>UnitParserWarning</cite>, and return a unit.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'silent'</span></code>: return a unit silently.</p></li>
+</ul>
+</div></blockquote>
+<p>With <code class="docutils literal notranslate"><span class="pre">'warn'</span></code> or <code class="docutils literal notranslate"><span class="pre">'silent'</span></code> the parser might be able to parse the
+string and return a normal unit, but if it fails then an
+<cite>UnrecognizedUnit</cite> instance is returned.</p>
+</li>
+<li><p>From a number:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Unit</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Creates a dimensionless unit.</p>
+</li>
+<li><p>From a <cite>UnitBase</cite> instance:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Unit</span><span class="p">(</span><span class="n">unit</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Returns the given unit unchanged.</p>
+</li>
+<li><p>From no arguments:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Unit</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Returns the dimensionless unit.</p>
+</li>
+<li><p>The last form, which creates a new <cite>Unit</cite> is described in detail
+below.</p></li>
+</ul>
+<p>See also: <a class="reference external" href="https://docs.astropy.org/en/stable/units/">https://docs.astropy.org/en/stable/units/</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>st</strong> (<em>str</em><em> or </em><em>list</em><em> of </em><em>str</em>) – The name of the unit.  If a list, the first element is the
+canonical (short) name, and the rest of the elements are
+aliases.</p></li>
+<li><p><strong>represents</strong> (<em>unit-like</em><em>, </em><em>optional</em>) – The unit that this named unit represents.</p></li>
+<li><p><strong>doc</strong> (<em>str</em><em>, </em><em>optional</em>) – A docstring describing the unit.</p></li>
+<li><p><strong>format</strong> (<em>dict</em><em>, </em><em>optional</em>) – <p>A mapping to format-specific representations of this unit.
+For example, for the <code class="docutils literal notranslate"><span class="pre">Ohm</span></code> unit, it might be nice to have it
+displayed as <code class="docutils literal notranslate"><span class="pre">\Omega</span></code> by the <code class="docutils literal notranslate"><span class="pre">latex</span></code> formatter.  In that
+case, <cite>format</cite> argument should be set to:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s1">&#39;latex&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;\Omega&#39;</span><span class="p">}</span>
+</pre></div>
+</div>
+</p></li>
+<li><p><strong>namespace</strong> (<em>dict</em><em>, </em><em>optional</em>) – When provided, inject the unit (and all of its aliases) into
+the given namespace.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>ValueError</strong> – If any of the given unit names are already in the registry.</p></li>
+<li><p><strong>ValueError</strong> – If any of the given unit names are not valid Python tokens.</p></li>
+<li><p><strong>ValueError</strong> – If <code class="docutils literal notranslate"><span class="pre">represents</span></code> cannot be parsed as a unit, e.g., because it is
+    a malformed string or a <a href="#id1"><span class="problematic" id="id2">|Quantity|</span></a> that is not a scalar.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyphot.unit_adapters.astropy_units.Unit.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">st</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">represents</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">doc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">namespace</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/astropy/units/core.html#Unit.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyphot.unit_adapters.astropy_units.Unit.__init__" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyphot.unit_adapters.astropy_units.Unit.decompose">
+<span class="sig-name descname"><span class="pre">decompose</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bases</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/astropy/units/core.html#Unit.decompose"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyphot.unit_adapters.astropy_units.Unit.decompose" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>bases</strong> (<em>Collection</em><em>[</em><em>UnitBase</em><em>]</em>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><em>UnitBase</em></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyphot.unit_adapters.astropy_units.Unit.is_unity">
+<span class="sig-name descname"><span class="pre">is_unity</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/astropy/units/core.html#Unit.is_unity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyphot.unit_adapters.astropy_units.Unit.is_unity" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pyphot.unit_adapters.astropy_units.Unit.represents">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">represents</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">UnitBase</span></em><a class="headerlink" href="#pyphot.unit_adapters.astropy_units.Unit.represents" title="Link to this definition">#</a></dt>
+<dd><p>The unit that this named unit represents.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-pyphot.unit_adapters.ezunits_adapter">
+<span id="pyphot-unit-adapters-ezunits-adapter-module"></span><h2>pyphot.unit_adapters.ezunits_adapter module<a class="headerlink" href="#module-pyphot.unit_adapters.ezunits_adapter" title="Link to this heading">#</a></h2>
+<p>Adapter to use transparently with the internal ezunits (frozen pint version 0.1; pyphot legacy)</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="pyphot.unit_adapters.ezunits_adapter.EzUnitsAdapter">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">EzUnitsAdapter</span></span><a class="reference internal" href="_modules/pyphot/unit_adapters/ezunits_adapter.html#EzUnitsAdapter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyphot.unit_adapters.ezunits_adapter.EzUnitsAdapter" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pyphot.unit_adapters.units_adapter.UnitsAdapter" title="pyphot.unit_adapters.units_adapter.UnitsAdapter"><code class="xref py py-class docutils literal notranslate"><span class="pre">UnitsAdapter</span></code></a></p>
+<p>Adapter for ezunits</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyphot.unit_adapters.ezunits_adapter.EzUnitsAdapter.Q">
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Q</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyphot/unit_adapters/ezunits_adapter.html#EzUnitsAdapter.Q"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyphot.unit_adapters.ezunits_adapter.EzUnitsAdapter.Q" title="Link to this definition">#</a></dt>
+<dd><p>Quantity from Unit Registry</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><em>ez_Quantity</em></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyphot.unit_adapters.ezunits_adapter.EzUnitsAdapter.U">
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">U</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyphot/unit_adapters/ezunits_adapter.html#EzUnitsAdapter.U"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyphot.unit_adapters.ezunits_adapter.EzUnitsAdapter.U" title="Link to this definition">#</a></dt>
+<dd><p>Quantity from Unit Registry</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><em>ez_Quantity</em></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyphot.unit_adapters.ezunits_adapter.EzUnitsAdapter.has_unit">
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">has_unit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">val</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyphot/unit_adapters/ezunits_adapter.html#EzUnitsAdapter.has_unit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyphot.unit_adapters.ezunits_adapter.EzUnitsAdapter.has_unit" title="Link to this definition">#</a></dt>
+<dd><p>Check if val is a value with unit information</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>val</strong> (<em>Any</em><em> | </em><em>ez_Quantity</em>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyphot.unit_adapters.ezunits_adapter.EzUnitsAdapter.typing">
+<span class="sig-name descname"><span class="pre">typing</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#pyphot.unit_adapters.units_adapter.UnitTyping" title="pyphot.unit_adapters.units_adapter.UnitTyping"><span class="pre">UnitTyping</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">UnitTyping(DimensionalityError=&lt;class</span> <span class="pre">'pyphot.unit_adapters.ezunits.pint.DimensionalityError'&gt;,</span> <span class="pre">UndefinedUnitError=&lt;class</span> <span class="pre">'pyphot.unit_adapters.ezunits.pint.UndefinedUnitError'&gt;,</span> <span class="pre">Quantity=pyphot.unit_adapters.ezunits_adapter.ez_Quantity)</span></em><a class="headerlink" href="#pyphot.unit_adapters.ezunits_adapter.EzUnitsAdapter.typing" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyphot.unit_adapters.ezunits_adapter.EzUnitsAdapter.val_in_unit">
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">val_in_unit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">varname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">defaultunit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">warn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyphot/unit_adapters/ezunits_adapter.html#EzUnitsAdapter.val_in_unit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyphot.unit_adapters.ezunits_adapter.EzUnitsAdapter.val_in_unit" title="Link to this definition">#</a></dt>
+<dd><p>check units and convert to defaultunit or create the unit information</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>varname</strong> (<em>str</em>) – name of the variable</p></li>
+<li><p><strong>value</strong> (<em>object</em>) – value of the variable, which may be unitless</p></li>
+<li><p><strong>defaultunit</strong> (<em>str</em>) – default units is unitless</p></li>
+<li><p><strong>warn</strong> (<em>bool</em>) – whether to warn if the variable does not have explicit units</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>quantity</strong> – value with units</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ez_Quantity</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">r</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">val_in_unit</span><span class="p">(</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="s1">&#39;degree&#39;</span><span class="p">))</span>
+<span class="go"># UserWarning: Variable r does not have explicit units. Assuming `degree`</span>
+<span class="go">&lt;Quantity(0.5, &#39;degree&#39;)&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">unit</span><span class="p">[</span><span class="s1">&#39;degree&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">val_in_unit</span><span class="p">(</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="s1">&#39;degree&#39;</span><span class="p">))</span>
+<span class="go">&lt;Quantity(0.5, &#39;degree&#39;)&gt;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="pyphot-unit-adapters-pint-adapter-module">
+<h2>pyphot.unit_adapters.pint_adapter module<a class="headerlink" href="#pyphot-unit-adapters-pint-adapter-module" title="Link to this heading">#</a></h2>
+</section>
+<section id="pyphot-unit-adapters-pint-units-module">
+<h2>pyphot.unit_adapters.pint_units module<a class="headerlink" href="#pyphot-unit-adapters-pint-units-module" title="Link to this heading">#</a></h2>
+</section>
+<section id="module-pyphot.unit_adapters.typing">
+<span id="pyphot-unit-adapters-typing-module"></span><h2>pyphot.unit_adapters.typing module<a class="headerlink" href="#module-pyphot.unit_adapters.typing" title="Link to this heading">#</a></h2>
+</section>
+<section id="module-pyphot.unit_adapters.units_adapter">
+<span id="pyphot-unit-adapters-units-adapter-module"></span><h2>pyphot.unit_adapters.units_adapter module<a class="headerlink" href="#module-pyphot.unit_adapters.units_adapter" title="Link to this heading">#</a></h2>
+<section id="unitsadapter-base-class-and-decorator">
+<h3>UnitsAdapter base class and decorator<a class="headerlink" href="#unitsadapter-base-class-and-decorator" title="Link to this heading">#</a></h3>
+<p>Provides the common interface for units adapters.</p>
+</section>
+<dl class="py class">
+<dt class="sig sig-object py" id="pyphot.unit_adapters.units_adapter.UnitTyping">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">UnitTyping</span></span><a class="reference internal" href="_modules/pyphot/unit_adapters/units_adapter.html#UnitTyping"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyphot.unit_adapters.units_adapter.UnitTyping" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Collects exceptions related to the unit handling as standard exceptions</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyphot.unit_adapters.units_adapter.UnitTyping.DimensionalityError">
+<span class="sig-name descname"><span class="pre">DimensionalityError</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Any</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#pyphot.unit_adapters.units_adapter.UnitTyping.DimensionalityError" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyphot.unit_adapters.units_adapter.UnitTyping.Quantity">
+<span class="sig-name descname"><span class="pre">Quantity</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Any</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#pyphot.unit_adapters.units_adapter.UnitTyping.Quantity" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyphot.unit_adapters.units_adapter.UnitTyping.UndefinedUnitError">
+<span class="sig-name descname"><span class="pre">UndefinedUnitError</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Any</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#pyphot.unit_adapters.units_adapter.UnitTyping.UndefinedUnitError" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyphot.unit_adapters.units_adapter.UnitTyping.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">DimensionalityError</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">UndefinedUnitError</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Quantity</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyphot.unit_adapters.units_adapter.UnitTyping.__init__" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>DimensionalityError</strong> (<em>Any</em>)</p></li>
+<li><p><strong>UndefinedUnitError</strong> (<em>Any</em>)</p></li>
+<li><p><strong>Quantity</strong> (<em>Any</em>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyphot.unit_adapters.units_adapter.UnitsAdapter">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">UnitsAdapter</span></span><a class="reference internal" href="_modules/pyphot/unit_adapters/units_adapter.html#UnitsAdapter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyphot.unit_adapters.units_adapter.UnitsAdapter" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Unifies unit handling</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyphot.unit_adapters.units_adapter.UnitsAdapter.Q">
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Q</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyphot/unit_adapters/units_adapter.html#UnitsAdapter.Q"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyphot.unit_adapters.units_adapter.UnitsAdapter.Q" title="Link to this definition">#</a></dt>
+<dd><p>Returns an explicit quantity from a unit query (not always the default)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><em>Any</em></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyphot.unit_adapters.units_adapter.UnitsAdapter.U">
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">U</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyphot/unit_adapters/units_adapter.html#UnitsAdapter.U"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyphot.unit_adapters.units_adapter.UnitsAdapter.U" title="Link to this definition">#</a></dt>
+<dd><p>Returns the resulting object from a unit query to the unit registry.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Some registries make a distinction between units and quantities (i.e. value with unit information).</p>
+</div>
+<p>seealso: UnitsAdapter.Q</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><em>Any</em></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyphot.unit_adapters.units_adapter.UnitsAdapter.decorate">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">decorate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">warn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyphot/unit_adapters/units_adapter.html#UnitsAdapter.decorate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyphot.unit_adapters.units_adapter.UnitsAdapter.decorate" title="Link to this definition">#</a></dt>
+<dd><p>Decorator to enforce default units for function arguments.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>*args</strong> (<em>str</em>) – Default units for function arguments.</p></li>
+<li><p><strong>output</strong> (<em>str</em><em>, </em><em>optional</em>) – Default unit for the function output.</p></li>
+<li><p><strong>warn</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether to warn if a variable does not have explicit units.</p></li>
+<li><p><strong>_Adapter</strong> (<a class="reference internal" href="#pyphot.unit_adapters.units_adapter.UnitsAdapter" title="pyphot.unit_adapters.units_adapter.UnitsAdapter"><em>UnitsAdapter</em></a><em>, </em><em>optional</em>) – Units adapter to impose, defaulting to the global adapter.</p></li>
+<li><p><strong>**kwargs</strong> – Additional keyword arguments.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Decorated function.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Callable</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyphot.unit_adapters.units_adapter.UnitsAdapter.has_unit">
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">has_unit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">val</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyphot/unit_adapters/units_adapter.html#UnitsAdapter.has_unit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyphot.unit_adapters.units_adapter.UnitsAdapter.has_unit" title="Link to this definition">#</a></dt>
+<dd><p>Check if val is a value with unit information</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>val</strong> (<em>Any</em>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyphot.unit_adapters.units_adapter.UnitsAdapter.typing">
+<span class="sig-name descname"><span class="pre">typing</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#pyphot.unit_adapters.units_adapter.UnitTyping" title="pyphot.unit_adapters.units_adapter.UnitTyping"><span class="pre">UnitTyping</span></a></em><a class="headerlink" href="#pyphot.unit_adapters.units_adapter.UnitsAdapter.typing" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyphot.unit_adapters.units_adapter.UnitsAdapter.val_in_unit">
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">val_in_unit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">varname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">defaultunit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">warn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyphot/unit_adapters/units_adapter.html#UnitsAdapter.val_in_unit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyphot.unit_adapters.units_adapter.UnitsAdapter.val_in_unit" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>varname</strong> (<em>str</em>)</p></li>
+<li><p><strong>value</strong> (<em>Any</em>)</p></li>
+<li><p><strong>defaultunit</strong> (<em>str</em><em> | </em><em>None</em>)</p></li>
+<li><p><strong>warn</strong> (<em>bool</em>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><em>Any</em></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="pyphot.io.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">pyphot.io package</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="pyphot.unit_adapters.ezunits.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">pyphot.unit_adapters.ezunits package</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#registered-adapters">Registered Adapters</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#api-overview">API Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#decorator-to-impose-units-on-arguments-and-keyword-arguments">Decorator to impose units on arguments and keyword arguments</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#typing">Typing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exceptions">Exceptions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.find_default_units_backend"><code class="docutils literal notranslate"><span class="pre">find_default_units_backend()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.get_adapter"><code class="docutils literal notranslate"><span class="pre">get_adapter()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#subpackages">Subpackages</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#submodules">Submodules</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-pyphot.unit_adapters.astropy_adapter">pyphot.unit_adapters.astropy_adapter module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_adapter.ApUnitsAdapter"><code class="docutils literal notranslate"><span class="pre">ApUnitsAdapter</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_adapter.ApUnitsAdapter.Q"><code class="docutils literal notranslate"><span class="pre">ApUnitsAdapter.Q()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_adapter.ApUnitsAdapter.U"><code class="docutils literal notranslate"><span class="pre">ApUnitsAdapter.U()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_adapter.ApUnitsAdapter.has_unit"><code class="docutils literal notranslate"><span class="pre">ApUnitsAdapter.has_unit()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_adapter.ApUnitsAdapter.typing"><code class="docutils literal notranslate"><span class="pre">ApUnitsAdapter.typing</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_adapter.ApUnitsAdapter.val_in_unit"><code class="docutils literal notranslate"><span class="pre">ApUnitsAdapter.val_in_unit()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-pyphot.unit_adapters.astropy_units">pyphot.unit_adapters.astropy_units module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.Quantity"><code class="docutils literal notranslate"><span class="pre">Quantity</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.Quantity.__new__"><code class="docutils literal notranslate"><span class="pre">Quantity.__new__()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.Quantity.all"><code class="docutils literal notranslate"><span class="pre">Quantity.all()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.Quantity.any"><code class="docutils literal notranslate"><span class="pre">Quantity.any()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.Quantity.argmax"><code class="docutils literal notranslate"><span class="pre">Quantity.argmax()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.Quantity.argmin"><code class="docutils literal notranslate"><span class="pre">Quantity.argmin()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.Quantity.argsort"><code class="docutils literal notranslate"><span class="pre">Quantity.argsort()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.Quantity.cgs"><code class="docutils literal notranslate"><span class="pre">Quantity.cgs</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.Quantity.choose"><code class="docutils literal notranslate"><span class="pre">Quantity.choose()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.Quantity.decompose"><code class="docutils literal notranslate"><span class="pre">Quantity.decompose()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.Quantity.diff"><code class="docutils literal notranslate"><span class="pre">Quantity.diff()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.Quantity.dot"><code class="docutils literal notranslate"><span class="pre">Quantity.dot()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.Quantity.dump"><code class="docutils literal notranslate"><span class="pre">Quantity.dump()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.Quantity.dumps"><code class="docutils literal notranslate"><span class="pre">Quantity.dumps()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.Quantity.ediff1d"><code class="docutils literal notranslate"><span class="pre">Quantity.ediff1d()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.Quantity.equivalencies"><code class="docutils literal notranslate"><span class="pre">Quantity.equivalencies</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.Quantity.fill"><code class="docutils literal notranslate"><span class="pre">Quantity.fill()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.Quantity.flat"><code class="docutils literal notranslate"><span class="pre">Quantity.flat</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.Quantity.info"><code class="docutils literal notranslate"><span class="pre">Quantity.info</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.Quantity.insert"><code class="docutils literal notranslate"><span class="pre">Quantity.insert()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.Quantity.isscalar"><code class="docutils literal notranslate"><span class="pre">Quantity.isscalar</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.Quantity.item"><code class="docutils literal notranslate"><span class="pre">Quantity.item()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.Quantity.mean"><code class="docutils literal notranslate"><span class="pre">Quantity.mean()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.Quantity.put"><code class="docutils literal notranslate"><span class="pre">Quantity.put()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.Quantity.round"><code class="docutils literal notranslate"><span class="pre">Quantity.round()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.Quantity.searchsorted"><code class="docutils literal notranslate"><span class="pre">Quantity.searchsorted()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.Quantity.si"><code class="docutils literal notranslate"><span class="pre">Quantity.si</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.Quantity.std"><code class="docutils literal notranslate"><span class="pre">Quantity.std()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.Quantity.take"><code class="docutils literal notranslate"><span class="pre">Quantity.take()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.Quantity.to"><code class="docutils literal notranslate"><span class="pre">Quantity.to()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.Quantity.to_string"><code class="docutils literal notranslate"><span class="pre">Quantity.to_string()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.Quantity.to_value"><code class="docutils literal notranslate"><span class="pre">Quantity.to_value()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.Quantity.tobytes"><code class="docutils literal notranslate"><span class="pre">Quantity.tobytes()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.Quantity.tofile"><code class="docutils literal notranslate"><span class="pre">Quantity.tofile()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.Quantity.tolist"><code class="docutils literal notranslate"><span class="pre">Quantity.tolist()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.Quantity.tostring"><code class="docutils literal notranslate"><span class="pre">Quantity.tostring()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.Quantity.trace"><code class="docutils literal notranslate"><span class="pre">Quantity.trace()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.Quantity.unit"><code class="docutils literal notranslate"><span class="pre">Quantity.unit</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.Quantity.value"><code class="docutils literal notranslate"><span class="pre">Quantity.value</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.Quantity.var"><code class="docutils literal notranslate"><span class="pre">Quantity.var()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.U"><code class="docutils literal notranslate"><span class="pre">U</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.Unit"><code class="docutils literal notranslate"><span class="pre">Unit</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.Unit.__init__"><code class="docutils literal notranslate"><span class="pre">Unit.__init__()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.Unit.decompose"><code class="docutils literal notranslate"><span class="pre">Unit.decompose()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.Unit.is_unity"><code class="docutils literal notranslate"><span class="pre">Unit.is_unity()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.astropy_units.Unit.represents"><code class="docutils literal notranslate"><span class="pre">Unit.represents</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-pyphot.unit_adapters.ezunits_adapter">pyphot.unit_adapters.ezunits_adapter module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.ezunits_adapter.EzUnitsAdapter"><code class="docutils literal notranslate"><span class="pre">EzUnitsAdapter</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.ezunits_adapter.EzUnitsAdapter.Q"><code class="docutils literal notranslate"><span class="pre">EzUnitsAdapter.Q()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.ezunits_adapter.EzUnitsAdapter.U"><code class="docutils literal notranslate"><span class="pre">EzUnitsAdapter.U()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.ezunits_adapter.EzUnitsAdapter.has_unit"><code class="docutils literal notranslate"><span class="pre">EzUnitsAdapter.has_unit()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.ezunits_adapter.EzUnitsAdapter.typing"><code class="docutils literal notranslate"><span class="pre">EzUnitsAdapter.typing</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.ezunits_adapter.EzUnitsAdapter.val_in_unit"><code class="docutils literal notranslate"><span class="pre">EzUnitsAdapter.val_in_unit()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot-unit-adapters-pint-adapter-module">pyphot.unit_adapters.pint_adapter module</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot-unit-adapters-pint-units-module">pyphot.unit_adapters.pint_units module</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-pyphot.unit_adapters.typing">pyphot.unit_adapters.typing module</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-pyphot.unit_adapters.units_adapter">pyphot.unit_adapters.units_adapter module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unitsadapter-base-class-and-decorator">UnitsAdapter base class and decorator</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.units_adapter.UnitTyping"><code class="docutils literal notranslate"><span class="pre">UnitTyping</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.units_adapter.UnitTyping.DimensionalityError"><code class="docutils literal notranslate"><span class="pre">UnitTyping.DimensionalityError</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.units_adapter.UnitTyping.Quantity"><code class="docutils literal notranslate"><span class="pre">UnitTyping.Quantity</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.units_adapter.UnitTyping.UndefinedUnitError"><code class="docutils literal notranslate"><span class="pre">UnitTyping.UndefinedUnitError</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.units_adapter.UnitTyping.__init__"><code class="docutils literal notranslate"><span class="pre">UnitTyping.__init__()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.units_adapter.UnitsAdapter"><code class="docutils literal notranslate"><span class="pre">UnitsAdapter</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.units_adapter.UnitsAdapter.Q"><code class="docutils literal notranslate"><span class="pre">UnitsAdapter.Q()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.units_adapter.UnitsAdapter.U"><code class="docutils literal notranslate"><span class="pre">UnitsAdapter.U()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.units_adapter.UnitsAdapter.decorate"><code class="docutils literal notranslate"><span class="pre">UnitsAdapter.decorate()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.units_adapter.UnitsAdapter.has_unit"><code class="docutils literal notranslate"><span class="pre">UnitsAdapter.has_unit()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.units_adapter.UnitsAdapter.typing"><code class="docutils literal notranslate"><span class="pre">UnitsAdapter.typing</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyphot.unit_adapters.units_adapter.UnitsAdapter.val_in_unit"><code class="docutils literal notranslate"><span class="pre">UnitsAdapter.val_in_unit()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By M. Fouesneau
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2016, M. Fouesneau.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

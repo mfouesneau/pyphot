@@ -1,0 +1,546 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>pyphot.unit_adapters &#8212; pyphot  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=984d411d"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/pyphot/unit_adapters';</script>
+    <link rel="canonical" href="https://mfouesneau.github.io/pyphot/_modules/pyphot/unit_adapters.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">pyphot  documentation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../whats_new.html">What's New</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../QuickStart.html">pyphot Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples.html">More examples with Pyphot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../photometry.html">Details on predicting photometry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../libcontent.html">Provided Filter library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../licks.html">Extention to Lick indices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../vega.html">Internal Vega reference spectra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sun.html">Internal Sun reference spectra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing.html">Contributing</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../modules.html">API</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../pyphot.html">pyphot package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../pyphot.io.html">pyphot.io package</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../pyphot.unit_adapters.html">pyphot.unit_adapters package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../pyphot.unit_adapters.ezunits.html">pyphot.unit_adapters.ezunits package</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/mfouesneau/pyphot" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/mfouesneau/pyphot/issues/new?title=Issue%20on%20page%20%2F_modules/pyphot/unit_adapters.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for pyphot.unit_adapters</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">This module provides a framework for using different unit packages such as astropy, pint, and others.</span>
+<span class="sd">It provides a unified interface for working with units across different packages through adapters.</span>
+
+<span class="sd">Registered Adapters</span>
+<span class="sd">~~~~~~~~~~~~~~~~~~~</span>
+
+<span class="sd">We provide the following adapters:</span>
+
+<span class="sd">- :class:`~pyphot.unit_adapters.AstropyAdapter`: Adapter for the astropy unit system.</span>
+<span class="sd">- :class:`~pyphot.unit_adapters.PintAdapter`: Adapter for the pint unit system.</span>
+<span class="sd">- :class:`~pyphot.unit_adapters.EzUnitsAdapter`: Adapter for the legacy pyphot unit system based on pint (v0.1.0).</span>
+
+<span class="sd">Note: The :class:`~pyphot.unit_adapters.EzUnitsAdapter` is provided as a fallback for older codes and in case other unit packages are missing.</span>
+
+<span class="sd">API Overview</span>
+<span class="sd">~~~~~~~~~~~~</span>
+
+<span class="sd">All adapters must implement the :class:`~pyphot.unit_adapters.units_adapter.UnitsAdapter` interface, which defines the following methods:</span>
+
+<span class="sd">- :meth:`~pyphot.unit_adapters.units_adapter.UnitsAdapter.U()`: queries the unit registry.</span>
+<span class="sd">- :meth:`~pyphot.unit_adapters.units_adapter.UnitsAdapter.Q()`: make sure the returned object is a quantity, i.e. a value with unit (e.g. astropy differs between `U(&quot;kg&quot;)` and `Q(&quot;kg&quot;) = 1. * U(&quot;kg&quot;)`)</span>
+
+<span class="sd">For source typing reasons, adapters also override a few methods:</span>
+
+<span class="sd">- :meth:`~pyphot.unit_adapters.units_adapter.UnitsAdapter.has_unit`: checks if the object has a unit.</span>
+<span class="sd">- :meth:`~pyphot.unit_adapters.units_adapter.UnitsAdapter.val_in_unit`: returns the value of the quantity in the specified unit or forces a default unit if not specified.</span>
+
+<span class="sd">Decorator to impose units on arguments and keyword arguments</span>
+<span class="sd">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span>
+
+<span class="sd">For convenience, adapters provide (by inheritance) a `decorate` decorator which can help defining functions with default units on arguments and keyword arguments.</span>
+
+<span class="sd">For a more general decorator, use :func:`enforce_default_units` which will assumes the defined global adapter, if not a specific one provided.</span>
+
+<span class="sd">.. note::</span>
+<span class="sd">    Both decoration methods will update the docstring of the decorated function to include information about the imposed units.</span>
+
+<span class="sd">Typing</span>
+<span class="sd">~~~~~~</span>
+
+<span class="sd">Hint typing information is provided at the module level: :class:`~pyphot.unit_adapters.UnitAdapterType`, :class:`~pyphot.unit_adapters.QuantityType`, which is a union of :class:`~pyphot.unit_adapters.units_adapter.UnitsAdapter` and varied :class:`~pyphot.unit_adapters.Quantity` definitions.</span>
+<span class="sd">In addition, each adapter provides specific types in their `typing.Quantity` attribute.</span>
+
+<span class="sd">Exceptions</span>
+<span class="sd">~~~~~~~~~~</span>
+
+<span class="sd">For convenience adapters also provide a list of potential exception types. At the module level</span>
+<span class="sd">:class:`~pyphot.unit_adapters.UnitsAdapter.UndefinedUnitError`, and :class:`~pyphot.unit_adapters.UnitsAdapter.DimensionalityError` which applies to any backend units.</span>
+
+<span class="sd">When needed :class:`~pyphot.unit_adapters.UnitsAdapter.typing.UndefinedUnitError` and :class:`~pyphot.unit_adapters.UnitsAdapter.typing.DimensionalityError` can be used to catch specific errors related to unit conversion or registration by the unit package.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
+
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;get_adapter&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;backends&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;UnitAdapterType&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;find_default_units_backend&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;DimensionalityError&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;UndefinedUnitError&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;QuantityType&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;enforce_default_units&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+
+<span class="kn">from</span> <span class="nn">.units_adapter</span> <span class="kn">import</span> <span class="n">enforce_default_units</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">.ezunits_adapter</span> <span class="kn">import</span> <span class="n">EzUnitsAdapter</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="n">EzUnitsAdapter</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">.astropy_adapter</span> <span class="kn">import</span> <span class="n">ApUnitsAdapter</span><span class="p">,</span> <span class="n">ap_Quantity</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="n">ApUnitsAdapter</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">ap_Quantity</span> <span class="o">=</span> <span class="n">Any</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">.pint_adapter</span> <span class="kn">import</span> <span class="n">PintUnitsAdapter</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="n">PintUnitsAdapter</span> <span class="o">=</span> <span class="kc">None</span>
+
+
+<span class="kn">from</span> <span class="nn">.typing</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">QuantityType</span><span class="p">,</span>
+    <span class="n">UnitAdapterType</span><span class="p">,</span>
+    <span class="n">DimensionalityError</span><span class="p">,</span>
+    <span class="n">UndefinedUnitError</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># order provides backend priority for defaults</span>
+<span class="n">backends</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="p">(</span><span class="s2">&quot;astropy&quot;</span><span class="p">,</span> <span class="n">ApUnitsAdapter</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;pint&quot;</span><span class="p">,</span> <span class="n">PintUnitsAdapter</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;ezunits&quot;</span><span class="p">,</span> <span class="n">EzUnitsAdapter</span><span class="p">),</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+
+<span class="c1"># Provide tools to setup the units adapters</span>
+
+
+<div class="viewcode-block" id="get_adapter">
+<a class="viewcode-back" href="../../pyphot.unit_adapters.html#pyphot.unit_adapters.get_adapter">[docs]</a>
+<span class="k">def</span> <span class="nf">get_adapter</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">UnitAdapterType</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get the units adapter for the given name.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    name: str</span>
+<span class="sd">        The name of the units adapter.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    UnitAdapter</span>
+<span class="sd">        The units adapter for the given name.</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    ValueError: If the given name is not a registered adapter.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">backend</span> <span class="o">=</span> <span class="n">backends</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
+    <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;Unknown units adapter: </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">. Should be one of </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">backends</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="p">)</span>
+    <span class="k">if</span> <span class="n">backend</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2"> backend requires a package to be installed. run `pip install </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">`.&quot;</span>
+        <span class="p">)</span>
+    <span class="k">return</span> <span class="n">backend</span><span class="p">()</span></div>
+
+
+
+<div class="viewcode-block" id="find_default_units_backend">
+<a class="viewcode-back" href="../../pyphot.unit_adapters.html#pyphot.unit_adapters.find_default_units_backend">[docs]</a>
+<span class="k">def</span> <span class="nf">find_default_units_backend</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">UnitAdapterType</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Set the default units adapter.&quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">backend</span> <span class="ow">in</span> <span class="n">backends</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">backend</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">backend</span><span class="p">()</span>
+    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;No units adapter found.&quot;</span><span class="p">)</span></div>
+
+</pre></div>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By M. Fouesneau
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2016, M. Fouesneau.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

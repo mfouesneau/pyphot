@@ -1,0 +1,872 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>More examples with Pyphot &#8212; pyphot  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=984d411d"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'examples';</script>
+    <link rel="canonical" href="https://mfouesneau.github.io/pyphot/examples.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Details on predicting photometry" href="photometry.html" />
+    <link rel="prev" title="pyphot Quickstart" href="QuickStart.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">pyphot  documentation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="whats_new.html">What's New</a></li>
+<li class="toctree-l1"><a class="reference internal" href="QuickStart.html">pyphot Quickstart</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">More examples with Pyphot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="photometry.html">Details on predicting photometry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="libcontent.html">Provided Filter library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="licks.html">Extention to Lick indices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vega.html">Internal Vega reference spectra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sun.html">Internal Sun reference spectra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="modules.html">API</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="pyphot.html">pyphot package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyphot.io.html">pyphot.io package</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="pyphot.unit_adapters.html">pyphot.unit_adapters package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.unit_adapters.ezunits.html">pyphot.unit_adapters.ezunits package</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/mfouesneau/pyphot/master?urlpath=lab/tree/doc/examples.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/mfouesneau/pyphot/blob/master/doc/examples.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/mfouesneau/pyphot" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/mfouesneau/pyphot/blob/master/doc/examples.ipynb?plain=1" target="_blank"
+   class="btn btn-sm btn-source-file-button dropdown-item"
+   title="Show source"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="btn__text-container">Show source</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/mfouesneau/pyphot/issues/new?title=Issue%20on%20page%20%2Fexamples.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/examples.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>More examples with Pyphot</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-usage">Basic usage</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#number-of-photons-through-a-given-passband">Number of photons through a given passband</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-your-own-passband">Defining your own passband</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#flux-density-units">Flux density units</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dust-attenuated-sed-modeling">Dust attenuated SED modeling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unit-backends-in-pyphot">Unit backends in pyphot</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="more-examples-with-pyphot">
+<h1>More examples with Pyphot<a class="headerlink" href="#more-examples-with-pyphot" title="Link to this heading">#</a></h1>
+<div class="alert alert-block alert-info">
+<p>ℹ️ This notebook is based on <strong>Pyphot version 2.0.0.</strong></p>
+</div><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Handle import for pyphot and path</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">pyphot</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;../&quot;</span><span class="p">)</span>
+    <span class="kn">import</span> <span class="nn">pyphot</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="basic-usage">
+<h2>Basic usage<a class="headerlink" href="#basic-usage" title="Link to this heading">#</a></h2>
+<p>This example reads a spectrum from a fits file and calculate some photometry using units to the calculations.
+We retrieve the data directly from the <a class="reference external" href="https://archive.stsci.edu/hlsps/reference-atlases/cdbs">CDBS archive</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example data from CalSpec CDBS archive</span>
+<span class="c1"># 109 Vir is A0 V star</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://archive.stsci.edu/hlsps/reference-atlases/cdbs/current_calspec/109vir_mod_005.fits&quot;</span>
+
+<span class="kn">from</span> <span class="nn">astropy.io</span> <span class="kn">import</span> <span class="n">fits</span>
+<span class="kn">from</span> <span class="nn">pyphot</span> <span class="kn">import</span> <span class="n">config</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">pyphot</span> <span class="kn">import</span> <span class="n">get_library</span>
+
+<span class="n">units</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">units</span>
+
+<span class="c1"># get the spectrum</span>
+<span class="k">with</span> <span class="n">fits</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">hdul</span><span class="p">:</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">hdul</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+    <span class="n">wavelength</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;WAVELENGTH&#39;</span><span class="p">]</span>  
+    <span class="n">wavelength_units</span> <span class="o">=</span> <span class="n">hdul</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="s1">&#39;TUNIT1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+    <span class="n">flux</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;FLUX&#39;</span><span class="p">]</span>  
+    <span class="n">flux_units</span> <span class="o">=</span> <span class="n">hdul</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="s1">&#39;TUNIT2&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+    <span class="n">target_name</span> <span class="o">=</span> <span class="n">hdul</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="s1">&#39;TARGETID&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+
+<span class="c1"># compute some photometry</span>
+<span class="n">lib</span> <span class="o">=</span> <span class="n">pyphot</span><span class="o">.</span><span class="n">get_library</span><span class="p">()</span>
+<span class="n">flist</span> <span class="o">=</span> <span class="n">lib</span><span class="p">[</span><span class="s1">&#39;HST_WFC3_F336W&#39;</span><span class="p">,</span> <span class="s1">&#39;HST_WFC3_F475W&#39;</span><span class="p">,</span> <span class="s1">&#39;HST_WFC3_F814W&#39;</span><span class="p">,</span> <span class="s1">&#39;HST_WFC3_F110W&#39;</span><span class="p">]</span>
+<span class="n">sed</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">minλ</span><span class="p">,</span> <span class="n">maxλ</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">flist</span><span class="p">:</span>
+    <span class="n">minλ</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">minλ</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmin</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">wavelength</span><span class="o">.</span><span class="n">value</span><span class="p">))</span>
+    <span class="n">maxλ</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">maxλ</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmax</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">wavelength</span><span class="o">.</span><span class="n">value</span><span class="p">))</span>
+    <span class="n">sed</span><span class="p">[</span><span class="n">f</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mf">2.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">get_flux</span><span class="p">(</span><span class="n">wavelength</span><span class="p">,</span> <span class="n">flux</span><span class="p">)</span> <span class="o">/</span> <span class="n">f</span><span class="o">.</span><span class="n">Vega_zero_flux</span><span class="p">)</span>
+
+<span class="c1"># make a plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">λ</span><span class="p">,</span> <span class="n">fλ</span> <span class="o">=</span> <span class="n">wavelength</span> <span class="o">*</span> <span class="n">units</span><span class="o">.</span><span class="n">U</span><span class="p">(</span><span class="n">wavelength_units</span><span class="p">),</span> <span class="n">flux</span> <span class="o">*</span> <span class="n">units</span><span class="o">.</span><span class="n">U</span><span class="p">(</span><span class="n">flux_units</span><span class="p">)</span>
+<span class="n">ind</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">((</span><span class="n">λ</span><span class="o">.</span><span class="n">value</span> <span class="o">&gt;=</span> <span class="n">minλ</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">λ</span><span class="o">.</span><span class="n">value</span> <span class="o">&lt;=</span> <span class="n">maxλ</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">λ</span><span class="p">[</span><span class="n">ind</span><span class="p">],</span> <span class="n">fλ</span><span class="p">[</span><span class="n">ind</span><span class="p">],</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Wavelength [</span><span class="si">{</span><span class="n">λ</span><span class="o">.</span><span class="n">unit</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Flux Density [</span><span class="si">{</span><span class="n">fλ</span><span class="o">.</span><span class="n">unit</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;CALSPEC Spectrum of </span><span class="si">{</span><span class="n">target_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="n">minλ</span><span class="p">,</span> <span class="n">maxλ</span><span class="p">)</span>
+
+
+<span class="k">for</span> <span class="n">e</span><span class="p">,</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">sed</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.95</span><span class="p">,</span> <span class="mf">0.9</span> <span class="o">-</span> <span class="n">e</span> <span class="o">*</span> <span class="mf">0.05</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">m</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> mag&quot;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">twinx</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">flist</span><span class="p">:</span>
+    <span class="n">ind</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">transmit</span> <span class="o">&gt;</span> <span class="mf">1e-3</span>
+    <span class="n">lines</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">wavelength</span><span class="p">[</span><span class="n">ind</span><span class="p">],</span> <span class="n">f</span><span class="o">.</span><span class="n">transmit</span><span class="p">[</span><span class="n">ind</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="n">f</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">wavelength</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;bottom&#39;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">lines</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_color</span><span class="p">())</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.05</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/16055a04d559e1f10856676f70ed0c8a0b76d02e34993f7ec653fbe1ce6381f1.png" src="_images/16055a04d559e1f10856676f70ed0c8a0b76d02e34993f7ec653fbe1ce6381f1.png" />
+</div>
+</div>
+</section>
+<section id="number-of-photons-through-a-given-passband">
+<h2>Number of photons through a given passband<a class="headerlink" href="#number-of-photons-through-a-given-passband" title="Link to this heading">#</a></h2>
+<p>The following examples gives the number of photons that a passband would collect for the Sun at 10 pc.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyphot</span> <span class="kn">import</span> <span class="n">Sun</span>
+<span class="kn">from</span> <span class="nn">pyphot</span> <span class="kn">import</span> <span class="n">config</span>
+<span class="kn">from</span> <span class="nn">pyphot</span> <span class="kn">import</span> <span class="n">get_library</span>
+
+<span class="n">units</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">units</span>
+
+<span class="n">lib</span> <span class="o">=</span> <span class="n">get_library</span><span class="p">()</span>
+<span class="n">vband</span> <span class="o">=</span> <span class="n">lib</span><span class="p">[</span><span class="s1">&#39;GROUND_JOHNSON_V&#39;</span><span class="p">]</span>
+<span class="k">with</span> <span class="n">Sun</span><span class="p">(</span><span class="n">distance</span><span class="o">=</span><span class="mi">10</span> <span class="o">*</span> <span class="n">units</span><span class="o">.</span><span class="n">U</span><span class="p">(</span><span class="s1">&#39;pc&#39;</span><span class="p">))</span> <span class="k">as</span> <span class="n">v</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">vband</span><span class="o">.</span><span class="n">get_Nphotons</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">wavelength</span><span class="p">,</span> <span class="n">v</span><span class="o">.</span><span class="n">flux</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>11.978459664247094 ph / (Angstrom s cm2)
+</pre></div>
+</div>
+</div>
+</div>
+<p>The result is given in photon (ph) density.</p>
+</section>
+<section id="defining-your-own-passband">
+<h2>Defining your own passband<a class="headerlink" href="#defining-your-own-passband" title="Link to this heading">#</a></h2>
+<p>It is not uncommon to want to define your own passbands for specific applications or to use a passband that is not included in the libraries or even not yet public. Pyphot makes it easy to define your own passbands.</p>
+<p>Let’s suppose you’re interested in defining bandpasses (here tophat functions) in Pyphot to determine the flux/magnitude in regions. This may be useful to determine the S/N ratio or integrated flux over a given wavelength range.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyphot</span> <span class="kn">import</span> <span class="n">config</span><span class="p">,</span> <span class="n">Filter</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">units</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">units</span>
+
+<span class="n">wave</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">4499</span><span class="p">,</span> <span class="mi">4500</span><span class="p">,</span> <span class="mi">4700</span><span class="p">,</span> <span class="mi">4701</span><span class="p">])</span> <span class="o">*</span> <span class="n">units</span><span class="o">.</span><span class="n">U</span><span class="p">(</span><span class="s1">&#39;AA&#39;</span><span class="p">)</span>   <span class="c1"># AA or Angstrom, angstrom</span>
+<span class="n">transmit</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">])</span>
+<span class="n">tophat</span> <span class="o">=</span> <span class="n">Filter</span><span class="p">(</span><span class="n">wave</span><span class="p">,</span> <span class="n">transmit</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;tophat&#39;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;photon&#39;</span><span class="p">)</span>
+<span class="c1"># flux_tophat = tophat.get_flux(wavelength, flux)</span>
+<span class="n">tophat</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Filter object information:
+    name:                 tophat
+    detector type:        photon
+    wavelength units:     Angstrom
+    central wavelength:   4600.000000 Angstrom
+    pivot wavelength:     4598.912915 Angstrom
+    effective wavelength: 4598.652110 Angstrom
+    photon wavelength:    4599.388021 Angstrom
+    minimum wavelength:   4500.000000 Angstrom
+    maximum wavelength:   4700.000000 Angstrom
+    norm:                 201.000000
+    effective width:      201.000000 Angstrom
+    fullwidth half-max:   201.000000 Angstrom
+    definition contains 4 points
+    Zeropoints
+        Vega: 20.546119 mag,
+              6.0471716338210665e-09 erg / (Angstrom s cm2),
+              4266.207392559406 Jy
+              1400.5107759682307 ph / (Angstrom s cm2)
+          AB: 20.721224 mag,
+              5.1464804957629885e-09 erg / (Angstrom s cm2),
+              3630.780547701009 Jy
+          ST: 21.100000 mag,
+              3.6307805477010028e-09 erg / (Angstrom s cm2),
+              2561.4723297634187 Jy
+        
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The transmission is unitless. Its scaling factor will not affect the flux/magnitude calculations as these are implicitly normalizing the passband (see the equations) but will affect the number of photons.</p>
+</div>
+</section>
+<section id="flux-density-units">
+<h2>Flux density units<a class="headerlink" href="#flux-density-units" title="Link to this heading">#</a></h2>
+<p>Photometry calculations are sensitive to the units of the input spectra for the wavelength and spectral density. Internally Pyphot can deal with a lot of different units, as long as these are wavelength based (i.e. not frequencies).</p>
+<p>Photometry expects the spectral density in <code class="docutils literal notranslate"><span class="pre">flam</span></code>, i.e., :math:<code class="docutils literal notranslate"><span class="pre">erg/s/cm^2/\unicode{x212B}</span></code>, any other similar units will be converted internally, e.g. <span class="math notranslate nohighlight">\(W/m^2/mn\)</span>. But when you deal with frequencies (e.g., <code class="docutils literal notranslate"><span class="pre">fnu</span></code>), you need to convert these to <code class="docutils literal notranslate"><span class="pre">flam</span></code> first.</p>
+<p>if you use the Astropy units, you can use it to convert flux densities from frequencies to flam</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>
+        <span class="kn">from</span> <span class="nn">astropy</span> <span class="kn">import</span> <span class="n">units</span> <span class="k">as</span> <span class="n">u</span>
+
+        <span class="n">flux</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">Quantity</span><span class="p">(</span><span class="n">spec</span><span class="p">[</span><span class="s1">&#39;flux&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">Unit</span><span class="p">(</span><span class="s1">&#39;flam&#39;</span><span class="p">)),</span> 
+                <span class="n">equivalencies</span><span class="o">=</span><span class="n">u</span><span class="o">.</span><span class="n">spectral_density</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">Quantity</span><span class="p">(</span><span class="n">spec</span><span class="p">[</span><span class="s1">&#39;wave&#39;</span><span class="p">]))</span>
+                <span class="p">)</span>
+</pre></div>
+</div>
+<p>Other unit systems can be used but may be more tedious to convert.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>When using Astropy units with pyphot (default), Astropy <em>automagically</em> inherits the custom unit <code class="docutils literal notranslate"><span class="pre">flam</span></code> defined in pyphot.</p>
+<p>Make sure to use <code class="docutils literal notranslate"><span class="pre">u.Unit('flam')</span></code> and not <code class="docutils literal notranslate"><span class="pre">u.flam</span></code> which is not defined in Astropy.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">astropy</span> <span class="kn">import</span> <span class="n">units</span> <span class="k">as</span> <span class="n">u</span>
+<span class="c1"># astropy Unit(...) gives a unit object, 1 * Unit(...) is a quantity. </span>
+<span class="c1"># Unit(...).to(...) gives a scaling factor (float)</span>
+<span class="c1"># 1 * Unit(...).to(...) gives another quantity which has units.</span>
+<span class="p">(</span><span class="mi">1</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">Unit</span><span class="p">(</span><span class="s1">&#39;flam&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s1">&#39;W * m ** (-2) * nm **(-1)&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[0.01 \; \mathrm{\frac{W}{nm\,m^{2}}}\]</div>
+</div>
+</div>
+</section>
+<section id="dust-attenuated-sed-modeling">
+<h2>Dust attenuated SED modeling<a class="headerlink" href="#dust-attenuated-sed-modeling" title="Link to this heading">#</a></h2>
+<p>A complete tutorial can be found <a class="reference external" href="https://github.com/mfouesneau/GaiaSprint2018/blob/master/dust_attenuated_seds.ipynb">online</a>. It requires a bit more than just <code class="docutils literal notranslate"><span class="pre">Pyphot</span></code>, but it demonstrates how to integrate <code class="docutils literal notranslate"><span class="pre">Pyphot</span></code> into larger projects.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyphot</span>
+
+<span class="c1"># get the internal default library of passbands filters</span>
+<span class="n">lib</span> <span class="o">=</span> <span class="n">pyphot</span><span class="o">.</span><span class="n">get_library</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Library contains: &quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">lib</span><span class="p">),</span> <span class="s2">&quot; filters&quot;</span><span class="p">)</span>
+<span class="c1"># find all filter names that relates to IRAC</span>
+<span class="c1"># and print some info</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;irac&quot;</span><span class="p">)</span>
+<span class="n">passbands</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">load_filters</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>  <span class="c1"># or lib[f]</span>
+<span class="n">passbands</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">show_zeropoints</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Library contains:  271  filters
+Filter object information:
+    name:                 SPITZER_IRAC_36
+    detector type:        photon
+    wavelength units:     AA
+    central wavelength:   35634.293911 Angstrom
+    pivot wavelength:     35569.270678 Angstrom
+    effective wavelength: 35134.320010 Angstrom
+    photon wavelength:    35263.773954 Angstrom
+    minimum wavelength:   31310.000000 Angstrom
+    maximum wavelength:   39740.000000 Angstrom
+    norm:                 3181.966405
+    effective width:      6848.829972 Angstrom
+    fullwidth half-max:   7430.000000 Angstrom
+    definition contains 505 points
+    Zeropoints
+        Vega: 27.948397 mag,
+              6.616697169302651e-12 erg / (Angstrom s cm2),
+              279.2354008243633 Jy
+              5.5117355961901255 ph / (Angstrom s cm2)
+          AB: 25.163323 mag,
+              8.603413213872212e-11 erg / (Angstrom s cm2),
+              3630.7805477009956 Jy
+          ST: 21.100000 mag,
+              3.6307805477010028e-09 erg / (Angstrom s cm2),
+              153224.8545764173 Jy
+        
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="unit-backends-in-pyphot">
+<h2>Unit backends in pyphot<a class="headerlink" href="#unit-backends-in-pyphot" title="Link to this heading">#</a></h2>
+<p>Pyphot supports multiple unit backends through its <code class="docutils literal notranslate"><span class="pre">pyphot.unit_adapter</span></code> module. By default, it uses Astropy units, but you can also use Pint.</p>
+<p>All adapters must implement the <code class="docutils literal notranslate"><span class="pre">UnitsAdapter</span></code> interface, which defines the following methods:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">UnitsAdapter.U()</span></code>: queries the unit registry.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">UnitsAdapter.Q()</span></code>: make sure the returned object is a quantity, i.e. a value with unit (e.g. astropy differs between <code class="docutils literal notranslate"><span class="pre">U(&quot;kg&quot;)</span></code> and <code class="docutils literal notranslate"><span class="pre">Q(&quot;kg&quot;)</span> <span class="pre">=</span> <span class="pre">1.</span> <span class="pre">*</span> <span class="pre">U(&quot;kg&quot;)</span></code>)</p></li>
+</ul>
+<p>For source typing reasons, adapters also override a few methods:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">UnitsAdapter.has_unit</span></code>: checks if the object has a unit.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">UnitsAdapter.val_in_unit</span></code>: returns the value of the quantity in the specified unit or forces a default unit if not specified.</p></li>
+</ul>
+<p>When using <code class="docutils literal notranslate"><span class="pre">config.units</span></code> it refers to the global adapter instance, which can be changed at runtime by setting <code class="docutils literal notranslate"><span class="pre">pyphot.config.set_units_backend</span></code> to another adapter instance.</p>
+<div class="admonition-api-details admonition">
+<p class="admonition-title">API details</p>
+<p>For more details, see the <a class="reference external" href="https://mfouesneau.github.io/pyphot/pyphot.unit_adapters.html"><code class="docutils literal notranslate"><span class="pre">unit_adapter</span></code> module documentation</a>.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyphot</span> <span class="kn">import</span> <span class="n">Vega</span> 
+
+<span class="n">vega</span> <span class="o">=</span> <span class="n">Vega</span><span class="p">()</span>
+<span class="n">wavelength_angstrom</span> <span class="o">=</span> <span class="n">vega</span><span class="o">.</span><span class="n">wavelength</span>
+<span class="n">wavelength_nm</span> <span class="o">=</span> <span class="n">vega</span><span class="o">.</span><span class="n">wavelength</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s1">&#39;nm&#39;</span><span class="p">)</span>
+<span class="n">flux_flam</span> <span class="o">=</span> <span class="n">vega</span><span class="o">.</span><span class="n">flux</span>
+<span class="n">flux_other</span> <span class="o">=</span> <span class="n">flux_flam</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s1">&#39;W / (m**2 * nm)&#39;</span><span class="p">)</span>
+<span class="n">wavelength_angstrom</span><span class="p">,</span> <span class="n">wavelength_nm</span><span class="p">,</span> <span class="n">flux_flam</span><span class="p">,</span> <span class="n">flux_other</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&lt;Quantity [9.00452026e+02, 9.01354004e+02, 9.02257996e+02, ...,
+            2.99353200e+06, 2.99653275e+06, 2.99953700e+06] Angstrom&gt;,
+ &lt;Quantity [9.00452026e+01, 9.01354004e+01, 9.02257996e+01, ...,
+            2.99353200e+05, 2.99653275e+05, 2.99953700e+05] nm&gt;,
+ &lt;Quantity [1.23800003e-17, 1.67599994e-17, 1.78000003e-17, ...,
+            1.40099994e-19, 1.38700004e-19, 1.26499994e-19] flam&gt;,
+ &lt;Quantity [1.23800003e-19, 1.67599994e-19, 1.78000003e-19, ...,
+            1.40099994e-21, 1.38700004e-21, 1.26499994e-21] W / (nm m2)&gt;)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="QuickStart.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">pyphot Quickstart</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="photometry.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Details on predicting photometry</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-usage">Basic usage</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#number-of-photons-through-a-given-passband">Number of photons through a given passband</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-your-own-passband">Defining your own passband</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#flux-density-units">Flux density units</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dust-attenuated-sed-modeling">Dust attenuated SED modeling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unit-backends-in-pyphot">Unit backends in pyphot</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By M. Fouesneau
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2016, M. Fouesneau.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

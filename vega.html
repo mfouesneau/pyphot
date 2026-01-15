@@ -1,0 +1,732 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Internal Vega reference spectra &#8212; pyphot  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=984d411d"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'vega';</script>
+    <link rel="canonical" href="https://mfouesneau.github.io/pyphot/vega.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Internal Sun reference spectra" href="sun.html" />
+    <link rel="prev" title="Extention to Lick indices" href="licks.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">pyphot  documentation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="whats_new.html">What's New</a></li>
+<li class="toctree-l1"><a class="reference internal" href="QuickStart.html">pyphot Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">More examples with Pyphot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="photometry.html">Details on predicting photometry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="libcontent.html">Provided Filter library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="licks.html">Extention to Lick indices</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Internal Vega reference spectra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sun.html">Internal Sun reference spectra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="modules.html">API</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="pyphot.html">pyphot package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyphot.io.html">pyphot.io package</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="pyphot.unit_adapters.html">pyphot.unit_adapters package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.unit_adapters.ezunits.html">pyphot.unit_adapters.ezunits package</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/mfouesneau/pyphot" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/mfouesneau/pyphot/blob/master/doc/vega.rst?plain=1" target="_blank"
+   class="btn btn-sm btn-source-file-button dropdown-item"
+   title="Show source"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="btn__text-container">Show source</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/mfouesneau/pyphot/issues/new?title=Issue%20on%20page%20%2Fvega.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/vega.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Internal Vega reference spectra</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#details">Details</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vega-flavors">Vega Flavors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-vega-flavors-usage">Example Vega Flavors Usage</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="internal-vega-reference-spectra">
+<h1>Internal Vega reference spectra<a class="headerlink" href="#internal-vega-reference-spectra" title="Link to this heading">#</a></h1>
+<section id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Link to this heading">#</a></h2>
+<p>Often in photometry, a spectrum of reference for Vega is necessary.</p>
+<p>By default, we use the synthetic spectrum <cite>alpha_lyr_stis_003</cite> provided by <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2007ASPC..364..315B/abstract">Bohlin 2007</a>, a common reference
+througout many photometric suites.</p>
+<p>The interface to the Vega template is given through the <a class="reference internal" href="pyphot.html#pyphot.vega.Vega" title="pyphot.vega.Vega"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyphot.vega.Vega</span></code></a> class.</p>
+<p>To use a specific Vega flavor for the photometric calculations in Pyphot, you can set the <cite>vega</cite> keyword parameter  when creating a passband or use the <cite>set_vega_flavor</cite> method to update it.</p>
+</section>
+<section id="details">
+<h2>Details<a class="headerlink" href="#details" title="Link to this heading">#</a></h2>
+<p>Vega (aka <span class="math notranslate nohighlight">\(\alpha\)</span> Lyrae, HD 172167) serves as the fundamental calibration standard for stellar photometry due to its exceptional brightness, and favorable observational characteristics.  It is the fifth brightest star in the sky, after Sirius, Canopus, Alpha Centauri and Arcturus and the second brightest star in the northern celestial hemisphere. As a nearby A0V star located approximately 25 light-years from Earth, Vega was historically chosen as the primary standard because of its position near the north celestial pole, making it easily accessible to northern hemisphere observatories year-round (<a class="reference external" href="https://ui.adsabs.harvard.edu/abs/1953ApJ...117..313J">Johnson &amp; Morgan 1953</a>).</p>
+<p>Vega is a Delta Scuti variable star (dwarf Cepheids), one whose variations in luminosity result from both radial and non-radial pulsations of its surface. Some parts of its surface contract while others simultaneously expand (non-radial pulsations), and the star also contracts and expands by changing its radius to maintain its spherical shape (radial pulsations). Delta Scuti variables are commonly used as standard candles to establish distances because of their relatively flat spectral energy distribution across optical wavelengths and “stability” over decades make it an ideal reference for establishing magnitude zero-points across multiple filter systems (<a class="reference external" href="https://ui.adsabs.harvard.edu/abs/1983ApJ...266..713O">Oke &amp; Gunn 1983</a>).</p>
+<p>However, the fact that Vega is actually a variable star with small but measurable brightness variations has led the astronomical community to adopt more stable references. The International Astronomical Union (IAU) and major observatories now commonly use synthetic standards based on theoretical stellar atmosphere models or carefully selected ensembles of stable stars. These synthetic standards provide consistent, reproducible reference points that are not subject to the intrinsic variability observed in individual stars like Vega, ensuring long-term stability in photometric calibrations across different observatories and epochs.</p>
+<p>Modern space-based observations have refined Vega’s spectral energy distribution to unprecedented precision, with the CALSPEC database providing the definitive reference spectrum used by HST and other major observatories (<a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2014PASP..126..711B">Bohlin et al. 2014</a>). Despite the discovery of Vega’s infrared excess due to a circumstellar debris disk and minor photometric variability, it remains the cornerstone of photometric systems, with the AB magnitude system providing an alternative that maintains compatibility while addressing some of Vega’s limitations (<a class="reference external" href="https://ui.adsabs.harvard.edu/abs/1996AJ....111.1748F">Fukugita et al. 1996</a>).</p>
+</section>
+<section id="vega-flavors">
+<h2>Vega Flavors<a class="headerlink" href="#vega-flavors" title="Link to this heading">#</a></h2>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Since version 1.7.0, Pyphot includes a set of Vega flavors one can use transparently as photometric standards.</p>
+<ul class="simple">
+<li><p>Pyphot provides <cite>alpha_stis_003</cite> (aliased to <cite>legacy</cite>) as the default Vega flavor (and only one before version 1.7.0). This flavor is also the reference for the values provided in the documentation.</p></li>
+<li><p>(since version 1.7.0) Pyphot provides also <cite>alpha_lyr_mod_003</cite>, <cite>alpha_lyr_mod_004</cite>, and <cite>alpha_stis_011</cite> as alternative Vega flavors.</p></li>
+<li><p>in a future release, Pyphot will switch the default Vega flavor to <cite>alpha_stis_011</cite> which is a more recent model that incorporates updated NLTE models and provides a more accurate representation of Vega’s spectral energy distribution, particularly in the ultraviolet and optical ranges.</p></li>
+</ul>
+<p>Impact of Vega Flavors on zeropoints provided by Pyphot:</p>
+<ul class="simple">
+<li><p>Changes in temperature will introduce a wavelength dependent shift in the vega zero points.</p></li>
+<li><p>Changes in logg, metallicity, turbulence will introduce non trivial variations in the vega zero points.</p></li>
+</ul>
+</div>
+<p><a class="reference external" href="https://www.stsci.edu/hst/instrumentation/reference-data-for-calibration-and-tools/astronomical-catalogs/calspec">CALSPEC</a>
+provides a collection of composite stellar spectra that are flux standards for
+the calibration of systems such as HST. In particular, it compiles many flavors
+of Vega of which we summarize the most relevant ones below:</p>
+<ul class="simple">
+<li><p><cite>alpha_lyr_004</cite> from <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/1995AJ....110.1316B">Bohlin, Colina, &amp; Finley (1995)</a>. It corrsponds to pure hydrogen white dwarf models are the absolute flux standards.</p></li>
+<li><p><cite>alpha_lyr_005</cite> from Colina, Bohlin &amp; Castelli (1996), Instrument Science Report (<a class="reference external" href="https://www.stsci.edu/instruments/observatory/PDF/scs8.rev.pdf">OSG-CAL-96-01</a>). It corresponds to the combination of ultraviolet covered by average IUE spectrum; Optical up to 1.05 microns covered by Hayes (1985) average spectrum (IAU Symp 111, p 225); near-infrared covered by ATLAS12 based model computed by Dr. Castelli, rebinned to 25A, and normalized to Hayes (1985) Johnson V flux. V filter as in Buser &amp; Kurucz 1979, AA 70, 555. (All wavelengths are vacuum.)</p></li>
+<li><p><cite>alpha_lyr_stis_003</cite> (legacy) from <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2007ASPC..364..315B">Bohlin (2007)</a> a special model from Kurucz 9400K Vega spectrum T/g=9400/3.9 [M/H]=-0.5 fit against STIS data with microturbulence of 0. km/s, and where V = 0.023 mag.</p></li>
+<li><p><cite>alpha_lyr_mod_001</cite> from <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2014AJ....147..127B">Bohlin (2014)</a> Special Model from Kurucz 9400K Vega spectrum T/g=9400/3.9 [M/H]=-0.5 at R=500 which reconciles visible and IR absolute flux, and where Vega Flux(5556A)=3.44e-9</p></li>
+<li><p><cite>alpha_lyr_mod_002</cite> is identical to <cite>alpha_mod_001</cite> but normalized to STIS flux at 5545-5570A, corresponding to a scaled flux by 0.994242.</p></li>
+<li><p><cite>alpha_lyr_mod_003</cite> is a different temperature, logg using Kurucz 9550K Vega spectrum T/g=9550/3.95 [M/H]=-0.5 at R=500 and normalized to Flux(5556A) = 3.44e-9 (over 5545-5570A).</p></li>
+<li><p><cite>alpha_lyr_mod_004</cite> from <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2020AJ....160...21B">Bohlin, Hubeny, Rauch (2020)</a> is similar to <cite>alpha_mod_003</cite> but with a Flux(5556A)=3.47e-9. In the details, it also includes additional lines.</p></li>
+<li><p><cite>alpha_lyr_stis_011</cite> is a special model from Bohlin which is a composite flux of a special Kurucz 9550K model from 900-1152A (Kurucz 2003), IUE data from 1152-1675A, STIS CCD fluxes from 1675-10200A (Bohlin &amp; Gilliland 2004a), and the 9550K model longward of 10200A. It differs significantly in the uv-optical range by accounting for the new TMAP AND TLUSTY WD NLTE models (<a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2020AJ....160...21B">Bohlin, Hubeny, Rauch (2020)</a>) but corresponds to <cite>alpha_mod_004</cite> above 1 micron.</p></li>
+</ul>
+<p>The figure below shows the differences between the various Vega flavors
+available in Pyphot. The top panel shows the absolute fluxes, while the bottom
+panel shows the relative differences with respect to the <cite>alpha_stis_003</cite> (the
+legacy Pyphot reference flavor).  flavor.</p>
+<figure class="align-center" id="id4">
+<a class="reference internal image-reference" href="_images/vega_flavors_comparison.png"><img alt="_images/vega_flavors_comparison.png" src="_images/vega_flavors_comparison.png" style="width: 733.5999999999999px; height: 425.59999999999997px;" />
+</a>
+<figcaption>
+<p><span class="caption-text"><strong>Figure:</strong>  Variations of Vega Flavors relative to Pyphot legacy reference flavor (<cite>alpha_stis_003</cite>).
+The differences between the various flavors could be significant, particularly in the ultraviolet. These result from stellar template parameter changes (e.g. temperature), the reference atmospheres (e.g. LTE, NLTE) and specific calibration details.</span><a class="headerlink" href="#id4" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Figure source code</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">pyphot</span> <span class="kn">import</span> <span class="n">Vega</span>
+
+<span class="k">def</span> <span class="nf">plot_vega_comparison</span><span class="p">(</span><span class="n">which</span><span class="p">):</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># Use the first as reference</span>
+    <span class="k">with</span> <span class="n">Vega</span><span class="p">(</span><span class="n">flavor</span><span class="o">=</span><span class="n">which</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="k">as</span> <span class="n">vega</span><span class="p">:</span>
+        <span class="n">vega_reference</span> <span class="o">=</span> <span class="n">vega</span>
+
+    <span class="c1"># Plot each flavor and the relative difference to the reference</span>
+    <span class="k">for</span> <span class="n">flavor</span> <span class="ow">in</span> <span class="n">which</span><span class="p">:</span>
+        <span class="k">with</span> <span class="n">Vega</span><span class="p">(</span><span class="n">flavor</span><span class="o">=</span><span class="n">flavor</span><span class="p">)</span> <span class="k">as</span> <span class="n">vega</span><span class="p">:</span>
+            <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span>
+                <span class="n">vega</span><span class="o">.</span><span class="n">wavelength</span><span class="o">.</span><span class="n">magnitude</span><span class="p">,</span> <span class="n">vega</span><span class="o">.</span><span class="n">flux</span><span class="o">.</span><span class="n">magnitude</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">flavor</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.5</span>
+            <span class="p">)</span>  <span class="c1"># type: ignore</span>
+            <span class="n">fref</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span>
+                <span class="n">vega</span><span class="o">.</span><span class="n">wavelength</span><span class="o">.</span><span class="n">magnitude</span><span class="p">,</span>
+                <span class="n">vega_reference</span><span class="o">.</span><span class="n">wavelength</span><span class="o">.</span><span class="n">magnitude</span><span class="p">,</span>
+                <span class="n">vega_reference</span><span class="o">.</span><span class="n">flux</span><span class="o">.</span><span class="n">magnitude</span><span class="p">,</span>
+            <span class="p">)</span>  <span class="c1"># type: ignore</span>
+            <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+                <span class="n">vega</span><span class="o">.</span><span class="n">wavelength</span><span class="o">.</span><span class="n">magnitude</span><span class="p">,</span>
+                <span class="p">(</span><span class="n">vega</span><span class="o">.</span><span class="n">flux</span><span class="o">.</span><span class="n">magnitude</span> <span class="o">-</span> <span class="n">fref</span><span class="p">)</span> <span class="o">/</span> <span class="n">fref</span><span class="p">,</span>
+                <span class="n">label</span><span class="o">=</span><span class="n">flavor</span><span class="p">,</span>
+                <span class="n">lw</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+            <span class="p">)</span>  <span class="c1"># type: ignore</span>
+
+    <span class="c1"># polish</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.20</span><span class="p">,</span> <span class="mf">0.20</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mf">1e-14</span><span class="p">,</span> <span class="mf">3e-8</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;Flux $(erg/s/cm^2/Å)$&quot;</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$(f - f_0) / f_0$&quot;</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">(</span>
+        <span class="mf">0.95</span><span class="p">,</span>
+        <span class="mf">0.05</span><span class="p">,</span>
+        <span class="sa">f</span><span class="s2">&quot;Relative to </span><span class="si">{</span><span class="n">which</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="n">transform</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span>
+        <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;right&quot;</span><span class="p">,</span>
+        <span class="n">va</span><span class="o">=</span><span class="s2">&quot;bottom&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Wavelength (Å)&quot;</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">700</span><span class="p">,</span> <span class="mi">50_000</span><span class="p">)</span>
+    <span class="n">lg</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;best&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="s2">&quot;small&quot;</span><span class="p">,</span> <span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">setp</span><span class="p">(</span><span class="n">lg</span><span class="o">.</span><span class="n">get_lines</span><span class="p">(),</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">);</span>
+
+<span class="n">which</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;stis_003&quot;</span><span class="p">,</span> <span class="s2">&quot;mod_002&quot;</span><span class="p">,</span> <span class="s2">&quot;mod_003&quot;</span><span class="p">,</span> <span class="s2">&quot;mod_004&quot;</span><span class="p">,</span> <span class="s2">&quot;stis_011&quot;</span><span class="p">]</span>
+<span class="n">plot_vega_comparison</span><span class="p">(</span><span class="n">which</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;Variations of Vega Flavors relative to Pyphot nominal&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="s2">&quot;large&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details><p>The following figure compares the <cite>alpha_stis_003</cite> and <cite>alpha_stis_011</cite> flavors,
+which are the two most commonly used Vega flavors in Pyphot. The
+<cite>alpha_stis_011</cite> flavor is a more recent model that incorporates updated NLTE
+models and provides a more accurate representation of Vega’s spectral energy
+distribution, particularly in the ultraviolet and optical ranges.</p>
+<figure class="align-center" id="id5">
+<a class="reference internal image-reference" href="_images/vega_stis_flavors_comparison.png"><img alt="Vega stis flavors comparison" src="_images/vega_stis_flavors_comparison.png" style="width: 733.5999999999999px; height: 425.59999999999997px;" />
+</a>
+<figcaption>
+<p><span class="caption-text"><strong>Figure:</strong> Variations of Vega STIS Flavors. The variations are of the order of 5% in the optical, primarily induced by the update in temperature.</span><a class="headerlink" href="#id5" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Figure source code</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyphot</span> <span class="kn">import</span> <span class="n">svo</span>
+
+<span class="c1"># filters to add for reference</span>
+<span class="n">pbs</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">svo</span><span class="o">.</span><span class="n">get_pyphot_filter</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="p">[</span>
+        <span class="s2">&quot;GALEX/GALEX.FUV&quot;</span><span class="p">,</span> <span class="s2">&quot;GALEX/GALEX.NUV&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Generic/Johnson.U&quot;</span><span class="p">,</span> <span class="s2">&quot;Generic/Johnson.B&quot;</span><span class="p">,</span> <span class="s2">&quot;Generic/Johnson.V&quot;</span><span class="p">,</span> <span class="s2">&quot;Generic/Johnson.R&quot;</span><span class="p">,</span> <span class="s2">&quot;Generic/Johnson.I&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Generic/Bessell_JHKLM.J&quot;</span><span class="p">,</span> <span class="s2">&quot;Generic/Bessell_JHKLM.H&quot;</span><span class="p">,</span> <span class="s2">&quot;Generic/Bessell_JHKLM.K&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;WISE/WISE.W1&quot;</span><span class="p">,</span> <span class="s2">&quot;WISE/WISE.W2&quot;</span><span class="p">,</span>
+    <span class="p">]</span>
+<span class="p">]</span>
+
+<span class="n">which</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;stis_003&quot;</span><span class="p">,</span> <span class="s2">&quot;stis_011&quot;</span><span class="p">]</span>
+<span class="n">plot_vega_comparison</span><span class="p">(</span><span class="n">which</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span>
+    <span class="s2">&quot;Variations of Vega stis flavors relative to Pyphot nominal&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="s2">&quot;large&quot;</span>
+<span class="p">)</span>
+<span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gcf</span><span class="p">()</span><span class="o">.</span><span class="n">get_axes</span><span class="p">()</span>
+
+<span class="c1"># add passbands</span>
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">twinx</span><span class="p">(</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">pbs</span><span class="p">:</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+        <span class="n">p</span><span class="o">.</span><span class="n">wavelength</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s2">&quot;AA&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">magnitude</span><span class="p">,</span>
+        <span class="n">p</span><span class="o">.</span><span class="n">transmit</span> <span class="o">/</span> <span class="n">p</span><span class="o">.</span><span class="n">transmit</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span>
+        <span class="n">label</span><span class="o">=</span><span class="n">p</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;0.5&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">text</span><span class="p">(</span>
+        <span class="n">p</span><span class="o">.</span><span class="n">cl</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s2">&quot;AA&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">magnitude</span><span class="p">,</span>
+        <span class="mf">0.1</span><span class="p">,</span>
+        <span class="n">p</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+        <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">&quot;bottom&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="s2">&quot;small&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;0.5&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">setp</span><span class="p">([</span><span class="n">ax1</span><span class="o">.</span><span class="n">get_yticklabels</span><span class="p">(),</span> <span class="n">ax1</span><span class="o">.</span><span class="n">get_yticklines</span><span class="p">()],</span> <span class="n">visible</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We note that <cite>alpha_stis_011</cite> seems to be corrupt around 1200 Å which has no impact of currently existing passbands.</p>
+</div>
+</section>
+<section id="example-vega-flavors-usage">
+<h2>Example Vega Flavors Usage<a class="headerlink" href="#example-vega-flavors-usage" title="Link to this heading">#</a></h2>
+<p>To use a specific Vega flavor for the photometric calculations in Pyphot, you can set the <cite>vega</cite> keyword parameter  when creating a passband or use the <cite>set_vega_flavor</cite> method to update it.
+For example, to use the <cite>alpha_stis_011</cite> flavor when creating a passband filter, you can do the following:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyphot</span> <span class="kn">import</span> <span class="n">Filter</span>
+<span class="kn">import</span> <span class="nn">astropy.units</span> <span class="k">as</span> <span class="nn">u</span>
+
+<span class="c1"># Create a passband using the Vega flavor</span>
+<span class="n">pb</span> <span class="o">=</span> <span class="n">Filter</span><span class="p">(</span>
+    <span class="p">[</span><span class="mi">4000</span><span class="p">,</span> <span class="mi">5000</span><span class="p">,</span> <span class="mi">6000</span><span class="p">]</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">AA</span><span class="p">,</span>
+    <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">],</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Example Passband&quot;</span><span class="p">,</span>
+    <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;photon&quot;</span>
+    <span class="n">vega</span><span class="o">=</span><span class="s2">&quot;stis_011&quot;</span>  <span class="c1"># Specify the Vega flavor,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Or alternatively, you can set/reset the Vega flavor after:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyphot</span> <span class="kn">import</span> <span class="n">svo</span>
+
+<span class="n">pb</span> <span class="o">=</span> <span class="n">svo</span><span class="o">.</span><span class="n">get_pyphot_filter</span><span class="p">(</span><span class="s2">&quot;GALEX/GALEX.FUV&quot;</span><span class="p">)</span>
+<span class="c1"># Set the Vega flavor to use</span>
+<span class="n">pb</span><span class="o">.</span><span class="n">set_vega_flavor</span><span class="p">(</span><span class="s2">&quot;stis_011&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Bohlin, R. C., Colina, L., &amp; Finley, D. S., 1995, AJ, 110, 1316, “White Dwarf Standard Stars: G191-B2B, GD 71, GD 153, HZ 43”, <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/1995AJ....110.1316B">1995AJ….110.1316B</a></p></li>
+<li><p>Bohlin, R. C., 2007, ASPC, 364, 315, “HST Stellar Standards with 1% Accuracy in Absolute Flux”, <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2007ASPC..364..315B">2007ASPC..364..315B</a></p></li>
+<li><p>Bohlin, R. C., 2014, AJ, 147, 127, “Hubble Space Telescope CALSPEC Flux Standards: Sirius (and Vega)”, <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2014AJ....147..127B">2014AJ….147..127B</a></p></li>
+<li><p>Bohlin, R. C., Gordon, K. D., &amp; Tremblay, P.-E., 2014, PASP, 126, 711, “Techniques and Review of Absolute Flux Calibration from the Ultraviolet to the Mid-Infrared”, <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2014PASP..126..711B">2014PASP..126..711B</a></p></li>
+<li><p>Bohlin, R. C., Hubeny, I., &amp; Rauch, T., 2020, AJ, 160, 21, “New Grids of Pure-hydrogen White Dwarf NLTE Model Atmospheres and the HST/STIS Flux Calibration”, <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2020AJ....160...21B">2020AJ….160…21B</a></p></li>
+<li><p>Colina, Bohlin &amp; Castelli 1996, Instrument Science Report, “Absolute Flux Calibrated Spectrum of Vega” <a class="reference external" href="https://www.stsci.edu/instruments/observatory/PDF/scs8.rev.pdf">OSG-CAL-96-01</a></p></li>
+<li><p>Fukugita, M., Ichikawa, T., Gunn, J. E., Doi, M., Shimasaku, K., &amp; Schneider, D. P., 1996, AJ, 111, 1748, “The Sloan Digital Sky Survey Photometric System”, <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/1996AJ....111.1748F">1996AJ….111.1748F</a></p></li>
+<li><p>Johnson, H. L. &amp; Morgan, W. W. 1953, ApJ, 117, 313, “Fundamental stellar photometry for standards of spectral type on the Revised System of the Yerkes Spectral Atlas.” <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/1953ApJ...117..313J">1953ApJ…117..313J</a>;</p></li>
+<li><p>Oke, J. B. and Gunn, J. E., 1983, ApJ, 266, 713, “Secondary standard stars for absolute spectrophotometry.”  <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/1983ApJ...266..713O">1983ApJ…266..713O</a>;</p></li>
+</ul>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="licks.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Extention to Lick indices</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="sun.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Internal Sun reference spectra</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#details">Details</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vega-flavors">Vega Flavors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-vega-flavors-usage">Example Vega Flavors Usage</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By M. Fouesneau
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2016, M. Fouesneau.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

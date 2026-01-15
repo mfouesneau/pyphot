@@ -1,0 +1,1329 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Extention to Lick indices &#8212; pyphot  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=984d411d"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'licks';</script>
+    <link rel="canonical" href="https://mfouesneau.github.io/pyphot/licks.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Internal Vega reference spectra" href="vega.html" />
+    <link rel="prev" title="Provided Filter library" href="libcontent.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">pyphot  documentation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="whats_new.html">What's New</a></li>
+<li class="toctree-l1"><a class="reference internal" href="QuickStart.html">pyphot Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">More examples with Pyphot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="photometry.html">Details on predicting photometry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="libcontent.html">Provided Filter library</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Extention to Lick indices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vega.html">Internal Vega reference spectra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sun.html">Internal Sun reference spectra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="modules.html">API</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="pyphot.html">pyphot package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyphot.io.html">pyphot.io package</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="pyphot.unit_adapters.html">pyphot.unit_adapters package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="pyphot.unit_adapters.ezunits.html">pyphot.unit_adapters.ezunits package</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/mfouesneau/pyphot" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/mfouesneau/pyphot/blob/master/doc/licks.rst?plain=1" target="_blank"
+   class="btn btn-sm btn-source-file-button dropdown-item"
+   title="Show source"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="btn__text-container">Show source</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/mfouesneau/pyphot/issues/new?title=Issue%20on%20page%20%2Flicks.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/licks.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Extention to Lick indices</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lick-index">Lick index</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-start-example">Quick start example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculations">Calculations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#library-content">Library content</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="extention-to-lick-indices">
+<h1>Extention to Lick indices<a class="headerlink" href="#extention-to-lick-indices" title="Link to this heading">#</a></h1>
+<p>We also include functions to compute lick indices and provide a series of commonly use ones.</p>
+<section id="lick-index">
+<h2>Lick index<a class="headerlink" href="#lick-index" title="Link to this heading">#</a></h2>
+<p>The Lick system of spectral line indices is one of the most commonly used methods of determining ages and metallicities of unresolved (integrated light) stellar populations.</p>
+<p>The calibration of the Lick / IDS system is complicated because the original Lick spectra were not flux calibrated, so there are usually systematic effects due to differences in continuum shape.  Proper calibration involves observing many of the original Lick/IDS standard stars and deriving offsets to the standard system.</p>
+<p>In <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2010MNRAS.404.1639V">Vazdekis et al. (2010)</a>, they propose a new Line Index System, hereafter
+LIS, with three new spectral resolutions at which to measure the Lick indices. Note that this new system should not be restricted to the Lick set of indices in a flux calibrated system. In fact, LIS can be used for any index in the literature (e.g., for the <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/1985AJ.....90.1927R">Rose (1984) indices</a>), including newly defined indices (e.g., <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2009MNRAS.392..691C">Cervantes &amp; Vazdekis 2009</a>).</p>
+<p>The LIS system is defined for 3 different spectral resolutions which are best suited for the following astrophysical cases:</p>
+<ul class="simple">
+<li><p>LIS-5.0AA: globular clusters</p></li>
+<li><p>LIS-8.4AA: low and intermediate-mass galaxies</p></li>
+<li><p>LIS-14.0AA: massive galaxies</p></li>
+</ul>
+<p>Conversions to transform the data from the Lick/IDS system to LIS can be found in <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2010MNRAS.404.1639V">Johansson, Thomas &amp; Maraston (2010)</a>, which provides a discussion of indices
+and the information content of them.</p>
+<p>We provide a brief summary of the compiled Lick definitions provided with pyphot.</p>
+<div class="pst-scrollable-table-container"><table class="table" id="id2">
+<caption><span class="caption-text">Indices compiled in pyphot and brief information</span><a class="headerlink" href="#id2" title="Link to this table">#</a></caption>
+<colgroup>
+<col style="width: 28.3%" />
+<col style="width: 71.7%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Index</p></th>
+<th class="head"><p>Information content</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>CN_1</p></td>
+<td><p>CN band; nitrogen (and carbon) abundance; metallicity; giant-star contribution [1][2].</p></td>
+</tr>
+<tr class="row-odd"><td><p>CN_2</p></td>
+<td><p>CN band; nitrogen/carbon; metallicity; giant-star contribution [1][2].</p></td>
+</tr>
+<tr class="row-even"><td><p>Ca1_LB13</p></td>
+<td><p>Ca II triplet (λ≈8498); metallicity; surface gravity; giant fraction/IMF; telluric/sky sensitive.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Ca2_LB13</p></td>
+<td><p>Ca II triplet (λ≈8542); metallicity; gravity; giant fraction/IMF.</p></td>
+</tr>
+<tr class="row-even"><td><p>Ca3_LB13</p></td>
+<td><p>Ca II triplet (λ≈8662); metallicity; gravity; giant fraction/IMF.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Ca4227</p></td>
+<td><p>Calcium line; [Ca/Fe]; metallicity; impacted by CN [1][2].</p></td>
+</tr>
+<tr class="row-even"><td><p>Ca4455</p></td>
+<td><p>Weak Ca/Fe blend; behaves largely like Fe; metallicity [1][2].</p></td>
+</tr>
+<tr class="row-odd"><td><p>CaH</p></td>
+<td><p>CaH molecular band; cool-dwarf gravity/IMF sensitivity; temperature.</p></td>
+</tr>
+<tr class="row-even"><td><p>CaHK_LB13</p></td>
+<td><p>Ca H+K region; age, metallicity, [Ca/Fe]; continuum-shape sensitive.</p></td>
+</tr>
+<tr class="row-odd"><td><p>CaH_1</p></td>
+<td><p>CaH band; dwarf/IMF sensitivity; temperature.</p></td>
+</tr>
+<tr class="row-even"><td><p>CaH_2</p></td>
+<td><p>CaH band; dwarf/IMF sensitivity; temperature.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Fe4383</p></td>
+<td><p>Strong Fe blend; iron abundance; metallicity [1][5].</p></td>
+</tr>
+<tr class="row-even"><td><p>Fe4531</p></td>
+<td><p>Fe+Ti blend; metallicity; some α sensitivity [1][2].</p></td>
+</tr>
+<tr class="row-odd"><td><p>Fe4668</p></td>
+<td><p>Often denoted C4668; strong C and Fe feature; very Z-sensitive; carbon abundance [1][5].</p></td>
+</tr>
+<tr class="row-even"><td><p>Fe5015</p></td>
+<td><p>Fe-dominated (with Ti); metallicity [1][5].</p></td>
+</tr>
+<tr class="row-odd"><td><p>Fe5270</p></td>
+<td><p>Fe line; iron abundance; used with Fe5335 to form [1][5].</p></td>
+</tr>
+<tr class="row-even"><td><p>Fe5335</p></td>
+<td><p>Fe line; iron abundance; pairs with Fe5270 [1][5].</p></td>
+</tr>
+<tr class="row-odd"><td><p>Fe5406</p></td>
+<td><p>Fe feature; iron abundance [1][5].</p></td>
+</tr>
+<tr class="row-even"><td><p>Fe5709</p></td>
+<td><p>Weak Fe feature; metallicity [1].</p></td>
+</tr>
+<tr class="row-odd"><td><p>Fe5782</p></td>
+<td><p>Weak Fe feature; metallicity [1].</p></td>
+</tr>
+<tr class="row-even"><td><p>G4300</p></td>
+<td><p>CH G-band; carbon abundance; metallicity; some age sensitivity [1].</p></td>
+</tr>
+<tr class="row-odd"><td><p>H_beta</p></td>
+<td><p>Balmer Hβ; primary age indicator; mild Z dependence [1][5].</p></td>
+</tr>
+<tr class="row-even"><td><p>Hbeta0</p></td>
+<td><p>Optimized Hβo; age indicator with reduced metallicity sensitivity.</p></td>
+</tr>
+<tr class="row-odd"><td><p>HbetaEW</p></td>
+<td><p>Hβ equivalent width; age; beware emission fill-in.</p></td>
+</tr>
+<tr class="row-even"><td><p>HdeltaEW</p></td>
+<td><p>Hδ equivalent width; sensitive to A-star light and recent SF.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Hdelta_A</p></td>
+<td><p>Broad HδA Balmer index; strong age sensitivity [3][5].</p></td>
+</tr>
+<tr class="row-even"><td><p>Hdelta_F</p></td>
+<td><p>Narrow HδF; age indicator with reduced Z cross-talk vs HδA [3][5].</p></td>
+</tr>
+<tr class="row-odd"><td><p>HgammaEW</p></td>
+<td><p>Hγ equivalent width; age; sensitive to A-star light.</p></td>
+</tr>
+<tr class="row-even"><td><p>Hgamma_A</p></td>
+<td><p>Broad HγA; age-sensitive Balmer index [3][5].</p></td>
+</tr>
+<tr class="row-odd"><td><p>Hgamma_F</p></td>
+<td><p>Narrow HγF; age with reduced Z sensitivity [3][5].</p></td>
+</tr>
+<tr class="row-even"><td><p>Mg4780</p></td>
+<td><p>Mg/Ti blend; metallicity; gravity/IMF sensitivity in some works.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Mg_1</p></td>
+<td><p>Molecular MgH + continuum break; metallicity and [Mg/Fe] (α) [1][5].</p></td>
+</tr>
+<tr class="row-even"><td><p>Mg_2</p></td>
+<td><p>As Mg1; widely used metallicity and [Mg/Fe] indicator [1][5].</p></td>
+</tr>
+<tr class="row-odd"><td><p>Mg_b</p></td>
+<td><p>Mg triplet; [Mg/Fe] (α) and metallicity; some gravity sensitivity [1][5].</p></td>
+</tr>
+<tr class="row-even"><td><p>NaI</p></td>
+<td><p>Na I 8190 doublet; dwarf/IMF and [Na/Fe]; sensitive to tellurics/sky [6].</p></td>
+</tr>
+<tr class="row-odd"><td><p>NaI_F13</p></td>
+<td><p>Na I 8190 definition (Ferreras+13 style); IMF/[Na/Fe] sensitive [6].</p></td>
+</tr>
+<tr class="row-even"><td><p>NaI_LB13</p></td>
+<td><p>Na I 8190 (La Barbera+13 style); IMF/[Na/Fe] sensitive [6].</p></td>
+</tr>
+<tr class="row-odd"><td><p>NaI_V12</p></td>
+<td><p>Na I 8190 (Vazdekis+12 style); IMF/[Na/Fe] sensitive [6].</p></td>
+</tr>
+<tr class="row-even"><td><p>Na_D</p></td>
+<td><p>Na D doublet; [Na/Fe]; strong ISM/dust absorption component [1][6].</p></td>
+</tr>
+<tr class="row-odd"><td><p>OIIEW</p></td>
+<td><p>[O II] λλ3726,3729 nebular emission; SF/AGN activity tracer.</p></td>
+</tr>
+<tr class="row-even"><td><p>TiO2SDSS_LB13</p></td>
+<td><p>TiO2 (SDSS variant); cool-dwarf/IMF sensitivity; metallicity, temperature [6].</p></td>
+</tr>
+<tr class="row-odd"><td><p>TiO3</p></td>
+<td><p>TiO band; cool-dwarf/IMF sensitivity; temperature/metallicity.</p></td>
+</tr>
+<tr class="row-even"><td><p>TiOCaH</p></td>
+<td><p>Composite TiO+CaH gravity-sensitive band; IMF/cool-star content.</p></td>
+</tr>
+<tr class="row-odd"><td><p>TiO_1</p></td>
+<td><p>Lick TiO1; cool-star fraction, IMF sensitivity; metallicity [1][5].</p></td>
+</tr>
+<tr class="row-even"><td><p>TiO_2</p></td>
+<td><p>Lick TiO2; cool-star/IMF sensitivity; metallicity [1][5].</p></td>
+</tr>
+<tr class="row-odd"><td><p>TiO_3</p></td>
+<td><p>Red TiO band; cool-dwarf/IMF sensitivity; temperature.</p></td>
+</tr>
+<tr class="row-even"><td><p>TiO_4</p></td>
+<td><p>Red TiO band; cool-dwarf/IMF sensitivity; temperature.</p></td>
+</tr>
+<tr class="row-odd"><td><p>aTiO</p></td>
+<td><p>TiO-based composite; cool-dwarf/IMF sensitivity; α-abundance/continuum effects possible.</p></td>
+</tr>
+<tr class="row-even"><td><p>bTiO</p></td>
+<td><p>Blue TiO/Mg region; metallicity and gravity/IMF sensitivity.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This table is compiled from various sources.</p>
+<ol class="arabic simple">
+<li><p>Classic Lick/IDS definitions and usage: <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/1994ApJ...425..659W">Worthey et al. 1994</a></p></li>
+<li><p>Sensitivities to abundance changes: <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2005A%26A...438..685K">Korn et al. 2005</a></p></li>
+<li><p>Balmer Hδ/Hγ A/F index definitions: <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/1997ApJS..111..377W">Worthey &amp; Ottaviani 1997</a></p></li>
+<li><p>Context that <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2010MNRAS.404.1639V">Vazdekis et al. (2010)</a> mentions Lick/IDS but does not tabulate them.</p></li>
+<li><p>Flux-calibrated Lick models and sensitivities: <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2011MNRAS.412.2183T">Thomas, Maraston &amp; Johansson 2011</a></p></li>
+<li><p>IMF/gravity-sensitive Na I, TiO variants in ETGs: <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2014MNRAS.438.1483S">Spiniello et al. 2014</a></p></li>
+</ol>
+</div>
+</section>
+<section id="quick-start-example">
+<h2>Quick start example<a class="headerlink" href="#quick-start-example" title="Link to this heading">#</a></h2>
+<p>The lick extension is very similar to the broadband usage.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># convert to magnitudes</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">pyphot</span> <span class="kn">import</span> <span class="n">LickLibrary</span>
+<span class="c1"># using the internal collection of indices</span>
+<span class="n">lib</span> <span class="o">=</span> <span class="n">LickLibrary</span><span class="p">()</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">lib</span><span class="p">[</span><span class="s1">&#39;CN_1&#39;</span><span class="p">]</span>
+<span class="c1"># work on many spectra at once</span>
+<span class="n">index</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">lamb</span><span class="p">,</span> <span class="n">spectra</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="calculations">
+<h2>Calculations<a class="headerlink" href="#calculations" title="Link to this heading">#</a></h2>
+<p>Suppose one has a spectrum <span class="math notranslate nohighlight">\(f_\lambda\)</span> defined over the wavelength
+<span class="math notranslate nohighlight">\(\lambda\)</span>.  First, we must adapt the resolution of the spectrum to match
+one of the LIS range.  Indeed Lick definitions have different resolution
+elements as function of wavelength:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<tbody>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\lambda\)</span> in <span class="math notranslate nohighlight">\(\unicode{x212B}\)</span></p></td>
+<td><p>4000</p></td>
+<td><p>4400</p></td>
+<td><p>4900</p></td>
+<td><p>5400</p></td>
+<td><p>6000</p></td>
+</tr>
+<tr class="row-even"><td><p>resolution (FWHM in <span class="math notranslate nohighlight">\(\unicode{x212B}\)</span>)</p></td>
+<td><p>11.5</p></td>
+<td><p>9.2</p></td>
+<td><p>8.4</p></td>
+<td><p>8.4</p></td>
+<td><p>9.8</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">new_f</span> <span class="o">=</span> <span class="n">licks</span><span class="o">.</span><span class="n">reduce_resolution</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">sigma0</span><span class="o">=</span><span class="mf">0.55</span><span class="p">,</span> <span class="n">sigma_floor</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Indices are defined on continuum normalized spectra. Therefore all indices come
+with 3 intervals: a <cite>band</cite> that gives the index range but also a <cite>blue</cite> and a
+<cite>red</cite> interval on each side which are used to fit a polynomial function as local
+continuum.</p>
+<p>see: <a class="reference internal" href="pyphot.html#pyphot.licks.LickIndex.continuum_normalized_region_around_line" title="pyphot.licks.LickIndex.continuum_normalized_region_around_line"><code class="xref py py-func docutils literal notranslate"><span class="pre">pyphot.licks.LickIndex.continuum_normalized_region_around_line()</span></code></a>.</p>
+<p>Finally any index is calculated by integrated the continuum normalized flux.
+Some indices are given in <cite>magnitudes</cite>, and some in <cite>equivalent width</cite> units.</p>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Cervantes &amp; Vazdekis, 2009, MNRAS, 392, 691, “An optimized Hbeta index for disentangling stellar population ages” <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2009MNRAS.392..691C">2009MNRAS.392..691C</a></p></li>
+<li><p>Johansson, Thomas &amp; Maraston, 2010, MNRAS, 406, 165, “Empirical calibrations of optical absorption-line indices based on the stellar library MILES” <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2010MNRAS.406..165J">2010MNRAS.406..165J</a></p></li>
+<li><p>Korn, Maraston &amp; Thomas, 2005, A&amp;A, 438, 685, “The sensitivity of Lick indices to abundance variations” <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2005A%26A...438..685K">2005A&amp;A…438..685K</a></p></li>
+<li><p>Puzia et al. 2002, A&amp;A, 395, 45, “Integrated spectroscopy of bulge globular clusters and fields. I. The data base and comparison of individual Lick indices in clusters and bulge” <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2002A&amp;A...395...45P">2002A&amp;A…395…45P</a></p></li>
+<li><p>Rose, 1985, AJ, 90, 1927, “Constraints on stellar populations in elliptical galaxies.” <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/1985AJ.....90.1927R">1985AJ…..90.1927R</a></p></li>
+<li><p>Spiniello et al 2014, MNRAS, 438, 1483, “The stellar IMF in early-type galaxies from a non-degenerate set of optical line indices” <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2014MNRAS.438.1483S">2014MNRAS.438.1483S</a></p></li>
+<li><p>Thomas, Maraston &amp; Johansson, 2011, MNRAS, 412, 2183, “Flux-calibrated stellar population models of Lick absorption-line indices with variable element abundance ratios” <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2011MNRAS.412.2183T">2011MNRAS.412.2183T</a></p></li>
+<li><p>Vazdekis et al., 2010, MNRAS, 404, 1639, “Evolutionary stellar population synthesis with MILES - I. The base models and a new line index system” <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2010MNRAS.404.1639V">2010MNRAS.404.1639V</a></p></li>
+<li><p>Worthey G., Faber S. M., Gonzalez J. J., Burstein D., 1994, ApJS, 94, 687, “Old Stellar Populations. V. Absorption Feature Indices for the Complete Lick/IDS Sample of Stars” <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/1994ApJS...94..687W">1994ApJS…94..687W</a></p></li>
+<li><p>Worthey G., Ottaviani D. L., 1997, ApJS, 111, 377, “Hγ and Hδ Absorption Features in Stars and Stellar Populations” <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/1997ApJS..111..377W">1997ApJS..111..377W</a></p></li>
+<li><p>Zhang, Li &amp; Han 2005 MNRAS, 364, 503, “Evolutionary population synthesis for binary stellar population at high spectral resolution: integrated spectral energy distributions and absorption-feature indices”, <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2005MNRAS.364..503Z">2005MNRAS.364..503Z</a></p></li>
+</ul>
+<p>This page shows the content of the provided library with respective properties
+of the passband filters. The code to generate the table is also provided below.</p>
+</section>
+<section id="library-content">
+<h2>Library content<a class="headerlink" href="#library-content" title="Link to this heading">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">cast</span>
+<span class="kn">import</span> <span class="nn">pyphot</span>
+<span class="kn">from</span> <span class="nn">pyphot</span> <span class="kn">import</span> <span class="n">LickIndex</span>
+
+<span class="c1"># define header and table format (as csv)</span>
+<span class="n">hdr</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;wavelength units&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;index units&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;min&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;maxmin blue&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;max blue&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;min red&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;max red&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">fmt</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{0:s}</span><span class="s2">,</span><span class="si">{1:s}</span><span class="s2">,</span><span class="si">{2:s}</span><span class="s2">,</span><span class="si">{3:.3f}</span><span class="s2">,</span><span class="si">{4:.3f}</span><span class="s2">,</span><span class="si">{5:.3f}</span><span class="s2">,</span><span class="si">{6:.5f}</span><span class="s2">,</span><span class="si">{7:.3f}</span><span class="s2">,</span><span class="si">{8:.3f}</span><span class="se">\n</span><span class="s2">&quot;</span>
+
+<span class="n">lib</span> <span class="o">=</span> <span class="n">pyphot</span><span class="o">.</span><span class="n">LickLibrary</span><span class="p">()</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;licks_table.csv&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">output</span><span class="p">:</span>
+    <span class="n">output</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">hdr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">lib</span><span class="o">.</span><span class="n">content</span><span class="p">):</span>
+        <span class="n">fk</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">LickIndex</span><span class="p">,</span> <span class="n">lib</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>
+        <span class="c1"># wavelength have units</span>
+        <span class="n">band</span> <span class="o">=</span> <span class="n">fk</span><span class="o">.</span><span class="n">band</span><span class="o">.</span><span class="n">value</span>
+        <span class="n">blue</span> <span class="o">=</span> <span class="n">fk</span><span class="o">.</span><span class="n">blue</span><span class="o">.</span><span class="n">value</span>
+        <span class="n">red</span> <span class="o">=</span> <span class="n">fk</span><span class="o">.</span><span class="n">red</span><span class="o">.</span><span class="n">value</span>
+        <span class="n">rec</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">fk</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+            <span class="n">fk</span><span class="o">.</span><span class="n">wavelength_unit</span><span class="p">,</span>
+            <span class="n">fk</span><span class="o">.</span><span class="n">index_unit</span><span class="p">,</span>
+            <span class="n">band</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+            <span class="n">band</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+            <span class="n">blue</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+            <span class="n">blue</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+            <span class="n">red</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+            <span class="n">red</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+        <span class="p">)</span>
+        <span class="n">output</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">fmt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">*</span><span class="n">rec</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="pst-scrollable-table-container"><table class="table" id="id3">
+<caption><span class="caption-text">Current internal library</span><a class="headerlink" href="#id3" title="Link to this table">#</a></caption>
+<tbody>
+<tr class="row-odd"><td><p>name</p></td>
+<td><p>wavelength units</p></td>
+<td><p>index units</p></td>
+<td><p>min</p></td>
+<td><p>maxmin blue</p></td>
+<td><p>max blue</p></td>
+<td><p>min red</p></td>
+<td><p>max red</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>CN_1</p></td>
+<td><p>AA</p></td>
+<td><p>mag</p></td>
+<td><p>4142.125</p></td>
+<td><p>4177.125</p></td>
+<td><p>4080.125</p></td>
+<td><p>4117.62500</p></td>
+<td><p>4244.125</p></td>
+<td><p>4284.125</p></td>
+</tr>
+<tr class="row-odd"><td><p>CN_2</p></td>
+<td><p>AA</p></td>
+<td><p>mag</p></td>
+<td><p>4142.125</p></td>
+<td><p>4177.125</p></td>
+<td><p>4083.875</p></td>
+<td><p>4096.37500</p></td>
+<td><p>4244.125</p></td>
+<td><p>4284.125</p></td>
+</tr>
+<tr class="row-even"><td><p>Ca1_LB13</p></td>
+<td><p>AA</p></td>
+<td><p>ew</p></td>
+<td><p>8484.000</p></td>
+<td><p>8513.000</p></td>
+<td><p>8474.000</p></td>
+<td><p>8484.00000</p></td>
+<td><p>8563.000</p></td>
+<td><p>8577.000</p></td>
+</tr>
+<tr class="row-odd"><td><p>Ca2_LB13</p></td>
+<td><p>AA</p></td>
+<td><p>ew</p></td>
+<td><p>8522.000</p></td>
+<td><p>8562.000</p></td>
+<td><p>8474.000</p></td>
+<td><p>8484.00000</p></td>
+<td><p>8563.000</p></td>
+<td><p>8577.000</p></td>
+</tr>
+<tr class="row-even"><td><p>Ca3_LB13</p></td>
+<td><p>AA</p></td>
+<td><p>ew</p></td>
+<td><p>8642.000</p></td>
+<td><p>8682.000</p></td>
+<td><p>8619.000</p></td>
+<td><p>8642.00000</p></td>
+<td><p>8700.000</p></td>
+<td><p>8725.000</p></td>
+</tr>
+<tr class="row-odd"><td><p>Ca4227</p></td>
+<td><p>AA</p></td>
+<td><p>ew</p></td>
+<td><p>4222.250</p></td>
+<td><p>4234.750</p></td>
+<td><p>4211.000</p></td>
+<td><p>4219.75000</p></td>
+<td><p>4241.000</p></td>
+<td><p>4251.000</p></td>
+</tr>
+<tr class="row-even"><td><p>Ca4455</p></td>
+<td><p>AA</p></td>
+<td><p>ew</p></td>
+<td><p>4452.125</p></td>
+<td><p>4474.625</p></td>
+<td><p>4445.875</p></td>
+<td><p>4454.62500</p></td>
+<td><p>4477.125</p></td>
+<td><p>4492.125</p></td>
+</tr>
+<tr class="row-odd"><td><p>CaH</p></td>
+<td><p>AA</p></td>
+<td><p>ew</p></td>
+<td><p>6775.000</p></td>
+<td><p>6817.000</p></td>
+<td><p>6520.000</p></td>
+<td><p>6545.00000</p></td>
+<td><p>7035.000</p></td>
+<td><p>7050.000</p></td>
+</tr>
+<tr class="row-even"><td><p>CaHK_LB13</p></td>
+<td><p>AA</p></td>
+<td><p>ew</p></td>
+<td><p>3899.470</p></td>
+<td><p>4003.470</p></td>
+<td><p>3806.500</p></td>
+<td><p>3833.82000</p></td>
+<td><p>4020.690</p></td>
+<td><p>4052.360</p></td>
+</tr>
+<tr class="row-odd"><td><p>CaH_1</p></td>
+<td><p>AA</p></td>
+<td><p>mag</p></td>
+<td><p>6357.500</p></td>
+<td><p>6401.750</p></td>
+<td><p>6342.125</p></td>
+<td><p>6356.50000</p></td>
+<td><p>6408.500</p></td>
+<td><p>6429.750</p></td>
+</tr>
+<tr class="row-even"><td><p>CaH_2</p></td>
+<td><p>AA</p></td>
+<td><p>mag</p></td>
+<td><p>6775.000</p></td>
+<td><p>6900.000</p></td>
+<td><p>6510.000</p></td>
+<td><p>6539.25000</p></td>
+<td><p>7017.000</p></td>
+<td><p>7064.000</p></td>
+</tr>
+<tr class="row-odd"><td><p>Fe4383</p></td>
+<td><p>AA</p></td>
+<td><p>ew</p></td>
+<td><p>4369.125</p></td>
+<td><p>4420.375</p></td>
+<td><p>4359.125</p></td>
+<td><p>4370.37500</p></td>
+<td><p>4442.875</p></td>
+<td><p>4455.375</p></td>
+</tr>
+<tr class="row-even"><td><p>Fe4531</p></td>
+<td><p>AA</p></td>
+<td><p>ew</p></td>
+<td><p>4514.250</p></td>
+<td><p>4559.250</p></td>
+<td><p>4504.250</p></td>
+<td><p>4514.25000</p></td>
+<td><p>4560.500</p></td>
+<td><p>4579.250</p></td>
+</tr>
+<tr class="row-odd"><td><p>Fe4668</p></td>
+<td><p>AA</p></td>
+<td><p>ew</p></td>
+<td><p>4634.000</p></td>
+<td><p>4720.250</p></td>
+<td><p>4611.500</p></td>
+<td><p>4630.25000</p></td>
+<td><p>4742.750</p></td>
+<td><p>4756.500</p></td>
+</tr>
+<tr class="row-even"><td><p>Fe5015</p></td>
+<td><p>AA</p></td>
+<td><p>ew</p></td>
+<td><p>4977.750</p></td>
+<td><p>5054.000</p></td>
+<td><p>4946.500</p></td>
+<td><p>4977.75000</p></td>
+<td><p>5054.000</p></td>
+<td><p>5065.250</p></td>
+</tr>
+<tr class="row-odd"><td><p>Fe5270</p></td>
+<td><p>AA</p></td>
+<td><p>ew</p></td>
+<td><p>5245.650</p></td>
+<td><p>5285.650</p></td>
+<td><p>5233.150</p></td>
+<td><p>5248.15000</p></td>
+<td><p>5285.650</p></td>
+<td><p>5318.150</p></td>
+</tr>
+<tr class="row-even"><td><p>Fe5335</p></td>
+<td><p>AA</p></td>
+<td><p>ew</p></td>
+<td><p>5312.125</p></td>
+<td><p>5352.125</p></td>
+<td><p>5304.625</p></td>
+<td><p>5315.87500</p></td>
+<td><p>5353.375</p></td>
+<td><p>5363.375</p></td>
+</tr>
+<tr class="row-odd"><td><p>Fe5406</p></td>
+<td><p>AA</p></td>
+<td><p>ew</p></td>
+<td><p>5387.500</p></td>
+<td><p>5415.000</p></td>
+<td><p>5376.250</p></td>
+<td><p>5387.50000</p></td>
+<td><p>5415.000</p></td>
+<td><p>5425.000</p></td>
+</tr>
+<tr class="row-even"><td><p>Fe5709</p></td>
+<td><p>AA</p></td>
+<td><p>ew</p></td>
+<td><p>5696.625</p></td>
+<td><p>5720.375</p></td>
+<td><p>5672.875</p></td>
+<td><p>5696.62500</p></td>
+<td><p>5722.875</p></td>
+<td><p>5736.625</p></td>
+</tr>
+<tr class="row-odd"><td><p>Fe5782</p></td>
+<td><p>AA</p></td>
+<td><p>ew</p></td>
+<td><p>5776.625</p></td>
+<td><p>5796.625</p></td>
+<td><p>5765.375</p></td>
+<td><p>5775.37500</p></td>
+<td><p>5797.875</p></td>
+<td><p>5811.625</p></td>
+</tr>
+<tr class="row-even"><td><p>G4300</p></td>
+<td><p>AA</p></td>
+<td><p>ew</p></td>
+<td><p>4281.375</p></td>
+<td><p>4316.375</p></td>
+<td><p>4266.375</p></td>
+<td><p>4282.62500</p></td>
+<td><p>4318.875</p></td>
+<td><p>4335.125</p></td>
+</tr>
+<tr class="row-odd"><td><p>H_beta</p></td>
+<td><p>AA</p></td>
+<td><p>ew</p></td>
+<td><p>4847.875</p></td>
+<td><p>4876.625</p></td>
+<td><p>4827.875</p></td>
+<td><p>4847.87500</p></td>
+<td><p>4876.625</p></td>
+<td><p>4891.625</p></td>
+</tr>
+<tr class="row-even"><td><p>Hbeta0</p></td>
+<td><p>AA</p></td>
+<td><p>ew</p></td>
+<td><p>4839.275</p></td>
+<td><p>4877.097</p></td>
+<td><p>4821.175</p></td>
+<td><p>4838.40400</p></td>
+<td><p>4897.445</p></td>
+<td><p>4915.845</p></td>
+</tr>
+<tr class="row-odd"><td><p>HbetaEW</p></td>
+<td><p>AA</p></td>
+<td><p>ew</p></td>
+<td><p>4847.875</p></td>
+<td><p>4876.625</p></td>
+<td><p>4799.000</p></td>
+<td><p>4839.00000</p></td>
+<td><p>4886.000</p></td>
+<td><p>4926.000</p></td>
+</tr>
+<tr class="row-even"><td><p>HdeltaEW</p></td>
+<td><p>AA</p></td>
+<td><p>ew</p></td>
+<td><p>4083.500</p></td>
+<td><p>4122.250</p></td>
+<td><p>4017.000</p></td>
+<td><p>4057.00000</p></td>
+<td><p>4153.000</p></td>
+<td><p>4193.000</p></td>
+</tr>
+<tr class="row-odd"><td><p>Hdelta_A</p></td>
+<td><p>AA</p></td>
+<td><p>ew</p></td>
+<td><p>4083.500</p></td>
+<td><p>4122.250</p></td>
+<td><p>4041.600</p></td>
+<td><p>4079.75000</p></td>
+<td><p>4128.500</p></td>
+<td><p>4161.000</p></td>
+</tr>
+<tr class="row-even"><td><p>Hdelta_F</p></td>
+<td><p>AA</p></td>
+<td><p>ew</p></td>
+<td><p>4091.000</p></td>
+<td><p>4112.250</p></td>
+<td><p>4057.250</p></td>
+<td><p>4088.50000</p></td>
+<td><p>4114.750</p></td>
+<td><p>4137.250</p></td>
+</tr>
+<tr class="row-odd"><td><p>HgammaEW</p></td>
+<td><p>AA</p></td>
+<td><p>ew</p></td>
+<td><p>4319.750</p></td>
+<td><p>4363.500</p></td>
+<td><p>4242.000</p></td>
+<td><p>4282.00000</p></td>
+<td><p>4404.000</p></td>
+<td><p>4444.000</p></td>
+</tr>
+<tr class="row-even"><td><p>Hgamma_A</p></td>
+<td><p>AA</p></td>
+<td><p>ew</p></td>
+<td><p>4319.750</p></td>
+<td><p>4363.500</p></td>
+<td><p>4283.500</p></td>
+<td><p>4319.75000</p></td>
+<td><p>4367.250</p></td>
+<td><p>4419.750</p></td>
+</tr>
+<tr class="row-odd"><td><p>Hgamma_F</p></td>
+<td><p>AA</p></td>
+<td><p>ew</p></td>
+<td><p>4331.250</p></td>
+<td><p>4352.250</p></td>
+<td><p>4283.500</p></td>
+<td><p>4319.75000</p></td>
+<td><p>4354.750</p></td>
+<td><p>4384.750</p></td>
+</tr>
+<tr class="row-even"><td><p>Mg4780</p></td>
+<td><p>AA</p></td>
+<td><p>ew</p></td>
+<td><p>4760.780</p></td>
+<td><p>4798.800</p></td>
+<td><p>4738.910</p></td>
+<td><p>4757.31000</p></td>
+<td><p>4819.780</p></td>
+<td><p>4835.510</p></td>
+</tr>
+<tr class="row-odd"><td><p>Mg_1</p></td>
+<td><p>AA</p></td>
+<td><p>mag</p></td>
+<td><p>5069.125</p></td>
+<td><p>5134.125</p></td>
+<td><p>4895.125</p></td>
+<td><p>4957.62500</p></td>
+<td><p>5301.125</p></td>
+<td><p>5366.125</p></td>
+</tr>
+<tr class="row-even"><td><p>Mg_2</p></td>
+<td><p>AA</p></td>
+<td><p>mag</p></td>
+<td><p>5154.125</p></td>
+<td><p>5196.625</p></td>
+<td><p>4895.125</p></td>
+<td><p>4957.62500</p></td>
+<td><p>5301.125</p></td>
+<td><p>5366.125</p></td>
+</tr>
+<tr class="row-odd"><td><p>Mg_b</p></td>
+<td><p>AA</p></td>
+<td><p>ew</p></td>
+<td><p>5160.125</p></td>
+<td><p>5192.625</p></td>
+<td><p>5142.625</p></td>
+<td><p>5161.37500</p></td>
+<td><p>5191.375</p></td>
+<td><p>5206.375</p></td>
+</tr>
+<tr class="row-even"><td><p>NaI</p></td>
+<td><p>AA</p></td>
+<td><p>ew</p></td>
+<td><p>8163.500</p></td>
+<td><p>8229.125</p></td>
+<td><p>8140.000</p></td>
+<td><p>8163.50000</p></td>
+<td><p>8230.250</p></td>
+<td><p>8250.000</p></td>
+</tr>
+<tr class="row-odd"><td><p>NaI_F13</p></td>
+<td><p>AA</p></td>
+<td><p>ew</p></td>
+<td><p>8180.000</p></td>
+<td><p>8200.000</p></td>
+<td><p>8137.000</p></td>
+<td><p>8147.00000</p></td>
+<td><p>8233.000</p></td>
+<td><p>8244.000</p></td>
+</tr>
+<tr class="row-even"><td><p>NaI_LB13</p></td>
+<td><p>AA</p></td>
+<td><p>ew</p></td>
+<td><p>8180.000</p></td>
+<td><p>8200.000</p></td>
+<td><p>8143.000</p></td>
+<td><p>8153.00000</p></td>
+<td><p>8233.000</p></td>
+<td><p>8244.000</p></td>
+</tr>
+<tr class="row-odd"><td><p>NaI_V12</p></td>
+<td><p>AA</p></td>
+<td><p>ew</p></td>
+<td><p>8180.000</p></td>
+<td><p>8200.000</p></td>
+<td><p>8164.000</p></td>
+<td><p>8173.00000</p></td>
+<td><p>8233.000</p></td>
+<td><p>8244.000</p></td>
+</tr>
+<tr class="row-even"><td><p>Na_D</p></td>
+<td><p>AA</p></td>
+<td><p>ew</p></td>
+<td><p>5876.875</p></td>
+<td><p>5909.375</p></td>
+<td><p>5860.625</p></td>
+<td><p>5875.62500</p></td>
+<td><p>5922.125</p></td>
+<td><p>5948.125</p></td>
+</tr>
+<tr class="row-odd"><td><p>OIIEW</p></td>
+<td><p>AA</p></td>
+<td><p>ew</p></td>
+<td><p>3716.300</p></td>
+<td><p>3738.300</p></td>
+<td><p>3696.300</p></td>
+<td><p>3716.30000</p></td>
+<td><p>3738.300</p></td>
+<td><p>3758.300</p></td>
+</tr>
+<tr class="row-even"><td><p>TiO2SDSS_LB13</p></td>
+<td><p>AA</p></td>
+<td><p>mag</p></td>
+<td><p>6189.625</p></td>
+<td><p>6272.125</p></td>
+<td><p>6066.625</p></td>
+<td><p>6141.62500</p></td>
+<td><p>6442.000</p></td>
+<td><p>6455.000</p></td>
+</tr>
+<tr class="row-odd"><td><p>TiO3</p></td>
+<td><p>AA</p></td>
+<td><p>ew</p></td>
+<td><p>6600.000</p></td>
+<td><p>6723.000</p></td>
+<td><p>6520.000</p></td>
+<td><p>6545.00000</p></td>
+<td><p>7035.000</p></td>
+<td><p>7050.000</p></td>
+</tr>
+<tr class="row-even"><td><p>TiOCaH</p></td>
+<td><p>AA</p></td>
+<td><p>ew</p></td>
+<td><p>6600.000</p></td>
+<td><p>6817.000</p></td>
+<td><p>6520.000</p></td>
+<td><p>6545.00000</p></td>
+<td><p>7035.000</p></td>
+<td><p>7050.000</p></td>
+</tr>
+<tr class="row-odd"><td><p>TiO_1</p></td>
+<td><p>AA</p></td>
+<td><p>mag</p></td>
+<td><p>5936.625</p></td>
+<td><p>5994.125</p></td>
+<td><p>5816.625</p></td>
+<td><p>5849.12500</p></td>
+<td><p>6038.625</p></td>
+<td><p>6103.625</p></td>
+</tr>
+<tr class="row-even"><td><p>TiO_2</p></td>
+<td><p>AA</p></td>
+<td><p>mag</p></td>
+<td><p>6189.625</p></td>
+<td><p>6272.125</p></td>
+<td><p>6066.625</p></td>
+<td><p>6141.62500</p></td>
+<td><p>6372.625</p></td>
+<td><p>6415.125</p></td>
+</tr>
+<tr class="row-odd"><td><p>TiO_3</p></td>
+<td><p>AA</p></td>
+<td><p>mag</p></td>
+<td><p>7123.750</p></td>
+<td><p>7162.500</p></td>
+<td><p>7017.000</p></td>
+<td><p>7064.00000</p></td>
+<td><p>7234.000</p></td>
+<td><p>7269.000</p></td>
+</tr>
+<tr class="row-even"><td><p>TiO_4</p></td>
+<td><p>AA</p></td>
+<td><p>mag</p></td>
+<td><p>7643.250</p></td>
+<td><p>7717.250</p></td>
+<td><p>7527.000</p></td>
+<td><p>7577.75000</p></td>
+<td><p>7735.500</p></td>
+<td><p>7782.750</p></td>
+</tr>
+<tr class="row-odd"><td><p>aTiO</p></td>
+<td><p>AA</p></td>
+<td><p>mag</p></td>
+<td><p>5445.000</p></td>
+<td><p>5600.000</p></td>
+<td><p>5420.000</p></td>
+<td><p>5442.00000</p></td>
+<td><p>5630.000</p></td>
+<td><p>5655.000</p></td>
+</tr>
+<tr class="row-even"><td><p>bTiO</p></td>
+<td><p>AA</p></td>
+<td><p>ew</p></td>
+<td><p>4758.500</p></td>
+<td><p>4800.000</p></td>
+<td><p>4742.750</p></td>
+<td><p>4756.50000</p></td>
+<td><p>4827.875</p></td>
+<td><p>4847.875</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="libcontent.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Provided Filter library</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="vega.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Internal Vega reference spectra</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lick-index">Lick index</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-start-example">Quick start example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculations">Calculations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#library-content">Library content</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By M. Fouesneau
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2016, M. Fouesneau.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
