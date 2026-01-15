@@ -21,7 +21,8 @@ from typing import Optional
 
 import pandas as pd
 
-from . import ascii, fits, hdf, votable
+from . import ascii, fits, votable
+from . import hdf_h5py as hdf
 from .header import HeaderInfo
 
 __all__ = ["fits", "ascii", "hdf", "votable", "HeaderInfo", "from_file"]

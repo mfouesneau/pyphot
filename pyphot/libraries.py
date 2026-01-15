@@ -2,15 +2,36 @@
 
 import os
 import pathlib
-from typing import List, Literal, Optional, Sequence, Union
+from typing import List, Literal, Optional, Sequence, Union, cast
 
+import h5py
 import numpy as np
 import numpy.typing as npt
-import tables
 
 from . import config
 from .helpers import progress_enumerate
 from .phot import Filter, QuantityType
+
+
+def _ensure_decoded(s: Union[bytes, str]) -> str:
+    """Decode a bytes string to a string if necessary.
+
+    Parameters
+    ----------
+    s : Union[bytes, str]
+        The string to decode.
+
+    Returns
+    -------
+    str
+        The decoded string.
+    """
+    try:
+        return s.decode("utf8")  # type: ignore
+    except UnicodeDecodeError:
+        return s.decode("latin1")  # type: ignore
+    except AttributeError:
+        return str(s)
 
 
 class Library:
@@ -194,6 +215,7 @@ class Ascii_Library(Library):
 
     >>> lib = Ascii_Library(["ground", "hst", "myfilter.csv"])
     """
+
     def __init__(
         self,
         source: Optional[str] = None,
@@ -285,7 +307,9 @@ class Ascii_Library(Library):
             newlst = []
             for entry in lst:
                 if os.path.isdir(entry):
-                    newlst.extend(glob(os.path.join(entry, self._glob_pattern)))
+                    newlst.extend(
+                        glob(os.path.join(entry, self._glob_pattern))
+                    )
                     dircheck = True
                 else:
                     newlst.append(entry)
@@ -375,11 +399,9 @@ class Ascii_Library(Library):
 
 
 class HDF_Library(Library):
-    """:class:`Library` for storage based on HDF files"""
-
-    hdf: Optional[tables.File]
-    """Source file stream of the library"""
-    mode: "Literal['r', 'w', 'a', 'r+']" = "r"
+    hdf: Optional[h5py.File]
+    """HDF5-based library for storing and retrieving photometric data."""
+    mode: "Literal['r', 'w', 'a', 'r+', 'w-', 'x']" = "r"
     """Mode of the library (file). It can be one of the following:
 
             * *'r'*: Read-only; no data can be modified.
@@ -389,6 +411,7 @@ class HDF_Library(Library):
               and writing, and if the file does not exist it is created.
             * *'r+'*: It is similar to 'a', but the file must already
               exist.
+            * *'w-'* or *'x'*: Write; Create a new file, but fail if the file already exists.
     """
     _in_context: int
     """Number of times the library is in context (potentially nested)"""
@@ -406,11 +429,11 @@ class HDF_Library(Library):
     def __enter__(self):
         """Enter context"""
         if self.source is None:
-            raise ValueError("Source must be provided")
-
+            raise ValueError("Source must be specified")
         if self.hdf is None:
-            self.hdf = tables.open_file(self.source, self.mode)
+            self.hdf = h5py.File(self.source, self.mode)
         self._in_context += 1
+
         return self
 
     def __exit__(self, *exc_info):
@@ -454,25 +477,22 @@ class HDF_Library(Library):
             if ftab is None:
                 raise ValueError("Library not initialized")
 
-            if hasattr(fname, "decode"):
-                fnode = ftab.get_node("/filters/" + fname.decode("utf8"))  # type: ignore
-            else:
-                fnode = ftab.get_node("/filters/" + fname)
-            flamb = fnode[:]["WAVELENGTH"]
-            transmit = fnode[:]["THROUGHPUT"]
-            dtype = "photon"
-            unit = None
+            fnode = ftab["/filters/" + _ensure_decoded(fname)]
+
+            _data_recarray = cast(npt.NDArray, fnode[:])  # type: ignore
+            flamb = _data_recarray["WAVELENGTH"]
+            transmit = _data_recarray["THROUGHPUT"]
+
             attrs = fnode.attrs
-            if "DETECTOR" in attrs:
-                dtype = attrs["DETECTOR"]
-            if "WAVELENGTH_UNIT" in attrs:
-                unit = attrs["WAVELENGTH_UNIT"]
+            dtype = _ensure_decoded(attrs.get("DETECTOR", "photon"))
+            unit = _ensure_decoded(attrs.get("WAVELENGTH_UNIT", None))
+            name = _ensure_decoded(attrs.get("NAME", "UNKNOWN"))
 
             fil = Filter(
                 flamb,
                 transmit,
-                name=fnode.name,
-                dtype=dtype,
+                name=name,
+                dtype=dtype,  # type: ignore
                 unit=unit,
             )
 
@@ -481,17 +501,16 @@ class HDF_Library(Library):
         return fil
 
     def get_library_content(self) -> List[str]:
-        """get the content of the library"""
+        """Get the content of the library"""
         with self as s:
-            if s.hdf is None:
+            ftab = s.hdf
+            if ftab is None:
                 raise ValueError("Library not initialized")
-            try:
-                filters = s.hdf.root.content.cols.TABLENAME[:]
-            except Exception:
-                filters = list(s.hdf.root.filters._v_children.keys())
-        if hasattr(filters[0], "decode"):
-            filters = [k.decode("utf8") for k in filters]
-        return filters
+            content = [
+                _ensure_decoded(name)
+                for name in ftab["/filters"].keys()  # type: ignore // keys() exists for groups
+            ]
+            return content
 
     def load_all_filters(
         self,
@@ -567,14 +586,10 @@ class HDF_Library(Library):
             msg = "Filter wavelength must have units for storage."
             raise AttributeError(msg)
 
-        append = kwargs.pop("append", True)
+        # append = kwargs.pop("append", True)
 
-        f.write_to(
-            f"{self.source:s}",
-            tablename=f"/filters/{f.name}",
-            createparents=True,
-            append=append,
-            **kwargs,
+        raise NotImplementedError(
+            """ Exporting filter using h5py is not yet implemented """
         )
 
 
