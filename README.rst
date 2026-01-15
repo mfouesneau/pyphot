@@ -13,7 +13,7 @@ pyphot -- A tool for computing photometry from spectra
 .. image:: https://static.pepy.tech/badge/pyphot/month
    :target: https://pepy.tech/project/pyphot
 
-.. image:: https://img.shields.io/badge/python-3.9,_3.10,_3.11,_3.12,_3.13-blue.svg
+.. image:: https://img.shields.io/badge/python-3.9,_3.10,_3.11,_3.12,_3.13,_3.14-blue.svg
 
 This is a set of tools for computing synthetic photometry in a simple way, ideal for integration into larger projects.
 
@@ -65,7 +65,7 @@ For Debian-based distributions:
 Download the repository and run the setup
 
 .. code::
-    
+
   git clone https://github.com/mfouesneau/pyphot
   cd pyphot
   pip install .
@@ -88,4 +88,3 @@ Related projects
 ----------------
 
 - `cphot <https://github.com/mfouesneau/cphot>`_ is a spin-off project that provides a C++ version of pyphot
-
