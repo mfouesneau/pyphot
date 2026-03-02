@@ -10,6 +10,7 @@ authors:
     affiliation: 1
     corresponding: true # (This is how to denote the corresponding author)
   - name: Ariane Lançon
+    orcid: 0000-0002-7214-8296
     affiliation: 2
 affiliations:
  - name: Max Planck Institute for Astronomy, Königstuhl 17, 69117 Heidelberg, Germany
