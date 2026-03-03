@@ -18,7 +18,7 @@ PYPHOT -- A tool for computing photometry from spectra
 .. image:: https://static.pepy.tech/badge/pyphot/month
     :target: https://pepy.tech/project/pyphot
 
-.. image:: https://img.shields.io/badge/python-3.9,_3.10,_3.11,_3.12,_3.13-blue.svg
+.. image:: https://img.shields.io/badge/python-3.9,_3.10,_3.11,_3.12,_3.13,_3.14-blue.svg
 
 This is a set of tools to compute synthetic photometry in a simple way, suitable
 for integration in larger projects.
@@ -27,9 +27,6 @@ for integration in larger projects.
    New major release (v2.0.0) which introduces new features and **breaking changes**.
 
    See :doc:`What's new <whats_new>`.
-
-.. info::
-   Support for python 3.14 is currently blocked by `pytables` not supporting it yet.
 
 
 The inputs are response functions for the desired photometric passbands and stellar spectra.
