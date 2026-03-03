@@ -11,7 +11,13 @@ from os import PathLike
 
 from .header import HeaderInfo
 
-import tables
+try:
+    import tables
+except ImportError:
+    tables = None
+    raise ImportWarning(
+        "pytables is required to use the HDF5 backend from :mod:`hdf_pytables`. Please install it with `pip install tables`."
+    )
 
 
 def _decode_string_ifneeded(s: str) -> str:
@@ -46,6 +52,10 @@ def from_hdf5(
     hdr: str
         string that will be be written at the beginning of the file
     """
+    if tables is None:
+        raise ImportError(
+            "pytables is required to use the HDF5 backend from :mod:`hdf_pytables`. Please install it with `pip install tables`."
+        )
     with tables.open_file(filename, **kwargs) as source:
         tablename = tablename or "/"
         if not tablename.startswith("/"):
@@ -143,6 +153,10 @@ def to_hdf5(
     ValueError
         If something went wrong without much information from pytables.
     """
+    if tables is None:
+        raise ImportError(
+            "pytables is required to use the HDF5 backend from :mod:`hdf_pytables`. Please install it with `pip install tables`."
+        )
     if hasattr(filename, "read"):
         raise Exception("HDF backend does not implement stream")
 
