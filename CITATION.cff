@@ -4,7 +4,10 @@ authors:
 - family-names: "Fouesneau"
   given-names: "Morgan"
   orcid: "https://orcid.org/0000-0001-9256-5516"
-title: "pyphot"
-version: 2.1.0
-date-released: 2026-01-15
+- family-names: "Lançon"
+  given-names: "Ariane"
+  orcid: 0000-0002-7214-8296
+title: "pyphot: A tool for computing photometry from spectra"
+version: 2.1.1
+date-released: 2026-03-03
 url: "https://github.com/mfouesneau/pyphot"
