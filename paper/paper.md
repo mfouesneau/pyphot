@@ -1,5 +1,5 @@
 ---
-title: 'pyphot: A tool for computing photometry from spectra'
+title: 'Pyphot: A tool for computing photometry from spectra'
 tags:
   - Python
   - astronomy
@@ -36,30 +36,18 @@ The type of detector and the units of flux can vary depending on the wavelength 
 
 # The Pyphot package
 
-To address this challenge, the Pyphot tool provides a comprehensive set of functions and utilities for computing photometry from spectra. The online documentation[^3] of Pyphot provides the mathematical details and references. It includes built-in support for unit handling and conversions based on either the implementations of physical units in the Astropy package [@astropy] (`astropy.units`) or in the Pint package[^2]. Users can define their transmission curves but we also provide a database of pre-defined filter transmission curves[^4], and interfaces with the [SVO filter profile service](http://svo2.cab.inta-csic.es/theory/fps/) [@svofps2020] to enable a broader range of publicly available photometric filters.
+To address this challenge, Pyphot provides a comprehensive set of functions and utilities for computing photometry from spectra. The online documentation of Pyphot provides the [mathematical details and references](https://mfouesneau.github.io/pyphot/photometry.html). It includes built-in support for unit handling and conversions based on either the implementations of physical units in the Astropy package [@astropy, `astropy.units`] or in the [Pint package](https://pint.readthedocs.io/). Users can define their transmission curves but we also provide a database of [pre-defined filter transmission curves](https://mfouesneau.github.io/pyphot/libcontent.html), and interfaces with the [SVO filter profile service](http://svo2.cab.inta-csic.es/theory/fps/) [@svofps2020] to enable a broader range of publicly available photometric filters.
 
-In addition to calculating photometry, Pyphot provides a set of tools to define and calculate lick indices. The Lick system of spectral line indices is one of the most commonly used methods for estimating ages and metallicities of unresolved (integrated light) stellar populations [@worthey1994]. They are essentially specific combinations of three tophat passband filters but the subtleties come with the dependence on the spectral resolution that varies across different indices [@Vazdekis2010]. Pyphot provides a compilation of Lick indices, in particular those of @Rose1985, @worthey1994, @Worthey1997, @Korn2005, @Cervantes2009, @Vazdekis2010, @Thomas2011, and @Spiniello2014. Pyphot deals with adapting the spectral resolution internally to match the definitions and provides a pre-defined compiled list of indices[^5].
+In addition to calculating photometry, Pyphot provides a set of tools to define and calculate Lick indices. The Lick system of spectral line indices is one of the most commonly used methods for estimating ages and metallicities of unresolved (integrated light) stellar populations [@worthey1994]. They are essentially specific combinations of three top-hat passband filters but the subtleties come with the dependence on the spectral resolution that varies across different indices [@Vazdekis2010]. Pyphot provides a compilation of Lick indices, in particular those of @Rose1985, @worthey1994, @Worthey1997, @Korn2005, @Cervantes2009, @Vazdekis2010, @Thomas2011, and @Spiniello2014. Pyphot deals with adapting the spectral resolution internally to match the definitions and provides a [pre-defined compiled list of indices](https://mfouesneau.github.io/pyphot/licks.html).
 
-# Comparison with Other Similar Tools
+# Comparison with other similar tools
 
 Several Python packages offer tools for synthetic photometry in astronomy. Synphot [@synphot] is a powerful library for simulating photometric data and spectra, incorporating custom filters and spectra. Astrolib PySynphot [@pysynphot], initially designed as an object-oriented successor to IRAF's `STSDAS.SYNPHOT`, is now out of support. Both Synphot and PySynphot are closely tied to the Space Telescope Science Institute (STScI) ecosystem and define their own data format. A key difference between these and Pyphot lies in their scope and integration with the broader astronomical Python ecosystem.
-Another notable package is sedpy, which initially intended to provide a suite to forward model photometry is now tool to calculate photometry through an extensive list of passbands.
+Another notable package is [sedpy](https://github.com/bd-j/sedpy), which initially intended to provide a suite to forward model photometry is now tool to calculate photometry through an extensive list of passbands.
 
-While Synphot, PySynphot, and sedpy may be feature-rich for specific analyses (e.g. Synphot offers more advanced features for spectral manipulation and analysis.), Pyphot offers a more streamlined and flexible approach, readily integrating with packages like Astropy and the SVO-profile service and focusing on ease of use for general synthetic photometry tasks. Pyphot also prioritizes simplicity and integration into larger projects.
+While Synphot, PySynphot, and sedpy may be feature-rich for specific analyses (e.g. Synphot offers more advanced features for spectral manipulation and analysis.), Pyphot offers a more streamlined and flexible approach, readily integrating with packages like Astropy and the SVO-profile service, and focusing on ease of use for general synthetic photometry tasks. Pyphot also prioritizes simplicity and integration into larger projects.
 
-By using Pyphot, researchers and students can perform photometric computations with confidence, knowing that the units are handled correctly and conversions are applied accurately. This ensures the reliability and reproducibility of scientific results in the field of astronomy. Pyphot has supported 41 scientific publications[^1] since 2019.
-
-[^1]: Nasa ADS [search for "pyphot"](https://ui.adsabs.harvard.edu/search/fq=%7B!type%3Daqp%20v%3D%24fq_database%7D&fq_database=(database%3Aastronomy%20OR%20database%3Aphysics)&q=ack%3A%22pyphot%22%20or%20pyphot&sort=date%20desc%2C%20bibcode%20desc&p_=0)
-
-[^2]: https://pint.readthedocs.io/en/stable/
-
-[^3]: [`pyphot` mathematical details on predicting photometry](https://mfouesneau.github.io/pyphot/photometry.html)
-
-[^4]: [`pyphot` description of the internal photometric passbands](https://mfouesneau.github.io/pyphot/libcontent.html)
-
-[^5]: [`pyphot` description of the provided lick indices](https://mfouesneau.github.io/pyphot/licks.html)
-
-[^6]: [`sedpy`](https://github.com/bd-j/sedpy)
+By using Pyphot, researchers and students can perform photometric computations with confidence, knowing that the units are handled correctly and conversions are applied accurately. This ensures the reliability and reproducibility of scientific results in the field of astronomy. A [NASA ADS search](https://ui.adsabs.harvard.edu/search/fq=%7B!type%3Daqp%20v%3D%24fq_database%7D&fq_database=(database%3Aastronomy%20OR%20database%3Aphysics)&q=ack%3A%22pyphot%22%20or%20pyphot&sort=date%20desc%2C%20bibcode%20desc&p_=0) shows that Pyphot has supported 41 scientific publications since 2019.
 
 # Acknowledgements
 
