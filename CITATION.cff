@@ -11,3 +11,24 @@ title: "pyphot: A tool for computing photometry from spectra"
 version: 2.1.1
 date-released: 2026-03-03
 url: "https://github.com/mfouesneau/pyphot"
+doi: 10.5281/zenodo.18846845
+preferred-citation:
+  authors:
+  - family-names: Fouesneau
+    given-names: Morgan
+    orcid: "https://orcid.org/0000-0001-9256-5516"
+  - family-names: Lançon
+    given-names: Ariane
+    orcid: "https://orcid.org/0000-0002-7214-8296"
+  date-published: 2026-03-06
+  doi: 10.21105/joss.08814
+  issn: 2475-9066
+  issue: 119
+  journal: Journal of Open Source Software
+  publisher:
+    name: Open Journals
+  start: 8814
+  title: "Pyphot: A tool for computing photometry from spectra"
+  type: article
+  url: "https://joss.theoj.org/papers/10.21105/joss.08814"
+  volume: 11
